@@ -25,14 +25,6 @@ export function SiteFooter() {
                         </p>
                     </div>
                     <div>
-                        <h2>Platform</h2>
-                        {/* The static pages live on GiftVerse. */}
-                        <a href={giftverseUrl("/how-it-works")}>How it works</a>
-                        <a href={giftverseUrl("/about-us")}>About us</a>
-                        <a href={giftverseUrl("/contact-us")}>Contact us</a>
-                        <a href={giftverseUrl("/#faq")}>FAQ</a>
-                    </div>
-                    <div>
                         <h2>Contact</h2>
                         <a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a>
                         <a href={giftverseUrl("/contact-us")}>Contact us</a>
