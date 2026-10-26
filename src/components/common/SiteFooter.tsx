@@ -26,30 +26,15 @@ export function SiteFooter() {
                     </div>
                     <div>
                         <h2>Platform</h2>
-                        {/* A static page under `public/`, not a route -- a plain
-                            anchor so the browser does a real document load
-                            instead of asking the router for a match it has. */}
-                        <a href="https://wingback.sampley.in/phase2/index.html">
-                            Sample Employee Store
-                        </a>
                         {/* The static pages live on GiftVerse. */}
                         <a href={giftverseUrl("/how-it-works")}>How it works</a>
                         <a href={giftverseUrl("/about-us")}>About us</a>
                         <a href={giftverseUrl("/contact-us")}>Contact us</a>
                         <a href={giftverseUrl("/#faq")}>FAQ</a>
-                        <a href={giftverseUrl("/ai-gift-finder")}>AI Gift Finder · Coming soon</a>
-                    </div>
-                    <div>
-                        <h2>Use cases</h2>
-                        <a href={giftverseUrl("/diwali-gifting")}>Diwali gifting</a>
-                        <a href={giftverseUrl("/diwali-gifting#festivals")}>Other festivals</a>
                     </div>
                     <div>
                         <h2>Contact</h2>
                         <a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a>
-                        <a href="#start" data-open-form>
-                            Book a demo
-                        </a>
                         <a href={giftverseUrl("/contact-us")}>Contact us</a>
                         <Link href="/products">Browse gifts</Link>
                     </div>

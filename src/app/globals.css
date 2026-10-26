@@ -2646,7 +2646,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.3fr repeat(4, .7fr);
+            grid-template-columns: 1.3fr repeat(3, .7fr);
             gap: 40px
         }
 
