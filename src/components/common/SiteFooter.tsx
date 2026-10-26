@@ -25,15 +25,12 @@ export function SiteFooter() {
                     </div>
                     <div>
                         <h2>Platform</h2>
-                        <Link href="/employee-gift-store">Employee Gift Stores</Link>
                         {/* A static page under `public/`, not a route -- a plain
                             anchor so the browser does a real document load
                             instead of asking the router for a match it has. */}
                         <a href="https://wingback.sampley.in/phase2/index.html">
                             Sample Employee Store
                         </a>
-                        <Link href="/direct-gifting">Direct gifting</Link>
-                        <Link href="/catalogue">Catalogue</Link>
                         <Link href="/how-it-works">How it works</Link>
                         <Link href="/about-us">About us</Link>
                         <Link href="/contact-us">Contact us</Link>
@@ -44,10 +41,6 @@ export function SiteFooter() {
                         <h2>Use cases</h2>
                         <Link href="/diwali-gifting">Diwali gifting</Link>
                         <Link href="/diwali-gifting#festivals">Other festivals</Link>
-                        <Link href="/employee-gift-store#programs">Onboarding</Link>
-                        <Link href="/employee-gift-store#programs">Milestones &amp; rewards</Link>
-                        <Link href="/direct-gifting">Client &amp; CXO gifting</Link>
-                        <Link href="/direct-gifting">Partner &amp; event gifting</Link>
                     </div>
                     <div>
                         <h2>Contact</h2>
@@ -56,7 +49,7 @@ export function SiteFooter() {
                             Book a demo
                         </a>
                         <Link href="/contact-us">Contact us</Link>
-                        <Link href="/catalogue">Explore catalogue</Link>
+                        <Link href="/products">Browse gifts</Link>
                     </div>
                     <div>
                         <h2>Policies</h2>

@@ -5,9 +5,6 @@ import { HeaderSearch } from "@/components/common/HeaderSearch";
 
 type ActiveNavItem =
     | "home"
-    | "gift-store"
-    | "direct-gifting"
-    | "catalogue"
     | "how-it-works"
     | "diwali-gifting"
     | "contact-us"
@@ -25,9 +22,6 @@ const navItems: Array<{
     label: string;
 }> = [
         { id: "home", href: "/", label: "Home" },
-        { id: "gift-store", href: "/employee-gift-store", label: "Employee Gift Stores" },
-        { id: "direct-gifting", href: "/direct-gifting", label: "Direct gifting" },
-        { id: "catalogue", href: "/catalogue", label: "Catalogue" },
         { id: "products", href: "/products", label: "Browse gifts" },
     ];
 

@@ -28,7 +28,6 @@ const markup = `<section class="section" id="models">
                                 <use href="#i-check" />
                             </svg><span>Milestones, rewards and recognition</span></li>
                     </ul>
-                    <div class="model-foot"><a href="/employee-gift-store">See how gift stores work →</a></div>
                 </article>
 
                 <article class="model">
@@ -50,7 +49,6 @@ const markup = `<section class="section" id="models">
                                 <use href="#i-check" />
                             </svg><span>Customer campaigns and fixed distributions</span></li>
                     </ul>
-                    <div class="model-foot"><a href="/direct-gifting">See how direct gifting works →</a></div>
                 </article>
             </div>
 

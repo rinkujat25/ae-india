@@ -26,9 +26,6 @@ export type SitemapEntry = {
 export const staticRoutes: SitemapEntry[] = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/products", priority: 0.9, changeFrequency: "daily" },
-    { path: "/employee-gift-store", priority: 0.8, changeFrequency: "monthly" },
-    { path: "/direct-gifting", priority: 0.8, changeFrequency: "monthly" },
-    { path: "/catalogue", priority: 0.7, changeFrequency: "monthly" },
     { path: "/diwali-gifting", priority: 0.7, changeFrequency: "monthly" },
     { path: "/how-it-works", priority: 0.6, changeFrequency: "monthly" },
     { path: "/about-us", priority: 0.6, changeFrequency: "monthly" },

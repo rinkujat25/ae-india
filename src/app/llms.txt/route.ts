@@ -67,9 +67,6 @@ function buildLlmsTxt() {
 
 - [Home](${absoluteUrl("/")}): the two gifting models and how each is run.
 - [Browse gifts](${absoluteUrl("/products")}): the product catalogue.
-- [Employee gift stores](${absoluteUrl("/employee-gift-store")}): how a branded choice store works.
-- [Direct gifting](${absoluteUrl("/direct-gifting")}): company-selected gifting for clients and partners.
-- [Catalogue](${absoluteUrl("/catalogue")}): gift categories and budget ranges.
 - [How it works](${absoluteUrl("/how-it-works")}): the process from brief to delivery.
 - [Diwali gifting](${absoluteUrl("/diwali-gifting")}): seasonal corporate gifting.
 - [AI gift finder](${absoluteUrl("/ai-gift-finder")}): guided gift selection.
