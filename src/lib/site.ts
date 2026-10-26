@@ -1,5 +1,5 @@
 /**
- * The site's own origin, for canonicals, Open Graph URLs and the sitemap.
+ * The site's own origin, for canonicals and Open Graph URLs.
  *
  * It comes from `NEXT_PUBLIC_SITE_URL` rather than being hardcoded: the same
  * build runs on localhost, staging and production, and a canonical pointing at

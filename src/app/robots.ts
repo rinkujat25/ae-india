@@ -45,7 +45,8 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: privatePaths,
             },
         ],
-        sitemap: absoluteUrl("/sitemap.xml"),
+        // No `sitemap`: this site publishes none, and pointing crawlers at a
+        // URL that 404s is worse than staying quiet.
         host: absoluteUrl("/"),
     };
 }
