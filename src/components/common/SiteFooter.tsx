@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCompany } from "@/lib/company";
+import { giftverseUrl } from "@/lib/giftverse";
 
 export function SiteFooter() {
     const company = getCompany();
@@ -31,16 +32,17 @@ export function SiteFooter() {
                         <a href="https://wingback.sampley.in/phase2/index.html">
                             Sample Employee Store
                         </a>
-                        <Link href="/how-it-works">How it works</Link>
-                        <Link href="/about-us">About us</Link>
-                        <Link href="/contact-us">Contact us</Link>
-                        <Link href="/#faq">FAQ</Link>
-                        <Link href="/ai-gift-finder">AI Gift Finder · Coming soon</Link>
+                        {/* The static pages live on GiftVerse. */}
+                        <a href={giftverseUrl("/how-it-works")}>How it works</a>
+                        <a href={giftverseUrl("/about-us")}>About us</a>
+                        <a href={giftverseUrl("/contact-us")}>Contact us</a>
+                        <a href={giftverseUrl("/#faq")}>FAQ</a>
+                        <a href={giftverseUrl("/ai-gift-finder")}>AI Gift Finder · Coming soon</a>
                     </div>
                     <div>
                         <h2>Use cases</h2>
-                        <Link href="/diwali-gifting">Diwali gifting</Link>
-                        <Link href="/diwali-gifting#festivals">Other festivals</Link>
+                        <a href={giftverseUrl("/diwali-gifting")}>Diwali gifting</a>
+                        <a href={giftverseUrl("/diwali-gifting#festivals")}>Other festivals</a>
                     </div>
                     <div>
                         <h2>Contact</h2>
@@ -48,24 +50,20 @@ export function SiteFooter() {
                         <a href="#start" data-open-form>
                             Book a demo
                         </a>
-                        <Link href="/contact-us">Contact us</Link>
+                        <a href={giftverseUrl("/contact-us")}>Contact us</a>
                         <Link href="/products">Browse gifts</Link>
                     </div>
                     <div>
                         <h2>Policies</h2>
-                        {/* The policies are published once, on GiftVerse, and
-                            apply to orders placed here too -- plain anchors so
-                            the browser leaves the site rather than asking the
-                            router for routes on another host. */}
-                        <a href="https://giftverse.sampley.in/privacy-policy">Privacy policy</a>
-                        <a href="https://giftverse.sampley.in/privacy-policy/terms-and-conditions">
+                        <a href={giftverseUrl("/privacy-policy")}>Privacy policy</a>
+                        <a href={giftverseUrl("/privacy-policy/terms-and-conditions")}>
                             Terms &amp; conditions
                         </a>
-                        <a href="https://giftverse.sampley.in/privacy-policy/return-exchange">
+                        <a href={giftverseUrl("/privacy-policy/return-exchange")}>
                             Return &amp; exchange
                         </a>
-                        <a href="https://giftverse.sampley.in/shipping-policy">Shipping policy</a>
-                        <a href="https://giftverse.sampley.in/payment-policy">Payment policy</a>
+                        <a href={giftverseUrl("/shipping-policy")}>Shipping policy</a>
+                        <a href={giftverseUrl("/payment-policy")}>Payment policy</a>
                     </div>
                 </div>
                 <div className="copyright">

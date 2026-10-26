@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PasswordField } from "@/components/auth/PasswordField";
 import { useApiRequest } from "@/hooks/useApiRequest";
+import { giftverseUrl } from "@/lib/giftverse";
 import type { AuthProfileModel } from "@/types/models/auth.model";
 import { buildLoginHref } from "@/utils/auth-mode";
 
@@ -84,9 +85,9 @@ export function LoginPasswordForm({ email, next }: LoginPasswordFormProps) {
                 {isSubmitting ? "Signing in…" : "Login"}
             </button>
 
-            <Link className="auth-alt" href="/contact-us">
+            <a className="auth-alt" href={giftverseUrl("/contact-us")}>
                 Forgot Password?
-            </Link>
+            </a>
 
             <Link className="auth-alt auth-alt-strong" href={buildLoginHref({ mode: "otp", email, next })}>
                 Login with OTP instead

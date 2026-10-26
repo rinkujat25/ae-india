@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { giftverseUrl } from "@/lib/giftverse";
 import { useMemo, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import { useApiRequest } from "@/hooks/useApiRequest";
@@ -439,9 +440,9 @@ export function ProductDetailPageContent({
                                     is too high, which is not "out of stock". */}
                                 {isAddingToCart ? "Adding..." : isUnavailable ? "Out of stock" : "Add to cart →"}
                             </button>
-                            <Link className="btn btn-soft" href="/contact-us">
+                            <a className="btn btn-soft" href={giftverseUrl("/contact-us")}>
                                 Request a quote for bulk
-                            </Link>
+                            </a>
                         </div>
                         {cartError ? <p className="cart-error" role="alert">{cartError}</p> : null}
 

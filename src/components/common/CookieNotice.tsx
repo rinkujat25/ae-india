@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import Link from "next/link";
+import { giftverseUrl } from "@/lib/giftverse";
 import {
     acknowledgeCookies,
     getAcknowledgedServerSnapshot,
@@ -125,7 +125,7 @@ export function CookieNotice() {
                 <p>
                     We use cookies to keep you signed in, to remember your cart, and to measure how the
                     site is used. No advertising cookies — read more in our{" "}
-                    <Link href="/privacy-policy">privacy policy</Link>.
+                    <a href={giftverseUrl("/privacy-policy")}>privacy policy</a>.
                 </p>
                 <button type="button" className="cookie-notice-accept" onClick={acknowledgeCookies}>
                     Got it

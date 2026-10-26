@@ -1,5 +1,6 @@
 import { fillCompanyTokens } from "@/lib/company";
 import { absoluteUrl } from "@/lib/site";
+import { giftverseUrl } from "@/lib/giftverse";
 
 /**
  * `/llms.txt` — a plain-language summary of the site for answer engines.
@@ -68,19 +69,19 @@ function buildLlmsTxt() {
 
 - [Home](${absoluteUrl("/")}): the two gifting models and how each is run.
 - [Browse gifts](${absoluteUrl("/products")}): the product catalogue.
-- [How it works](${absoluteUrl("/how-it-works")}): the process from brief to delivery.
-- [Diwali gifting](${absoluteUrl("/diwali-gifting")}): seasonal corporate gifting.
-- [AI gift finder](${absoluteUrl("/ai-gift-finder")}): guided gift selection.
-- [About](${absoluteUrl("/about-us")}): who operates Wingback.
-- [Contact](${absoluteUrl("/contact-us")}): talk to the team about a programme.
+- [How it works](${giftverseUrl("/how-it-works")}): the process from brief to delivery.
+- [Diwali gifting](${giftverseUrl("/diwali-gifting")}): seasonal corporate gifting.
+- [AI gift finder](${giftverseUrl("/ai-gift-finder")}): guided gift selection.
+- [About](${giftverseUrl("/about-us")}): who operates Wingback.
+- [Contact](${giftverseUrl("/contact-us")}): talk to the team about a programme.
 
 ## Policies
 
-- [Shipping](${absoluteUrl("/shipping-policy")}): delivery scope and timing.
-- [Returns and exchange](${absoluteUrl("/privacy-policy/return-exchange")}): what can be returned, and what branding excludes.
-- [Payment](${absoluteUrl("/payment-policy")}): how a programme is invoiced and paid.
-- [Privacy](${absoluteUrl("/privacy-policy")}): what recipient and buyer data is held.
-- [Terms](${absoluteUrl("/privacy-policy/terms-and-conditions")}): the terms a programme runs under.
+- [Shipping](${giftverseUrl("/shipping-policy")}): delivery scope and timing.
+- [Returns and exchange](${giftverseUrl("/privacy-policy/return-exchange")}): what can be returned, and what branding excludes.
+- [Payment](${giftverseUrl("/payment-policy")}): how a programme is invoiced and paid.
+- [Privacy](${giftverseUrl("/privacy-policy")}): what recipient and buyer data is held.
+- [Terms](${giftverseUrl("/privacy-policy/terms-and-conditions")}): the terms a programme runs under.
 
 ## Notes
 

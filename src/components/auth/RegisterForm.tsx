@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 import { useApiRequest } from "@/hooks/useApiRequest";
+import { giftverseUrl } from "@/lib/giftverse";
 import { buildLoginHref } from "@/utils/auth-mode";
 import {
     describePasswordRules,
@@ -198,7 +198,9 @@ export function RegisterForm() {
 
             <p className="auth-terms">
                 By creating an account, you&apos;re agreeing to accept the Customer{" "}
-                <Link href="/contact-us">Terms and Conditions.</Link>
+                <a href={giftverseUrl("/privacy-policy/terms-and-conditions")}>
+                    Terms and Conditions.
+                </a>
             </p>
         </form>
     );
