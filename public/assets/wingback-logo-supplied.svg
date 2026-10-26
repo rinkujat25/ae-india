@@ -1,0 +1,27 @@
+<svg width="420" height="112" viewBox="0 0 420 112" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6C4EFF"/>
+      <stop offset="100%" stop-color="#DD8AA0"/>
+    </linearGradient>
+    <linearGradient id="sampleyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#744290"/>
+      <stop offset="14%"  stop-color="#3B4F9D"/>
+      <stop offset="28%"  stop-color="#1A94CF"/>
+      <stop offset="40%"  stop-color="#80C14F"/>
+      <stop offset="52%"  stop-color="#F3DA54"/>
+      <stop offset="64%"  stop-color="#E86740"/>
+      <stop offset="80%"  stop-color="#D13255"/>
+      <stop offset="100%" stop-color="#933B89"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="2" y="2" width="106" height="106" rx="27" fill="url(#iconGrad)"/>
+
+  <path d="M53 23 L87 55 L54 87 L19 55 Z" fill="#FFFFFF"/>
+  <path d="M65 18 L82.5 36 L65 54 L47.5 36 Z" fill="#FFE7A8"/>
+
+  <text x="416" y="53" text-anchor="end" font-family="Poppins, 'Segoe UI', sans-serif" font-weight="700" font-size="63" fill="#1A1626" letter-spacing="-0.5">Wingback</text>
+
+  <text x="416" y="99" text-anchor="end" font-family="Poppins, 'Segoe UI', sans-serif" font-weight="700" font-size="34" fill="url(#sampleyGrad)">sampley</text>
+</svg>

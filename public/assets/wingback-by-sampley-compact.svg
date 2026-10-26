@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="112" viewBox="0 0 430 112" role="img" aria-labelledby="title desc">
+  <title id="title">Wingback Sampley compact logo</title>
+  <desc id="desc">Compact Wingback logo with violet spark mark and Sampley attribution.</desc>
+  <defs>
+    <linearGradient id="compactGradient" x1="8" y1="8" x2="98" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6244ff"/>
+      <stop offset="0.58" stop-color="#7f63ff"/>
+      <stop offset="1" stop-color="#ff8f72"/>
+    </linearGradient>
+    <filter id="compactShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#5b3df5" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#compactShadow)">
+    <rect x="10" y="14" width="84" height="84" rx="24" fill="url(#compactGradient)"/>
+  </g>
+  <path d="M52 30C56 43 65 52 78 56C65 60 56 69 52 82C48 69 39 60 26 56C39 52 48 43 52 30Z" fill="#fff"/>
+  <path d="M70 28C72 35 77 40 84 42C77 44 72 49 70 56C68 49 63 44 56 42C63 40 68 35 70 28Z" fill="#ffe7a8"/>
+  <text x="112" y="54" fill="#191622" font-family="Inter, Arial, sans-serif" font-size="43" font-weight="900">Wingback</text>
+  <text x="282" y="82" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="900">
+    <tspan fill="#2f58b9">s</tspan><tspan fill="#4b3ba8">a</tspan><tspan fill="#1d78c8">m</tspan><tspan fill="#66bd45">p</tspan><tspan fill="#ffce32">l</tspan><tspan fill="#f47f20">e</tspan><tspan fill="#8e2a8f">y</tspan>
+  </text>
+</svg>

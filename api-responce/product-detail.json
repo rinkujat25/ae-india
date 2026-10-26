@@ -1,0 +1,614 @@
+{
+    "hits": {
+        "total": {
+            "value": 1,
+            "relation": "eq"
+        },
+        "max_score": 25.409367,
+        "hits": [
+            {
+                "_source": {
+                    "id": "5839fbe4-e2af-4fad-b7f6-b2db045946f2",
+                    "company_id": "b9446062-d5a3-4819-b48e-683851861712",
+                    "name": "Aecooly Foldable Handheld Fan- Pocket 01-Black",
+                    "sku": "6977924930031",
+                    "one_line_description": null,
+                    "short_description": null,
+                    "product_type": "goods",
+                    "url_path": "aecooly-foldable-handheld-fan-pocket-01-black",
+                    "description": null,
+                    "display_name": "Aecooly Foldable Handheld Fan- Pocket 01-Black",
+                    "upc": null,
+                    "tally_product_name": "Aecooly Foldable Handheld Fan- Pocket 01-Black",
+                    "ean_number": "6977924930031",
+                    "isbn_number": null,
+                    "series": null,
+                    "asin": null,
+                    "mrp": 1590.0,
+                    "selling_price": 1590.0,
+                    "is_active": true,
+                    "is_archived": false,
+                    "is_disabled": false,
+                    "is_exposed": true,
+                    "is_visible": true,
+                    "can_order": true,
+                    "is_allow_back_orders": false,
+                    "is_grouped_product": false,
+                    "is_verified": true,
+                    "created_at": "2025-09-01T07:27:38.091267",
+                    "brand": {
+                        "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae",
+                        "name": "Aecooly",
+                        "display_name": null
+                    },
+                    "price_list": {
+                        "recommended_offers": {
+                            "end_date": null,
+                            "description": null,
+                            "applicable_amount": 1590.0,
+                            "discount_type": "flat",
+                            "uses_per_buyer": 0,
+                            "discount_rate": 0.0,
+                            "offer_name": "Selling Price",
+                            "offer_id": null,
+                            "maximum_offer_amount_per_transaction": 0,
+                            "terms": null,
+                            "applied_offer_type": "buyer_group",
+                            "percent_savings": 0.0,
+                            "max_allowed_quantity": 10000,
+                            "savings": 0.0,
+                            "minimum_quantity": 0,
+                            "offer_type": "discount",
+                            "start_date": null
+                        },
+                        "other_offers": [],
+                        "scheme_offers": []
+                    },
+                    "seo_detail": {
+                        "meta_description": "Aecooly Foldable Handheld Fan - Pocket Size with 3 speed settings, up to 24 hours battery life, 3-hour fast charging, and silent safety blade. Compact and portable black fan ideal for on-the-go cooling.",
+                        "keywords": [
+                            "foldable handheld fan",
+                            "foldable pocket fan",
+                            "foldable fan 3 speed",
+                            "foldable fan battery life",
+                            "foldable fan silent blade",
+                            "foldable fan fast charging",
+                            "foldable fan black",
+                            "foldable fan Aecooly",
+                            "foldable fan pocket size",
+                            "foldable fan handheld"
+                        ],
+                        "meta_title": "Aecooly Foldable Handheld Fan - Pocket Size, 3 Speed, Long Battery Life - Black",
+                        "also_known_as_names": []
+                    },
+                    "deal": null,
+                    "tags": null,
+                    "featured_images": [
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/da7e82a3a06b43d6b29b2312c89a4383-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/d782a81c1f3d46948b87907e26c11c53-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/461cf7aa2e4d4ac3b5d20e9ac9bb9c66-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/e06443f3262c4da6b7a7e84c9693a3df-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/4ecefd863af1437f81e6506c6dccd837-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ca65e7d7b8784bd5b51a934e5ee50f54-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/385f42596d7048da93d585da9ee2d391-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/68bab8bb06754e4592fcdef438c01d8a-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/306759ce1f344ae092557ccb3b8f4eb1-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        },
+                        {
+                            "position": 1,
+                            "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/2e334d34c75f4399a31a2375e2eeccb2-product-assets.jpg",
+                            "tags": [
+                                "feature"
+                            ]
+                        }
+                    ],
+                    "categories": [
+                        {
+                            "name": "Home & Kitchen & Festive",
+                            "parent_category": null,
+                            "global_message": null,
+                            "description": "Home, Kitchen & Festive",
+                            "sales_channel": [
+                                "sampleygifts",
+                                "admin"
+                            ],
+                            "id": "5a2ed049-419b-47c7-b81d-e5ab1d56fb41",
+                            "position": 1001,
+                            "display_name": null,
+                            "search_keywords": null,
+                            "category_images": null,
+                            "url_path": "home-kitchen--festive"
+                        },
+                        {
+                            "name": "Small appliances",
+                            "parent_category": "5a2ed049-419b-47c7-b81d-e5ab1d56fb41",
+                            "global_message": null,
+                            "description": "Small appliances",
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "flipkart",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler"
+                            ],
+                            "id": "378b380c-7941-4ccc-8072-da1c44dc1174",
+                            "position": -1,
+                            "display_name": null,
+                            "search_keywords": null,
+                            "category_images": null,
+                            "url_path": "home-kitchen--festive-small-appliances"
+                        }
+                    ],
+                    "variant_values": [
+                        {
+                            "value": "Black",
+                            "key": "Color"
+                        }
+                    ],
+                    "sales_channel": [
+                        "sampleygifts"
+                    ],
+                    "attributes": [
+                        {
+                            "value": "Black",
+                            "key": "Color"
+                        }
+                    ],
+                    "collections": [],
+                    "variant_group": {
+                        "id": "f82711ea-a9f9-410c-b8fd-306c2c9507b8",
+                        "name": "Aecooly Foldable Handheld Fan- Pocket 01",
+                        "description": null,
+                        "product_type": "goods",
+                        "is_active": true,
+                        "owner": "b9446062-d5a3-4819-b48e-683851861712",
+                        "primary_attribute": null,
+                        "primary_attribute_count": 0
+                    },
+                    "assets": null,
+                    "weight": null,
+                    "sponsored_products": {
+                        "url": "https://api.hyperinvento.com/v1/products/5839fbe4-e2af-4fad-b7f6-b2db045946f2/sponsored_products",
+                        "count": 0
+                    },
+                    "buyer_groups": [],
+                    "variants": [
+                        {
+                            "third_party_sales_channel_configurations": [],
+                            "id": "5839fbe4-e2af-4fad-b7f6-b2db045946f2",
+                            "url_path": "aecooly-foldable-handheld-fan-pocket-01-black",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/da7e82a3a06b43d6b29b2312c89a4383-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/d782a81c1f3d46948b87907e26c11c53-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/461cf7aa2e4d4ac3b5d20e9ac9bb9c66-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/e06443f3262c4da6b7a7e84c9693a3df-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/4ecefd863af1437f81e6506c6dccd837-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ca65e7d7b8784bd5b51a934e5ee50f54-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/385f42596d7048da93d585da9ee2d391-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/68bab8bb06754e4592fcdef438c01d8a-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/306759ce1f344ae092557ccb3b8f4eb1-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/2e334d34c75f4399a31a2375e2eeccb2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "sampleygifts"
+                            ],
+                            "is_exposed": true,
+                            "is_archived": false,
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Black",
+                                    "key": "Color"
+                                }
+                            ]
+                        },
+                        {
+                            "third_party_sales_channel_configurations": [],
+                            "id": "cbcf510a-7048-4ba3-9478-108b9135a12d",
+                            "url_path": "aecooly-foldable-handheld-fan-pocket-01-beige",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ab1dca73e1cb42bc8220b8e7a9463f09-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/99489f7d5377447d8bdfcea2a06fc2db-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/c6b023cd143c4a8f80188e4cf911607f-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ff2b7a86e4954ab0a9c836171f476935-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/21c533fce2bf43d9b7f22cf481b1b30a-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/daee61e211bc4cfb912aeaa0d08b3a8e-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ad3e2328f6014743b355397b9812abea-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/06b432a6e18b45b4a3ca5602242c089f-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/18c30031a61245a4a5ede5b25f0a6db6-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/957f0571a8f9448f95133970cf6fc926-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "sampleygifts"
+                            ],
+                            "is_exposed": true,
+                            "is_archived": false,
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Beige",
+                                    "key": "Color"
+                                }
+                            ]
+                        },
+                        {
+                            "third_party_sales_channel_configurations": [],
+                            "id": "4d6e8eee-af9c-4452-a903-57c99eca7763",
+                            "url_path": "aecooly-foldable-handheld-fan-pocket-01-pink",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/cc055a5288bd4c83bc5aac214c00d16e-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/2d2e6294d9f54b858ee7bb491a205661-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/9a4b2743b6dd419a918a554595d2f924-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3de86e2308b643f6b59f7a27151a118d-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/31d9b155a71445ebb0910e8725c02a06-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/a76cacc121834c0eae1ab8145e1873b7-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3afff4d860054423b0686e82bf31b35f-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/d42e6c0c76eb4485b7a66556edf3cfce-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ce341288b4be4b509eadf10091b5253d-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ba1deb4c94d5432ab0a343886e25e9b1-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "sampleygifts"
+                            ],
+                            "is_exposed": true,
+                            "is_archived": false,
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Pink",
+                                    "key": "Color"
+                                }
+                            ]
+                        }
+                    ],
+                    "country_of_origin": null,
+                    "hsn_number": "84145190",
+                    "global_product_number": "GP-RGMLSLMD",
+                    "updated_at": "2026-09-12T18:43:59.272253",
+                    "frequently_bought_together_products": {
+                        "url": "https://api.hyperinvento.com/v1/products/5839fbe4-e2af-4fad-b7f6-b2db045946f2/frequently_bought_together_products",
+                        "count": 0
+                    },
+                    "manufacturer": null,
+                    "downloads": null,
+                    "similar_products": {
+                        "url": "https://api.hyperinvento.com/v1/products/5839fbe4-e2af-4fad-b7f6-b2db045946f2/similar_products",
+                        "count": 0
+                    },
+                    "global_variant_number": "GV-VX3DCGLK",
+                    "tax": {
+                        "id": "fe9df7d8-adbf-4969-8268-d46de069c3ee",
+                        "name": "GST 18%",
+                        "percentage": 18.0,
+                        "type": "gst",
+                        "description": "",
+                        "display_name": "GST 18%",
+                        "start_date": "2022-05-27T11:29:24.442719",
+                        "end_date": "2025-05-26T11:29:24.442724"
+                    },
+                    "specifications": [
+                        {
+                            "name": "Battery capacity",
+                            "details": "2000mAh"
+                        },
+                        {
+                            "name": "Charging time",
+                            "details": "3-Hour Fast Charging"
+                        },
+                        {
+                            "name": "Usage time",
+                            "details": "Low Speed: Up to 24 hours"
+                        },
+                        {
+                            "name": "Noise level",
+                            "details": "55 dB"
+                        },
+                        {
+                            "name": "Dimensions Storage state",
+                            "details": "4.72\" * 1.81\" * 1.08\""
+                        },
+                        {
+                            "name": "Dimensions Expanded state",
+                            "details": "8.39\" * 1.81\" * 1.08\""
+                        },
+                        {
+                            "name": "Weight",
+                            "details": "3.77 oz"
+                        },
+                        {
+                            "name": "Body material",
+                            "details": "ABS"
+                        },
+                        {
+                            "name": "Fan blade material",
+                            "details": "TPE"
+                        },
+                        {
+                            "name": "Packaging size",
+                            "details": "26.77\" * 13.78\" * 49.21\""
+                        }
+                    ],
+                    "max_quantity_per_transaction": 10000,
+                    "products_in_box": null,
+                    "accessories": {
+                        "url": "https://api.hyperinvento.com/v1/products/5839fbe4-e2af-4fad-b7f6-b2db045946f2/accessories",
+                        "count": 0
+                    },
+                    "highlights": [
+                        "Foldable Pocket Size",
+                        "3 Speed Settings",
+                        "Up to 24 Hours of Battery Life",
+                        "3-Hour Fast Charging",
+                        "Silent Safety Blade"
+                    ],
+                    "unit": {
+                        "id": "494fecfa-14c0-4ba2-a84e-f363f7b16107",
+                        "name": "numbers",
+                        "display_name": "NOS"
+                    },
+                    "bidding": {},
+                    "global_message": null,
+                    "variant_group_id": "f82711ea-a9f9-410c-b8fd-306c2c9507b8",
+                    "owner": "b9446062-d5a3-4819-b48e-683851861712",
+                    "ignore_for_bi": false,
+                    "dimensions": null,
+                    "is_returnable": true,
+                    "features": null,
+                    "in_stock": false,
+                    "total_available_stock": 0,
+                    "third_party_sales_channel_configurations": []
+                }
+            }
+        ]
+    }
+}

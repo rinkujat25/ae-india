@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="180" viewBox="0 0 820 180" role="img" aria-labelledby="title desc">
+  <title id="title">Wingback Sampley dark lockup</title>
+  <desc id="desc">White Wingback text with a Sampley logo block for dark purple backgrounds.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="820" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6540ff"/>
+      <stop offset="0.38" stop-color="#3f2ca4"/>
+      <stop offset="1" stop-color="#3b2995"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="180" rx="28" fill="url(#bg)"/>
+  <path d="M0 108L270 180H0Z" fill="#6f46ff"/>
+  <g transform="translate(64 44)">
+    <rect width="84" height="84" rx="24" fill="#fff" fill-opacity="0.12"/>
+    <path d="M42 18C46 32 54 40 68 42C54 46 46 54 42 68C38 54 30 46 16 42C30 40 38 32 42 18Z" fill="#fff"/>
+    <path d="M59 16C61 23 65 27 72 29C65 31 61 35 59 42C57 35 53 31 46 29C53 27 57 23 59 16Z" fill="#ffe7a8"/>
+  </g>
+  <text x="182" y="86" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="900">Wingback</text>
+  <g transform="translate(515 42)">
+    <rect width="218" height="86" rx="2" fill="#fff"/>
+    <text x="23" y="58" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="900">
+      <tspan fill="#2f58b9">s</tspan><tspan fill="#4b3ba8">a</tspan><tspan fill="#1d78c8">m</tspan><tspan fill="#66bd45">p</tspan><tspan fill="#ffce32">l</tspan><tspan fill="#f47f20">e</tspan><tspan fill="#8e2a8f">y</tspan>
+    </text>
+  </g>
+  <text x="184" y="120" fill="#dcd4ff" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">One store. Endless choice.</text>
+</svg>

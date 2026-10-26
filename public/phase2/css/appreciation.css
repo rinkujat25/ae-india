@@ -1,0 +1,250 @@
+/* Recognition composer · deliberately scoped to the native dialog. */
+.appreciation-dialog{--app-primary:var(--primary,#6845ed);width:min(760px,calc(100% - 40px));max-height:calc(100dvh - 56px);padding:0;border:1px solid #e8e4f0;border-radius:22px;background:#fff;color:var(--ink,#242332);box-shadow:0 28px 100px #25203138;overflow:auto;font:inherit}
+.appreciation-dialog::backdrop{background:#25213380;backdrop-filter:blur(5px)}
+.appreciation-dialog *{box-sizing:border-box}
+.appreciation-dialog button,.appreciation-dialog input,.appreciation-dialog textarea{font:inherit}
+.appreciation-dialog button{cursor:pointer}
+.appreciation-dialog button:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
+.appreciation-dialog button:focus-visible,.appreciation-dialog input:focus-visible,.appreciation-dialog textarea:focus-visible{outline:3px solid #b7a6ff;outline-offset:3px}
+.appreciation-dialog [hidden]{display:none!important}
+.appreciation-topline{display:flex;align-items:center;justify-content:space-between;padding:21px 28px 0}
+.appreciation-topline>span{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:1.6px;color:var(--app-primary)}
+.appreciation-topline>span i{font-size:16px}
+.appreciation-close{width:32px;height:32px;display:grid;place-items:center;color:#817d8d!important;border:0;background:#f5f4f8!important;border-radius:50%;padding:0!important}
+.appreciation-close:hover{background:#eeebf5!important;color:#383143!important}
+.appreciation-header{padding:15px 32px 22px}
+.appreciation-header h2{font-size:27px;line-height:1.3;letter-spacing:-.7px;margin:0 0 8px;font-weight:650;outline:none}
+.appreciation-header p{margin:0;font-size:13px;line-height:1.65;color:var(--muted,#777581)}
+.appreciation-steps{list-style:none;margin:0 32px;padding:0 0 23px;display:flex;border-bottom:1px solid var(--line,#eae8ed);gap:8px}
+.appreciation-steps li{position:relative;display:flex;gap:7px;align-items:center;flex:1;color:#97929f;white-space:nowrap}
+.appreciation-steps li:not(:last-child):after{content:'';height:1px;flex:1;min-width:8px;margin-right:6px;background:#e9e6ed}
+.appreciation-steps li>span{display:grid;place-items:center;flex:none;width:24px;height:24px;border:1px solid #e5e2e9;border-radius:50%;font-size:11px;font-weight:600}
+.appreciation-steps li>b{font-size:10px;font-weight:500}
+.appreciation-steps li.is-current{color:var(--app-primary)}
+.appreciation-steps li.is-current>span{background:var(--app-primary);color:#fff;border-color:var(--app-primary);box-shadow:0 0 0 4px #f1edff}
+.appreciation-steps li.is-current>b{font-weight:650}
+.appreciation-steps li.is-complete{color:#655787}
+.appreciation-steps li.is-complete>span{background:#f1edff;border-color:#f1edff;color:var(--app-primary)}
+.appreciation-body{padding:24px 32px 26px}
+.appreciation-type-picker{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;border-radius:11px;background:#f5f4f7;margin-bottom:24px}
+.appreciation-type-picker button{border:0;background:none;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;padding:11px 8px;color:#7a7584;font-size:12px;font-weight:500}
+.appreciation-type-picker button.is-selected{color:var(--app-primary);background:#fff;box-shadow:0 2px 5px #28213b0b}
+.appreciation-type-picker i{font-size:17px}
+.appreciation-field-label,.appreciation-section-label,.appreciation-list-label{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.appreciation-field-label>label:first-child{font-size:12px;font-weight:650}
+.appreciation-check{display:flex;align-items:center;gap:6px;font-size:11px;color:#706b7a;cursor:pointer}
+.appreciation-check input{accent-color:var(--app-primary);width:14px;height:14px;margin:0}
+.appreciation-search{display:flex;align-items:center;gap:10px;margin-top:10px;padding:0 14px;height:46px;border:1px solid #e5e1ea;border-radius:10px;color:#9a93a4;background:#fff}
+.appreciation-search:focus-within{border-color:#a18ae9;box-shadow:0 0 0 3px #f3efff}
+.appreciation-search input{width:100%;border:0;outline:0!important;background:transparent;font-size:12px;color:#34303d;min-width:0}
+.appreciation-search input::placeholder{color:#96909e}
+.appreciation-selected{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 0}
+.appreciation-selected:empty{display:none}
+.appreciation-person-chip{display:inline-flex;gap:5px;align-items:center;background:#f2edff;color:#6041ca;padding:5px 6px 5px 10px;border-radius:6px;font-size:11px}
+.appreciation-person-chip button{border:0;background:transparent;color:inherit;display:grid;place-items:center;padding:2px;font-size:15px}
+.appreciation-list-label{margin:22px 0 10px;font-size:9px;font-weight:600;letter-spacing:1.1px;color:#96909d}
+.appreciation-list-label>span:last-child{letter-spacing:0;font-weight:400}
+.appreciation-people{max-height:298px;overflow:auto;display:flex;flex-direction:column;gap:4px;padding-right:4px}
+.appreciation-person{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:12px 10px;border:1px solid transparent;border-radius:10px;background:transparent;color:inherit;flex-shrink:0}
+.appreciation-person:hover{background:#f9f7fd}
+.appreciation-person.is-selected{background:#f7f3ff;border-color:#e6dcff}
+.appreciation-avatar{width:39px!important;height:39px!important;flex:none;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#ece5fb;color:#746291;font-size:12px!important;font-weight:600}
+.appreciation-person-info{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.appreciation-person-info strong{font-size:12px;font-weight:600}
+.appreciation-person-info small{font-size:10px;color:#8a8493;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.appreciation-person-check{display:grid;place-items:center;width:24px;height:24px;border:1px solid #e9e4ef;border-radius:50%;font-size:13px;color:#aaa1b4;background:white}
+.appreciation-person.is-selected .appreciation-person-check{background:var(--app-primary);color:#fff;border-color:var(--app-primary)}
+.appreciation-tip{display:flex;align-items:center;gap:7px;margin:19px 0 0;font-size:10px;color:#918995;line-height:1.5}
+.appreciation-tip i{color:#b29fca;font-size:14px}
+.appreciation-footer{position:sticky;bottom:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 28px;border-top:1px solid #eeeaf3;background:#fff;border-radius:0 0 22px 22px}
+.appreciation-footer>div{display:flex;gap:9px;align-items:center;flex-shrink:0}
+.appreciation-footer .btn,.appreciation-success-actions .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:11px;border-radius:8px;padding:11px 15px;font-weight:600;white-space:nowrap}
+.appreciation-footer .btn-primary,.appreciation-success-actions .btn-primary{background:var(--app-primary);color:#fff;border:1px solid var(--app-primary)}
+.appreciation-footer .btn-secondary,.appreciation-success-actions .btn-secondary{background:white;color:#746b80;border:1px solid #e7e1ed}
+.appreciation-footer-note{font-size:9px;display:flex;gap:6px;align-items:center;line-height:1.5;color:#a39aa9}
+.appreciation-footer-note i{font-size:13px;color:#958a9e}
+.appreciation-recipient-summary{display:flex;align-items:center;gap:12px;padding:13px 15px;background:#f9f8fb;border:1px solid #eeebf2;border-radius:10px;margin-bottom:25px}
+.appreciation-avatar-stack{display:flex;padding-left:0}
+.appreciation-avatar-stack .avatar{border:2px solid #fff;width:34px!important;height:34px!important;font-size:10px!important}
+.appreciation-avatar-stack .avatar+.avatar{margin-left:-12px}
+.appreciation-recipient-summary>div{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.appreciation-recipient-summary small{font-size:8px;letter-spacing:1px;color:#98919f}
+.appreciation-recipient-summary strong{font-size:11px;font-weight:600;line-height:1.5}
+.appreciation-dialog .btn-text{border:0;background:transparent;color:var(--app-primary);padding:5px;font-size:10px;font-weight:500}
+.appreciation-section-label{margin:0 0 13px;align-items:baseline}
+.appreciation-section-label h3{margin:0;font-size:13px;font-weight:600}
+.appreciation-section-label>span{font-size:10px;color:#96909d}
+.appreciation-values{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:26px}
+.appreciation-value{position:relative;display:flex;align-items:center;gap:10px;text-align:left;padding:14px 12px;border-radius:10px;border:1px solid #e8e3ee;background:#fff;min-height:77px}
+.appreciation-value:hover{border-color:#cbbbf4}
+.appreciation-value.is-selected{border-color:#8f6ff4;box-shadow:0 0 0 1px #8f6ff4;background:#fcfaff}
+.appreciation-value-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#f6f1ff;color:#9476c9;flex:none;font-size:17px}
+.appreciation-value.is-selected .appreciation-value-icon{background:#eee5ff;color:var(--app-primary)}
+.appreciation-value>span:nth-child(2){display:flex;flex-direction:column;gap:5px}
+.appreciation-value strong{font-size:11px;font-weight:600;color:#42374f}
+.appreciation-value small{font-size:9px;color:#918498;line-height:1.4}
+.appreciation-value-selected{position:absolute;top:6px;right:7px;color:var(--app-primary);font-size:10px}
+.appreciation-points{display:flex;gap:10px}
+.appreciation-points button{display:flex;flex:1;flex-direction:column;align-items:center;padding:13px 5px;border:1px solid #e8e3ee;border-radius:10px;background:#fff;color:#867c91;gap:4px}
+.appreciation-points button>i{font-size:17px;margin-bottom:3px;color:#b4a4c9}
+.appreciation-points strong{font-size:14px;font-weight:600;color:#5b4b6b}
+.appreciation-points small{font-size:8px;color:#a296ad}
+.appreciation-points button.is-selected{background:#f7f2ff;border-color:#916af2;box-shadow:0 0 0 1px #916af2}
+.appreciation-points button.is-selected strong,.appreciation-points button.is-selected>i{color:var(--app-primary)}
+.appreciation-budget{display:flex;align-items:flex-start;gap:7px;margin-top:13px;font-size:10px;line-height:1.7;color:#948b9e}
+.appreciation-budget>i{margin-top:2px;flex:none}
+.appreciation-budget.is-over-budget{color:#b76037}
+.appreciation-themes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 13px}
+.appreciation-theme{padding:4px;border:1px solid #eae5f0;border-radius:11px;background:#fff;text-align:left;min-width:0;transition:border-color .15s,transform .15s}
+.appreciation-theme:hover{border-color:#b7a3df;transform:translateY(-2px)}
+.appreciation-theme.is-selected{border-color:#8a66eb;box-shadow:0 0 0 1px #8a66eb}
+.appreciation-theme-name{display:flex;justify-content:space-between;align-items:center;padding:10px 5px 7px;font-size:8px;color:#82748f;gap:5px}
+.appreciation-theme-name>span{font-size:12px;color:#cfc5db;flex-shrink:0}
+.appreciation-theme.is-selected .appreciation-theme-name>span{color:var(--app-primary)}
+.appreciation-ecard{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-start;aspect-ratio:1.22;padding:13px 13px 15px;border-radius:7px;overflow:hidden;color:#5e398e;background:#eee4fd;text-align:left}
+.appreciation-ecard-lilac{background:#ebe0fc;color:#693da2}
+.appreciation-ecard-peach{background:#ffe8da;color:#b96243}
+.appreciation-ecard-mint{background:#e0f0e8;color:#347968}
+.appreciation-ecard-yellow{background:#fcf0c7;color:#967127}
+.appreciation-ecard-pink{background:#f9e3ed;color:#ab507d}
+.appreciation-ecard-blue{background:#e2ecfc;color:#486ca7}
+.appreciation-ecard-brand{position:relative;z-index:1;font-size:7px;font-weight:700;letter-spacing:-.1px;display:flex;align-items:center;gap:2px;color:inherit;opacity:.7}
+.appreciation-ecard-brand>span{font-size:9px}
+.appreciation-ecard-symbol{position:absolute;right:16px;top:22px;font-size:28px;line-height:1;transform:rotate(10deg);opacity:.65}
+.appreciation-ecard>strong{position:relative;z-index:1;font-size:23px;font-weight:750;letter-spacing:-1px;line-height:1.02;margin:auto 0 9px;max-width:90%}
+.appreciation-ecard-caption{position:relative;z-index:1;font-size:6px;line-height:1.5;max-width:87%;font-weight:450}
+.appreciation-message-preview{display:flex;gap:20px;align-items:center;margin-bottom:24px}
+.appreciation-message-preview>.appreciation-ecard{width:210px;flex:none;aspect-ratio:1.5}
+.appreciation-message-preview>.appreciation-ecard strong{font-size:26px}
+.appreciation-message-preview>div:last-child{display:flex;flex-direction:column;align-items:flex-start}
+.appreciation-mini-label{display:block;font-size:9px;font-weight:600;letter-spacing:1.2px;color:#a08ea6;line-height:1.7}
+.appreciation-message-preview>div:last-child>strong{margin-top:7px;font-size:15px;line-height:1.4;font-weight:600;color:#4a3a59}
+.appreciation-message-preview>div:last-child>p{font-size:11px;margin:6px 0 8px;color:#9c8ca8}
+.appreciation-mini-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:6px;background:#fbf4df;font-size:9px;font-weight:500;color:#ac8b37}
+.appreciation-message-preview .btn-text{margin-top:6px;padding-left:0}
+.appreciation-message-label{font-size:12px;font-weight:600;display:block;margin:0 0 10px;color:#53445e}
+.appreciation-message-label>span{color:#a385c3}
+.appreciation-dialog .field{width:100%;border:1px solid #e6dfea;border-radius:9px;background:white;padding:12px 14px;font-size:12px;color:#5c4b69}
+.appreciation-message{min-height:138px;resize:vertical;line-height:1.8}
+.appreciation-message::placeholder{color:#b0a3b7}
+.appreciation-message-help{display:flex;justify-content:space-between;gap:15px;font-size:9px;color:#a395ae;margin:6px 0 23px;line-height:1.5}
+.appreciation-settings{border-top:1px solid #eee8f2}
+.appreciation-setting{position:relative;display:flex;align-items:center;gap:10px;justify-content:space-between;padding:14px 0;border-bottom:1px solid #f1edf5;cursor:pointer}
+.appreciation-setting>span:first-child{display:flex;flex-direction:column;gap:5px}
+.appreciation-setting strong{font-size:11px;font-weight:500;color:#76617f}
+.appreciation-setting small{font-size:9px;color:#ad9ab7}
+.appreciation-setting input{position:absolute;right:0;width:35px;height:20px;opacity:0;cursor:pointer}
+.appreciation-switch{display:block;width:32px;height:18px;flex:none;border-radius:30px;background:#e5deec;padding:3px;transition:background .2s}
+.appreciation-switch:before{content:'';display:block;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #4732501a;transition:transform .2s}
+.appreciation-setting input:checked+.appreciation-switch{background:#8862e6}
+.appreciation-setting input:checked+.appreciation-switch:before{transform:translateX(14px)}
+.appreciation-setting input:focus-visible+.appreciation-switch{outline:3px solid #b7a6ff;outline-offset:3px}
+.appreciation-schedule-field{margin-top:15px;padding:14px;border-radius:8px;background:#faf7fd}
+.appreciation-schedule-field label{display:block;font-size:11px;color:#7a608a;margin-bottom:8px;font-weight:500}
+.appreciation-schedule-field label span{font-size:9px;font-weight:400;color:#b09abc;margin-left:4px}
+.appreciation-review-card{border:1px solid #ebe2f1;border-radius:14px;overflow:hidden}
+.appreciation-review-card .appreciation-ecard-large{width:100%;height:235px;aspect-ratio:auto;border-radius:0;padding:24px 30px}
+.appreciation-ecard-large .appreciation-ecard-brand{font-size:11px;gap:3px}
+.appreciation-ecard-large .appreciation-ecard-brand>span{font-size:14px}
+.appreciation-ecard-large .appreciation-ecard-symbol{right:65px;top:62px;font-size:90px}
+.appreciation-ecard-large>strong{font-size:47px;margin-top:auto;max-width:70%;letter-spacing:-2px}
+.appreciation-ecard-large .appreciation-ecard-caption{font-size:9px;margin-top:3px}
+.appreciation-review-message{padding:23px 27px}
+.appreciation-review-message .appreciation-mini-label{letter-spacing:1px;font-size:8px;color:#ab92b8}
+.appreciation-review-message>p{font-size:13px;color:#70577e;line-height:1.9;margin:12px 0 18px;overflow-wrap:anywhere}
+.appreciation-review-signature{font-size:10px;line-height:1.8;color:#ad93bb}
+.appreciation-review-signature strong{font-weight:550;color:#775781}
+.appreciation-review-meta{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:18px}
+.appreciation-review-meta>span{display:flex;gap:6px;align-items:center;font-size:10px;color:#95819f}
+.appreciation-review-meta i{color:#9b7db2;font-size:13px}
+.appreciation-demo-note{display:flex;align-items:flex-start;gap:7px;padding:11px 13px;border:1px solid #ece5f2;background:#faf7fc;border-radius:8px;font-size:9px;line-height:1.7;color:#a18dad;margin-top:19px}
+.appreciation-demo-note>i{flex:none;margin-top:1px;font-size:12px}
+.appreciation-empty{display:flex;align-items:center;justify-content:center;flex-direction:column;min-height:175px;color:#a293b3}
+.appreciation-empty>i{font-size:24px;margin-bottom:12px}
+.appreciation-empty strong{font-size:12px;color:#8f7d9d;font-weight:550}
+.appreciation-empty p{font-size:11px;margin-top:8px}
+.appreciation-error{margin:0 32px 20px;padding:12px;border-radius:8px;background:#fff1ee;color:#bd6849;font-size:12px;line-height:1.6}
+.appreciation-success{position:relative;text-align:center;padding:44px 60px 32px}
+.appreciation-success>.appreciation-close{position:absolute;right:23px;top:23px}
+.appreciation-success-symbol{display:grid;place-items:center;width:76px;height:76px;margin:3px auto 23px;border-radius:50%;background:#f0e6ff;box-shadow:0 0 0 10px #fbf7ff;color:#9166d6;font-size:32px;transform:rotate(-8deg)}
+.appreciation-success>.appreciation-mini-label{color:#af8dba;font-size:9px;letter-spacing:1.6px}
+.appreciation-success h2{font-size:27px;line-height:1.25;color:#553164;font-weight:600;letter-spacing:-.6px;max-width:430px;margin:12px auto;outline:none}
+.appreciation-success>p{font-size:12px;line-height:1.8;color:#a080ae;max-width:400px;margin:0 auto}
+.appreciation-success-card{border:1px solid #eae0f1;border-radius:12px;max-width:330px;padding:6px;margin:23px auto}
+.appreciation-success-card .appreciation-ecard{aspect-ratio:1.8;padding:15px 20px}
+.appreciation-success-card .appreciation-ecard strong{font-size:35px}
+.appreciation-success-card .appreciation-ecard-symbol{font-size:44px;right:27px;top:34px}
+.appreciation-success-card .appreciation-ecard-caption{font-size:8px}
+.appreciation-success-card>span{display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;color:#a283ad;padding:12px 5px 7px}
+.appreciation-success-card>span b{margin-left:auto;font-weight:600;background:#faf0d6;border-radius:4px;padding:3px 6px;color:#b59031;font-size:9px}
+.appreciation-success .appreciation-demo-note{text-align:left;max-width:450px;margin:0 auto 23px}
+.appreciation-success-actions{display:flex;align-items:center;justify-content:center;gap:10px}
+/* Keep secondary text readable while the cards carry the softer colours. */
+.appreciation-header p,.appreciation-check,.appreciation-list-label,.appreciation-person-info small,.appreciation-tip,.appreciation-footer-note,.appreciation-recipient-summary small,.appreciation-section-label>span,.appreciation-value small,.appreciation-points small,.appreciation-budget,.appreciation-theme-name,.appreciation-mini-label,.appreciation-message-preview>div:last-child>p,.appreciation-message-help,.appreciation-setting small,.appreciation-schedule-field label span,.appreciation-review-message .appreciation-mini-label,.appreciation-review-signature,.appreciation-review-meta>span,.appreciation-demo-note,.appreciation-success>.appreciation-mini-label,.appreciation-success>p,.appreciation-success-card>span{color:#766b80}
+.appreciation-field-label>label:first-child,.appreciation-message-label{font-size:13px}
+.appreciation-check,.appreciation-list-label{font-size:10px}
+.appreciation-search input,.appreciation-person-info strong{font-size:13px}
+.appreciation-person-info small,.appreciation-tip{font-size:11px}
+.appreciation-footer .btn,.appreciation-success-actions .btn{font-size:12px}
+.appreciation-footer-note{font-size:10px}
+.appreciation-recipient-summary strong{font-size:12px}
+.appreciation-section-label h3{font-size:14px}
+.appreciation-section-label>span,.appreciation-value small,.appreciation-budget{font-size:11px}
+.appreciation-value strong{font-size:12px}
+.appreciation-points small,.appreciation-theme-name,.appreciation-mini-badge,.appreciation-dialog .btn-text,.appreciation-message-help,.appreciation-setting small,.appreciation-schedule-field label span,.appreciation-review-signature,.appreciation-demo-note{font-size:10px}
+.appreciation-setting strong{font-size:12px}
+.appreciation-review-meta>span{font-size:11px}
+@media(max-width:650px){
+  .appreciation-dialog{width:calc(100% - 24px);max-height:calc(100dvh - 24px);border-radius:17px}
+  .appreciation-topline{padding:14px 17px 0}
+  .appreciation-topline>span{font-size:8px;letter-spacing:1.2px}
+  .appreciation-header{padding:12px 20px 20px}
+  .appreciation-header h2{font-size:23px}
+  .appreciation-header p{font-size:11px}
+  .appreciation-steps{margin:0 20px;padding-bottom:20px;gap:8px}
+  .appreciation-steps li{flex-direction:column;gap:8px;align-items:center}
+  .appreciation-steps li:after{position:absolute;left:calc(50% + 20px);right:calc(-50% + 13px);top:11px;margin:0!important;min-width:0!important}
+  .appreciation-steps li>b{font-size:8px}
+  .appreciation-body{padding:20px}
+  .appreciation-footer{padding:15px 20px;justify-content:flex-end;border-radius:0 0 17px 17px}
+  .appreciation-footer-note{display:none}
+  .appreciation-type-picker{margin-bottom:20px}
+  .appreciation-type-picker button{font-size:9px;gap:5px;line-height:1.5}
+  .appreciation-type-picker i{font-size:15px}
+  .appreciation-field-label{align-items:center;gap:6px}
+  .appreciation-field-label>label:first-child{font-size:11px}
+  .appreciation-check{font-size:9px}
+  .appreciation-person-info small{max-width:230px}
+  .appreciation-value{padding:12px 9px;gap:8px;align-items:flex-start}
+  .appreciation-value-icon{width:28px;height:28px;font-size:15px;border-radius:7px}
+  .appreciation-value strong{font-size:10px}
+  .appreciation-value small{font-size:8px}
+  .appreciation-section-label h3{font-size:11px}
+  .appreciation-section-label>span{font-size:8px}
+  .appreciation-points{gap:7px}
+  .appreciation-points strong{font-size:12px}
+  .appreciation-points small{font-size:7px}
+  .appreciation-themes{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .appreciation-ecard>strong{font-size:23px}
+  .appreciation-theme-name{font-size:8px;padding:9px 3px 5px}
+  .appreciation-message-preview{gap:14px}
+  .appreciation-message-preview>.appreciation-ecard{width:47%;aspect-ratio:1.2;padding:12px}
+  .appreciation-message-preview>.appreciation-ecard strong{font-size:22px}
+  .appreciation-message-preview>div:last-child>strong{font-size:12px}
+  .appreciation-message-preview>div:last-child>p{font-size:10px}
+  .appreciation-message-label{font-size:11px}
+  .appreciation-message-help{font-size:8px;gap:8px}
+  .appreciation-message-help>span:last-child{white-space:nowrap}
+  .appreciation-setting strong{font-size:10px}
+  .appreciation-setting small{font-size:8px}
+  .appreciation-review-card .appreciation-ecard-large{height:215px;padding:20px}
+  .appreciation-ecard-large>strong{font-size:36px;max-width:85%}
+  .appreciation-ecard-large .appreciation-ecard-symbol{font-size:54px;right:30px;top:42px;opacity:.45}
+  .appreciation-review-message{padding:20px}
+  .appreciation-review-message>p{font-size:12px}
+  .appreciation-success{padding:48px 22px 27px}
+  .appreciation-success h2{font-size:25px}
+  .appreciation-success-actions .btn{padding:11px 12px;font-size:10px}
+  .appreciation-error{margin:0 20px 17px}
+}
+@media(prefers-reduced-motion:reduce){.appreciation-dialog *{transition:none!important}}

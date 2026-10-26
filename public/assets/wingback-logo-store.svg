@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="190" viewBox="0 0 760 190" role="img" aria-labelledby="title desc">
+  <title id="title">Wingback Store Logo</title>
+  <desc id="desc">Wingback wordmark with a gift store doorway and spark mark.</desc>
+  <defs>
+    <linearGradient id="gvStoreGradient" x1="24" y1="24" x2="150" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6545FF"/>
+      <stop offset=".58" stop-color="#7C62FF"/>
+      <stop offset="1" stop-color="#FF8D70"/>
+    </linearGradient>
+  </defs>
+  <rect x="20" y="25" width="140" height="136" rx="32" fill="#17121F"/>
+  <path d="M43 76C43 58 58 43 76 43H126C132 43 137 48 137 54V137H43V76Z" fill="url(#gvStoreGradient)"/>
+  <path d="M66 137V91C66 78 77 67 90 67C103 67 114 78 114 91V137H66Z" fill="#FFFDF7"/>
+  <path d="M90 78C94 91 102 99 115 103C102 107 94 115 90 128C86 115 78 107 65 103C78 99 86 91 90 78Z" fill="#6545FF"/>
+  <text x="195" y="113" fill="#191622" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="900">Wingback</text>
+  <text x="199" y="148" fill="#6E6879" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">One store. Endless choice.</text>
+</svg>

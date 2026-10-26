@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Wingback app icon</title>
+  <desc id="desc">Violet rounded app icon with a white Wingback spark and gift base.</desc>
+  <defs>
+    <linearGradient id="iconGradient" x1="34" y1="28" x2="222" y2="230" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6244ff"/>
+      <stop offset="0.6" stop-color="#7f63ff"/>
+      <stop offset="1" stop-color="#ff8f72"/>
+    </linearGradient>
+  </defs>
+  <rect x="24" y="24" width="208" height="208" rx="58" fill="url(#iconGradient)"/>
+  <path d="M128 59C136 95 158 119 195 128C158 136 136 160 128 197C120 160 98 136 61 128C98 119 120 95 128 59Z" fill="#fff"/>
+  <path d="M175 53C179 69 189 79 205 83C189 87 179 97 175 113C171 97 161 87 145 83C161 79 171 69 175 53Z" fill="#ffe7a8"/>
+  <path d="M88 161h80" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+  <path d="M96 181h64" stroke="#fff" stroke-width="14" stroke-linecap="round" opacity="0.72"/>
+</svg>

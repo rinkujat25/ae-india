@@ -1,0 +1,471 @@
+{
+    "hits": {
+        "hits": [
+            {
+                "_index": "prod_variants",
+                "_id": "d218eb75-1466-4afb-881a-563b35cfb511",
+                "_score": 32.5977,
+                "_source": {
+                    "variant_group": null,
+                    "variants": [
+                        {
+                            "selling_price": 0.0,
+                            "deal": null,
+                            "created_at": "2026-09-05T23:41:53.357993",
+                            "seo_detail": null,
+                            "one_line_description": "this uses AUI list/listitem elements in desktop\nCare instructions Wipe with Dry Cloth\nthis is where AUI list/listitem elements in desktop ends\nINSULATED & LEAKPROOF LUNCH COMPARTMENT WITH STEEL CONTAINERS: Upgrade your daily routine with a backpack bag for man office use that keeps your meals fresh and spill-free. The built-in insulated tiffin section includes airtight stainless-steel containers and a waterproof lining—perfect for workdays. When not in use, the section flattens to save space, making it ideal for Office, Business, professionals, and travelers alike. FAST CHARGING USB-C & STANDERD USB-A PORTS: Stay powered on the go with a laptop travel backpack that features fast USB-C and standard USB-A charging ports, plus reverse charging capability for your power bank. A dedicated power bank pocket keeps your tech organized, making this the best office bag for man backpack, who need uninterrupted connectivity during commutes, flights, or meetings. WATER-RESISTANT BUILD & PREMIUM LAPTOP PROTECTION: Safeguard your devices with a laptop backpack designed for durability and style. Crafted from EVA-laminated polyester, this 23 litre backpack features a microsuede-lined, waterproof-zippered laptop compartment that securely fits 15.6–16 inch devices. Ideal as a macbook, laptop backpack, laptop bag 15.6 inch office use where protection meets elegance. MULTI-COMPARTMENT SMART ORGANIZATION: Keep your day streamlined with three spacious compartments, including a backpack with laptop compartment, a dedicated lunch area, a roomy middle section, and a front organizer panel. Additional features include a side water bottle pocket and a hidden zippered pocket with retractable key/ID holder—making it the best back packs bags for men, or anti theft backpack for smart storage on the move. COMFORT, DURABILITY & PROFESSIONAL STYLE: Designed for all-day wear, this laptop backpack for men office use or laptop bags for men office use backpack offers ergonomically padded shoulder straps, breathable air mesh, and a sturdy PVC handle. Its sleek, modern silhouette works as an official bagpack, laptop bag for man, or travel laptop backpack for man—blending comfort, style, and long-lasting performance for both mens and woman professionals. 18-MONTH WARRANTY: We stand behind our product quality. Enjoy a worry-free purchase with our reliable 18-month warranty and responsive customer support.\nManufacturer Craloft, Plot no. 180, GIDC, Sidhpur highway, Sidhpur, Gujarat-384151. | Email us at:- mp@craloft.com\nPacker Craloft, Plot no. 180, GIDC, Sidhpur highway, Sidhpur, Gujarat-384151\nItem Weight 1 kg 260 g\nItem Dimensions LxWxH 27.9 x 16.5 x 43.2 Centimeters\nNet Quantity 1.0 Count\nGeneric Name Laptop Backpack",
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 0.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "d218eb75-1466-4afb-881a-563b35cfb511",
+                            "sku": "B0F6VHKMHS",
+                            "brand": {
+                                "name": "Craloft",
+                                "id": "c8004550-3a71-4436-a92e-55efb627f273"
+                            },
+                            "url_path": "craloft-laptop-backpack-156-16-inch-business-travel-bag-insulated-lunch-compartment-usb-c-usb-a-ports-water-resistant-23l-b0f6vhkmhs",
+                            "featured_images": [
+                                {
+                                    "position": 0,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/0284b095193940c695314a18a0eedd52-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/71a895ea37cc45eebf20bd7837b26411-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 2,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/8a24fcc68739434eb86c72b5539d5c36-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 3,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/f265712ab4474ba1ae5b2c0ba1a7f5a6-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 4,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/6a04ea739b164758a92c5ae5cfb352ff-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 5,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/501310002a1147d28e1903c6843c42b8-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 6,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/ead1201444b646fda7db0873fd600bfc-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 7,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/e7795f2275834702a3d6dfff7c436d9a-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 8,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/be3fb69e9b2c43e9b471e4a44908e351-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 9,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/232c2c9a001a4f488fc9e9ffa5cfbb70-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 10,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/6c24425766fb47bfa227a5d94ea60b8b-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 11,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/6c6fa0ad1984459aa7fec563225f35be-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 12,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/f559d8c83d634cd9bd1c4b55c3968cfe-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 13,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/c31ea395431947fcbb60eb96e7041c05-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 14,
+                                    "url": "https://media-assets.hyperinvento.com/companies/b9446062-d5a3-4819-b48e-683851861712/products/d218eb75-1466-4afb-881a-563b35cfb511/featureds/images/961ab6b37eff4460bef040b607b8dff9-product-featured-lg.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "aurali",
+                                "consumer",
+                                "distributor",
+                                "flipkart",
+                                "offline",
+                                "online",
+                                "point_of_sale",
+                                "retailer",
+                                "sampley",
+                                "sampleygifts"
+                            ],
+                            "mrp": 0.0,
+                            "display_name": "CRALOFT Laptop Backpack 15.6-16 Inch | Business & Travel Bag, Insulated Lunch Compartment, USB-C & USB-A Ports, Water-Resistant - 23L",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "CRALOFT Laptop Backpack 15.6-16 Inch | Business & Travel Bag, Insulated Lunch Compartment, USB-C & USB-A Ports, Water-Resistant - 23L-B0F6VHKMHS",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [],
+                            "price_for_everyone": 0.0
+                        }
+                    ]
+                }
+            }
+        ],
+        "total": {
+            "value": 21
+        }
+    },
+    "aggregations": {
+        "doc_count": 343,
+        "tag_Filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "Best Sellers",
+                    "doc_count": 8
+                }
+            ]
+        },
+        "brand_filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "Aecooly",
+                    "doc_count": 77
+                },
+                {
+                    "key": "INDIANARTVILLA",
+                    "doc_count": 65
+                },
+                {
+                    "key": "Craloft",
+                    "doc_count": 31
+                },
+                {
+                    "key": "Xech",
+                    "doc_count": 31
+                },
+                {
+                    "key": "Aquaminder",
+                    "doc_count": 25
+                },
+                {
+                    "key": "Kodak",
+                    "doc_count": 19
+                },
+                {
+                    "key": "Hyperice",
+                    "doc_count": 16
+                },
+                {
+                    "key": "WONDERCHEF",
+                    "doc_count": 16
+                },
+                {
+                    "key": "Nutripro",
+                    "doc_count": 11
+                },
+                {
+                    "key": "Bombay Shaving Company",
+                    "doc_count": 10
+                },
+                {
+                    "key": "Cookwell",
+                    "doc_count": 10
+                },
+                {
+                    "key": "Philips Domestic Appliances",
+                    "doc_count": 3
+                }
+            ]
+        },
+        "price_filter": {
+            "buckets": [
+                {
+                    "key": "0.0-1000.0",
+                    "from": 0.0,
+                    "to": 1000.0,
+                    "doc_count": 97
+                },
+                {
+                    "key": "1000.0-5000.0",
+                    "from": 1000.0,
+                    "to": 5000.0,
+                    "doc_count": 192
+                },
+                {
+                    "key": "5000.0-10000.0",
+                    "from": 5000.0,
+                    "to": 10000.0,
+                    "doc_count": 21
+                },
+                {
+                    "key": "10000.0-50000.0",
+                    "from": 10000.0,
+                    "to": 50000.0,
+                    "doc_count": 33
+                },
+                {
+                    "key": "50000.0-100000.0",
+                    "from": 50000.0,
+                    "to": 100000.0,
+                    "doc_count": 0
+                },
+                {
+                    "key": "100000.0-1000000.0",
+                    "from": 100000.0,
+                    "to": 1000000.0,
+                    "doc_count": 0
+                }
+            ]
+        },
+        "category_filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "Home & Kitchen & Festive",
+                    "doc_count": 211
+                },
+                {
+                    "key": "Small appliances",
+                    "doc_count": 120
+                },
+                {
+                    "key": "Serveware & drinkware",
+                    "doc_count": 72
+                },
+                {
+                    "key": "Tech & Electronics",
+                    "doc_count": 26
+                },
+                {
+                    "key": "Office & desk essentials",
+                    "doc_count": 9
+                },
+                {
+                    "key": "Storage & home organisation",
+                    "doc_count": 9
+                },
+                {
+                    "key": "Laptop & mobile accessories",
+                    "doc_count": 8
+                },
+                {
+                    "key": "Smart home & trackers",
+                    "doc_count": 6
+                },
+                {
+                    "key": "Coffee & tea brewing",
+                    "doc_count": 5
+                },
+                {
+                    "key": "Bluetooth speakers & audio",
+                    "doc_count": 3
+                },
+                {
+                    "key": "Cookware & bakeware",
+                    "doc_count": 3
+                },
+                {
+                    "key": "Decor, plants & festive essentials",
+                    "doc_count": 2
+                }
+            ]
+        },
+        "attribute_filter": {
+            "doc_count": 88,
+            "key": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [
+                    {
+                        "key": "Color",
+                        "doc_count": 76,
+                        "value": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "Beige",
+                                    "doc_count": 20
+                                },
+                                {
+                                    "key": "Black",
+                                    "doc_count": 16
+                                },
+                                {
+                                    "key": "Pink",
+                                    "doc_count": 16
+                                },
+                                {
+                                    "key": "White",
+                                    "doc_count": 8
+                                },
+                                {
+                                    "key": "Blue",
+                                    "doc_count": 6
+                                },
+                                {
+                                    "key": "Blue&Orange",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Gold",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Gray&Purple",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Green",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Orange",
+                                    "doc_count": 2
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key": "Body Part",
+                        "doc_count": 4,
+                        "value": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "Shoulders",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "All-Body",
+                                    "doc_count": 1
+                                },
+                                {
+                                    "key": "Legs",
+                                    "doc_count": 1
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key": "Product Type",
+                        "doc_count": 4,
+                        "value": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "Venom",
+                                    "doc_count": 3
+                                },
+                                {
+                                    "key": "Hpyervolt",
+                                    "doc_count": 1
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key": "Therapy",
+                        "doc_count": 4,
+                        "value": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "Heat",
+                                    "doc_count": 3
+                                },
+                                {
+                                    "key": "Percussion",
+                                    "doc_count": 1
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

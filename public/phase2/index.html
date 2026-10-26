@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#6845ed">
+  <meta name="description" content="Your company's gift store and employee recognition portal. Appreciate your teammates, earn reward points and redeem gifts from trusted brands at Ranknova.">
+  <title>Gift store &amp; recognition portal · Ranknova</title>
+  <link rel="icon" href="assets/ranknova-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/homepage.css?v=20260927d">
+  <link rel="stylesheet" href="css/store.css?v=20260927f">
+  <script defer src="js/homepage.js?v=20260926b"></script>
+  <script defer src="js/store-data.js?v=20260926a"></script>
+  <script defer src="js/store.js?v=20260927a"></script>
+  <script defer src="js/hero-slider.js?v=20260927c"></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="announce-bar">
+  <div class="container"><i class="bi bi-stars" aria-hidden="true"></i><p>The festive store is open. Brass, copper and gifts for the whole family.</p><button class="announce-link" data-filter-occasion="festive">Shop festive picks <i class="bi bi-arrow-right" aria-hidden="true"></i></button></div>
+</div>
+<header class="public-header">
+  <div class="container header-inner">
+    <a class="company-brand header-brand" href="index.html" aria-label="Ranknova rewards and recognition home"><img src="assets/ranknova-mark.svg" alt="" width="40" height="40"><span class="company-name">Ranknova<small>Rewards &amp; Recognition</small></span></a>
+    <nav id="public-navigation" aria-label="Main navigation">
+      <a href="#store">Gift store</a>
+      <a href="#occasions">Occasions</a>
+      <a href="#recognition">Recognition</a>
+      <a href="#how-it-works">How it works</a>
+      <button class="button button-primary header-login" data-employee-login>Employee login <i class="bi bi-arrow-up-right" aria-hidden="true"></i></button>
+    </nav>
+    <div class="header-tools">
+      <button class="bag-button" id="bag-open" aria-label="Open gift bag, 0 items"><i class="bi bi-bag-heart" aria-hidden="true"></i><span class="bag-count" id="bag-count" hidden>0</span></button>
+      <button class="menu-toggle" id="public-menu-toggle" aria-controls="public-navigation" aria-expanded="false" aria-label="Open navigation"><i class="bi bi-list" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</header>
+<main id="main-content" tabindex="-1">
+  <section class="hero-banner" id="hero-slider" aria-roledescription="carousel" aria-label="Highlights">
+    <div class="hero-slides" id="hero-slides" aria-live="off">
+      <div class="hero-slide hero-peach is-active" role="group" aria-roledescription="slide" aria-label="1 of 1">
+        <div class="container slide-inner">
+          <div class="slide-copy">
+            <p class="eyebrow"><i class="bi bi-stars" aria-hidden="true"></i> YOUR GIFT STORE &amp; RECOGNITION PORTAL</p>
+            <h1 id="welcome-title">Your work matters.<br>Your <span>moments, too.</span></h1>
+            <p class="slide-text">Appreciate your teammates, collect reward points and pick something you’ll love from your company’s gift store. It’s all in one place.</p>
+            <div class="slide-actions"><a class="button button-primary" href="#store">Browse the gift store <i class="bi bi-arrow-down" aria-hidden="true"></i></a><button class="text-link" data-employee-login>Enter your workspace <i class="bi bi-arrow-right" aria-hidden="true"></i></button></div>
+          </div>
+          <div class="slide-visual slide-photo">
+            <div class="slide-photo-frame"><img src="assets/recognition-hero.png" alt="A bright orange award star alongside a lavender gift, celebrating recognition and rewards" width="1536" height="1024" fetchpriority="high"></div>
+            <div class="points-note" aria-hidden="true"><span><i class="bi bi-coin"></i></span><div><strong>+100 pts</strong><p>Arjun appreciated you</p></div></div>
+            <div class="moment-note" aria-hidden="true"><span class="moment-icon"><i class="bi bi-heart"></i></span><div><strong>A little appreciation.<br>A lasting feeling.</strong><p>Because being seen makes a difference.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="slider-side prev" data-slide-prev aria-label="Previous slide" hidden><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+    <button class="slider-side next" data-slide-next aria-label="Next slide" hidden><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+    <div class="slider-controls" id="slider-controls" hidden>
+      <div class="slider-dots" id="slider-dots"></div>
+      <button class="slider-arrow slider-pause" data-slide-pause aria-label="Pause slideshow"><i class="bi bi-pause-fill" aria-hidden="true"></i></button>
+    </div>
+  </section>
+
+
+  <section class="perks-strip container" aria-label="Why employees love the store">
+    <div><i class="bi bi-coin" aria-hidden="true"></i><p><strong>Redeem with points</strong><span>Earned through recognition</span></p></div>
+    <div><i class="bi bi-truck" aria-hidden="true"></i><p><strong>Delivered to your door</strong><span>Anywhere in India</span></p></div>
+    <div><i class="bi bi-patch-check" aria-hidden="true"></i><p><strong>Genuine brands</strong><span>Sourced by our gifting team</span></p></div>
+    <div><i class="bi bi-box-seam" aria-hidden="true"></i><p><strong>Track every order</strong><span>From your workspace</span></p></div>
+  </section>
+
+  <section class="category-section container" aria-labelledby="category-title">
+    <div class="section-intro"><div><p class="eyebrow">SHOP BY CATEGORY</p><h2 id="category-title">Something for every kind of happy.</h2></div><p>From desk upgrades to festive copperware, choose the reward that fits your life.</p></div>
+    <div class="category-grid" id="category-grid"></div>
+  </section>
+
+  <section class="store-section" id="store" aria-labelledby="store-title">
+    <div class="container">
+      <div class="section-intro store-intro"><div><p class="eyebrow">THE GIFT STORE</p><h2 id="store-title">Good work. Great gifts.</h2></div><p>Browse freely. When you’re ready, log in to redeem your points and get it delivered.</p></div>
+      <div class="store-toolbar">
+        <div class="store-search"><i class="bi bi-search" aria-hidden="true"></i><label class="visually-hidden" for="store-search-input">Search gifts</label><input type="search" id="store-search-input" placeholder="Search gifts or brands" autocomplete="off" maxlength="80"></div>
+        <label class="store-select"><span class="visually-hidden">Points range</span><i class="bi bi-coin" aria-hidden="true"></i><select id="store-range">
+          <option value="">All points</option>
+          <option value="u1000">Under 1,000 pts</option>
+          <option value="1-2.5">1,000 – 2,499 pts</option>
+          <option value="2.5-5">2,500 – 4,999 pts</option>
+          <option value="5k">5,000 pts &amp; above</option>
+        </select></label>
+        <label class="store-select"><span class="visually-hidden">Sort gifts</span><i class="bi bi-sliders" aria-hidden="true"></i><select id="store-sort">
+          <option value="featured">Featured</option>
+          <option value="points-asc">Points: low to high</option>
+          <option value="points-desc">Points: high to low</option>
+          <option value="name">Name: A to Z</option>
+        </select></label>
+      </div>
+      <div class="store-chips" id="store-chips" role="group" aria-label="Filter by category"></div>
+      <div class="store-status"><p id="store-count" aria-live="polite"></p><div id="store-active"></div></div>
+      <div class="product-grid" id="product-grid"></div>
+      <div class="store-empty" id="store-empty" hidden><i class="bi bi-search" aria-hidden="true"></i><h3>No gifts match that search.</h3><p>Try another word, or clear your filters to see everything.</p><button class="button button-outline" data-store-reset>Clear filters</button></div>
+      <div class="store-more" id="store-more"></div>
+      <p class="store-note"><i class="bi bi-info-circle" aria-hidden="true"></i> Preview catalogue. Points are illustrative. Your company decides which gifts and points apply to you.</p>
+    </div>
+  </section>
+
+  <section class="occasion-section container" id="occasions" aria-labelledby="occasion-title">
+    <div class="section-intro"><div><p class="eyebrow">SHOP BY OCCASION</p><h2 id="occasion-title">The right gift for<br>every moment.</h2></div><p>Birthdays, milestones, festivals and first days. Curated edits for the moments that matter at work.</p></div>
+    <div class="occasion-grid" id="occasion-grid"></div>
+  </section>
+
+  <section class="brand-strip" aria-labelledby="brand-title">
+    <div class="container"><h2 id="brand-title">Brands you’ll find in the store</h2><ul id="brand-list"></ul></div>
+  </section>
+
+  <section class="recognition-section" id="recognition" aria-labelledby="recognition-title">
+    <div class="container recognition-grid">
+      <div>
+        <p class="eyebrow">THE RECOGNITION PORTAL</p>
+        <h2 id="recognition-title">Every thank-you counts.<br>Some come with points.</h2>
+        <p class="recognition-lede">Recognise a teammate, celebrate a milestone or nominate someone for an award. Appreciation turns into reward points you can spend in the store.</p>
+        <ul class="program-list">
+          <li><span class="feature-icon purple"><i class="bi bi-chat-heart" aria-hidden="true"></i></span><div><h3>Everyday wins</h3><p>Send an eCard and points to anyone who made your day better.</p></div></li>
+          <li><span class="feature-icon peach"><i class="bi bi-calendar-heart" aria-hidden="true"></i></span><div><h3>Milestones</h3><p>Birthdays and work anniversaries, remembered and celebrated.</p></div></li>
+          <li><span class="feature-icon mint"><i class="bi bi-trophy" aria-hidden="true"></i></span><div><h3>Awards &amp; nominations</h3><p>Quarterly spotlights for the people who go above and beyond.</p></div></li>
+          <li><span class="feature-icon sky"><i class="bi bi-gift" aria-hidden="true"></i></span><div><h3>Festive gifting</h3><p>Company-wide gifts for Diwali, the new year and more.</p></div></li>
+        </ul>
+        <button class="button button-primary" data-employee-login>Appreciate someone <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="wall-preview" aria-label="Example appreciation post">
+        <div class="wall-post">
+          <div class="wall-head"><span class="avatar lavender">PS</span><p><strong>Arjun Nair</strong> appreciated <strong>Priya Sharma</strong><span>Product &amp; Design · 2 hours ago</span></p><em>+100 pts</em></div>
+          <div class="wall-card"><p>BETTER TOGETHER</p><h3>Great things happen together.</h3><i class="bi bi-people" aria-hidden="true"></i></div>
+          <p class="wall-message">A huge thank you to Priya for going the extra mile on our new onboarding experience. So glad to have you on the team!</p>
+          <div class="wall-foot"><span><i class="bi bi-heart-fill" aria-hidden="true"></i> 24 celebrations</span><span>1 comment</span></div>
+        </div>
+        <div class="wall-mini"><span class="avatar peach">RK</span><p><strong>Rohan Kapoor</strong> redeemed a <strong>Retro typewriter keyboard</strong></p><i class="bi bi-bag-check" aria-hidden="true"></i></div>
+        <div class="wall-mini"><span class="avatar mint">AI</span><p><strong>Ananya Iyer</strong> celebrates <strong>3 years</strong> today</p><i class="bi bi-balloon-heart" aria-hidden="true"></i></div>
+        <p class="wall-caption">Sample activity from the demo workspace</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section container" id="how-it-works" aria-labelledby="how-title">
+    <div class="section-intro"><div><p class="eyebrow">HOW IT WORKS</p><h2 id="how-title">From thank-you<br>to doorstep.</h2></div><p>Recognition, points and gifts are connected, so every good moment can end with something to unwrap.</p></div>
+    <ol class="steps-grid steps-four">
+      <li><div class="step-top"><span>01</span><i class="bi bi-door-open" aria-hidden="true"></i></div><h3>Log in to your workspace</h3><p>Use the access shared by your company to find your people and your programs.</p></li>
+      <li><div class="step-top"><span>02</span><i class="bi bi-envelope-heart" aria-hidden="true"></i></div><h3>Appreciate and get appreciated</h3><p>Send eCards, celebrate milestones and receive reward points from your team.</p></li>
+      <li><div class="step-top"><span>03</span><i class="bi bi-bag-heart" aria-hidden="true"></i></div><h3>Pick your gift</h3><p>Browse the store by category, occasion or points and add what you love to your bag.</p></li>
+      <li><div class="step-top"><span>04</span><i class="bi bi-truck" aria-hidden="true"></i></div><h3>Redeem and relax</h3><p>Confirm your address, redeem your points and track your order to your door.</p></li>
+    </ol>
+  </section>
+
+  <section class="join-section container" aria-labelledby="join-title"><div><p class="eyebrow">YOUR NEXT GOOD MOMENT STARTS HERE</p><h2 id="join-title">Your points are waiting.<br>So is your team.</h2><p>Log in to see your balance, appreciate someone and redeem a gift.</p></div><button class="button button-light" data-employee-login data-destination="rewards">Log in to redeem <i class="bi bi-arrow-up-right" aria-hidden="true"></i></button></section>
+</main>
+<footer class="public-footer container">
+  <div class="footer-top">
+    <div class="footer-about"><a class="company-brand footer-brand" href="index.html" aria-label="Ranknova rewards and recognition home"><img src="assets/ranknova-mark.svg" alt="" width="40" height="40"><span class="company-name">Ranknova<small>Rewards &amp; Recognition</small></span></a><p>Made for people. Powered by appreciation.</p></div>
+    <div class="footer-col"><h3>Gift store</h3><ul id="footer-categories"></ul></div>
+    <div class="footer-col"><h3>Recognition</h3><ul><li><a href="#recognition">Everyday wins</a></li><li><a href="#recognition">Milestones</a></li><li><a href="#recognition">Awards &amp; nominations</a></li><li><button data-employee-login>Employee login</button></li></ul></div>
+    <div class="footer-col"><h3>Help</h3><ul><li><a href="#how-it-works">How it works</a></li><li><button data-help-open>Help &amp; support</button></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Ranknova</span><span>Design preview · no live orders</span></div>
+</footer>
+
+<dialog id="employee-login-dialog" class="public-dialog" aria-labelledby="employee-login-title">
+  <button class="dialog-close" id="employee-login-close" aria-label="Close employee login"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+  <span class="login-symbol"><i class="bi bi-door-open" aria-hidden="true"></i></span>
+  <p class="eyebrow">WELCOME TO YOUR WORKSPACE</p>
+  <h2 id="employee-login-title">Good to have you here.</h2><p class="dialog-description">A little appreciation. A lot to feel good about.</p>
+  <form id="employee-login-form"><label for="employee-email">Work email <span>(optional in this preview)</span></label><input type="email" id="employee-email" placeholder="you@company.com" autocomplete="off" maxlength="200" aria-describedby="preview-note"><button type="submit" class="button button-primary">Preview employee dashboard <i class="bi bi-arrow-right" aria-hidden="true"></i></button></form>
+  <p class="preview-note" id="preview-note"><i class="bi bi-info-circle" aria-hidden="true"></i><span>Design preview: opens the sample Ranknova workspace without authentication. You can leave the email blank; nothing is stored or sent.</span></p>
+  <button class="text-link login-help" data-login-help aria-expanded="false" aria-controls="login-help-note">Need help with your access?</button><p id="login-help-note" class="login-help-note" hidden>Your HR or People team can share your company’s invitation and login instructions. This preview is separate from a live employee account.</p>
+</dialog>
+<dialog id="public-help-dialog" class="public-dialog help-dialog" aria-labelledby="public-help-title"><button class="dialog-close" data-help-close aria-label="Close help"><i class="bi bi-x-lg" aria-hidden="true"></i></button><span class="login-symbol"><i class="bi bi-chat-heart" aria-hidden="true"></i></span><p class="eyebrow">A LITTLE HELP, WHEN YOU NEED IT</p><h2 id="public-help-title">Let’s get you to your people.</h2><p class="dialog-description">For an invitation, login access or questions about your company’s programs, contact your HR or People team.</p><div class="help-tip"><i class="bi bi-envelope" aria-hidden="true"></i><p>Already invited? Check your work inbox for the workspace link shared by your company.</p></div><button class="button button-primary" data-help-close>Got it <i class="bi bi-check2" aria-hidden="true"></i></button></dialog>
+
+<dialog id="product-dialog" class="public-dialog product-dialog" aria-labelledby="product-dialog-title">
+  <button class="dialog-close" data-store-close aria-label="Close product details"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+  <div class="product-dialog-body" id="product-dialog-body"></div>
+</dialog>
+<dialog id="bag-dialog" class="public-dialog bag-dialog" aria-labelledby="bag-dialog-title">
+  <button class="dialog-close" data-store-close aria-label="Close gift bag"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+  <p class="eyebrow">YOUR GIFT BAG</p>
+  <h2 id="bag-dialog-title">Saved for later.</h2>
+  <div id="bag-body"></div>
+</dialog>
+</body>
+</html>

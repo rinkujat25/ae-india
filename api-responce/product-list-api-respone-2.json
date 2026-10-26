@@ -1,0 +1,1360 @@
+{
+    "hits": {
+        "hits": [
+            {
+                "_index": "prod_variants",
+                "_id": "179ded8e-699d-4310-9b23-87429aef52fc",
+                "_score": 30.519785,
+                "_source": {
+                    "variant_group": {
+                        "owner": "b9446062-d5a3-4819-b48e-683851861712",
+                        "product_type": "goods",
+                        "is_active": true,
+                        "name": "Aecooly Portable Handheld Fan- Aero Pro",
+                        "description": null,
+                        "primary_attribute_count": 0,
+                        "primary_attribute": null,
+                        "id": "179ded8e-699d-4310-9b23-87429aef52fc"
+                    },
+                    "variants": [
+                        {
+                            "selling_price": 3790.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:38.404970",
+                            "seo_detail": {
+                                "meta_description": "Aecooly Portable Handheld Fan Aero Pro-Gold offers a high-speed brushless motor, six-speed modes, ergonomic R-Curve design, built-in 3,500mAh battery, and USB-C charging. Lightweight, durable aluminum alloy and ABS/PC shell make it perfect for travel and everyday use.",
+                                "keywords": [
+                                    "portable handheld fan",
+                                    "portable fan for travel",
+                                    "portable fan with battery",
+                                    "portable fan usb-c",
+                                    "portable fan 6 speed",
+                                    "portable fan ergonomic design",
+                                    "portable fan lightweight",
+                                    "portable fan aluminum alloy",
+                                    "portable fan high speed",
+                                    "portable fan led display"
+                                ],
+                                "meta_title": "Aecooly Portable Handheld Fan Aero Pro-Gold - Lightweight, High-Speed, Ergonomic, USB-C Charging",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 3790.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "a105cc59-1a96-4449-9f8c-12d91c044d3c",
+                            "sku": "6977924930246",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-portable-handheld-fan-aero-pro-gold",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3a818fe6178e4f4599665d3d0f6684d2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/e55f24de1bce435fa33b9eec3a811276-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3fba5f564074426cae2a86e32019a3ba-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/d69c7a57c5714329bc95da3e0c600a04-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/290d289ad86e40c3829a0908d63a7685-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/b037e42e452e41c2a2e36918b9e8df46-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/8162ebc7ee8d4cae96dd01896aca9914-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/87b789650a70463ebfc3c3e787d81401-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ae21aff3d9274da48b63978b4e90eb95-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/0f9b95e903f84d2e9034443e62c5333e-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/6d29c55c265c4a4aa826509694bc7c78-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/667501b0068a4103b6c590de3164f846-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 3790.0,
+                            "display_name": "Aecooly Portable Handheld Fan- Aero Pro-Gold",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Portable Handheld Fan- Aero Pro-Gold",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Gold",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 3790.0
+                        },
+                        {
+                            "selling_price": 3790.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:38.454430",
+                            "seo_detail": {
+                                "meta_description": "Discover the Aecooly Portable Handheld Fan Aero Pro in Pink, featuring an ergonomic R-Curve design, high-speed brushless motor, six-speed levels, USB-C charging, and long-lasting 3500mAh battery for up to 14 hours of cool comfort on the go.",
+                                "keywords": [
+                                    "portable handheld fan",
+                                    "portable fan Aecooly",
+                                    "portable fan pink",
+                                    "handheld fan Aero Pro",
+                                    "handheld fan Aecooly",
+                                    "high speed handheld fan",
+                                    "travel fan portable",
+                                    "USB-C charging fan",
+                                    "lightweight handheld fan",
+                                    "ergonomic handheld fan"
+                                ],
+                                "meta_title": "Aecooly Portable Handheld Fan Aero Pro Pink - Ergonomic High-Speed Travel Fan",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 3790.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "f1050e84-bc43-47ac-97af-a5837d78d1db",
+                            "sku": "6977924930222",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-portable-handheld-fan-aero-pro-pink",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/59c9536838164122949b84a239686a76-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/6a9b00821d7844088609e4fcff468b4e-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ae1dc6f06eda44a5b6d080e501373712-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/cf07557c7bc24be1b3a830154365e1fb-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/a834e149289849a586c2b032ec2ad2c2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/0b08fd8f0b1e4827947cc403bb3da386-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/bb2ac833fa1b4c8d87cd95f96bd78e7f-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/16abfdb18784407cb26695f1ea4db9ed-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/16a6c4cb264f46adb81a6455c5b3fafd-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/25c5d5a2ea334f29a3ed798d25b2b551-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/7627fe7f018d4a8d98d6f2c97c431e58-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3ac5717bf95244a982551db9eff82143-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/8f71a10998944d01894006c74cad3caa-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/99a3a709d3bb4ca5a8b7cec57eacc6fc-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 3790.0,
+                            "display_name": "Aecooly Portable Handheld Fan- Aero Pro-Pink",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Portable Handheld Fan- Aero Pro-Pink",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Pink",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 3790.0
+                        },
+                        {
+                            "selling_price": 3790.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:38.550504",
+                            "seo_detail": {
+                                "meta_description": "Shop the Aecooly Portable Handheld Fan Aero Pro-Blue for powerful cooling on the go. Features ergonomic design, high-speed brushless motor, six-speed levels, smart LED display, and long-lasting 14-hour battery life. Lightweight, travel-friendly, and USB-C rechargeable.",
+                                "keywords": [
+                                    "portable handheld fan",
+                                    "handheld fan Aecooly",
+                                    "Aecooly Aero Pro fan",
+                                    "travel handheld fan",
+                                    "compact portable fan",
+                                    "high-speed handheld fan",
+                                    "USB-C rechargeable fan",
+                                    "lightweight handheld fan",
+                                    "six-speed handheld fan",
+                                    "ergonomic portable fan"
+                                ],
+                                "meta_title": "Aecooly Portable Handheld Fan Aero Pro-Blue | Compact, High-Speed, USB-C Rechargeable",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 3790.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "15d76c53-8385-41a3-a81e-b4a2f9b52aae",
+                            "sku": "6977924930239",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-portable-handheld-fan-aero-pro-blue",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3a93bfb8c1384deca0d1a5bb81fbaa22-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/4151fc10d66b4d86a2f207b073efb2b4-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/36c93ee012e949ee8882448f0e78acc2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/c934989748a74e8c8606a7e1f7440114-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/119cec3f2782407c9742675c286c283a-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/5369ff6c012d4d5fa6e8d4346aeb124b-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/dc96bbca275a4b64bd1c2351faff33c9-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/dae4b89d8c4e4d529bc2298dcdfe4a6c-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/381f3bff6f6942f38fc1d5bb64598126-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/827f03998be04e98871901cfa359275b-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/c0b8d50552d744b78f8f5974001dff57-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/a990727b573c48bcaf152b8ec49e4cb7-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/251b81a871b74370b2292e4ba96082b7-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/852fdc49fb514fd8bf0b0a679288e9a0-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 3790.0,
+                            "display_name": "Aecooly Portable Handheld Fan- Aero Pro-Blue",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Portable Handheld Fan- Aero Pro-Blue",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Blue",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 3790.0
+                        }
+                    ]
+                }
+            },
+            {
+                "_index": "prod_variants",
+                "_id": "c9c9c11f-e911-4953-a47d-3f2abc715461",
+                "_score": 30.519785,
+                "_source": {
+                    "variant_group": null,
+                    "variants": [
+                        {
+                            "selling_price": 1590.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:35.600236",
+                            "seo_detail": {
+                                "meta_description": "Shop the Aecooly Portable Handheld Fan - Halo 01-Black with dual air channels, 5 speed settings, 16-hour cooling time, and fast 3.5-hour charging. Perfect for handheld or desktop use.",
+                                "keywords": [
+                                    "portable handheld fan",
+                                    "portable fan Aecooly",
+                                    "handheld fan 5 speed",
+                                    "portable fan dual air channels",
+                                    "Aecooly handheld fan",
+                                    "Aecooly fan black",
+                                    "portable fan fast charging",
+                                    "handheld fan 16 hour battery",
+                                    "desktop handheld fan",
+                                    "fan with 16 hour cooling"
+                                ],
+                                "meta_title": "Aecooly Portable Handheld Fan - Halo 01 Black | Dual Air Channels & Long Battery Life",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 1590.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "c9c9c11f-e911-4953-a47d-3f2abc715461",
+                            "sku": "6977924930079",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-portable-handheld-fan-halo-01-black",
+                            "featured_images": [
+                                {
+                                    "position": 0,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/11d3c2913b6244feb42ac4165d5e990e-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/9ea7c153b3634094b8a69c16aa3e85b2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 2,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/9673706b690743c49219df59445b3f2a-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 3,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/2898ec2adafb4e1a96f55cf1c829d644-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 4,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/6ff878218e0c464c998c3de40ffee5f5-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 5,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/b907cab8ad924f65a2dd79852a82e27d-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 6,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/a9f224dea80f4ef2bb02cf6bd5c3345c-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 7,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/bcc779607fdb465590fdc04ea09bdee9-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 8,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/b7ef93261a744596874ba0ad25275853-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 9,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/bdca5df75d2a4410b2b7d96514ed28a8-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 10,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/6f49ee5577604cefa39ce6381b4dd300-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 11,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/6faf45c6388f426380b0d6d44cacfd68-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 12,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ecde575d634446619c2011b998307115-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 1590.0,
+                            "display_name": "Aecooly Portable Handheld Fan - Halo 01-Black",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Portable Handheld Fan - Halo 01-Black",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Black",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 1590.0
+                        }
+                    ]
+                }
+            },
+            {
+                "_index": "prod_variants",
+                "_id": "d4d73a07-6e1d-483e-b423-cafe3275a946",
+                "_score": 30.519785,
+                "_source": {
+                    "variant_group": {
+                        "owner": "b9446062-d5a3-4819-b48e-683851861712",
+                        "product_type": "goods",
+                        "is_active": true,
+                        "name": "Aecooly Versatile Handheld Fan Halo 02",
+                        "description": null,
+                        "primary_attribute_count": 0,
+                        "primary_attribute": null,
+                        "id": "d4d73a07-6e1d-483e-b423-cafe3275a946"
+                    },
+                    "variants": [
+                        {
+                            "selling_price": 2490.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:35.276057",
+                            "seo_detail": {
+                                "meta_description": "Shop the Aecooly Versatile Handheld Fan Halo 02-Pink with 3-in-1 flexible design, dual-ring airflow, 5 speed settings, and long-lasting 3600mAh battery for powerful, portable cooling anywhere.",
+                                "keywords": [
+                                    "handheld fan Aecooly",
+                                    "handheld fan pink",
+                                    "portable handheld fan",
+                                    "Aecooly fan 3-in-1",
+                                    "Aecooly fan dual-ring airflow",
+                                    "portable fan 5 speed settings",
+                                    "rechargeable handheld fan",
+                                    "neck strap fan portable",
+                                    "compact handheld fan Aecooly",
+                                    "adjustable tilt fan"
+                                ],
+                                "meta_title": "Aecooly Versatile Handheld Fan Halo 02-Pink | Portable 3-in-1 Fan with 5 Speeds & Dual-Ring Airflow",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 2490.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "498409b5-4cbc-4662-8aa8-1f2d587617a2",
+                            "sku": "69779249406",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-versatile-handheld-fan-halo-02-pink",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/aff00852f008412d88175c8ac3df70a2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/cef8a36c00244a6cb17c8360313aacf4-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/0e6aaf9b35944194ba25f9ea5c6f0250-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/2bdb915fa0c14d6c94b7df19797b62d2-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/8bd48465418543278780726cce3aec66-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/b610829943504125b4d083e89b0dd2aa-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/5068d7e69d804d0b9a2e314fd94375f7-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 2490.0,
+                            "display_name": "Aecooly Versatile Handheld Fan Halo 02-Pink",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Versatile Handheld Fan Halo 02-Pink",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Pink",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 2490.0
+                        },
+                        {
+                            "selling_price": 2490.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:35.225919",
+                            "seo_detail": {
+                                "meta_description": "Discover the Aecooly Versatile Handheld Fan Halo 02-Black featuring a 3-in-1 flexible design for handheld, desktop, or neck use. Enjoy powerful airflow with 5 speed settings, smart LED display, and long-lasting 3,600 mAh battery for up to 20 hours of cooling comfort.",
+                                "keywords": [
+                                    "handheld fan",
+                                    "handheld portable fan",
+                                    "handheld rechargeable fan",
+                                    "handheld fan Aecooly",
+                                    "handheld fan black",
+                                    "handheld fan with strap",
+                                    "handheld fan 3-in-1",
+                                    "handheld fan adjustable speed",
+                                    "handheld fan compact",
+                                    "handheld fan battery powered"
+                                ],
+                                "meta_title": "Aecooly Versatile Handheld Fan Halo 02-Black – Portable 3-in-1 Fan with Adjustable Speeds & Long Battery Life",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 2490.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "623301a3-668a-4f87-be08-1f053225eb41",
+                            "sku": "6977924930390",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-versatile-handheld-fan-halo-02-black",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/543ee846357d49d2bd66a5ff15828a32-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/3250370155934d4f893b4d267cf6ea5e-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/bcf4db65371a4d5bb8916e16c0802bc8-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/b74548c497844bdebf3f28406b69d75a-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/1e0434682a4146d197b179def3a55504-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/188b1f0da37d4ac1aa560f63ce9b1854-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/869f77be2bd94855bcc02b83e6fc4985-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 2490.0,
+                            "display_name": "Aecooly Versatile Handheld Fan Halo 02-Black",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Versatile Handheld Fan Halo 02-Black",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Black",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 2490.0
+                        },
+                        {
+                            "selling_price": 2490.0,
+                            "deal": null,
+                            "created_at": "2025-09-01T07:27:35.176375",
+                            "seo_detail": {
+                                "meta_description": "Discover the Aecooly Versatile Handheld Fan Halo 02-Beige, a 3-in-1 portable fan with dual-ring airflow, 5 speed settings, long-lasting battery, and smart LED display. Perfect for personal cooling on the go.",
+                                "keywords": [
+                                    "handheld fan portable",
+                                    "handheld fan rechargeable",
+                                    "handheld fan 3-in-1",
+                                    "handheld fan adjustable speed",
+                                    "handheld fan neck strap",
+                                    "handheld fan compact",
+                                    "portable fan desk use",
+                                    "portable fan long battery life",
+                                    "Aecooly handheld fan",
+                                    "versatile handheld fan"
+                                ],
+                                "meta_title": "Aecooly Versatile Handheld Fan Halo 02-Beige – Portable 3-in-1 Fan with Adjustable Speeds and Long Battery Life",
+                                "also_known_as_names": []
+                            },
+                            "one_line_description": null,
+                            "is_grouped_product": false,
+                            "third_party_sales_channel_configurations": [],
+                            "in_stock": false,
+                            "price_list": {
+                                "scheme_offers": [],
+                                "recommended_offers": {
+                                    "end_date": null,
+                                    "description": null,
+                                    "applicable_amount": 2490.0,
+                                    "discount_type": "flat",
+                                    "uses_per_buyer": 0,
+                                    "discount_rate": 0.0,
+                                    "offer_name": "Selling Price",
+                                    "offer_id": null,
+                                    "maximum_offer_amount_per_transaction": 0,
+                                    "terms": null,
+                                    "applied_offer_type": "buyer_group",
+                                    "percent_savings": 0.0,
+                                    "max_allowed_quantity": 10000,
+                                    "savings": 0.0,
+                                    "minimum_quantity": 0,
+                                    "offer_type": "discount",
+                                    "start_date": null
+                                },
+                                "other_offers": []
+                            },
+                            "id": "fc95d86e-065d-4d23-b942-d093585ee8e7",
+                            "sku": "6977924930383",
+                            "brand": {
+                                "name": "Aecooly",
+                                "id": "75f99440-9de5-45f4-9437-98dc7e3ba9ae"
+                            },
+                            "url_path": "aecooly-versatile-handheld-fan-halo-02-beige",
+                            "featured_images": [
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/85a9876095854075afe15ae7ee4b7054-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/22febf1e4a5a4f60b4005cde364c5cde-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/56db3d31a57b4064a2fc5c842ec06c36-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/ae283e0a1a2b493b919f7f1d799ed003-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/116a62f06e27432fb094407951813a59-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/08de16eca7c04c5ea395f315ab1a28ee-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                },
+                                {
+                                    "position": 1,
+                                    "url": "https://media-assets.hyperinvento.com/companies/dce3e9fc-06be-4cc3-8fba-3b85f1f32e19/products/assetss/files/67652de5eb69481d94735e0c36a81c1f-product-assets.jpg",
+                                    "tags": [
+                                        "feature"
+                                    ]
+                                }
+                            ],
+                            "is_active": true,
+                            "is_visible": true,
+                            "is_disabled": false,
+                            "sales_channel": [
+                                "admin",
+                                "ams",
+                                "consumer",
+                                "dealer",
+                                "distributor",
+                                "offline",
+                                "online",
+                                "retailer",
+                                "wholesaler",
+                                "aurali",
+                                "bluact_technologies",
+                                "point_of_sale",
+                                "sampley",
+                                "sampleycart",
+                                "sampleygifts",
+                                "sona_li"
+                            ],
+                            "mrp": 2490.0,
+                            "display_name": "Aecooly Versatile Handheld Fan Halo 02-Beige",
+                            "is_exposed": true,
+                            "tags": null,
+                            "is_archived": false,
+                            "name": "Aecooly Versatile Handheld Fan Halo 02-Beige",
+                            "is_allow_back_orders": false,
+                            "can_order": true,
+                            "variant_values": [
+                                {
+                                    "value": "Beige",
+                                    "key": "Color"
+                                }
+                            ],
+                            "price_for_everyone": 2490.0
+                        }
+                    ]
+                }
+            }
+        ],
+        "total": {
+            "value": 9
+        }
+    },
+    "aggregations": {
+        "doc_count": 39,
+        "tag_Filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": []
+        },
+        "brand_filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "Aecooly",
+                    "doc_count": 39
+                }
+            ]
+        },
+        "price_filter": {
+            "buckets": [
+                {
+                    "key": "0.0-1000.0",
+                    "from": 0.0,
+                    "to": 1000.0,
+                    "doc_count": 0
+                },
+                {
+                    "key": "1000.0-5000.0",
+                    "from": 1000.0,
+                    "to": 5000.0,
+                    "doc_count": 39
+                },
+                {
+                    "key": "5000.0-10000.0",
+                    "from": 5000.0,
+                    "to": 10000.0,
+                    "doc_count": 0
+                },
+                {
+                    "key": "10000.0-50000.0",
+                    "from": 10000.0,
+                    "to": 50000.0,
+                    "doc_count": 0
+                },
+                {
+                    "key": "50000.0-100000.0",
+                    "from": 50000.0,
+                    "to": 100000.0,
+                    "doc_count": 0
+                },
+                {
+                    "key": "100000.0-1000000.0",
+                    "from": 100000.0,
+                    "to": 1000000.0,
+                    "doc_count": 0
+                }
+            ]
+        },
+        "category_filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "Home & Kitchen & Festive",
+                    "doc_count": 39
+                },
+                {
+                    "key": "Small appliances",
+                    "doc_count": 39
+                }
+            ]
+        },
+        "attribute_filter": {
+            "doc_count": 38,
+            "key": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [
+                    {
+                        "key": "Color",
+                        "doc_count": 38,
+                        "value": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "Pink",
+                                    "doc_count": 10
+                                },
+                                {
+                                    "key": "Beige",
+                                    "doc_count": 8
+                                },
+                                {
+                                    "key": "Black",
+                                    "doc_count": 8
+                                },
+                                {
+                                    "key": "Blue",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Blue&Orange",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Gold",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Gray&Purple",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Green",
+                                    "doc_count": 2
+                                },
+                                {
+                                    "key": "Orange",
+                                    "doc_count": 2
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

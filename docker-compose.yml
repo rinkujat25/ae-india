@@ -1,0 +1,37 @@
+services:
+  wingback-nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Baked into the prerendered routes; see the Dockerfile. Keep it the
+        # same as the runtime value below.
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://wingback.sampley.in}
+        NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID:-G-3SF8H50FQF}
+    image: wingback-nextjs:latest
+    container_name: wingback-nextjs
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://wingback.sampley.in}
+      HYPERINVENTORY_API_URL: ${HYPERINVENTORY_API_URL:-https://api.hyperinvento.com/v2}
+      HYPERINVENTORY_SELLER_ID: ${HYPERINVENTORY_SELLER_ID:-}
+      HYPERINVENTORY_SALESCHANNEL: ${HYPERINVENTORY_SALESCHANNEL:-}
+      HYPERINVENTORY_CLIENT_ID: ${HYPERINVENTORY_CLIENT_ID:-}
+      HYPERINVENTORY_CLIENT_SECRET: ${HYPERINVENTORY_CLIENT_SECRET:-}
+      RANKNOVA_API_URL: ${RANKNOVA_API_URL:-}
+    ports:
+      # bound to loopback: nginx is the only thing that should reach the app
+      - "127.0.0.1:3081:3000"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
