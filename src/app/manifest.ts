@@ -9,14 +9,14 @@ import type { MetadataRoute } from "next";
  */
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "Wingback by Sampley",
+        name: "Wingback Employee Gift Store",
         short_name: "Wingback",
         description:
-            "Corporate gifting for teams: a branded store employees choose from, or a direct send you control.",
+            "Wingback's employee gift store, run by Sampley: choose your own gift within the budget and have it delivered.",
         start_url: "/",
         display: "standalone",
-        background_color: "#ffffff",
-        theme_color: "#ffffff",
+        background_color: "#f6f5f2",
+        theme_color: "#dd5a2a",
         icons: [
             {
                 src: "/android-chrome-192x192.png",

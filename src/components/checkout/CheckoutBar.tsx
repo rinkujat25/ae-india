@@ -26,7 +26,7 @@ export function CheckoutBar({ backHref = "/cart", onBack }: CheckoutBarProps) {
                     <span>Back</span>
                 </button>
 
-                <Link className="co-brand" href="/" aria-label="Wingback by Sampley - home">
+                <Link className="co-brand" href="/" aria-label="Wingback - home">
                     <Image
                         src="/assets/wingback-logo-supplied.png"
                         alt="Wingback"

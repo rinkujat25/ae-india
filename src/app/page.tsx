@@ -32,10 +32,10 @@ import { StartCtaSection } from "@/components/home/StartCtaSection";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Corporate Gifting Platform India | Wingback by Sampley",
+    title: "Employee Gift Store | Wingback",
     description:
-        "Wingback by Sampley runs branded employee gift stores and direct corporate gifting with budget controls, curated gifts and managed pan-India delivery.",
-    authors: [{ name: "Wingback by Sampley" }],
+        "Sampley runs branded employee gift stores and direct corporate gifting with budget controls, curated gifts and managed pan-India delivery.",
+    authors: [{ name: "Sampley" }],
     robots: {
         index: true,
         follow: true,
@@ -57,17 +57,17 @@ export const metadata: Metadata = {
     },
     openGraph: {
         type: "website",
-        siteName: "Wingback by Sampley",
+        siteName: "Wingback Employee Gift Store",
         url: absoluteUrl("/"),
-        title: "Corporate gifting, without the chasing | Wingback",
+        title: "Wingback employee gift store",
         description:
-            "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Wingback manages curation, sourcing, branding and pan-India delivery.",
+            "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Sampley manages curation, sourcing, branding and pan-India delivery.",
         images: [
             {
                 url: absoluteUrl("/assets/wingback-home-og.jpg"),
                 width: 1200,
                 height: 630,
-                alt: "Wingback by Sampley - corporate gifting platform",
+                alt: "Wingback employee gift store",
             },
         ],
         locale: "en_IN",
@@ -76,9 +76,9 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         // Kept identical to the Open Graph pair: two different cards for the
         // same page is a maintenance trap, and X falls back to og:* anyway.
-        title: "Corporate gifting, without the chasing | Wingback",
+        title: "Wingback employee gift store",
         description:
-            "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Wingback manages curation, sourcing, branding and pan-India delivery.",
+            "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Sampley manages curation, sourcing, branding and pan-India delivery.",
         images: [absoluteUrl("/assets/wingback-home-og.jpg")],
     },
 };

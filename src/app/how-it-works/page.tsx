@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "HR gifting workflow",
     "bulk gifting delivery timeline",
   ],
-  authors: [{ name: "Wingback by Sampley" }],
+  authors: [{ name: "Sampley" }],
   robots: {
     index: true,
     follow: true,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback by Sampley",
+    siteName: "Wingback Employee Gift Store",
     url: absoluteUrl("/how-it-works"),
     title: "How Corporate Gifting Works, Step by Step | Wingback",
     description:
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteUrl("/assets/wingback-logo-full@2x.png"),
-        alt: "Wingback by Sampley - how corporate gifting works",
+        alt: "Wingback employee gift store - how it works",
       },
     ],
     locale: "en_IN",

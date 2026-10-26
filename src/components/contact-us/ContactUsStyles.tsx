@@ -37,7 +37,7 @@ const styles = `
 
   a.tile:hover{
     border-color:#ded5ff;
-    box-shadow:0 16px 38px rgba(38, 28, 17, .10);
+    box-shadow:0 16px 38px rgba(31, 29, 28, .10);
     transform:translateY(-2px);
   }
 

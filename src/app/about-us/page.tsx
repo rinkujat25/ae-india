@@ -9,18 +9,18 @@ import { SiteHeader } from "@/components/common/SiteHeader";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Wingback by Sampley | Corporate Gifting Platform",
+  title: "About the Wingback gift store | Corporate Gifting Platform",
   description:
-    "Wingback by Sampley runs corporate gifting programs through branded gift stores, recipient choice, curated catalogues and managed pan-India fulfilment.",
+    "Sampley runs corporate gifting programs through branded gift stores, recipient choice, curated catalogues and managed pan-India fulfilment.",
   keywords: [
-    "about Wingback",
-    "Wingback by Sampley",
+    "about the Wingback gift store",
+    "Sampley",
     "corporate gifting platform India",
     "employee gifting platform",
     "branded gift stores",
     "managed corporate gifting",
   ],
-  authors: [{ name: "Wingback by Sampley" }],
+  authors: [{ name: "Sampley" }],
   alternates: {
     canonical: "/about-us",
     languages: {
@@ -30,22 +30,22 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback by Sampley",
+    siteName: "Wingback Employee Gift Store",
     url: absoluteUrl("/about-us"),
-    title: "About Wingback by Sampley | Corporate Gifting Platform",
+    title: "About the Wingback gift store | Corporate Gifting Platform",
     description:
-      "Wingback helps companies make gifting personal without giving up control over budget, catalogue, delivery and reporting.",
+      "Sampley helps companies make gifting personal without giving up control over budget, catalogue, delivery and reporting.",
     images: [
       {
         url: absoluteUrl("/assets/wingback-logo-full@2x.png"),
-        alt: "Wingback by Sampley",
+        alt: "Sampley",
       },
     ],
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Wingback by Sampley",
+    title: "About the Wingback gift store",
     description:
       "Corporate gifting built around recipient choice, business controls and managed fulfilment.",
     images: [absoluteUrl("/assets/wingback-logo-full@2x.png")],

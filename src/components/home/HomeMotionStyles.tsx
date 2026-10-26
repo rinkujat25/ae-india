@@ -43,7 +43,7 @@ const styles = `
   .home-motion .proof-stat:hover,
   .home-motion .faq:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 34px rgba(38,28,17,.08);
+    box-shadow: 0 16px 34px rgba(31, 29, 28,.08);
   }
 
   .home-motion .btn {

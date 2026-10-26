@@ -14,7 +14,7 @@ export function HomeAnswersSection() {
                 <div className="section-head">
                     <div>
                         <span className="kicker">Straight answers</span>
-                        <h2 id="answers-title">How corporate gifting works with Wingback.</h2>
+                        <h2 id="answers-title">How corporate gifting works with Sampley.</h2>
                     </div>
                 </div>
 

@@ -20,7 +20,7 @@ export const homeAnswers: HomeAnswer[] = [
     {
         question: "What is Wingback?",
         answer:
-            "Wingback by Sampley is a corporate gifting platform in India. Companies use it to run employee gifting and client gifting from one place: you set the budget, the audience and the approved catalogue, and Wingback handles curation, sourcing, branding, delivery and reporting.",
+            "Sampley is the corporate gifting platform behind the Wingback employee gift store. Companies use it to run employee gifting and client gifting from one place: you set the budget, the audience and the approved catalogue, and Sampley handles curation, sourcing, branding, delivery and reporting.",
     },
     {
         question: "How does an employee gift store work?",

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "AI Gift Finder | Wingback",
   description:
     "Describe your gifting requirement and prepare it for Wingback AI product search.",
-  authors: [{ name: "Wingback by Sampley" }],
+  authors: [{ name: "Sampley" }],
   robots: {
     index: true,
     follow: true,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback by Sampley",
+    siteName: "Wingback Employee Gift Store",
     url: absoluteUrl("/ai-gift-finder"),
     title: "AI Gift Finder | Wingback",
     description:
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteUrl("/assets/wingback-logo-full@2x.png"),
-        alt: "Wingback by Sampley — AI Gift Finder",
+        alt: "Wingback employee gift store — AI Gift Finder",
       },
     ],
     locale: "en_IN",

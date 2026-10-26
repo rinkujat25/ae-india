@@ -51,9 +51,11 @@ export function HomeJsonLd() {
             {
                 "@type": "Organization",
                 "@id": organizationId,
-                name: "Wingback by Sampley",
+                name: "Sampley",
                 url: absoluteUrl("/"),
-                logo: absoluteUrl("/assets/wingback-logo-supplied.png"),
+                // The operator's own mark, not Wingback's -- this node is the
+                // company running the store, not the company it belongs to.
+                logo: absoluteUrl("/assets/sampley-logo.png"),
                 email: "{{support_email_id}}",
                 telephone: "{{toll_free_number}}",
                 legalName: "{{company_legal_name}}",
@@ -86,7 +88,7 @@ export function HomeJsonLd() {
                     "Diwali and festive corporate gifting",
                 ],
                 description:
-                    "Wingback is a corporate gifting platform running two models: branded employee stores where recipients choose within company rules, and direct corporate gifting for clients, partners and events — both with managed pan-India fulfilment.",
+                    "Sampley is the corporate gifting platform behind the Wingback store, running two models: branded employee stores where recipients choose within company rules, and direct corporate gifting for clients, partners and events — both with managed pan-India fulfilment.",
             },
             {
                 "@type": "WebSite",
@@ -105,7 +107,7 @@ export function HomeJsonLd() {
                 areaServed: { "@type": "Country", name: "India" },
                 audience: { "@type": "Audience", audienceType: "HR and Admin teams" },
                 description:
-                    "A branded gifting store where employees choose from approved gifts within company-defined budget, eligibility, catalogue and delivery rules, while Wingback handles sourcing, personalisation, delivery and reporting.",
+                    "A branded gifting store where employees choose from approved gifts within company-defined budget, eligibility, catalogue and delivery rules, while Sampley handles sourcing, personalisation, delivery and reporting.",
             },
             {
                 "@type": "Service",
@@ -116,7 +118,7 @@ export function HomeJsonLd() {
                 areaServed: { "@type": "Country", name: "India" },
                 audience: { "@type": "Audience", audienceType: "Sales, Marketing and CXO offices" },
                 description:
-                    "Company-selected gifting for clients, partners, event attendees and customers, delivered through Wingback-managed sourcing, branded packaging, personal notes, bulk dispatch, campaign tracking and fulfilment reporting.",
+                    "Company-selected gifting for clients, partners, event attendees and customers, delivered through Sampley-managed sourcing, branded packaging, personal notes, bulk dispatch, campaign tracking and fulfilment reporting.",
             },
             {
                 // Ties the page itself to the organisation and the site, so the

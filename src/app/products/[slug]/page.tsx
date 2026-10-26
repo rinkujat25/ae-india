@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
         title,
         description: description || undefined,
         keywords: product.keywords.length > 0 ? product.keywords : undefined,
-        authors: [{ name: "Wingback by Sampley" }],
+        authors: [{ name: "Sampley" }],
         robots: {
             index: true,
             follow: true,
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
         },
         openGraph: {
             type: "website",
-            siteName: "Wingback by Sampley",
+            siteName: "Wingback Employee Gift Store",
             url: absoluteUrl(path),
             title,
             description: description || undefined,
@@ -257,7 +257,7 @@ function createOfferJsonLd(product: ProductDetailModel) {
         price: String(product.price),
         availability: getAvailability(product),
         eligibleQuantity: { "@type": "QuantitativeValue", minValue: product.moq || 1, unitCode: "C62" },
-        seller: { "@type": "Organization", name: "Wingback by Sampley" },
+        seller: { "@type": "Organization", name: "Sampley" },
         areaServed: { "@type": "Country", name: "India" },
     };
 }

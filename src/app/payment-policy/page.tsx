@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     alternates: { canonical: paymentPolicy.href },
     openGraph: {
         type: "article",
-        siteName: "Wingback by Sampley",
+        siteName: "Wingback Employee Gift Store",
         url: paymentPolicy.href,
         title: paymentPolicy.metaTitle,
         description: paymentPolicy.metaDescription,

@@ -57,7 +57,7 @@ export function AuthShell({ title, description, backHref, backLabel, children }:
                     <div>
                         <h2>Run every gifting program from one place.</h2>
                         <p>
-                            Wingback keeps recipient choice, catalogue controls, fulfilment, tracking and reporting
+                            Sampley keeps recipient choice, catalogue controls, fulfilment, tracking and reporting
                             together for HR, admin and business teams.
                         </p>
                         <div className="auth-points">

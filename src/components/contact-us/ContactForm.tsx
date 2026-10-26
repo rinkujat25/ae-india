@@ -84,7 +84,7 @@ export function ContactForm() {
             <option>Planning a new gifting program</option>
             <option>A program or order already running</option>
             <option>Delivery problem with a gift I received</option>
-            <option>Supplying products to Wingback</option>
+            <option>Supplying products to Sampley</option>
             <option>Partnership or reseller enquiry</option>
             <option>Invoicing, GST or documentation</option>
             <option>Something else</option>

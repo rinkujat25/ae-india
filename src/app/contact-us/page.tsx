@@ -12,7 +12,7 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact Wingback | Corporate Gifting Enquiries India",
   description: fillCompanyTokens(
-    "Talk to Wingback about a corporate gifting program, an order already running, or supplying our catalogue. Email {{support_email_id}} or call {{toll_free_number}}.",
+    "Talk to Sampley about the Wingback gift store, an order already running, or supplying the Sampley catalogue. Email {{support_email_id}} or call {{toll_free_number}}.",
   ),
   keywords: [
     "contact Wingback",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "gifting program support",
     "Sampley gifting contact",
   ],
-  authors: [{ name: "Wingback by Sampley" }],
+  authors: [{ name: "Sampley" }],
   alternates: {
     canonical: "/contact-us",
     languages: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback by Sampley",
+    siteName: "Wingback Employee Gift Store",
     url: absoluteUrl("/contact-us"),
     title: "Contact Wingback | Corporate Gifting Enquiries India",
     description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteUrl("/assets/wingback-logo-full@2x.png"),
-        alt: "Wingback by Sampley",
+        alt: "Sampley",
       },
     ],
     locale: "en_IN",

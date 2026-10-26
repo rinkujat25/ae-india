@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     alternates: { canonical: termsAndConditions.href },
     openGraph: {
         type: "article",
-        siteName: "Wingback by Sampley",
+        siteName: "Wingback Employee Gift Store",
         url: termsAndConditions.href,
         title: termsAndConditions.metaTitle,
         description: termsAndConditions.metaDescription,

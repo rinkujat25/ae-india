@@ -95,7 +95,7 @@ const styles = `
   .spec dd{margin:0;font-weight:600;color:var(--ink-2)}
   .aplus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
   .aplus figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;cursor:zoom-in;transition:border-color .16s ease,box-shadow .16s ease}
-  .aplus figure:hover{border-color:var(--violet);box-shadow:0 14px 34px rgba(38,28,17,.10)}
+  .aplus figure:hover{border-color:var(--violet);box-shadow:0 14px 34px rgba(31, 29, 28,.10)}
   .aplus img{width:100%;height:auto;display:block}
   .aplus video{width:100%;height:auto;display:block;background:#111}
   /* A YouTube embed has no intrinsic size, so unlike <video> it needs a
@@ -106,7 +106,7 @@ const styles = `
   .download-assets{padding:56px 0;border-top:1px solid var(--line)}
   .download-assets-list{display:grid;gap:14px;margin-top:26px}
   .download-asset{min-height:76px;border:1.5px solid var(--ink-2);border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 24px;color:var(--ink-2);transition:border-color .16s ease,box-shadow .16s ease,color .16s ease}
-  .download-asset:hover{border-color:var(--violet);color:var(--violet-ink);box-shadow:0 10px 28px rgba(38,28,17,.08)}
+  .download-asset:hover{border-color:var(--violet);color:var(--violet-ink);box-shadow:0 10px 28px rgba(31, 29, 28,.08)}
   .download-asset>span{display:grid;gap:3px;min-width:0}
   .download-asset strong{font-size:var(--t-md)}
   .download-asset small{color:var(--muted);font-size:var(--t-xs);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -116,7 +116,7 @@ const styles = `
   .product-rail-heading a{color:var(--violet-ink);font-size:var(--t-sm);font-weight:800}
   .product-rail-controls{display:flex;align-items:center;gap:10px}.product-rail-controls a{margin-left:6px}.product-rail-arrow{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--ink-2);flex:none}.product-rail-arrow:hover:not(:disabled){border-color:var(--violet);color:var(--violet)}.product-rail-arrow:disabled{opacity:.35;cursor:not-allowed}.product-rail-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.product-rail-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px}.product-rail-track::-webkit-scrollbar{display:none}.product-rail-track>*{flex:0 0 calc((100% - 54px)/4);scroll-snap-align:start;min-width:0}
   .similar-product{min-width:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;transition:border-color .16s ease,box-shadow .16s ease}
-  .similar-product:hover{border-color:#d7cafa;box-shadow:0 12px 30px rgba(38,28,17,.09)}
+  .similar-product:hover{border-color:#d7cafa;box-shadow:0 12px 30px rgba(31, 29, 28,.09)}
   .similar-product-image{aspect-ratio:1/1;background:#fff;display:grid;place-items:center;padding:18px;border-bottom:1px solid var(--line-2)}.similar-product-noimage{font-size:10px;font-weight:700;color:var(--muted-2)}
   .similar-product-image img{width:100%;height:100%;object-fit:contain}
   .similar-product-body{padding:16px 16px 18px}
@@ -134,7 +134,7 @@ const styles = `
   .related h2{margin-bottom:20px}
   .rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   .rel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
-  .rel:hover{transform:translateY(-2px);border-color:#ded5ff;box-shadow:0 16px 38px rgba(38,28,17,.10)}
+  .rel:hover{transform:translateY(-2px);border-color:#ded5ff;box-shadow:0 16px 38px rgba(31, 29, 28,.10)}
   .rel-media{aspect-ratio:1/1;background:#fff;display:grid;place-items:center;padding:14px}
   .rel-media img{width:100%;height:100%;object-fit:contain}
   .rel-body{padding:14px 16px 18px;border-top:1px solid var(--line-2);text-align:center}

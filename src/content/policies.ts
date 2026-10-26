@@ -30,17 +30,17 @@ const updated = "19 September 2026";
 export const privacyPolicy: PolicyDocument = {
     href: "/privacy-policy",
     title: "Privacy Policy",
-    metaTitle: "Privacy Policy | Wingback by Sampley",
+    metaTitle: "Privacy Policy | Wingback",
     metaDescription:
-        "How Wingback by Sampley collects, uses and protects the personal information of buyers and gift recipients.",
+        "How Sampley collects, uses and protects the personal information of buyers and gift recipients.",
     intro:
-        "This policy explains what we collect when you use Wingback, why we collect it, who we share it with, and the choices you have.",
+        "This policy explains what we collect when you use the Wingback gift store, why we collect it, who we share it with, and the choices you have.",
     updated,
     sections: [
         {
             heading: "Who we are",
             paragraphs: [
-                "Wingback is operated by {{company_legal_name}}, registered in India and based in {{company_city}}, {{company_state}}. Where this policy says we or us, it means {{company_legal_name}}.",
+                "The Wingback gift store is operated by {{company_legal_name}}, registered in India and based in {{company_city}}, {{company_state}}. Where this policy says we or us, it means {{company_legal_name}}.",
                 "We run corporate gifting programmes. That means we usually hold data about two groups: the people who buy from us, and the recipients a buyer asks us to deliver to.",
             ],
         },
@@ -107,17 +107,17 @@ export const privacyPolicy: PolicyDocument = {
 export const termsAndConditions: PolicyDocument = {
     href: "/privacy-policy/terms-and-conditions",
     title: "Terms and Conditions",
-    metaTitle: "Terms and Conditions | Wingback by Sampley",
+    metaTitle: "Terms and Conditions | Wingback",
     metaDescription:
-        "The terms that apply when you order corporate gifts from Wingback by Sampley, including quotes, pricing, delivery and liability.",
+        "The terms that apply when you order corporate gifts through the Wingback gift store, operated by Sampley, including quotes, pricing, delivery and liability.",
     intro:
-        "These terms apply when you use Wingback or place an order with us. By placing an order you accept them.",
+        "These terms apply when you use the Wingback gift store or place an order with us. By placing an order you accept them.",
     updated,
     sections: [
         {
             heading: "Who can order",
             paragraphs: [
-                "Wingback is built for businesses. You may place an order if you are authorised to buy on behalf of your organisation and the details you give us are accurate.",
+                "The Wingback gift store is for businesses. You may place an order if you are authorised to buy on behalf of your organisation and the details you give us are accurate.",
             ],
         },
         {
@@ -173,9 +173,9 @@ export const termsAndConditions: PolicyDocument = {
 export const returnExchange: PolicyDocument = {
     href: "/privacy-policy/return-exchange",
     title: "Return and Exchange Policy",
-    metaTitle: "Return and Exchange Policy | Wingback by Sampley",
+    metaTitle: "Return and Exchange Policy | Wingback",
     metaDescription:
-        "When corporate gift orders can be returned or exchanged with Wingback by Sampley, how to report a problem, and what is not covered.",
+        "When corporate gift orders can be returned or exchanged with Sampley, how to report a problem, and what is not covered.",
     intro:
         "Corporate gifting is made to order, so returns work differently from retail. This page sets out what we will replace and how to tell us.",
     updated,
@@ -224,9 +224,9 @@ export const returnExchange: PolicyDocument = {
 export const shippingPolicy: PolicyDocument = {
     href: "/shipping-policy",
     title: "Shipping Policy",
-    metaTitle: "Shipping Policy | Wingback by Sampley",
+    metaTitle: "Shipping Policy | Wingback",
     metaDescription:
-        "How Wingback by Sampley dispatches and delivers corporate gifts across India, including lead times, tracking and multi-address orders.",
+        "How Sampley dispatches and delivers corporate gifts across India, including lead times, tracking and multi-address orders.",
     intro:
         "How we get gifts from a confirmed order to the people they are meant for, anywhere in India.",
     updated,
@@ -268,9 +268,9 @@ export const shippingPolicy: PolicyDocument = {
 export const paymentPolicy: PolicyDocument = {
     href: "/payment-policy",
     title: "Payment Policy",
-    metaTitle: "Payment Policy | Wingback by Sampley",
+    metaTitle: "Payment Policy | Wingback",
     metaDescription:
-        "How payment works for corporate gift orders with Wingback by Sampley, including accepted modes, GST invoicing and refunds.",
+        "How payment works for corporate gift orders through the Wingback gift store, operated by Sampley, including accepted modes, GST invoicing and refunds.",
     intro: "How payment works, what we accept, and how invoicing and refunds are handled.",
     updated,
     sections: [

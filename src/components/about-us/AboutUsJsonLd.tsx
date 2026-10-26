@@ -9,10 +9,10 @@ function buildJsonLd() {
     {
       "@type": "Organization",
       "@id": absoluteUrl("/#organization"),
-      name: "Wingback by Sampley",
+      name: "Sampley",
       legalName: "{{company_legal_name}}",
       url: absoluteUrl("/"),
-      logo: absoluteUrl("/assets/wingback-logo-supplied.png"),
+      logo: absoluteUrl("/assets/sampley-logo.png"),
       email: "{{support_email_id}}",
       telephone: "{{toll_free_number}}",
       areaServed: { "@type": "Country", name: "India" },
@@ -23,13 +23,13 @@ function buildJsonLd() {
         addressCountry: "IN",
       },
       description:
-        "Wingback by Sampley helps companies run corporate gifting programs through branded gift stores, recipient choice, curated catalogues and managed pan-India fulfilment.",
+        "Sampley helps companies run corporate gifting programs through branded gift stores, recipient choice, curated catalogues and managed pan-India fulfilment.",
     },
     {
       "@type": "AboutPage",
       "@id": absoluteUrl("/about-us#webpage"),
       url: absoluteUrl("/about-us"),
-      name: "About Wingback by Sampley",
+      name: "About the Wingback gift store",
       isPartOf: {
         "@type": "WebSite",
         name: "Wingback",
@@ -45,7 +45,7 @@ function buildJsonLd() {
         {
           "@type": "Question",
           name: "Who is behind Wingback?",
-          acceptedAnswer: { "@type": "Answer", text: "Wingback is the corporate gifting platform from Sampley, operating as {{company_legal_name}} out of {{company_city}}, {{company_state}}. We work with HR, Admin, Sales and Marketing teams running gifting programs across India." },
+          acceptedAnswer: { "@type": "Answer", text: "The Wingback gift store is run by Sampley, operating as {{company_legal_name}} out of {{company_city}}, {{company_state}}. We work with HR, Admin, Sales and Marketing teams running gifting programs across India." },
         },
         {
           "@type": "Question",

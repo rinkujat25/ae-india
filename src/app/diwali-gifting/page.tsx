@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "festival gifting for employees",
     "Diwali gifting program",
   ],
-  authors: [{ name: "Wingback by Sampley" }],
+  authors: [{ name: "Sampley" }],
   robots: {
     index: true,
     follow: true,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback by Sampley",
+    siteName: "Wingback Employee Gift Store",
     url: absoluteUrl("/diwali-gifting"),
     title: "Diwali Corporate Gifts for Employees & Clients | Wingback",
     description:
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         url: absoluteUrl("/assets/wingback-diwali-gifting-og.jpg"),
         width: 1200,
         height: 630,
-        alt: "Wingback by Sampley - Diwali corporate gifting",
+        alt: "Wingback employee gift store - Diwali",
       },
     ],
     locale: "en_IN",

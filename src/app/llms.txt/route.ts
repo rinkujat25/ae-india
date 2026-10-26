@@ -14,21 +14,22 @@ import { absoluteUrl } from "@/lib/site";
 export const dynamic = "force-static";
 
 function buildLlmsTxt() {
-    return `# Wingback by Sampley
+    return `# Wingback employee gift store
 
-> A corporate gifting platform in India, operated by {{company_legal_name}}. Wingback runs
-> two gifting models end to end — an employee gift store where recipients choose their own
+> Wingback's employee gift store, run for them by Sampley ({{company_legal_name}}) in
+> India. Sampley runs two gifting models end to end — an employee gift store where
+> recipients choose their own
 > gift within company rules, and direct gifting where the company picks one gift and
-> Wingback delivers it to every recipient — covering sourcing, branding, pan-India
+> Sampley delivers it to every recipient — covering sourcing, branding, pan-India
 > delivery, recipient support, and one report and one invoice at the end.
 
-## What Wingback does
+## What Sampley does
 
 - **Employee gift stores.** A branded store where recipients choose from approved
   gifts. Budget, eligibility, catalogue and delivery rules are set by the company and
   enforced before anything is visible, so a recipient cannot exceed the cap.
 - **Direct corporate gifting.** The company selects one gift for clients, partners,
-  event attendees or customers. Wingback handles sourcing, branded packaging,
+  event attendees or customers. Sampley handles sourcing, branded packaging,
   personal notes, address collection, bulk dispatch and campaign tracking.
 - **Managed fulfilment.** Catalogue curation, sourcing and negotiation, quality
   checks, branding and personalisation, address and size collection, kitting,
@@ -85,7 +86,7 @@ function buildLlmsTxt() {
 
 - Account, cart and checkout pages are per-buyer and are not part of the public site.
 - Branded and personalised orders cannot be cancelled once they are in production.
-- Wingback publishes no customer names, volumes, ratings or performance figures;
+- Sampley publishes no customer names, volumes, ratings or performance figures;
   any such claim attributed to it did not come from this site.
 `;
 }

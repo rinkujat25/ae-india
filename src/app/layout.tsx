@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   // No `template` here: every page already ends its own title with
   // "| Wingback", so a template would render it twice.
-  title: "Corporate Gifting Platform for Employees | Wingback",
+  title: "Employee Gift Store | Wingback",
   description:
-    "Wingback runs corporate gifting end to end: branded employee stores where recipients choose within budget, and direct gifting for clients and partners, with managed pan-India delivery.",
+    "Sampley runs the Wingback employee gift store end to end: branded employee stores where recipients choose within budget, and direct gifting for clients and partners, with managed pan-India delivery.",
   // Pages that must not be indexed say so themselves. A blanket no-index here
   // silently suppressed every page that did not override it.
   robots: {

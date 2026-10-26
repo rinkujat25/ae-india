@@ -61,11 +61,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
         return {
             title: subTitle,
-            description: `Browse ${sub.label} within ${category.label} corporate gifts from Wingback, with bulk pricing, branding and pan-India delivery.`,
+            description: `Browse ${sub.label} within ${category.label} corporate gifts from the Wingback gift store, with bulk pricing, branding and pan-India delivery.`,
             alternates: { canonical: `/category/${slug}` },
             openGraph: {
                 type: "website",
-                siteName: "Wingback by Sampley",
+                siteName: "Wingback Employee Gift Store",
                 url: `/category/${slug}`,
                 title: subTitle,
             },
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     const description =
         category.metaDescription
         || category.description
-        || `Browse ${category.label} corporate gifts from Wingback, with bulk pricing, branding and pan-India delivery.`;
+        || `Browse ${category.label} corporate gifts from the Wingback gift store, with bulk pricing, branding and pan-India delivery.`;
 
     return {
         title,
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         alternates: { canonical: `/category/${category.slug}` },
         openGraph: {
             type: "website",
-            siteName: "Wingback by Sampley",
+            siteName: "Wingback Employee Gift Store",
             url: `/category/${category.slug}`,
             title,
             description,

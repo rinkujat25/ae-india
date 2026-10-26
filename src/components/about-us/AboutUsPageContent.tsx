@@ -6,10 +6,10 @@ export function AboutUsPageContent() {
       <section className="about-hero">
         <div className="wrap about-hero-grid">
           <div>
-            <span className="about-eyebrow">About Wingback by Sampley</span>
+            <span className="about-eyebrow">About the Wingback gift store</span>
             <h1>Corporate gifting built around choice.</h1>
             <p>
-              Wingback helps companies run gifting programs where recipients
+              Sampley helps companies run gifting programs where recipients
               choose from approved gifts within business-defined rules, while
               the operational work sits with us: catalogue curation, sourcing,
               branding, fulfilment, delivery, support and reporting.
@@ -24,7 +24,7 @@ export function AboutUsPageContent() {
             </div>
           </div>
 
-          <aside className="about-panel" aria-label="Wingback focus">
+          <aside className="about-panel" aria-label="Sampley focus">
             <div className="about-card">
               <h2>What we are building</h2>
               <div className="about-stat-grid">
@@ -38,7 +38,7 @@ export function AboutUsPageContent() {
                 </div>
                 <div className="about-stat">
                   <b>Managed fulfilment</b>
-                  <span>Wingback handles sourcing through delivery.</span>
+                  <span>Sampley handles sourcing through delivery.</span>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ export function AboutUsPageContent() {
             <p>
               Traditional corporate gifting often means one generic hamper,
               weeks of address chasing and a spreadsheet full of exceptions.
-              Wingback keeps the personal part for recipients and the control
+              Sampley keeps the personal part for recipients and the control
               part for the company.
             </p>
           </div>
@@ -95,7 +95,7 @@ export function AboutUsPageContent() {
               <h2>Two gifting models, one managed platform.</h2>
             </div>
             <p>
-              Wingback supports recipient-choice stores and direct gifting.
+              Sampley supports recipient-choice stores and direct gifting.
               Both use the same backbone: curation, controls, fulfilment,
               tracking, support and reporting.
             </p>
@@ -118,7 +118,7 @@ export function AboutUsPageContent() {
             <article className="about-split-card dark">
               <h3>Direct gifting campaigns</h3>
               <p>
-                A company-approved gift sent to a selected list, with Wingback
+                A company-approved gift sent to a selected list, with Sampley
                 managing address collection, branding and delivery.
               </p>
               <ul>
@@ -135,12 +135,12 @@ export function AboutUsPageContent() {
         <div className="wrap">
           <div className="about-head">
             <div>
-              <span className="about-kicker">What Wingback handles</span>
+              <span className="about-kicker">What Sampley handles</span>
               <h2>The work behind the gift.</h2>
             </div>
             <p>
               A good gifting experience depends on dozens of quiet operational
-              details. Wingback is built to own those details so HR, admin,
+              details. Sampley is built to own those details so HR, admin,
               sales and marketing teams do not have to chase them.
             </p>
           </div>
@@ -173,7 +173,7 @@ export function AboutUsPageContent() {
               <h2>Want to see it for your company?</h2>
               <p>
                 Share the occasion, recipient count and budget. We will show
-                which Wingback model fits and what your recipients would see.
+                which gifting model fits and what your recipients would see.
               </p>
             </div>
             <div className="about-cta-actions">

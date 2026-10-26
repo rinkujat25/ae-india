@@ -35,7 +35,7 @@ export function AiGiftFinderForm() {
       <div className="wrap">
         <header className="top">
           <h1>AI Gift Finder</h1>
-          <p>Describe the occasion, recipients and budget. Wingback will use this brief to find suitable products.</p>
+          <p>Describe the occasion, recipients and budget. Sampley will use this brief to find suitable products.</p>
         </header>
 
         <section className="ask">

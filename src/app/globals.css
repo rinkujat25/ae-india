@@ -1,31 +1,60 @@
-/* Shared design tokens for the Next.js storefront foundation. */
+/* Shared design tokens for the Next.js storefront foundation.
+   Colour and type follow Wingback's own brand, so the store reads as theirs
+   rather than as the platform underneath it. The token names are inherited and
+   still say "violet"; the values are Wingback's orange. */
+
+/* Satoshi, self-hosted in the three weights Wingback's own site ships. */
+@font-face {
+  font-family: Satoshi;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/satoshi-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Satoshi;
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/satoshi-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Satoshi;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/satoshi-700.woff2") format("woff2");
+}
+
 :root {
-  --color-background: #fffdf8;
+  --color-background: #f6f5f2;
   --color-surface: #ffffff;
-  --color-surface-muted: #f6f0e7;
-  --color-foreground: #191622;
-  --color-muted: #635d6e;
-  --color-border: #e9e3da;
-  --color-primary: #5b3df5;
-  --color-primary-hover: #4b2ee8;
+  --color-surface-muted: #efede8;
+  --color-foreground: #1f1d1c;
+  --color-muted: #5f5b57;
+  --color-border: #dcd8d1;
+  --color-primary: #dd5a2a;
+  --color-primary-hover: #a53f1f;
   --color-primary-foreground: #ffffff;
   --container-max-width: 1180px;
 }
 
 :root {
-            --ink: #191622;
-            --ink-2: #39323f;
-            --muted: #635d6e;
-            --muted-2: #7a7385;
-            --paper: #fffdf8;
-            --cream: #f6f0e7;
+            --ink: #1f1d1c;
+            --ink-2: #333132;
+            --muted: #5f5b57;
+            --muted-2: #67635e;
+            --paper: #f6f5f2;
+            --cream: #efede8;
             --card: #ffffff;
-            --line: #e9e3da;
-            --line-2: #f0ebe3;
-            --violet: #5b3df5;
-            --violet-2: #8a73ff;
-            --violet-tint: #efeaff;
-            --violet-ink: #4b2ee8;
+            --line: #dcd8d1;
+            --line-2: #e7e3dc;
+            --violet: #dd5a2a;
+            --violet-2: #e8835c;
+            --violet-tint: #fbe9e1;
+            --violet-ink: #a53f1f;
             --mint: #dff7ec;
             --mint-ink: #1c7a4f;
             --amber: #fff0d0;
@@ -53,8 +82,8 @@
             --r-lg: 28px;
             --gap: 16px;
             --pad-card: 26px;
-            --shadow: 0 20px 54px rgba(47, 34, 70, .10);
-            --shadow-sm: 0 10px 30px rgba(38, 28, 17, .06);
+            --shadow: 0 20px 54px rgba(31, 29, 28, .10);
+            --shadow-sm: 0 10px 30px rgba(31, 29, 28, .06);
         }
 
         * {
@@ -69,7 +98,7 @@
             margin: 0;
             background: var(--paper);
             color: var(--ink);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+            font-family: Satoshi, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
             font-size: var(--t-md);
             -webkit-font-smoothing: antialiased
         }
@@ -1901,7 +1930,7 @@
         }
 
         .cta-panel {
-            background: linear-gradient(130deg, #5b3df5, #2d1a9d);
+            background: linear-gradient(130deg, #dd5a2a, #8a3312);
             border-radius: var(--r-lg);
             color: #fff;
             padding: 48px;
@@ -1952,7 +1981,7 @@
 
         .cta-actions .btn-primary {
             background: #fff;
-            color: #2d1a9d
+            color: #8a3312
         }
 
         .cta-actions .btn-soft {
@@ -2230,7 +2259,7 @@
         }
 
         .cta-panel {
-            background: linear-gradient(130deg, #5b3df5, #2d1a9d);
+            background: linear-gradient(130deg, #dd5a2a, #8a3312);
             border-radius: var(--r-lg);
             color: #fff;
             padding: 34px 38px;
@@ -2281,7 +2310,7 @@
 
         .cta-actions .btn-primary {
             background: #fff;
-            color: #2d1a9d
+            color: #8a3312
         }
 
         .cta-actions .btn-soft {
@@ -2683,7 +2712,7 @@
                 background: rgba(255, 253, 248, .98);
                 border: 1px solid var(--line);
                 border-radius: var(--r-md);
-                box-shadow: 0 18px 42px rgba(38, 28, 17, .12)
+                box-shadow: 0 18px 42px rgba(31, 29, 28, .12)
             }
 
             .nav.menu-open .links {

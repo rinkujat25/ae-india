@@ -1,14 +1,14 @@
 const styles = `
   :root{
-    --ink:#191622; --ink-2:#39323f; --muted:#635d6e; --muted-2:#7a7385;
-    --paper:#fffdf8; --cream:#f6f0e7; --card:#fff; --line:#e9e3da; --line-2:#f0ebe3;
-    --violet:#5b3df5; --violet-2:#8a73ff; --violet-tint:#efeaff; --violet-ink:#4b2ee8;
+    --ink:#1f1d1c; --ink-2:#333132; --muted:#5f5b57; --muted-2:#67635e;
+    --paper:#f6f5f2; --cream:#efede8; --card:#fff; --line:#dcd8d1; --line-2:#e7e3dc;
+    --violet:#dd5a2a; --violet-2:#e8835c; --violet-tint:#fbe9e1; --violet-ink:#a53f1f;
     --mint:#dff7ec; --mint-ink:#1c7a4f; --amber:#fff0d0; --amber-ink:#8a6100;
     --peach:#ffe5da; --peach-ink:#a8482a; --yellow:#ffe7a8; --yellow-ink:#5c3b00;
-    --violet-2:#8a73ff;
+    --violet-2:#e8835c;
     --t-xs:12px; --t-sm:13px; --t-md:15px; --t-lg:17px;
     --r-pill:999px; --r-sm:14px; --r-md:20px; --r-lg:28px;
-    --shadow:0 20px 54px rgba(47,34,70,.10); --shadow-sm:0 10px 30px rgba(38,28,17,.06);
+    --shadow:0 20px 54px rgba(31, 29, 28,.10); --shadow-sm:0 10px 30px rgba(31, 29, 28,.06);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:var(--t-md);-webkit-font-smoothing:antialiased}
