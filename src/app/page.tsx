@@ -3,19 +3,17 @@ import { absoluteUrl } from "@/lib/site";
 import { IconSprite } from "@/components/common/IconSprite";
 import { SiteFooter } from "@/components/common/SiteFooter";
 import { SiteHeader } from "@/components/common/SiteHeader";
-import { AiFinderSection } from "@/components/home/AiFinderSection";
-import { CatalogueSection } from "@/components/home/CatalogueSection";
-import { DiwaliSection } from "@/components/home/DiwaliSection";
-import { FaqSection } from "@/components/home/FaqSection";
-import { HeroSection } from "@/components/home/HeroSection";
-import { HomeAnswersSection } from "@/components/home/HomeAnswersSection";
-import { HomeDefinitionSection } from "@/components/home/HomeDefinitionSection";
 import { HomeJsonLd } from "@/components/home/HomeJsonLd";
-import { HomeMotionStyles } from "@/components/home/HomeMotionStyles";
-import { HomeProductsSection } from "@/components/home/HomeProductsSection";
-import { HowItWorksSection } from "@/components/home/HowItWorksSection";
-import { ModelsSection } from "@/components/home/ModelsSection";
-import { StartCtaSection } from "@/components/home/StartCtaSection";
+import { ProductCardStyles } from "@/components/product/ProductCardStyles";
+import { StoreStyles } from "@/components/home/StoreStyles";
+import {
+    loadStoreProducts,
+    StoreAnnouncement,
+    StoreEditSection,
+    StoreHero,
+    StoreNotesSection,
+    StoreProductsSection,
+} from "@/components/home/StoreSections";
 
 /**
  * Rendered per request, not at build time.
@@ -83,24 +81,22 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Home() {
+export default async function Home() {
+    // One fetch for the page: the hero points at the first gift on the shelf.
+    const products = await loadStoreProducts();
+
     return (
         <>
             <IconSprite />
-            <HomeMotionStyles />
+            <StoreStyles />
+            <ProductCardStyles />
+            <StoreAnnouncement />
             <SiteHeader active="home" />
-            <main className="home-motion">
-                <DiwaliSection />
-                <HeroSection />
-                <HomeDefinitionSection />
-                <ModelsSection />
-                <CatalogueSection />
-                <HomeProductsSection />
-                <HowItWorksSection />
-                <AiFinderSection />
-                <HomeAnswersSection />
-                <FaqSection />
-                <StartCtaSection />
+            <main>
+                <StoreHero featured={products[0]} />
+                <StoreProductsSection products={products} />
+                <StoreEditSection />
+                <StoreNotesSection />
             </main>
             <SiteFooter />
             <HomeJsonLd />
