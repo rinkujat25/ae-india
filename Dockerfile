@@ -10,8 +10,8 @@ FROM base AS builder
 
 # The site's own origin has to be present at BUILD time, not just at run time.
 # Next inlines NEXT_PUBLIC_* into the bundle and resolves every prerendered
-# route against it — robots.txt, llms.txt, the sitemap index and the static
-# pages sitemap, plus metadataBase for every canonical. The .env file is
+# route against it — robots.txt, plus metadataBase for every canonical. The
+# .env file is
 # excluded from the image by .dockerignore, so without this argument the build
 # falls back to http://localhost:3000 and ships it, silently.
 ARG NEXT_PUBLIC_SITE_URL

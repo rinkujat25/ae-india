@@ -308,7 +308,7 @@ Reserved for future rules.
 - `robots.ts` allows public routes and disallows `/api/`, `/account`, `/cart`, `/checkout` and `/auth/`. Those same paths are absent from `sitemap.ts`. Keep the two lists in step.
 - Structured data is built as objects and serialised with `serializeJsonLd`, never as a hand-written template string.
 - FAQ structured data must match what the page renders. `HomeJsonLd` and `FaqSection` carry the same five answers; changing one without the other is a guidelines violation.
-- `NEXT_PUBLIC_*` is inlined at build time, so the Docker image needs `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_MEASUREMENT_ID` as **build arguments**, not just container environment. `.dockerignore` excludes `.env`, so without them the build silently baked `http://localhost:3000` into robots.txt, llms.txt, the sitemap index and every prerendered canonical.
+- `NEXT_PUBLIC_*` is inlined at build time, so the Docker image needs `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_MEASUREMENT_ID` as **build arguments**, not just container environment. `.dockerignore` excludes `.env`, so without them the build silently baked `http://localhost:3000` into robots.txt and every prerendered canonical.
 - The store page is `/employee-gift-store`. `/gift-store` is kept as a permanent redirect in `next.config.ts` — it was indexed and linked from six pages. The product has **one** name, "Employee Gift Store", in the nav, the footer, the home models card, the page title and the URL.
 - Every page carries its own Open Graph card at `public/assets/wingback-<page>-og.jpg`, 1200x630, with `width`, `height` and `alt` declared. Do not fall back to `wingback-logo-full@2x.png`: its wordmark overlaps a second rainbow "sampley" and it renders as a mangled logo. The current logo is `wingback-logo-supplied.png`.
 - Analytics loads through `GoogleAnalytics` in the root layout and is omitted entirely when no measurement ID is set, which keeps local development out of the property. Adding it required widening three CSP directives in `next.config.ts`; the tag is blocked outright without all three.
@@ -316,8 +316,8 @@ Reserved for future rules.
 ## Generative engine optimization
 
 - Answer-engine crawlers are listed by name in `robots.ts` (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and others). Their default when unlisted varies by operator, so being cited is left to chance unless it is stated; removing a name opts the site out of that engine's answers.
-- `/llms.txt` (`src/app/llms.txt/route.ts`) is the short, factual summary those engines read. Every claim in it must be verifiable on the page it links to — it is quoted back to people as fact, so nothing goes in that the site does not itself say.
-- The home graph resolves as one entity: `Organization` carries `contactPoint` and `knowsAbout`, the two `Service` nodes and the `FAQPage` link back through `@id`, and `WebPage` ties the page to both. Loose, unlinked nodes are what stop an engine attributing an answer to the brand.
+- This store publishes **no `/llms.txt`**. The brief that was there described a full gifting platform, which is GiftVerse's to describe, not this storefront's. Answer engines read the pages and the JSON-LD instead.
+- The home graph resolves as one entity: `Organization` carries `contactPoint` and `knowsAbout`, the two `Service` nodes link back through `@id`, and `WebPage` ties the page to both. Loose, unlinked nodes are what stop an engine attributing an answer to the brand.
 - `sameAs` is still missing from the `Organization` node because the site links to no social or directory profiles. Add the real URLs when they exist — never invent them.
 - The cookie notice states what is stored. `cookieNoticeVersion` in `src/utils/cookie-notice.ts` is bumped whenever that changes, so an acknowledgement of a narrower notice stops counting. Google Analytics took it to 2.
 

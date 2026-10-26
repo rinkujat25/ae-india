@@ -1,8 +1,8 @@
 /**
  * The company's own details, in one place.
  *
- * These were repeated across the footer, the policies, the contact page, the
- * llms.txt brief and four JSON-LD blocks, which is how the structured data
+ * These were repeated across the footer, the policies, the contact page and
+ * four JSON-LD blocks, which is how the structured data
  * ended up claiming a Bengaluru address the business does not have. Everything
  * reads them from here now, so a change lands everywhere at once.
  *
@@ -116,7 +116,7 @@ export function getCompany(): CompanyDetails {
 /**
  * Substitutes `{{token}}` placeholders in a block of content.
  *
- * The JSON-LD graphs, the llms.txt brief and the migrated HTML sections are all
+ * The JSON-LD graphs and the migrated HTML sections are all
  * single large strings. Interpolating a dozen values into each one would mean
  * unpicking the string; a token pass keeps the content readable and leaves one
  * list of names to learn.
@@ -129,7 +129,7 @@ export function fillCompanyTokens(content: string): string {
 
     const tokens: Record<string, string> = {
         // Not a company fact, but this is the one substitution pass the JSON-LD
-        // graphs and llms.txt run through, and every absolute URL in them needs
+        // graphs run through, and every absolute URL in them needs
         // the deployed origin rather than a host written into the source.
         site_url: getSiteUrl(),
         company_name: company.name,
