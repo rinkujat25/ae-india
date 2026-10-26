@@ -53,11 +53,19 @@ export function SiteFooter() {
                     </div>
                     <div>
                         <h2>Policies</h2>
-                        <Link href="/privacy-policy">Privacy policy</Link>
-                        <Link href="/privacy-policy/terms-and-conditions">Terms &amp; conditions</Link>
-                        <Link href="/privacy-policy/return-exchange">Return &amp; exchange</Link>
-                        <Link href="/shipping-policy">Shipping policy</Link>
-                        <Link href="/payment-policy">Payment policy</Link>
+                        {/* The policies are published once, on GiftVerse, and
+                            apply to orders placed here too -- plain anchors so
+                            the browser leaves the site rather than asking the
+                            router for routes on another host. */}
+                        <a href="https://giftverse.sampley.in/privacy-policy">Privacy policy</a>
+                        <a href="https://giftverse.sampley.in/privacy-policy/terms-and-conditions">
+                            Terms &amp; conditions
+                        </a>
+                        <a href="https://giftverse.sampley.in/privacy-policy/return-exchange">
+                            Return &amp; exchange
+                        </a>
+                        <a href="https://giftverse.sampley.in/shipping-policy">Shipping policy</a>
+                        <a href="https://giftverse.sampley.in/payment-policy">Payment policy</a>
                     </div>
                 </div>
                 <div className="copyright">
