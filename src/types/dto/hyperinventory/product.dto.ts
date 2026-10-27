@@ -40,6 +40,8 @@ export type HyperinventoryProductVariantDto = {
     is_allow_back_orders?: boolean;
     tags?: string[] | null;
     variant_values?: HyperinventoryKeyValueDto[];
+    /** ISO timestamp without a zone, e.g. `2026-09-09T19:09:02.426186`. */
+    created_at?: string;
 };
 
 export type HyperinventoryProductHitDto = {

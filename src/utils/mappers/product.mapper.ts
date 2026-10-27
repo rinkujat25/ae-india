@@ -4,7 +4,8 @@ import type {
 } from "@/types/dto/hyperinventory/product.dto";
 import type { ProductModel } from "@/types/models/product.model";
 
-function getPrimaryVariant(hit: HyperinventoryProductHitDto) {
+/** The variant a card shows for a collapsed group; sorting reads it too. */
+export function getPrimaryVariant(hit: HyperinventoryProductHitDto) {
   return (
     hit._source.variants.find(
       (variant) => variant.is_active !== false && variant.is_visible !== false && variant.is_exposed !== false,
