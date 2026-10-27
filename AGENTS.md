@@ -290,6 +290,8 @@ Reserved for future rules.
 - `sessionStorage`, not `localStorage`: the catalogue changes, and a stale sidebar must not outlive the tab. Closing the tab throws it away and the next visit starts from a fresh unfiltered read.
 - Landing straight on a filtered URL with nothing cached falls back to the server's own aggregations, so the sidebar is narrow but never empty.
 - The cache is read after mount, never during render, because `sessionStorage` does not exist on the server.
+- A price band must carry **both** bounds. `selling_price=[{"gte":1}]` -- a lower bound on its own, which `serializePriceRanges` will happily build from `?prices=1-` -- is answered with **409**, so the read fails and the page renders its empty state. Send a ceiling as well.
+- The home page uses that to show only gifts with a published price: `priceRanges: [{ from: 1, to: priceCeiling }]` in `loadStoreProducts`. Much of the catalogue has no selling price and the card falls back to "Price on request", which contradicts a page telling the reader their gift is already paid for. The ceiling is deliberately far above any real price so the band means "has a price" rather than capping one; filtering the fetched array instead would leave a short row.
 
 ## Breadcrumbs
 
