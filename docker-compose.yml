@@ -6,19 +6,63 @@ services:
       args:
         # Baked into the prerendered routes; see the Dockerfile. Keep it the
         # same as the runtime value below.
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://wingback.sampley.in}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://wingback-giftverse.sampley.in}
         NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID:-G-3SF8H50FQF}
     image: wingback-nextjs:latest
     container_name: wingback-nextjs
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://wingback.sampley.in}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://wingback-giftverse.sampley.in}
       HYPERINVENTORY_API_URL: ${HYPERINVENTORY_API_URL:-https://api.hyperinvento.com/v2}
       HYPERINVENTORY_SELLER_ID: ${HYPERINVENTORY_SELLER_ID:-}
       HYPERINVENTORY_SALESCHANNEL: ${HYPERINVENTORY_SALESCHANNEL:-}
       HYPERINVENTORY_CLIENT_ID: ${HYPERINVENTORY_CLIENT_ID:-}
       HYPERINVENTORY_CLIENT_SECRET: ${HYPERINVENTORY_CLIENT_SECRET:-}
+      # The provider validates Origin and Referer against the sales channel
+      # registered for HYPERINVENTORY_SELLER_ID, which is still the giftverse
+      # host. Sending this host instead -- or sending nothing, which is what
+      # happened while these two were absent here -- is answered with 403 and
+      # the catalogue renders empty. Change both only once the provider has
+      # this host registered as a sales channel.
+      HYPERINVENTORY_ORIGIN: ${HYPERINVENTORY_ORIGIN:-https://giftverse.sampley.in}
+      HYPERINVENTORY_REFERER: ${HYPERINVENTORY_REFERER:-https://giftverse.sampley.in/}
+      HYPERINVENTORY_SEARCH_TOKEN: ${HYPERINVENTORY_SEARCH_TOKEN:-}
       RANKNOVA_API_URL: ${RANKNOVA_API_URL:-}
+
+      # The enquiry modal's provider form, and where the cart quote request is
+      # forwarded. Both are optional: unset, the quote form falls back to a
+      # prefilled email, which is deliberate.
+      DEMO_FORM_ID: ${DEMO_FORM_ID:-}
+      QUOTE_REQUEST_ENDPOINT: ${QUOTE_REQUEST_ENDPOINT:-}
+
+      # Resend countdown on the OTP verify step; falls back to 60 in code.
+      OTP_RESEND_SECONDS: ${OTP_RESEND_SECONDS:-}
+
+      # The company facts behind the footer, the policies and the JSON-LD.
+      # Every one of these has the same value as its fallback in
+      # src/lib/company.ts, so a missing file degrades to correct data rather
+      # than to placeholders -- but .env stays the single place they are set.
+      #
+      # Written with no value on purpose. That form resolves from .env and
+      # leaves the variable UNSET when it is absent, where `${VAR:-}` would
+      # inject an empty string instead. For COMPANY_WHATSAPP_NUMBER those two
+      # are not the same thing: absent falls back to the toll-free number,
+      # while present-but-empty takes the WhatsApp button off the site, which
+      # is a documented switch in src/lib/company.ts. The rest are written the
+      # same way for consistency.
+      COMPANY_NAME:
+      COMPANY_LEGAL_NAME:
+      COMPANY_SUPPORT_EMAIL:
+      COMPANY_TOLL_FREE_NUMBER:
+      COMPANY_WHATSAPP_NUMBER:
+      COMPANY_BUSINESS_HOURS:
+      COMPANY_GSTIN:
+      COMPANY_ADDRESS:
+      COMPANY_STREET_ADDRESS:
+      COMPANY_CITY:
+      COMPANY_STATE:
+      COMPANY_POSTAL_CODE:
+      COMPANY_COUNTRY:
     ports:
       # bound to loopback: nginx is the only thing that should reach the app
       - "127.0.0.1:3081:3000"
