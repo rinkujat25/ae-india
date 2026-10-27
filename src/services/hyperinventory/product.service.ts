@@ -1,5 +1,6 @@
 import "server-only";
 
+import { storeCollectionIds } from "@/constants/collection";
 import { getHyperinventoryEnvironment } from "@/lib/env";
 import { hyperinventoryRequest } from "@/services/hyperinventory/client";
 import type {
@@ -67,6 +68,7 @@ export async function getProducts(
                 selling_price: sellingPrice,
                 search: query.search?.trim() || undefined,
                 ordering: query.ordering || undefined,
+                collection_ids: storeCollectionIds.join(","),
             },
             ...(revalidateSeconds === undefined
                 ? {}
@@ -94,7 +96,7 @@ export async function getProductSearchSuggestions(search: string) {
         `/consumer/sellers/${encodeURIComponent(environment.sellerId)}/products_search_suggestions`,
         {
             accessToken: environment.searchToken,
-            query: { search },
+            query: { search, collection_ids: storeCollectionIds.join(",") },
         },
     );
 
