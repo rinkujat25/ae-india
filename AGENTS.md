@@ -136,6 +136,7 @@ Reserved for future rules.
 
 - The signed-in account dashboard lives at `/account` and is fully server-rendered; no part of it is a Client Component.
 - Each account section is its own route: `/account`, `/account/edit-account`, `/account/addresses` (with `/account/addresses/new`), `/account/orders`, `/account/refer-and-earn`, `/account/rewards`, `/account/wishlist`. There is no `?section=` query routing; that was removed.
+- **Refer and Earn is commented out**, not deleted: its `accountSections` entry and the body of `/account/refer-and-earn` are commented, and the route calls `notFound()`. Both must come back together — `AccountSectionShell` looks the section up in that list and throws when the entry is missing. The Rewards page's static "Referral bonus waiting" card still mentions referrals.
 - `accountSections` in `src/constants/account.ts` is the single source for a section's sidebar label, page title and href. Link to a section with `accountSectionHref(id)`; never hard-code an account path.
 - `src/app/account/layout.tsx` owns the auth gate, header, sidebar and footer. Section pages render only their panel, wrapped in `AccountSectionShell`, which supplies the breadcrumb and heading so every section matches.
 - Load the signed-in profile with `requireAccountProfile()` from `src/utils/account-data.ts`. It is wrapped in React `cache`, so the layout gate and the page body share one request; calling the service directly would refetch.

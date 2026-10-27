@@ -19,7 +19,10 @@ export const accountSections: AccountSectionModel[] = [
     { id: "edit", label: "Edit Account", title: "Edit Account", href: "/account/edit-account", iconId: "account-edit" },
     { id: "addresses", label: "Manage Addresses", title: "Manage Addresses", href: "/account/addresses", iconId: "account-pin" },
     { id: "orders", label: "My Orders", title: "My Orders", href: "/account/orders", iconId: "account-bag" },
-    { id: "referral", label: "Refer and Earn", title: "Refer and Earn", href: "/account/refer-and-earn", iconId: "account-gift" },
+    // Refer and Earn is switched off: there is no referral programme behind it
+    // yet, only static demo copy. Uncomment this entry together with the page
+    // body in src/app/account/refer-and-earn/page.tsx to bring it back.
+    // { id: "referral", label: "Refer and Earn", title: "Refer and Earn", href: "/account/refer-and-earn", iconId: "account-gift" },
     { id: "rewards", label: "Rewards", title: "Rewards", href: "/account/rewards", iconId: "account-star" },
     { id: "wishlist", label: "My Wishlist", title: "My Wishlist", href: "/account/wishlist", iconId: "account-heart" },
 ];
