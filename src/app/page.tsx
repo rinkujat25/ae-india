@@ -34,16 +34,6 @@ export const metadata: Metadata = {
     description:
         "Sampley runs branded employee gift stores and direct corporate gifting with budget controls, curated gifts and managed pan-India delivery.",
     authors: [{ name: "Sampley" }],
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-        },
-    },
     alternates: {
         // Relative: `metadataBase` in the root layout makes these absolute
         // against whichever host the build is deployed to.

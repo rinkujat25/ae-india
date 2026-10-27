@@ -18,9 +18,9 @@ export function AboutUsPageContent() {
               <Link className="btn btn-primary" href="/how-it-works">
                 See how it works
               </Link>
-              <a className="btn btn-soft" href="#start" data-open-form>
-                Book a demo →
-              </a>
+              <Link className="btn btn-soft" href="/contact-us">
+                Talk to us →
+              </Link>
             </div>
           </div>
 
@@ -177,11 +177,8 @@ export function AboutUsPageContent() {
               </p>
             </div>
             <div className="about-cta-actions">
-              <a className="btn btn-primary" href="#start" data-open-form>
-                Book a demo →
-              </a>
-              <Link className="btn btn-soft" href="/contact-us">
-                Contact us
+              <Link className="btn btn-primary" href="/contact-us">
+                Talk to us →
               </Link>
             </div>
           </div>

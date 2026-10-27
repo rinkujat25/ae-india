@@ -191,7 +191,7 @@ Reserved for future rules.
 - `POST /api/cart/items` branches on the session. A signed-in buyer goes to Hyperinventory `POST /v1/consumer/companies/{companyId}/carts` via `addToUserCart`, using the server-side session token; a guest keeps the temporary-cart flow.
 - The authenticated cart has no client-side id: the provider keys it to the buyer company and **accumulates** quantity across calls, so repeated posts add up rather than replacing. Never write a `temporary_cart_id_*` key for a signed-in buyer.
 - **The cart no longer offers "Request a quote."** The button and its bulk-pricing note are gone from the summary panel, and with them the `isQuoteOpen` flag, the `CartQuoteDialog` mount and the `.cart-quote-hint` / `.cart-summary .btn-soft` rules, none of which had anything left to do. The cart's intro copy went too — it told the reader to "send the list across", which the page can no longer do.
-- `CartQuoteDialog`, `/api/quote-requests`, `validateQuoteRequest` and `QUOTE_REQUEST_ENDPOINT` are **still on disk and now unreferenced.** The flow they implement: the cart travels with the request, the buyer supplies contact, occasion, delivery and branding details, the route re-validates server-side and forwards to the configured endpoint, and with no endpoint configured it answers `{ delivered: false }` and **200, not an error**, so the form falls back to a prefilled email to the sales address. Only a real forwarding failure is a 502. Delete the four together, or remount the dialog — do not leave a half-wired version.
+- `CartQuoteDialog`, `/api/quote-requests`, `validateQuoteRequest` and `QUOTE_REQUEST_ENDPOINT` are **deleted**, not shelved. This store sells from a fixed catalogue inside a fixed budget; a bulk-quote flow belongs to GiftVerse, which runs the programmes. Someone wanting a quote is sent to `/contact-us`.
 - A guest cart exists only through the `temporary_cart_id_*` key in that browser, so when a removal empties it the key is cleared (`clearTemporaryCart`) and the next add starts a fresh cart. This covers both Clear cart and removing the last line — leaving the key behind would point the next visit at a spent cart. `clearTemporaryCart` notifies the header itself, so it replaces `notifyCartUpdated` rather than running alongside it.
 - That cart list can hold **more than one cart** for a company. `is_current` marks the live one, and `getUserCart` selects on it — list order is not a reliable stand-in.
 - Checkout needs a session, so "Proceed To Buy" links to `/checkout` only when the cart loaded in `user` mode; a guest goes to `buildLoginHref({ next: "/cart" })` and lands back on the cart after signing in.
@@ -265,11 +265,17 @@ Reserved for future rules.
 - **These are working drafts, not reviewed by a lawyer.** They were written against how the platform actually behaves — GST-inclusive rupee pricing, Cash on Delivery, pan-India delivery, back orders at one unit, branded orders that cannot be cancelled once in production. If any of that changes, the policy text has to change with it.
 - They are indexable and listed in `sitemap.ts`, unlike the account and checkout routes.
 
+## Enquiry modal
+
+- **There is no enquiry modal.** `LeadModal`, `/api/demo-request`, `form.service.ts`, `DEMO_FORM_ID` and the reCAPTCHA pair are deleted, and with them every `data-open-form` trigger and the `#start` hash that auto-opened it. The modal's CSS was duplicated in three places — `globals.css`, `HowItWorksStyles` and `DiwaliGiftingStyles` — and is gone from all three.
+- Every button that opened it now links to `/contact-us`: the about-us and how-it-works CTAs ("Talk to us"), the Diwali CTAs (label kept), and the product page's "Get a price" for a product the catalogue cannot price. The product one loses its `data-enquiry-note`, so the enquiry no longer arrives naming the product — the contact page is one email address, and that is the trade.
+- `HomeInteractions` was renamed `MobileNavToggle` and now does only what is left: binding a click handler to the header's menu button, which `SiteHeader` cannot do itself because it is a Server Component. The old name was already wrong — it ran on every route, not the home page.
+- Do not reintroduce a lead form here. This host is a storefront, not GiftVerse's sales site; it takes orders, and anything else goes to `/contact-us`.
+
 ## Contact page
 
 - **`/contact-us` carries no form.** The message form it had only assembled a `mailto:` link and handed it to the browser, so it asked for six fields to reach the same email client the address beside it opens in one tap. `ContactForm.tsx` is deleted, not unmounted.
 - The "Start a program / Book a demo" tile went with it: its whole job was to open the site-wide enquiry modal, which is a form. No `data-open-form` trigger is left on the page.
-- `LeadModal` still renders on every route from the root layout, inside a closed `<dialog>`. Nothing on this page can open it any more; it is chrome, not contact-page content.
 - What is left is the two reach tiles (email, phone) and three boxes across the page — what to expect, who handles what, business details — plus the FAQ. The old two-column `.split` and the whole `.form-*` / `.field*` block are gone from `ContactUsStyles`; the boxes now sit in `.contact-detail`.
 
 ## Category pages
@@ -301,7 +307,8 @@ Reserved for future rules.
 - It doubles as the "has a price" filter: a priced band excludes products with no selling price, whose card falls back to "Price on request". The band applies to the **selling price**, so a struck-through MRP above Rs. 3,000 is expected. Let the provider apply it -- filtering the fetched array instead leaves a short row.
 - **The listing has no Price filter.** Wingback sets the budget, so it is not the visitor's to change: the group is gone from `ProductFilters`, and `priceFilters` is gone with it from the panel's props, the listing's state and the `sessionStorage` cache. The `price_filter` aggregation is still parsed into the model -- it is provider data and the group would read it again if the band ever becomes a choice.
 - `/products` still **honours** a `?prices=` it is given, and falls back to `budgetPriceRanges` when the parameter is absent or unparseable. Nothing in the UI writes it any more, so in practice the band is fixed; a hand-typed one overrides it. Note what the fallback prevents: `?prices=garbage` parses to nothing, and an empty `priceRanges` is an unfiltered read, which would put the whole catalogue on the page.
-- Category pages do **not** apply the band. They query by `category_url_paths` with no price window, so `/category/<slug>` still shows gifts outside the budget that `/products` hides.
+- Category pages apply it too: `/category/[slug]` is another door into the same catalogue, and a gift that cannot be claimed should not be reachable through one and not the other.
+- Only the reads that **fill the grid** carry the band. The two that want the `categories` aggregation — the one `resolveCategory` matches a sub-category slug against, and the one behind the sibling chips — deliberately do not. Narrowing those would drop a sub-category out of the list a slug is matched against, turning a real URL into a 404.
 
 ## Breadcrumbs
 
@@ -318,8 +325,9 @@ Reserved for future rules.
 - That canonical is only as good as GiftVerse's path shape. `/products/<url_path>` is what it serves today (verified 200, self-canonical, and carrying its own `Product` node). If GiftVerse ever moves or renames that route, every product canonical on this site points at a 404 at once, which is worse than having none.
 - `metadataBase` is set once in the root layout, so canonicals and Open Graph URLs can be written as relative paths and still resolve.
 - The root layout does **not** set `title.template`: all 34 page titles already end in "| Wingback", so a template would render it twice.
-- Pages that must not be indexed say so in their own `metadata`. The root layout no longer blanket-no-indexes, which was silently suppressing every page that did not override it.
-- `robots.ts` allows public routes and disallows `/api/`, `/account`, `/cart`, `/checkout` and `/auth/`. Those same paths are absent from `sitemap.ts`. Keep the two lists in step.
+- **This host is not for search.** The root layout sets `robots: { index: false, follow: false }` for every route and `robots.ts` answers `Disallow: /` to `*` and to each named crawler. The store is served to people who were sent to it; the catalogue's public copy is GiftVerse's, which is where every product page canonicalises.
+- The noindex is set in the root layout and **nowhere else**. Six pages used to re-declare `index: true` and quietly override it, which is how the site came to advertise itself; a page that needs different robots rules should be the rare exception, not the pattern.
+- The two halves work in a specific order: `Disallow: /` is read before a crawler fetches anything, so it never sees the meta tag. Blocking therefore cannot remove a URL that is **already** indexed. Nothing here is — the host has never served this site publicly — but if that changes, allow crawling so the noindex can be read, rather than blocking and wondering why a URL lingers.
 - Structured data is built as objects and serialised with `serializeJsonLd`, never as a hand-written template string.
 - FAQ structured data must match what the page renders. `HomeJsonLd` and `FaqSection` carry the same five answers; changing one without the other is a guidelines violation.
 - `NEXT_PUBLIC_*` is inlined at build time, so the Docker image needs `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_MEASUREMENT_ID` as **build arguments**, not just container environment. `.dockerignore` excludes `.env`, so without them the build silently baked `http://localhost:3000` into robots.txt and every prerendered canonical.
@@ -330,7 +338,7 @@ Reserved for future rules.
 
 ## Generative engine optimization
 
-- Answer-engine crawlers are listed by name in `robots.ts` (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and others). Their default when unlisted varies by operator, so being cited is left to chance unless it is stated; removing a name opts the site out of that engine's answers.
+- Answer-engine crawlers are still listed by name in `robots.ts` (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and others), but now to **refuse** them: `*` already covers every one, and the named blocks exist for crawlers that read only their own. This site is not trying to be cited; GiftVerse is the public copy.
 - This store publishes **no `/llms.txt`**. The brief that was there described a full gifting platform, which is GiftVerse's to describe, not this storefront's. Answer engines read the pages and the JSON-LD instead.
 - The home graph resolves as one entity: `Organization` carries `contactPoint` and `knowsAbout`, the two `Service` nodes link back through `@id`, and `WebPage` ties the page to both. Loose, unlinked nodes are what stop an engine attributing an answer to the brand.
 - `sameAs` is still missing from the `Organization` node because the site links to no social or directory profiles. Add the real URLs when they exist — never invent them.
@@ -344,12 +352,9 @@ Reserved for future rules.
 - The only structured data left on a product page is the `BreadcrumbList` that `Breadcrumbs` emits from the trail it renders.
 
 ## Sitemap
-- `/sitemap.xml` is a **sitemap index** over three children: `/sitemaps/pages.xml` (the hand-maintained routes), `/sitemaps/categories.xml` and `/sitemaps/products.xml`. Split by what they depend on, not by size — the catalogue is nowhere near the 50,000-URL limit — so a failed provider read cannot shrink one combined file from every URL to thirteen, which a search engine reads as "these pages are gone".
-- Both catalogue sitemaps are `force-dynamic`. Prerendering them **fails the Docker build**, which runs with no environment, on the first missing credential. Their reads are cached for an hour and a day respectively, so the provider is called on that schedule however often a crawler asks.
-- Neither catches its own failure. A 500 a crawler retries is a far weaker signal than a sitemap claiming the products are gone.
-- No `lastmod` anywhere: the provider exposes no modification time, and a `lastmod` that moves like a clock is one Google learns to ignore where it is true.
-- Only indexable pages are listed. `/products`, `/category` and `/ai-gift-finder` were listed while setting `index: false`, which sends an invitation and a refusal for the same URL.
-- **Open question:** `/sitemaps/products.xml` still lists this host's product URLs, which now declare a GiftVerse canonical. That is a weaker contradiction than the one above — a canonical is a preference, not a refusal, and listing the pages still lets a crawler find them and consolidate the signal — but a sitemap is meant to list canonical URLs. Decide it deliberately rather than leaving it as an oversight.
+
+- **There is none, and there should not be.** No `sitemap.ts`, no `/sitemaps/*`, and no `sitemap` line in `robots.txt`. A sitemap is an invitation to crawl, and this host answers `Disallow: /`.
+- The section that used to be here described a sitemap index over `pages.xml`, `categories.xml` and `products.xml`. Those files were removed with the pages they listed; the description outlived them by several commits, which is its own lesson about this file.
 
 ## robots.txt
 

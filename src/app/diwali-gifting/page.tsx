@@ -34,16 +34,6 @@ export const metadata: Metadata = {
     "Diwali gifting program",
   ],
   authors: [{ name: "Sampley" }],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   alternates: {
     canonical: "/diwali-gifting",
     languages: {

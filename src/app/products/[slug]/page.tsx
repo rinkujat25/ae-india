@@ -81,18 +81,6 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
         description: description || undefined,
         keywords: product.keywords.length > 0 ? product.keywords : undefined,
         authors: [{ name: "Sampley" }],
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
-                index: true,
-                follow: true,
-                // A product sells on its photograph, so the large preview is
-                // worth asking for explicitly rather than taking the default.
-                "max-image-preview": "large",
-                "max-snippet": -1,
-            },
-        },
         alternates: {
             // Absolute and off-site, so `metadataBase` is not applied. The
             // language entries follow it: an hreflang pointing back at this

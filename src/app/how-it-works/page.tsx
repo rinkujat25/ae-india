@@ -30,16 +30,6 @@ export const metadata: Metadata = {
     "bulk gifting delivery timeline",
   ],
   authors: [{ name: "Sampley" }],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   alternates: {
     canonical: "/how-it-works",
     languages: {

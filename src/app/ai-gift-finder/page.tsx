@@ -11,16 +11,6 @@ export const metadata: Metadata = {
   description:
     "Describe your gifting requirement and prepare it for Wingback AI product search.",
   authors: [{ name: "Sampley" }],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   alternates: {
     // Relative: `metadataBase` in the root layout makes these absolute
     // against whichever host the build is deployed to.

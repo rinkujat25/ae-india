@@ -8,6 +8,7 @@ import { CategoryPageContent } from "@/components/category/CategoryPageContent";
 import { CategoryStyles } from "@/components/category/CategoryStyles";
 import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 import { getCategories, getCategoryBySlug } from "@/services/hyperinventory/category.service";
+import { budgetPriceRanges } from "@/constants/budget";
 import { getProducts } from "@/services/hyperinventory/product.service";
 import { subCategorySlug } from "@/utils/mappers/category.mapper";
 
@@ -108,12 +109,20 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
     // Products come back by slug. A sub-category slug is a reconstruction, so a
     // result of nothing falls back to its name, which the aggregation gave us.
+    //
+    // Every read that fills the grid carries the budget band, the same one the
+    // home shelf and `/products` use: a category page is another way into the
+    // same catalogue, and a gift that cannot be claimed should not be reachable
+    // through one door and not another. The two reads above and below that only
+    // want the **aggregation** deliberately do not — they describe the category
+    // tree, and narrowing them would drop a sub-category out of the list that
+    // `resolveCategory` matches a slug against, turning a real URL into a 404.
     const requested = sub
-        ? await getProducts({ categoryUrlPaths: [slug], size: categoryPageSize }).catch(() => null)
-        : await getProducts({ categoryUrlPaths: [category.slug], size: categoryPageSize }).catch(() => null);
+        ? await getProducts({ categoryUrlPaths: [slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(() => null)
+        : await getProducts({ categoryUrlPaths: [category.slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(() => null);
 
     const catalogue = sub && !requested?.products.length
-        ? await getProducts({ categories: [sub.value], size: categoryPageSize }).catch(() => requested)
+        ? await getProducts({ categories: [sub.value], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(() => requested)
         : requested;
 
     // The chips always list the whole category, so they stay reachable from a

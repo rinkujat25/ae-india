@@ -7,8 +7,6 @@ type HyperinventoryEnvironment = {
   clientId: string;
   clientSecret: string;
   searchToken?: string;
-  /** The provider form the enquiry modal posts to. */
-  demoFormId?: string;
   origin?: string;
   referer?: string;
 };
@@ -35,7 +33,6 @@ export function getHyperinventoryEnvironment(): HyperinventoryEnvironment {
     clientId: requireEnvironment("HYPERINVENTORY_CLIENT_ID"),
     clientSecret: requireEnvironment("HYPERINVENTORY_CLIENT_SECRET"),
     searchToken: optionalEnvironment("HYPERINVENTORY_SEARCH_TOKEN"),
-    demoFormId: optionalEnvironment("DEMO_FORM_ID"),
     origin: optionalEnvironment("HYPERINVENTORY_ORIGIN"),
     referer: optionalEnvironment("HYPERINVENTORY_REFERER"),
   };

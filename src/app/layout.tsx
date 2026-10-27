@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import { CookieNotice } from "@/components/common/CookieNotice";
 import { GlobalApiLoaderProvider } from "@/components/common/GlobalApiLoaderProvider";
 import { GoogleAnalytics } from "@/components/common/GoogleAnalytics";
-import { HomeInteractions } from "@/components/common/HomeInteractions";
-import { LeadModal } from "@/components/common/LeadModal";
+import { MobileNavToggle } from "@/components/common/MobileNavToggle";
 import { RouteProgressBar } from "@/components/common/RouteProgressBar";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { ToastProvider } from "@/components/common/ToastProvider";
@@ -28,17 +27,17 @@ export const metadata: Metadata = {
   title: "Wingback Gift Store",
   description:
     "Sampley runs the Wingback Gift Store end to end: branded employee stores where recipients choose within budget, and direct gifting for clients and partners, with managed pan-India delivery.",
-  // Pages that must not be indexed say so themselves. A blanket no-index here
-  // silently suppressed every page that did not override it.
+  // This host is not for search. It serves the Wingback store to people who
+  // were sent to it; the catalogue's public copy is GiftVerse's, which is
+  // where every product page already canonicalises. `robots.ts` says the same
+  // thing to a crawler that reads it, and this says it to one that does not.
+  //
+  // Set here and nowhere else: a page that re-declares `index: true` quietly
+  // overrides this, which is how the site came to advertise itself before.
   robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
   },
 };
 
@@ -50,12 +49,9 @@ export default function RootLayout({
       <body>
         <RouteProgressBar />
         <ScrollReveal />
-        {/* Site chrome, not page content: the enquiry modal every
-            `data-open-form` trigger opens, and the script that drives both it
-            and the header's mobile menu. Mounted here so a page cannot ship
-            the trigger without the thing it opens. */}
-        <LeadModal />
-        <HomeInteractions />
+        {/* Site chrome, not page content: the script behind the header's
+            mobile menu, which `SiteHeader` renders on every route. */}
+        <MobileNavToggle />
         <ToastProvider>
           <GlobalApiLoaderProvider>{children}</GlobalApiLoaderProvider>
         </ToastProvider>

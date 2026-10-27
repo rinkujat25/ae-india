@@ -29,12 +29,6 @@ services:
       HYPERINVENTORY_SEARCH_TOKEN: ${HYPERINVENTORY_SEARCH_TOKEN:-}
       RANKNOVA_API_URL: ${RANKNOVA_API_URL:-}
 
-      # The enquiry modal's provider form, and where the cart quote request is
-      # forwarded. Both are optional: unset, the quote form falls back to a
-      # prefilled email, which is deliberate.
-      DEMO_FORM_ID: ${DEMO_FORM_ID:-}
-      QUOTE_REQUEST_ENDPOINT: ${QUOTE_REQUEST_ENDPOINT:-}
-
       # Resend countdown on the OTP verify step; falls back to 60 in code.
       OTP_RESEND_SECONDS: ${OTP_RESEND_SECONDS:-}
 

@@ -335,14 +335,9 @@ export function ProductDetailPageContent({
                                     {discount ? <span className="off">{discount}% off</span> : null}
                                 </div>
                             ) : (
-                                <a
-                                    className="btn btn-primary price-enquiry"
-                                    href="#start"
-                                    data-open-form
-                                    data-enquiry-note={`Price request: ${product.name}${product.sku ? ` (SKU ${product.sku})` : ""}`}
-                                >
+                                <Link className="btn btn-primary price-enquiry" href="/contact-us">
                                     Get a price &rarr;
-                                </a>
+                                </Link>
                             )}
                             <p className="price-note">
                                 {hasPrice
