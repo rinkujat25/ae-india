@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { CategoryUnavailable } from "@/components/category/CategoryUnavailable";
 import { ProductCard } from "@/components/product/ProductCard";
 import type { CategoryModel } from "@/types/models/category.model";
 import type { ProductCategoryModel } from "@/types/models/product-category.model";
@@ -10,6 +11,13 @@ import { type SortKey, sortLabels, sortProducts } from "@/utils/product-sort";
 
 type CategoryPageContentProps = {
     products: ProductModel[];
+    /**
+     * The read that fills the grid failed. Not the same as `products` being
+     * empty: an empty category says so, a failed read says it could not tell.
+     */
+    failed: boolean;
+    /** The category's own URL, for "Try again". */
+    retryHref: string;
     /** Sub-categories of this category, each with the URL it lives at. */
     subCategories: Array<ProductCategoryModel & { slug: string }>;
     /** The sub-category currently applied, already validated by the page. */
@@ -34,6 +42,8 @@ const pageSize = 24;
 
 export function CategoryPageContent({
     products,
+    failed,
+    retryHref,
     subCategories,
     activeSub,
     categoryHref,
@@ -49,52 +59,55 @@ export function CategoryPageContent({
 
     return (
         <>
-            <div className="cat-toolbar">
-                <span className="cat-tlabel">View as</span>
-                <div className="cat-views">
-                    {views.map((option) => (
-                        <button
-                            className="cat-vbtn"
-                            type="button"
-                            key={option.key}
-                            aria-pressed={view === option.key}
-                            aria-label={option.label}
-                            onClick={() => setView(option.key)}
-                        >
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                {option.bars.length ? (
-                                    option.bars.map((x) => <path d={`M${x} 4v16`} key={x} />)
-                                ) : (
-                                    <>
-                                        <path d="M4 6h16" />
-                                        <path d="M4 12h16" />
-                                        <path d="M4 18h16" />
-                                    </>
-                                )}
-                            </svg>
-                        </button>
-                    ))}
-                </div>
-
-                <span className="cat-count">
-                    {sorted.length} {sorted.length === 1 ? "product" : "products"}
-                </span>
-
-                <div className="cat-sortwrap">
-                    <span className="cat-tlabel">Sort by</span>
-                    <select
-                        aria-label="Sort by"
-                        value={sort}
-                        onChange={(event) => setSort(event.target.value as SortKey)}
-                    >
-                        {(Object.keys(sortLabels) as SortKey[]).map((key) => (
-                            <option value={key} key={key}>
-                                {sortLabels[key]}
-                            </option>
+            {/* View, count and sort all act on products that did not load. */}
+            {failed ? null : (
+                <div className="cat-toolbar">
+                    <span className="cat-tlabel">View as</span>
+                    <div className="cat-views">
+                        {views.map((option) => (
+                            <button
+                                className="cat-vbtn"
+                                type="button"
+                                key={option.key}
+                                aria-pressed={view === option.key}
+                                aria-label={option.label}
+                                onClick={() => setView(option.key)}
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    {option.bars.length ? (
+                                        option.bars.map((x) => <path d={`M${x} 4v16`} key={x} />)
+                                    ) : (
+                                        <>
+                                            <path d="M4 6h16" />
+                                            <path d="M4 12h16" />
+                                            <path d="M4 18h16" />
+                                        </>
+                                    )}
+                                </svg>
+                            </button>
                         ))}
-                    </select>
+                    </div>
+
+                    <span className="cat-count">
+                        {sorted.length} {sorted.length === 1 ? "product" : "products"}
+                    </span>
+
+                    <div className="cat-sortwrap">
+                        <span className="cat-tlabel">Sort by</span>
+                        <select
+                            aria-label="Sort by"
+                            value={sort}
+                            onChange={(event) => setSort(event.target.value as SortKey)}
+                        >
+                            {(Object.keys(sortLabels) as SortKey[]).map((key) => (
+                                <option value={key} key={key}>
+                                    {sortLabels[key]}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {subCategories.length ? (
                 <nav className="cat-subs" aria-label="Sub-categories">
@@ -122,7 +135,9 @@ export function CategoryPageContent({
                 </nav>
             ) : null}
 
-            {visible.length ? (
+            {failed ? (
+                <CategoryUnavailable subject="these products" retryHref={retryHref} />
+            ) : visible.length ? (
                 <>
                     <div className={`cat-grid ${view}`}>
                         {visible.map((product) => (

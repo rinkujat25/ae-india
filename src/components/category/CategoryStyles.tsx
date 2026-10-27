@@ -40,6 +40,8 @@ const styles = `
 .cat-empty{text-align:center;padding:54px 24px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
 .cat-empty b{font-size:var(--t-lg)}
 .cat-empty p{color:var(--muted);font-size:var(--t-sm);line-height:1.65;margin:10px 0 20px}
+.cat-empty-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cat-unavailable{margin-top:22px}
 
 .cat-siblings{padding-top:54px;margin-top:44px;border-top:1px solid var(--line)}
 .cat-siblings h2{font-size:var(--t-xl);margin-bottom:18px}

@@ -308,6 +308,12 @@ Reserved for future rules.
 - On a sub-category page the breadcrumb gains a fourth step and the category becomes a link back to the whole of it, and the chips still list the whole category so every sibling stays reachable.
 - Sorting is shared with the catalogue listing through `src/utils/product-sort.ts`; the cards are the same `ProductCard`. Only the view switcher, sort and "show more" are client state.
 - Four of the six categories currently hold no products, so the empty state distinguishes an empty sub-category from an empty category.
+- **A failed read is not an empty category, and not a missing one.** Every read on this page used to swallow its error and carry on as if it had come back with nothing, so a provider hiccup showed "Nothing in this category yet" on a stocked category, and an outage fell through to `notFound()` and answered 404.
+- `resolveCategory` returns `failed: true` when any lookup throws. `getCategoryBySlug` already turns the provider's 404 into `null`, so only a real "no such slug" reaches `notFound()`. A failed lookup renders the page's own error variant — header, a "Products / Category" breadcrumb, `CategoryUnavailable` and footer — because without the category there is no name to show.
+- When the category resolves but every read that fills the grid fails (`catalogue === null`), `CategoryPageContent` gets `failed` and shows `CategoryUnavailable` in place of the grid. The toolbar and the header's product count are hidden with it: "0 products" is the same false claim the empty state made. A read that **succeeded** with no products still gets the empty state.
+- "Try again" is a plain `<a>` to the category's own URL, not `router.refresh()`: a full load re-runs the server read, works without JavaScript and visibly starts over. Failures are logged server-side with `console.error`; in development that also surfaces in the Next overlay.
+- The page renders server-side in both cases rather than through an `error.tsx`. An error boundary must be a Client Component, and `SiteFooter` reads server environment through `getCompany`, so the boundary could not render the real footer.
+- During a full outage an invented slug also gets the error rather than a 404. That is correct: with the catalogue unreachable there is no way to tell it does not exist.
 
 ## Product filters
 

@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { SiteFooter } from "@/components/common/SiteFooter";
 import { SiteHeader } from "@/components/common/SiteHeader";
 import { CategoryPageContent } from "@/components/category/CategoryPageContent";
+import { CategoryUnavailable } from "@/components/category/CategoryUnavailable";
 import { CategoryStyles } from "@/components/category/CategoryStyles";
 import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 import { getCategories, getCategoryBySlug } from "@/services/hyperinventory/category.service";
@@ -26,27 +27,55 @@ const categoryPageSize = 100;
  * Sub-categories are not addressable through the category endpoint, so a slug
  * it rejects is matched against the parent's own sub-categories by rebuilding
  * each one's slug.
+ *
+ * `failed` is kept apart from "no such category". Every read in here used to
+ * swallow its error and carry on as if it had come back empty, so an outage
+ * fell all the way through to `notFound()` and a real, stocked category
+ * answered "Page not found". `getCategoryBySlug` already turns the provider's
+ * 404 into `null`; anything else it throws is a failure, and so is any throw
+ * from the two fallback reads.
  */
 async function resolveCategory(slug: string) {
-    const category = await getCategoryBySlug(slug).catch(() => null);
+    try {
+        const category = await getCategoryBySlug(slug);
 
-    if (category) return { category, sub: null };
+        if (category) return { category, sub: null, failed: false };
 
-    const categories = await getCategories().catch(() => []);
-    const parent = categories.find((item) => slug.startsWith(`${item.slug}-`));
+        const categories = await getCategories();
+        const parent = categories.find((item) => slug.startsWith(`${item.slug}-`));
 
-    if (!parent) return { category: null, sub: null };
+        if (!parent) return { category: null, sub: null, failed: false };
 
-    const parentCatalogue = await getProducts({
-        categoryUrlPaths: [parent.slug],
-        size: 1,
-    }).catch(() => null);
+        const parentCatalogue = await getProducts({
+            categoryUrlPaths: [parent.slug],
+            size: 1,
+        });
 
-    const sub = (parentCatalogue?.categories ?? [])
-        .filter((item) => item.value !== parent.name)
-        .find((item) => subCategorySlug(parent.slug, item.value) === slug);
+        const sub = parentCatalogue.categories
+            .filter((item) => item.value !== parent.name)
+            .find((item) => subCategorySlug(parent.slug, item.value) === slug);
 
-    return sub ? { category: parent, sub } : { category: null, sub: null };
+        return sub
+            ? { category: parent, sub, failed: false }
+            : { category: null, sub: null, failed: false };
+    } catch (error) {
+        console.error(
+            `Unable to resolve the category "${slug}":`,
+            error instanceof Error ? error.message : "Unknown error",
+        );
+
+        return { category: null, sub: null, failed: true };
+    }
+}
+
+/** Logs a failed grid read and lets the page carry on to its error state. */
+function failedRead(error: unknown) {
+    console.error(
+        "Unable to load the category's products:",
+        error instanceof Error ? error.message : "Unknown error",
+    );
+
+    return null;
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
@@ -99,10 +128,28 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
     const { slug } = await params;
 
-    const [{ category, sub }, categories] = await Promise.all([
+    const [{ category, sub, failed: lookupFailed }, categories] = await Promise.all([
         resolveCategory(slug),
         getCategories().catch(() => []),
     ]);
+
+    // The catalogue did not answer, so there is no way to tell whether this
+    // slug exists. That is an error to show, not a 404 to claim.
+    if (lookupFailed) {
+        return (
+            <>
+                <CategoryStyles />
+                <SiteHeader active="products" />
+                <main className="cat-page">
+                    <div className="wrap">
+                        <Breadcrumbs trail={[{ label: "Products", href: "/products" }, { label: "Category" }]} />
+                        <CategoryUnavailable subject="this category" retryHref={`/category/${slug}`} />
+                    </div>
+                </main>
+                <SiteFooter />
+            </>
+        );
+    }
 
     // An unknown slug is a 404, not an empty category page pretending to exist.
     if (!category) notFound();
@@ -118,12 +165,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     // tree, and narrowing them would drop a sub-category out of the list that
     // `resolveCategory` matches a slug against, turning a real URL into a 404.
     const requested = sub
-        ? await getProducts({ categoryUrlPaths: [slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(() => null)
-        : await getProducts({ categoryUrlPaths: [category.slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(() => null);
+        ? await getProducts({ categoryUrlPaths: [slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(failedRead)
+        : await getProducts({ categoryUrlPaths: [category.slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(failedRead);
 
     const catalogue = sub && !requested?.products.length
-        ? await getProducts({ categories: [sub.value], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(() => requested)
+        ? await getProducts({ categories: [sub.value], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch((error: unknown) => failedRead(error) ?? requested)
         : requested;
+
+    // `null` only when every read that could have filled the grid failed. A
+    // read that came back with nothing in it is an empty category, which the
+    // empty state is for; a failed one is not, and must not borrow its words.
+    const productsFailed = catalogue === null;
 
     // The chips always list the whole category, so they stay reachable from a
     // sub-category page.
@@ -163,10 +215,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             ) : null}
                         </div>
                         <div className="cat-stats">
-                            <div>
-                                <b>{catalogue?.total ?? products.length}</b>
-                                <span>products</span>
-                            </div>
+                            {/* No count when the read failed: "0 products" is
+                                the same false claim the empty state made. */}
+                            {productsFailed ? null : (
+                                <div>
+                                    <b>{catalogue.total ?? products.length}</b>
+                                    <span>products</span>
+                                </div>
+                            )}
                             {!sub && subCategories.length ? (
                                 <div>
                                     <b>{subCategories.length}</b>
@@ -178,6 +234,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
                     <CategoryPageContent
                         products={products}
+                        failed={productsFailed}
+                        retryHref={`/category/${slug}`}
                         subCategories={subCategories.map((item) => ({
                             ...item,
                             slug: subCategorySlug(category.slug, item.value),
