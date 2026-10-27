@@ -5,7 +5,6 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
-import { CartQuoteDialog } from "@/components/cart/CartQuoteDialog";
 import { useApiRequest } from "@/hooks/useApiRequest";
 import { buildLoginHref } from "@/utils/auth-mode";
 import type { CartItemModel, CartModel } from "@/types/models/cart.model";
@@ -28,7 +27,6 @@ export function CartPageContent() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [mode, setMode] = useState<"guest" | "user">("guest");
     const [isUpdating, setIsUpdating] = useState(false);
-    const [isQuoteOpen, setIsQuoteOpen] = useState(false);
     const items = useMemo(() => cart?.items ?? [], [cart]);
     const totals = useMemo(() => items.reduce((result, item) => {
         result.quantity += item.quantity;
@@ -161,7 +159,7 @@ export function CartPageContent() {
                 <header className="cart-head">
                     <h1>Shopping cart</h1>
                     <Link className="cart-back" href="/products">‹ Continue shopping</Link>
-                    <p>Buy what you need now, or send the list across for bulk pricing if you are gifting at volume.</p>
+                    <p>Check your gifts and quantities, then buy. Delivery and any branding are confirmed at checkout.</p>
                 </header>
                 {cartError ? <p className="cart-load-error" role="alert">{cartError}</p> : null}
 
@@ -217,8 +215,6 @@ export function CartPageContent() {
                             <p className="cart-summary-note">Delivery and any branding are confirmed at checkout.</p>
                             <Link className="btn btn-primary" href={checkoutHref}>Proceed To Buy</Link>
                             {mode === "guest" ? <p className="cart-summary-note">You will be asked to sign in before checkout.</p> : null}
-                            <button className="btn btn-soft" type="button" onClick={() => setIsQuoteOpen(true)}>Request a quote →</button>
-                            <p className="cart-quote-hint">Buying in volume? Ask for bulk pricing before you order. It is usually lower than the listed price.</p>
                             <ul><li>✓ Buy a single unit, or thousands.</li><li>✓ Bulk orders get branding and program pricing.</li><li>✓ Pan-India delivery, managed end to end.</li></ul>
                         </aside>
                     </div>
@@ -231,8 +227,6 @@ export function CartPageContent() {
                     </section>
                 )}
             </div>
-
-            <CartQuoteDialog items={items} isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
         </main>
     );
 }
