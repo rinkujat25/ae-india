@@ -152,7 +152,7 @@ export function CartPageContent() {
 
     return (
         <main className="cart-page">
-            <div className="cart-wrap">
+            <div className="wrap">
                 <Breadcrumbs
                     trail={[{ label: "Products", href: "/products" }, { label: "Shopping cart" }]}
                 />

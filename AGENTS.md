@@ -249,6 +249,17 @@ Reserved for future rules.
 
 Reserved for future rules.
 
+## Layout
+
+- **One container for the whole site:** `.wrap` in `globals.css`, `min(1180px, 100% - 40px)`, narrowing to `min(100% - 28px, 1180px)` at 640px. The header, breadcrumb, every page's content and the footer all sit on it, so their edges line up at every width.
+- **Page stylesheets must not size `.wrap`, or bring their own container.** The product page (1280px), the cart's `.cart-wrap` (1280px) and the AI gift finder (1120px) each did, which put their content 50px or 30px off the header and footer. The finder's rule was unscoped, so it narrowed the header and footer on that page too.
+- **A scoped copy is wrong even when its desktop value matches.** `.products-page .wrap` repeated the global 1180px, but being more specific than the global phone rule it held a 20px gutter on phones while everything else went to 14. Delete the copy; do not try to keep it in step.
+- `HowItWorksStyles` and `DiwaliGiftingStyles` still declare an unscoped `.wrap` with the same values and the same 640px breakpoint, as part of their migrated base CSS. They are harmless only while identical.
+- **The header and footer use `wingback-logo-trimmed.png`** (and `wingback-logo-mark-trimmed.png` for the phone mark), not the supplied files. The supplied PNGs carry 7-9% transparent margin on each side, which set the visible mark about 14px inside the content edge. The trimmed copies keep the full height, so the logo paints at exactly the same size; only the empty side margins are gone.
+- `.logo` is 181px wide: the 167px mark plus the 14px the transparent margin used to leave before the menu, so the gap between the logo and "Home" is unchanged. The phone mark is `width: auto` at 44px tall, because the trimmed mark is no longer square.
+- Auth and checkout still use the supplied logo. They have no site header or footer, and center the logo on its own rather than aligning it to a content column.
+- **Check alignment by measurement, not by eye.** Compare the left edge of the header logo, the breadcrumb, the first content block and the footer logo, and the right edge of the header icons and the content, at desktop, tablet and phone widths.
+
 ## Navigation feedback
 
 - `RouteProgressBar` lives in the **root layout**, not in `SiteHeader`. A header is rendered per page, so React tears it down and rebuilds it during the very navigation the bar is showing — mounted there it reset to hidden halfway through and never appeared on faster pages.

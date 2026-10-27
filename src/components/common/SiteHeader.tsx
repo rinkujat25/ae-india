@@ -34,20 +34,23 @@ export function SiteHeader({ active }: SiteHeaderProps) {
                     alt text -- with one of them always hidden, alt on both would
                     announce the destination twice. */}
                 <Link className="logo" href="/" aria-label="Wingback - home">
+                    {/* The trimmed files, not the supplied ones: those carry
+                        7-9% transparent margin either side, which set the mark
+                        visibly inside the content edge it is meant to sit on. */}
                     <Image
                         className="logo-full"
-                        src="/assets/wingback-logo-supplied.png"
+                        src="/assets/wingback-logo-trimmed.png"
                         alt=""
-                        width={196}
+                        width={167}
                         height={65}
                         fetchPriority="high"
                         priority
                     />
                     <Image
                         className="logo-mark"
-                        src="/assets/wingback-logo-mark.png"
+                        src="/assets/wingback-logo-mark-trimmed.png"
                         alt=""
-                        width={44}
+                        width={36}
                         height={44}
                         fetchPriority="high"
                         priority

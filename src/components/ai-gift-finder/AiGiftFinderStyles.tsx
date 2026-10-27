@@ -17,7 +17,6 @@ const styles = `
   h1,h2,h3{letter-spacing:-.015em;font-weight:800;margin:0}
   p{margin:0}
   ul{margin:0;padding:0;list-style:none}
-  .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
   :focus-visible{outline:3px solid var(--violet);outline-offset:2px;border-radius:6px}
   .icon{width:100%;height:100%;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
@@ -134,7 +133,7 @@ const styles = `
   @media (max-width:1120px){ .links{display:none} }
   @media (max-width:980px){ .footer-grid{grid-template-columns:1fr 1fr;gap:32px} }
   @media (max-width:900px){ .results{grid-template-columns:repeat(2,1fr)} .assist{grid-template-columns:1fr} }
-  @media (max-width:620px){ .results{grid-template-columns:1fr} .wrap{width:min(100% - 28px,1120px)} }
+  @media (max-width:620px){ .results{grid-template-columns:1fr} }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 `;
 

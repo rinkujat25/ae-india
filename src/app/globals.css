@@ -305,11 +305,15 @@
             gap: 26px
         }
 
+        /* 181px: the trimmed mark is 167px, and the other 14px is the gap the
+           supplied file's transparent margin used to leave before the menu.
+           Keeping it means the mark moves onto the content edge while the
+           space between it and "Home" stays what it was. */
         .logo {
             display: flex;
             align-items: center;
-            width: 196px;
-            min-width: 196px
+            width: 181px;
+            min-width: 181px
         }
 
         /* The square mark is the mobile-only lockup; it is hidden until the
@@ -2728,7 +2732,7 @@
             .nav .logo-mark {
                 display: block;
                 height: 44px;
-                width: 44px
+                width: auto
             }
 
             .logo {

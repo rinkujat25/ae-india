@@ -17,14 +17,10 @@ const styles = `
     padding:34px 0 82px;
   }
 
-  /* The site's wrap is min(1180px, 100% - 40px), and the header, breadcrumb
-     and footer all sit on it. This page widened its own to 1280, which pushed
-     the listing 50px left of everything above and below it -- most visibly the
-     breadcrumb, which sat indented from the filters beneath it. */
-  .products-page .wrap{
-    margin:0 auto;
-    width:min(1180px, calc(100% - 40px));
-  }
+  /* No .products-page .wrap rule: the listing uses the site's own .wrap, the
+     same one the header, breadcrumb and footer sit on. A copy here once fixed
+     a 1280px width, but being more specific than the global phone rule it
+     then held a 20px gutter on phones while everything else went to 14. */
 
   .head{
     background:#fff;
@@ -565,10 +561,6 @@ const styles = `
 
     .products-page{
       padding:24px 0 62px;
-    }
-
-    .products-page .wrap{
-      width:min(100% - 26px, 1180px);
     }
 
     .head,

@@ -13,9 +13,9 @@ export function SiteFooter() {
                     <div>
                         <Link className="logo" href="/">
                             <Image
-                                src="/assets/wingback-logo-supplied.png"
+                                src="/assets/wingback-logo-trimmed.png"
                                 alt="Wingback"
-                                width={196}
+                                width={167}
                                 height={65}
                             />
                         </Link>
