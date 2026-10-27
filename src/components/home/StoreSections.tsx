@@ -11,26 +11,24 @@ const storeProductCount = 6;
 const revalidateSeconds = 600;
 
 /**
- * Only gifts with a published price.
+ * The budget this store runs on: gifts from Rs. 1,000 to Rs. 3,000.
  *
- * Much of the catalogue carries no selling price and the card falls back to
- * "Price on request", which is the right answer on the listing but the wrong
- * one here: this page tells the reader their gift is already paid for, and a
- * tile asking them to enquire about the price contradicts it.
+ * The band does two jobs. It keeps the shelf inside the per-recipient budget,
+ * so nothing on the page is something the reader cannot actually claim. And
+ * because a priced band excludes products with no selling price, it also keeps
+ * out the "Price on request" tiles -- the right answer on the listing, where a
+ * quote is a normal next step, but a contradiction on a page whose whole
+ * message is that the gift is already paid for.
  *
- * The provider drops them, not this code, so the page still gets a full six.
+ * The provider applies it, not this code, so the page still gets a full six.
  * Filtering the fetched array instead would leave a short row whenever one of
- * the six came back priceless.
+ * the six fell outside the band.
  *
- * The ceiling is why this is a window rather than a `from` on its own: a
- * band with only a lower bound -- `selling_price=[{"gte":1}]` -- is answered
- * with **409**, so the fetch fails and the shelf empties. Both bounds are
- * required. It is set far above anything a gift catalogue will hold so that
- * the band means "has a price" and never quietly hides an expensive gift;
- * the provider's own top bucket ends at Rs. 10,000.
+ * Both bounds are required, not just the one that matters here: a band with
+ * only a lower bound -- `selling_price=[{"gte":1000}]` -- is answered with
+ * **409**, so the fetch fails and the shelf empties.
  */
-const priceCeiling = 100_000_000;
-const pricedOnly = [{ from: 1, to: priceCeiling }];
+const budgetBand = [{ from: 1000, to: 3000 }];
 
 /**
  * The gifts shown on the home page.
@@ -43,7 +41,7 @@ const pricedOnly = [{ from: 1, to: priceCeiling }];
 export async function loadStoreProducts(): Promise<ProductModel[]> {
     try {
         const { products } = await getProducts(
-            { size: storeProductCount, priceRanges: pricedOnly },
+            { size: storeProductCount, priceRanges: budgetBand },
             revalidateSeconds,
         );
 
