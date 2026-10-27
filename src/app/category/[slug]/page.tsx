@@ -12,6 +12,7 @@ import { getCategories, getCategoryBySlug } from "@/services/hyperinventory/cate
 import { budgetPriceRanges } from "@/constants/budget";
 import { getProducts } from "@/services/hyperinventory/product.service";
 import { subCategorySlug } from "@/utils/mappers/category.mapper";
+import { orderingParam, resolveOrdering } from "@/utils/product-sort";
 
 type CategoryPageProps = {
     params: Promise<{ slug: string }>;
@@ -125,8 +126,12 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     };
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
     const { slug } = await params;
+    // The order is applied by the provider, so it travels with every read that
+    // fills the grid. "Show more" only reveals what is already loaded, in that
+    // order.
+    const ordering = resolveOrdering((await searchParams)?.[orderingParam]);
 
     const [{ category, sub, failed: lookupFailed }, categories] = await Promise.all([
         resolveCategory(slug),
@@ -165,11 +170,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     // tree, and narrowing them would drop a sub-category out of the list that
     // `resolveCategory` matches a slug against, turning a real URL into a 404.
     const requested = sub
-        ? await getProducts({ categoryUrlPaths: [slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(failedRead)
-        : await getProducts({ categoryUrlPaths: [category.slug], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch(failedRead);
+        ? await getProducts({ categoryUrlPaths: [slug], size: categoryPageSize, priceRanges: budgetPriceRanges, ordering }).catch(failedRead)
+        : await getProducts({ categoryUrlPaths: [category.slug], size: categoryPageSize, priceRanges: budgetPriceRanges, ordering }).catch(failedRead);
 
     const catalogue = sub && !requested?.products.length
-        ? await getProducts({ categories: [sub.value], size: categoryPageSize, priceRanges: budgetPriceRanges }).catch((error: unknown) => failedRead(error) ?? requested)
+        ? await getProducts({ categories: [sub.value], size: categoryPageSize, priceRanges: budgetPriceRanges, ordering }).catch((error: unknown) => failedRead(error) ?? requested)
         : requested;
 
     // `null` only when every read that could have filled the grid failed. A

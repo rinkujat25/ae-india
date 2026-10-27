@@ -130,6 +130,11 @@ export type HyperinventoryProductQueryDto = {
      * result set rather than narrowing it to their (empty) intersection.
      */
     priceRanges?: HyperinventoryPriceRangeDto[];
+    /**
+     * Sent as `ordering`: a field name, `-` prefixed for descending. Only
+     * `-created_at`, `selling_price` and `-selling_price` are used.
+     */
+    ordering?: string;
 };
 
 /** One selling-price window. Open-ended on either side. */

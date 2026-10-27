@@ -1,38 +1,49 @@
-import type { ProductModel } from "@/types/models/product.model";
-import { productDiscount } from "@/components/product/ProductCard";
-
 /**
  * Product sorting, shared by the catalogue listing and the category page so
  * the same options mean the same thing on both.
+ *
+ * Sorting is the provider's job: each option is a Hyperinventory `ordering`
+ * value, sent with the product read. Sorting the loaded array instead only
+ * reordered one page — "Price low to high" on page 1 showed the cheapest of
+ * those 24, not the cheapest in the catalogue.
+ *
+ * The URL carries the same value (`?ordering=-selling_price`), so a sorted
+ * view is linkable and survives a reload. Only these three are ever sent
+ * upstream; anything else in the URL falls back to the default.
  */
-export type SortKey = "latest" | "price-asc" | "price-desc" | "discount" | "name-asc";
+export const sortOptions = [
+    { value: "-created_at", label: "Newest" },
+    { value: "-selling_price", label: "Price: High to Low" },
+    { value: "selling_price", label: "Price: Low to High" },
+] as const;
 
-export const sortLabels: Record<SortKey, string> = {
-    latest: "Latest Products",
-    "price-asc": "Price low to high",
-    "price-desc": "Price high to low",
-    discount: "Discount",
-    "name-asc": "Name A-Z",
-};
+export type ProductOrdering = (typeof sortOptions)[number]["value"];
 
-export function sortProducts(products: ProductModel[], sort: SortKey) {
-    const sortedProducts = [...products];
+export const defaultOrdering: ProductOrdering = "-created_at";
 
-    if (sort === "price-asc") {
-        return sortedProducts.sort((left, right) => (left.price || Number.MAX_SAFE_INTEGER) - (right.price || Number.MAX_SAFE_INTEGER));
-    }
+/** The URL query parameter, named after the provider's own. */
+export const orderingParam = "ordering";
 
-    if (sort === "price-desc") {
-        return sortedProducts.sort((left, right) => right.price - left.price);
-    }
+export function resolveOrdering(value: string | string[] | null | undefined): ProductOrdering {
+    const candidate = Array.isArray(value) ? value[0] : value;
 
-    if (sort === "discount") {
-        return sortedProducts.sort((left, right) => productDiscount(right) - productDiscount(left));
-    }
+    return sortOptions.find((option) => option.value === candidate)?.value ?? defaultOrdering;
+}
 
-    if (sort === "name-asc") {
-        return sortedProducts.sort((left, right) => left.name.localeCompare(right.name, "en", { sensitivity: "base" }));
-    }
+/**
+ * The same URL with a new ordering. Paging restarts, because page 3 of one
+ * order holds different products from page 3 of another; the default is
+ * omitted so the plain URL stays clean.
+ */
+export function buildOrderingHref(pathname: string, searchParams: URLSearchParams, ordering: ProductOrdering) {
+    const query = new URLSearchParams(searchParams);
 
-    return sortedProducts;
+    query.delete("page");
+
+    if (ordering === defaultOrdering) query.delete(orderingParam);
+    else query.set(orderingParam, ordering);
+
+    const suffix = query.toString();
+
+    return suffix ? `${pathname}?${suffix}` : pathname;
 }

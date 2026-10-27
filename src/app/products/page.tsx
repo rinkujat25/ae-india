@@ -7,6 +7,7 @@ import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 import { ProductsPageStyles } from "@/components/product/ProductsPageStyles";
 import { budgetPriceRanges } from "@/constants/budget";
 import { getProducts } from "@/services/hyperinventory/product.service";
+import { orderingParam, resolveOrdering } from "@/utils/product-sort";
 
 export const dynamic = "force-dynamic";
 
@@ -75,6 +76,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     const requestedPriceRanges = parsePriceRanges(params?.prices);
     const priceRanges = requestedPriceRanges.length ? requestedPriceRanges : budgetPriceRanges;
     const search = Array.isArray(params?.search) ? params.search[0] : params?.search;
+    const ordering = resolveOrdering(params?.[orderingParam]);
     // The page number comes from the URL, so a page is linkable, survives a
     // reload and works with the back button.
     const requestedPage = Number.parseInt(
@@ -90,6 +92,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         tags,
         priceRanges,
         search,
+        ordering,
     }).catch((error: unknown) => {
         console.error(
             "Unable to load the Hyperinventory product catalogue:",
@@ -110,7 +113,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
                 catalogue={catalogue}
                 page={page}
                 pageSize={productsPerPage}
-                filterKey={JSON.stringify([categories, brands, tags, priceRanges, search ?? ""])}
+                filterKey={JSON.stringify([categories, brands, tags, priceRanges, search ?? "", ordering])}
             />
             <SiteFooter />
         </>

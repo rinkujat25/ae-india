@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ProductFilters } from "@/components/product/ProductFilters";
 import { type ProductFilterOptions, readCachedFilters, writeCachedFilters } from "@/utils/filter-cache";
-import { type SortKey, sortLabels, sortProducts } from "@/utils/product-sort";
 import { ProductCard } from "@/components/product/ProductCard";
+import { ProductSortSelect } from "@/components/product/ProductSortSelect";
 import type {
     ProductListModel,
     ProductModel,
@@ -90,14 +90,12 @@ function pageNumbers(current: number, total: number): Array<number | null> {
 }
 
 export function ProductListing({ catalogue, page, pageSize }: ProductListingProps) {
-    const [sort, setSort] = useState<SortKey>("latest");
     const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
     const searchParams = useSearchParams();
 
-    // The server renders exactly one page, so there is nothing to slice or
-    // accumulate: what arrived is what is shown.
+    // The server renders exactly one page, already in the requested order, so
+    // there is nothing to slice, accumulate or sort: what arrived is shown.
     const products = catalogue.products;
-    const visibleProducts = useMemo(() => sortProducts(products, sort), [products, sort]);
     /**
      * `catalogue.total` counts variants while the listing collapses them into
      * groups, so the provider's figure is an upper bound on how many cards
@@ -246,13 +244,7 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
                 <div className="toolbar">
                     <label className="sort-control">
                         <span>Sort by</span>
-                        <select value={sort} onChange={(event) => setSort(event.target.value as SortKey)}>
-                            {(Object.keys(sortLabels) as SortKey[]).map((key) => (
-                                <option value={key} key={key}>
-                                    {sortLabels[key]}
-                                </option>
-                            ))}
-                        </select>
+                        <ProductSortSelect />
                     </label>
                 </div>
 
@@ -265,9 +257,9 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
                     </div>
                 ) : null}
 
-                {visibleProducts.length ? (
+                {products.length ? (
                     <div className="grid">
-                        {visibleProducts.map((product) => (
+                        {products.map((product) => (
                             <ProductCard
                                 product={product}
                                 showVariants

@@ -66,6 +66,7 @@ export async function getProducts(
                 tags: tags || undefined,
                 selling_price: sellingPrice,
                 search: query.search?.trim() || undefined,
+                ordering: query.ordering || undefined,
             },
             ...(revalidateSeconds === undefined
                 ? {}

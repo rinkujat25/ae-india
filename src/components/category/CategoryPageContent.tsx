@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { CategoryUnavailable } from "@/components/category/CategoryUnavailable";
 import { ProductCard } from "@/components/product/ProductCard";
+import { ProductSortSelect } from "@/components/product/ProductSortSelect";
 import type { CategoryModel } from "@/types/models/category.model";
 import type { ProductCategoryModel } from "@/types/models/product-category.model";
 import type { ProductModel } from "@/types/models/product.model";
-import { type SortKey, sortLabels, sortProducts } from "@/utils/product-sort";
 
 type CategoryPageContentProps = {
+    /** Already in the order the URL asked for; the server sorted them. */
     products: ProductModel[];
     /**
      * The read that fills the grid failed. Not the same as `products` being
@@ -51,11 +52,8 @@ export function CategoryPageContent({
     siblings,
 }: CategoryPageContentProps) {
     const [view, setView] = useState<ViewKey>("cols-4");
-    const [sort, setSort] = useState<SortKey>("latest");
     const [shown, setShown] = useState(pageSize);
-
-    const sorted = useMemo(() => sortProducts(products, sort), [products, sort]);
-    const visible = sorted.slice(0, shown);
+    const visible = products.slice(0, shown);
 
     return (
         <>
@@ -89,22 +87,12 @@ export function CategoryPageContent({
                     </div>
 
                     <span className="cat-count">
-                        {sorted.length} {sorted.length === 1 ? "product" : "products"}
+                        {products.length} {products.length === 1 ? "product" : "products"}
                     </span>
 
                     <div className="cat-sortwrap">
                         <span className="cat-tlabel">Sort by</span>
-                        <select
-                            aria-label="Sort by"
-                            value={sort}
-                            onChange={(event) => setSort(event.target.value as SortKey)}
-                        >
-                            {(Object.keys(sortLabels) as SortKey[]).map((key) => (
-                                <option value={key} key={key}>
-                                    {sortLabels[key]}
-                                </option>
-                            ))}
-                        </select>
+                        <ProductSortSelect />
                     </div>
                 </div>
             )}
@@ -145,14 +133,14 @@ export function CategoryPageContent({
                         ))}
                     </div>
 
-                    {shown < sorted.length ? (
+                    {shown < products.length ? (
                         <div className="cat-more">
                             <button
                                 className="btn btn-soft"
                                 type="button"
                                 onClick={() => setShown(shown + pageSize)}
                             >
-                                Show more ({sorted.length - shown} left)
+                                Show more ({products.length - shown} left)
                             </button>
                         </div>
                     ) : null}
