@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
         },
         openGraph: {
             type: "website",
-            siteName: "Wingback Employee Gift Store",
+            siteName: "Wingback Gift Store",
             url: absoluteUrl(path),
             title,
             description: description || undefined,

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback Employee Gift Store",
+    siteName: "Wingback Gift Store",
     url: absoluteUrl("/contact-us"),
     title: "Contact Wingback | Corporate Gifting Enquiries India",
     description:

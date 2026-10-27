@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback Employee Gift Store",
+    siteName: "Wingback Gift Store",
     url: absoluteUrl("/ai-gift-finder"),
     title: "AI Gift Finder | Wingback",
     description:
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteUrl("/assets/wingback-logo-full@2x.png"),
-        alt: "Wingback employee gift store — AI Gift Finder",
+        alt: "Wingback Gift Store — AI Gift Finder",
       },
     ],
     locale: "en_IN",

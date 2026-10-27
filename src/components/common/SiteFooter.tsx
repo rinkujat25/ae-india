@@ -44,7 +44,7 @@ export function SiteFooter() {
                     </div>
                 </div>
                 <div className="copyright">
-                    <span>© 2026 Wingback employee gift store · run by Sampley.</span>
+                    <span>© 2026 Wingback Gift Store · run by Sampley.</span>
                     <span>
                         Built for employee, client, partner and festive gifting programs.
                     </span>

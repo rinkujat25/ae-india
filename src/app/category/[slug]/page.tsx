@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
             alternates: { canonical: `/category/${slug}` },
             openGraph: {
                 type: "website",
-                siteName: "Wingback Employee Gift Store",
+                siteName: "Wingback Gift Store",
                 url: `/category/${slug}`,
                 title: subTitle,
             },
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         alternates: { canonical: `/category/${category.slug}` },
         openGraph: {
             type: "website",
-            siteName: "Wingback Employee Gift Store",
+            siteName: "Wingback Gift Store",
             url: `/category/${category.slug}`,
             title,
             description,

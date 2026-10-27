@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback Employee Gift Store",
+    siteName: "Wingback Gift Store",
     url: absoluteUrl("/diwali-gifting"),
     title: "Diwali Corporate Gifts for Employees & Clients | Wingback",
     description:
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         url: absoluteUrl("/assets/wingback-diwali-gifting-og.jpg"),
         width: 1200,
         height: 630,
-        alt: "Wingback employee gift store - Diwali",
+        alt: "Wingback Gift Store - Diwali",
       },
     ],
     locale: "en_IN",

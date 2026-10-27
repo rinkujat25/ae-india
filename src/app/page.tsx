@@ -30,7 +30,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Employee Gift Store | Wingback",
+    title: "Wingback Gift Store",
     description:
         "Sampley runs branded employee gift stores and direct corporate gifting with budget controls, curated gifts and managed pan-India delivery.",
     authors: [{ name: "Sampley" }],
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
     },
     openGraph: {
         type: "website",
-        siteName: "Wingback Employee Gift Store",
+        siteName: "Wingback Gift Store",
         url: absoluteUrl("/"),
-        title: "Wingback employee gift store",
+        title: "Wingback Gift Store",
         description:
             "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Sampley manages curation, sourcing, branding and pan-India delivery.",
         images: [
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
                 url: absoluteUrl("/assets/wingback-home-og.jpg"),
                 width: 1200,
                 height: 630,
-                alt: "Wingback employee gift store",
+                alt: "Wingback Gift Store",
             },
         ],
         locale: "en_IN",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         // Kept identical to the Open Graph pair: two different cards for the
         // same page is a maintenance trap, and X falls back to og:* anyway.
-        title: "Wingback employee gift store",
+        title: "Wingback Gift Store",
         description:
             "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Sampley manages curation, sourcing, branding and pan-India delivery.",
         images: [absoluteUrl("/assets/wingback-home-og.jpg")],

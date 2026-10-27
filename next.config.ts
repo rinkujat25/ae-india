@@ -83,12 +83,20 @@ const nextConfig: NextConfig = {
     async redirects() {
         return [
             {
-                // The employee store moved to a URL that says what it is. The
-                // old one is indexed and linked from outside, so it answers 301
-                // rather than 404: a permanent redirect passes the page's
-                // standing to the new URL instead of starting it over.
+                // The store is the home page now, so both of the URLs it used
+                // to live at redirect rather than 404 (`permanent: true` is a
+                // 308, which passes the page's standing on the same way a 301
+                // does). `/gift-store` is indexed and linked from outside, and
+                // `/employee-gift-store` is where it pointed until the store
+                // moved -- that one was left redirecting to a page that no
+                // longer exists, so it redirected straight into a 404.
                 source: "/gift-store",
-                destination: "/employee-gift-store",
+                destination: "/",
+                permanent: true,
+            },
+            {
+                source: "/employee-gift-store",
+                destination: "/",
                 permanent: true,
             },
             {

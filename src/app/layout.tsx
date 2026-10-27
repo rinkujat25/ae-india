@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   verification: {
     other: { "msvalidate.01": "834AFD9E6839468541989A078B8EB484" },
   },
-  // No `template` here: every page already ends its own title with
-  // "| Wingback", so a template would render it twice.
-  title: "Employee Gift Store | Wingback",
+  // No `template` here: every page writes its own full title and already
+  // carries the brand inside it, so a template would render it twice.
+  title: "Wingback Gift Store",
   description:
-    "Sampley runs the Wingback employee gift store end to end: branded employee stores where recipients choose within budget, and direct gifting for clients and partners, with managed pan-India delivery.",
+    "Sampley runs the Wingback Gift Store end to end: branded employee stores where recipients choose within budget, and direct gifting for clients and partners, with managed pan-India delivery.",
   // Pages that must not be indexed say so themselves. A blanket no-index here
   // silently suppressed every page that did not override it.
   robots: {

@@ -9,10 +9,10 @@ import type { MetadataRoute } from "next";
  */
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "Wingback Employee Gift Store",
+        name: "Wingback Gift Store",
         short_name: "Wingback",
         description:
-            "Wingback's employee gift store, run by Sampley: choose your own gift within the budget and have it delivered.",
+            "The Wingback Gift Store, run by Sampley: choose your own gift within the budget and have it delivered.",
         start_url: "/",
         display: "standalone",
         background_color: "#f6f5f2",
