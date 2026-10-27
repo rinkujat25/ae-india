@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 import { useApiRequest } from "@/hooks/useApiRequest";
-import { giftverseUrl } from "@/lib/giftverse";
+import { giftverseLinkProps, giftverseUrl } from "@/lib/giftverse";
 import { buildLoginHref } from "@/utils/auth-mode";
 import {
     describePasswordRules,
@@ -198,7 +198,7 @@ export function RegisterForm() {
 
             <p className="auth-terms">
                 By creating an account, you&apos;re agreeing to accept the Customer{" "}
-                <a href={giftverseUrl("/privacy-policy/terms-and-conditions")}>
+                <a href={giftverseUrl("/privacy-policy/terms-and-conditions")} {...giftverseLinkProps}>
                     Terms and Conditions.
                 </a>
             </p>

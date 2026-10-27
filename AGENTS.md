@@ -263,7 +263,10 @@ Reserved for future rules.
 - `/privacy-policy`, `/privacy-policy/terms-and-conditions`, `/privacy-policy/return-exchange`, `/shipping-policy` and `/payment-policy` all render one `PolicyPage` shell. A new policy is a new entry in `src/content/policies.ts` plus a four-line route; do not hand-build another layout.
 - The copy lives in `src/content/policies.ts`, apart from the layout, so wording can be edited without touching components. Keep each document's `updated` date honest when the wording changes.
 - **These are working drafts, not reviewed by a lawyer.** They were written against how the platform actually behaves — GST-inclusive rupee pricing, Cash on Delivery, pan-India delivery, back orders at one unit, branded orders that cannot be cancelled once in production. If any of that changes, the policy text has to change with it.
-- They are indexable and listed in `sitemap.ts`, unlike the account and checkout routes.
+- **Every link to a policy goes to GiftVerse, in a new tab.** The policies are written once and shared across every store the platform runs, so the footer, the cookie notice and the registration terms all point at `giftverseUrl(...)` and spread `giftverseLinkProps` (`target="_blank" rel="noopener"`). A reader checking the returns policy before buying should not lose their cart to find out.
+- `rel` is `noopener`, not `noreferrer`. `noopener` keeps the new tab out of `window.opener`; the site's `strict-origin-when-cross-origin` policy already trims the Referer to the bare origin, which is what GiftVerse needs to see this store sent the visit. Spread `giftverseLinkProps` rather than writing the two attributes out, so the rule cannot drift between call sites.
+- The local `/privacy-policy` etc. routes **still exist but nothing links to them** — they are reachable by URL only, and noindexed with everything else. Their copy can drift from GiftVerse's without anyone noticing. Delete them, or redirect each to its GiftVerse twin, rather than leave a second version of a legal document standing.
+- **Contact is the opposite: it is this site's own page.** The footer's "Contact us" and the login form's "Forgot Password?" are `next/link`s to `/contact-us` in the same tab. Neither goes to GiftVerse any more.
 
 ## Enquiry modal
 

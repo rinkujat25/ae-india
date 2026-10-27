@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCompany } from "@/lib/company";
-import { giftverseUrl } from "@/lib/giftverse";
+import { giftverseLinkProps, giftverseUrl } from "@/lib/giftverse";
 
 export function SiteFooter() {
     const company = getCompany();
@@ -27,20 +27,20 @@ export function SiteFooter() {
                     <div>
                         <h2>Contact</h2>
                         <a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a>
-                        <a href={giftverseUrl("/contact-us")}>Contact us</a>
+                        <Link href="/contact-us">Contact us</Link>
                         <Link href="/products">Browse gifts</Link>
                     </div>
                     <div>
                         <h2>Policies</h2>
-                        <a href={giftverseUrl("/privacy-policy")}>Privacy policy</a>
-                        <a href={giftverseUrl("/privacy-policy/terms-and-conditions")}>
+                        <a href={giftverseUrl("/privacy-policy")} {...giftverseLinkProps}>Privacy policy</a>
+                        <a href={giftverseUrl("/privacy-policy/terms-and-conditions")} {...giftverseLinkProps}>
                             Terms &amp; conditions
                         </a>
-                        <a href={giftverseUrl("/privacy-policy/return-exchange")}>
+                        <a href={giftverseUrl("/privacy-policy/return-exchange")} {...giftverseLinkProps}>
                             Return &amp; exchange
                         </a>
-                        <a href={giftverseUrl("/shipping-policy")}>Shipping policy</a>
-                        <a href={giftverseUrl("/payment-policy")}>Payment policy</a>
+                        <a href={giftverseUrl("/shipping-policy")} {...giftverseLinkProps}>Shipping policy</a>
+                        <a href={giftverseUrl("/payment-policy")} {...giftverseLinkProps}>Payment policy</a>
                     </div>
                 </div>
                 <div className="copyright">
