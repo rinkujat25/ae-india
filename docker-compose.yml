@@ -59,7 +59,7 @@ services:
       COMPANY_COUNTRY:
     ports:
       # bound to loopback: nginx is the only thing that should reach the app
-      - "127.0.0.1:3081:3000"
+      - "127.0.0.1:4010:3000"
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true

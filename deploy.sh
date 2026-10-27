@@ -3,7 +3,7 @@ set -euo pipefail
 
 APP_IMAGE="wingback-nextjs:latest"
 APP_SERVICE="wingback-nextjs"
-APP_URL="http://127.0.0.1:3081"
+APP_URL="http://127.0.0.1:4010"
 
 cd "$(dirname "$0")"
 

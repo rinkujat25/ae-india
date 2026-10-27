@@ -21,12 +21,12 @@ Nothing in this repository can fix that; it is the three steps below.
 cd /path/to/Wingback
 ./deploy.sh
 docker compose ps
-curl -I http://127.0.0.1:3081
+curl -I http://127.0.0.1:4010
 ```
 
-The Next.js app should stay available locally on port `3081`.
+The Next.js app should stay available locally on port `4010`.
 
-`deploy.sh` stops the old container, removes the old `wingback-nextjs:latest` image, rebuilds without cache, starts the new container, and verifies the app responds on port `3081`.
+`deploy.sh` stops the old container, removes the old `wingback-nextjs:latest` image, rebuilds without cache, starts the new container, and verifies the app responds on port `4010`.
 
 ## 2. Install bootstrap Nginx site config
 
