@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { giftverseUrl } from "./src/lib/giftverse";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -73,6 +74,15 @@ const securityHeaders = [
     },
 ];
 
+/** Same path on both hosts; verified to answer 200 on GiftVerse. */
+const policyPaths = [
+    "/privacy-policy",
+    "/privacy-policy/terms-and-conditions",
+    "/privacy-policy/return-exchange",
+    "/shipping-policy",
+    "/payment-policy",
+];
+
 const nextConfig: NextConfig = {
     agentRules: false,
     output: "standalone",
@@ -82,6 +92,17 @@ const nextConfig: NextConfig = {
     },
     async redirects() {
         return [
+            // The policies are GiftVerse's: written once and shared across
+            // every store the platform runs. This site used to carry its own
+            // copies, which nothing linked to and which could drift from the
+            // real text unnoticed -- two versions of a legal document is one
+            // too many. Each old URL now answers 308 to its twin, so a link
+            // anyone saved still reaches the current wording.
+            ...policyPaths.map((source) => ({
+                source,
+                destination: giftverseUrl(source),
+                permanent: true,
+            })),
             {
                 // The store is the home page now, so both of the URLs it used
                 // to live at redirect rather than 404 (`permanent: true` is a

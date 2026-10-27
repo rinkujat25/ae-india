@@ -260,13 +260,13 @@ Reserved for future rules.
 
 ## Policy pages
 
-- `/privacy-policy`, `/privacy-policy/terms-and-conditions`, `/privacy-policy/return-exchange`, `/shipping-policy` and `/payment-policy` all render one `PolicyPage` shell. A new policy is a new entry in `src/content/policies.ts` plus a four-line route; do not hand-build another layout.
-- The copy lives in `src/content/policies.ts`, apart from the layout, so wording can be edited without touching components. Keep each document's `updated` date honest when the wording changes.
-- **These are working drafts, not reviewed by a lawyer.** They were written against how the platform actually behaves — GST-inclusive rupee pricing, Cash on Delivery, pan-India delivery, back orders at one unit, branded orders that cannot be cancelled once in production. If any of that changes, the policy text has to change with it.
-- **Every link to a policy goes to GiftVerse, in a new tab.** The policies are written once and shared across every store the platform runs, so the footer, the cookie notice and the registration terms all point at `giftverseUrl(...)` and spread `giftverseLinkProps` (`target="_blank" rel="noopener"`). A reader checking the returns policy before buying should not lose their cart to find out.
+- **This site has no policy pages of its own.** The policies are GiftVerse's — written once and shared across every store the platform runs — and two versions of a legal document is one too many. `PolicyPage`, `PolicyStyles`, `src/content/policies.ts` and the five routes are deleted.
+- The old URLs — `/privacy-policy`, `/privacy-policy/terms-and-conditions`, `/privacy-policy/return-exchange`, `/shipping-policy`, `/payment-policy` — answer **308** to the same path on GiftVerse, from `policyPaths` in `next.config.ts`. A saved link still reaches the current wording. The paths are identical on both hosts and were checked to answer 200 there; if GiftVerse moves one, its entry here has to change with it.
+- `next.config.ts` imports `giftverseUrl` from `src/lib/giftverse.ts` rather than writing the origin out again, so the host still moves in one edit.
+- **Every link to a policy goes to GiftVerse, in a new tab.** The footer, the cookie notice and the registration terms all point at `giftverseUrl(...)` and spread `giftverseLinkProps` (`target="_blank" rel="noopener"`). A reader checking the returns policy before buying should not lose their cart to find out.
 - `rel` is `noopener`, not `noreferrer`. `noopener` keeps the new tab out of `window.opener`; the site's `strict-origin-when-cross-origin` policy already trims the Referer to the bare origin, which is what GiftVerse needs to see this store sent the visit. Spread `giftverseLinkProps` rather than writing the two attributes out, so the rule cannot drift between call sites.
-- The local `/privacy-policy` etc. routes **still exist but nothing links to them** — they are reachable by URL only, and noindexed with everything else. Their copy can drift from GiftVerse's without anyone noticing. Delete them, or redirect each to its GiftVerse twin, rather than leave a second version of a legal document standing.
-- **Contact is the opposite: it is this site's own page.** The footer's "Contact us" and the login form's "Forgot Password?" are `next/link`s to `/contact-us` in the same tab. Neither goes to GiftVerse any more.
+- **Contact is the opposite: it is this site's own page.** The footer's "Contact us" and the login form's "Forgot Password?" are `next/link`s to `/contact-us` in the same tab.
+- The redirects are server-side, so they do **not** open a new tab: someone typing an old policy URL is taken to GiftVerse in place. That is the right behaviour for a URL somebody chose to visit, as opposed to a link they clicked mid-purchase.
 
 ## Enquiry modal
 
