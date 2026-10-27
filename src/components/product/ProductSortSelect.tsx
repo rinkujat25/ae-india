@@ -13,7 +13,7 @@ import { buildOrderingHref, orderingParam, resolveOrdering, sortOptions } from "
  * no `loading.tsx`, so the transition drives the shared loader itself, the
  * way `LinkLoadingIndicator` does for links.
  */
-export function ProductSortSelect({ className }: { className?: string }) {
+export function ProductSortSelect() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -29,26 +29,32 @@ export function ProductSortSelect({ className }: { className?: string }) {
         return () => stopApiLoading();
     }, [isPending, startApiLoading, stopApiLoading]);
 
+    // `appearance: none` drops the browser's own arrow so the control can be
+    // styled, which means the chevron has to be drawn here.
     return (
-        <select
-            className={className}
-            aria-label="Sort by"
-            value={ordering}
-            onChange={(event) => {
-                const href = buildOrderingHref(
-                    pathname,
-                    new URLSearchParams(searchParams.toString()),
-                    resolveOrdering(event.target.value),
-                );
+        <span className={`sort-select${isPending ? " is-pending" : ""}`}>
+            <select
+                aria-label="Sort by"
+                value={ordering}
+                onChange={(event) => {
+                    const href = buildOrderingHref(
+                        pathname,
+                        new URLSearchParams(searchParams.toString()),
+                        resolveOrdering(event.target.value),
+                    );
 
-                startTransition(() => router.replace(href, { scroll: false }));
-            }}
-        >
-            {sortOptions.map((option) => (
-                <option value={option.value} key={option.value}>
-                    {option.label}
-                </option>
-            ))}
-        </select>
+                    startTransition(() => router.replace(href, { scroll: false }));
+                }}
+            >
+                {sortOptions.map((option) => (
+                    <option value={option.value} key={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </select>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+            </svg>
+        </span>
     );
 }

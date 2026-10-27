@@ -18,7 +18,7 @@ const styles = `
 .cat-vbtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round}
 .cat-count{color:var(--muted);font-size:var(--t-sm)}
 .cat-sortwrap{display:flex;align-items:center;gap:10px;margin-left:auto}
-.cat-sortwrap select{font:inherit;font-size:var(--t-sm);border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;padding:9px 12px;min-height:38px;min-width:0;max-width:210px}
+.cat-sortwrap .sort-select{min-width:196px}
 
 .cat-subs{display:flex;gap:9px;flex-wrap:wrap;padding-bottom:22px}
 .cat-sub{border:1px solid var(--line);border-radius:var(--r-pill,999px);background:#fff;padding:8px 14px;font:inherit;font-size:var(--t-sm);font-weight:700;color:var(--ink-2);cursor:pointer}
@@ -55,6 +55,7 @@ const styles = `
 @media(max-width:860px){
 .cat-grid.cols-4,.cat-grid.cols-3{grid-template-columns:repeat(2,minmax(0,1fr))}
 .cat-sortwrap{margin-left:0;width:100%}
+.cat-sortwrap .sort-select{flex:1;min-width:0}
 .cat-grid.list .p-card,.cat-grid.list .p-link{grid-template-columns:120px minmax(0,1fr)}
 .cat-grid.list .p-media{min-height:120px}
 }

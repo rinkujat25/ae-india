@@ -168,7 +168,6 @@ const styles = `
     min-width:0;
   }
 
-  .toolbar,
   .filters-panel,
   .foot-note{
     background:#fff;
@@ -426,41 +425,44 @@ const styles = `
     color:#fff;
   }
 
+  /* A plain row over the grid, not a card: it holds one line of text and
+     one control, and boxing that in a full-width panel left it looking empty.
+     The rule underneath separates it from the cards without competing. */
   .toolbar{
     align-items:center;
+    border-bottom:1px solid #e6e0d8;
     display:flex;
-    gap:18px;
-    justify-content:space-between;
-    min-height:66px;
-    padding:20px 22px;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    padding-bottom:14px;
+  }
+
+  .toolbar-count{
+    color:#637068;
+    font-size:14px;
+    margin:0;
+  }
+
+  .toolbar-count b{
+    color:#1f2a24;
+    font-weight:800;
   }
 
   .sort-control{
     align-items:center;
     display:flex;
     gap:10px;
+    margin-left:auto;
   }
 
-  .sort-control span{
+  .sort-label{
     color:#637068;
-    font-size:12px;
-    font-weight:900;
-    text-transform:uppercase;
+    font-size:14px;
+    white-space:nowrap;
   }
 
-  .sort-control select{
-    appearance:none;
-    background:#fff;
-    border:1px solid #e1dbd3;
-    border-radius:10px;
-    color:#27332c;
-    cursor:pointer;
-    font:inherit;
-    font-size:13px;
-    font-weight:850;
-    min-height:42px;
-    min-width:180px;
-    padding:0 34px 0 13px;
+  .sort-control .sort-select{
+    min-width:196px;
   }
 
   .result-filter-summary{
@@ -564,20 +566,12 @@ const styles = `
     }
 
     .head,
-    .toolbar,
     .foot-note{
       border-radius:14px;
     }
 
     .head{
       padding:22px;
-    }
-
-    .toolbar{
-      align-items:flex-start;
-      flex-direction:column;
-      gap:10px;
-      min-height:0;
     }
 
     .product-listing{
@@ -803,14 +797,18 @@ const styles = `
       gap:12px;
     }
 
-    .sort-control{
-      align-items:flex-start;
-      flex-direction:column;
-      width:100%;
+    /* The select names itself through aria-label, so the visible label can
+       go on a phone and the count and the control stay on one line. */
+    .sort-label{
+      display:none;
     }
 
-    .sort-control select{
-      width:100%;
+    .toolbar-count{
+      font-size:13px;
+    }
+
+    .sort-control .sort-select{
+      min-width:0;
     }
 
     .grid{

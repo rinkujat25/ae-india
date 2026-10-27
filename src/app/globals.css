@@ -194,6 +194,64 @@
         }
 
 
+        /* ---------------- sort select ----------------
+           ProductSortSelect, on the listing and the category page alike, so it
+           lives here rather than in either page's sheet. The browser's arrow is
+           removed to style the control, and the component draws its own. */
+        .sort-select {
+            align-items: center;
+            display: inline-flex;
+            min-width: 0;
+            position: relative;
+            transition: opacity .15s ease;
+        }
+
+        .sort-select select {
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--r-pill);
+            color: var(--ink);
+            cursor: pointer;
+            font: inherit;
+            font-size: var(--t-sm);
+            font-weight: 700;
+            min-height: 40px;
+            min-width: 0;
+            padding: 0 40px 0 16px;
+            transition: border-color .15s ease, box-shadow .15s ease;
+            width: 100%;
+        }
+
+        .sort-select select:hover {
+            border-color: var(--muted);
+        }
+
+        .sort-select select:focus-visible {
+            border-color: var(--violet);
+            box-shadow: 0 0 0 3px var(--violet-tint);
+            outline: none;
+        }
+
+        .sort-select svg {
+            fill: none;
+            height: 16px;
+            pointer-events: none;
+            position: absolute;
+            right: 15px;
+            stroke: var(--muted);
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+            width: 16px;
+        }
+
+        /* The new order is on its way from the server. */
+        .sort-select.is-pending {
+            opacity: .6;
+        }
+
         /* ---------------- breadcrumbs ---------------- */
         .breadcrumbs ol {
             display: flex;

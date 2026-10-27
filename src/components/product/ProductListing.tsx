@@ -107,6 +107,10 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
     const totalPages = Math.max(1, Math.ceil(catalogue.total / pageSize));
     const pageHref = (target: number) => buildPageHref(searchParams, target);
     const isPastEnd = products.length === 0 && page > 1;
+    // The range on this page, which is exact. The provider's total is not
+    // (see above), so it is not printed beside it.
+    const firstShown = (page - 1) * pageSize + 1;
+    const lastShown = firstShown + products.length - 1;
 
     /**
      * The filter drawer, on phones only.
@@ -242,8 +246,13 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
 
             <div className="listing-results">
                 <div className="toolbar">
+                    {products.length ? (
+                        <p className="toolbar-count">
+                            Showing <b>{firstShown}&ndash;{lastShown}</b> products
+                        </p>
+                    ) : null}
                     <label className="sort-control">
-                        <span>Sort by</span>
+                        <span className="sort-label">Sort by</span>
                         <ProductSortSelect />
                     </label>
                 </div>
