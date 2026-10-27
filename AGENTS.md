@@ -265,6 +265,13 @@ Reserved for future rules.
 - **These are working drafts, not reviewed by a lawyer.** They were written against how the platform actually behaves — GST-inclusive rupee pricing, Cash on Delivery, pan-India delivery, back orders at one unit, branded orders that cannot be cancelled once in production. If any of that changes, the policy text has to change with it.
 - They are indexable and listed in `sitemap.ts`, unlike the account and checkout routes.
 
+## Contact page
+
+- **`/contact-us` carries no form.** The message form it had only assembled a `mailto:` link and handed it to the browser, so it asked for six fields to reach the same email client the address beside it opens in one tap. `ContactForm.tsx` is deleted, not unmounted.
+- The "Start a program / Book a demo" tile went with it: its whole job was to open the site-wide enquiry modal, which is a form. No `data-open-form` trigger is left on the page.
+- `LeadModal` still renders on every route from the root layout, inside a closed `<dialog>`. Nothing on this page can open it any more; it is chrome, not contact-page content.
+- What is left is the two reach tiles (email, phone) and three boxes across the page — what to expect, who handles what, business details — plus the FAQ. The old two-column `.split` and the whole `.form-*` / `.field*` block are gone from `ContactUsStyles`; the boxes now sit in `.contact-detail`.
+
 ## Category pages
 
 - `/category/[slug]` is server-rendered per category; the old `?c=` query template is gone. `/category` still redirects to `/products`.

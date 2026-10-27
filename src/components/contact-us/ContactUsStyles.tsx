@@ -20,7 +20,7 @@ const styles = `
   .reach{
     display:grid;
     gap:var(--gap);
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(2, 1fr);
     margin-top:34px;
   }
 
@@ -77,141 +77,12 @@ const styles = `
     line-height:1.6;
   }
 
-  .split{
+  .contact-detail{
     align-items:start;
     display:grid;
-    gap:44px;
-    grid-template-columns:1fr .8fr;
+    gap:var(--gap);
+    grid-template-columns:repeat(3, 1fr);
     padding:20px 0 76px;
-  }
-
-  .form-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:var(--r-lg);
-    box-shadow:var(--shadow);
-    padding:32px;
-  }
-
-  .form-card h2{
-    font-size:var(--t-2xl);
-    line-height:1.15;
-    margin-bottom:8px;
-  }
-
-  .form-card > p{
-    color:var(--muted);
-    font-size:var(--t-sm);
-    line-height:1.65;
-    margin-bottom:24px;
-  }
-
-  .form-card > p a{
-    color:var(--violet);
-    font-weight:800;
-  }
-
-  .form-grid{
-    display:grid;
-    gap:var(--gap);
-    grid-template-columns:1fr 1fr;
-  }
-
-  .field{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-  }
-
-  .field.wide{
-    grid-column:1 / -1;
-  }
-
-  .field label{
-    color:var(--muted-2);
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:.7px;
-    text-transform:uppercase;
-  }
-
-  .field label .req{
-    color:var(--violet);
-  }
-
-  .field input,
-  .field select,
-  .field textarea{
-    background:#fff;
-    border:1.5px solid var(--line);
-    border-radius:var(--r-sm);
-    color:var(--ink);
-    font:inherit;
-    font-size:var(--t-md);
-    min-height:48px;
-    padding:13px 14px;
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-
-  .field textarea{
-    line-height:1.6;
-    min-height:110px;
-    resize:vertical;
-  }
-
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus{
-    border-color:var(--violet);
-    box-shadow:0 0 0 3px var(--violet-tint);
-    outline:0;
-  }
-
-  .field input::placeholder,
-  .field textarea::placeholder{
-    color:#b0a89e;
-  }
-
-  .form-submit{
-    align-items:center;
-    display:flex;
-    flex-wrap:wrap;
-    gap:16px;
-    margin-top:22px;
-  }
-
-  .form-submit .btn{
-    padding:15px 26px;
-  }
-
-  .form-note{
-    color:var(--muted-2);
-    flex:1;
-    font-size:11px;
-    line-height:1.5;
-    min-width:180px;
-  }
-
-  .form-status{
-    background:var(--mint);
-    border:1px solid #b8e8d0;
-    border-radius:var(--r-sm);
-    color:var(--mint-ink);
-    font-size:var(--t-sm);
-    line-height:1.6;
-    margin-top:16px;
-    padding:14px 16px;
-  }
-
-  .form-status.error{
-    background:#ffe9e4;
-    border-color:#f7c9bb;
-    color:var(--peach-ink);
-  }
-
-  .aside{
-    display:grid;
-    gap:var(--gap);
   }
 
   .box{
@@ -332,28 +203,13 @@ const styles = `
     }
 
     .reach,
-    .split{
+    .contact-detail{
       grid-template-columns:1fr;
     }
 
-    .split{
+    .contact-detail{
       gap:26px;
       padding-bottom:56px;
-    }
-  }
-
-  @media (max-width:640px){
-    .form-card{
-      border-radius:var(--r-md);
-      padding:22px;
-    }
-
-    .form-grid{
-      grid-template-columns:1fr;
-    }
-
-    .form-submit .btn{
-      width:100%;
     }
   }
 
