@@ -307,6 +307,8 @@ Reserved for future rules.
 ## SEO
 
 - The site's own origin comes from `NEXT_PUBLIC_SITE_URL` through `getSiteUrl` / `absoluteUrl` in `src/lib/site.ts`. Never hardcode a domain in metadata, JSON-LD, the sitemap or robots: the same build runs on localhost, staging and production, and a canonical pointing at the wrong host tells search engines the real pages live elsewhere.
+- **Product pages are the one deliberate exception.** `/products/[slug]` canonicalises to `giftverse.sampley.in/products/<slug>` through `canonicalProductUrl`, because the same catalogue is published on both hosts under the same `url_path` and the pair would otherwise compete as duplicates. The hreflang entries point at the same URL — an hreflang back at this host beside a canonical pointing away is two answers to one question. `og:url` deliberately stays local: somebody sharing a gift from this store means this store.
+- That canonical is only as good as GiftVerse's path shape. `/products/<url_path>` is what it serves today (verified 200, self-canonical, and carrying its own `Product` node). If GiftVerse ever moves or renames that route, every product canonical on this site points at a 404 at once, which is worse than having none.
 - `metadataBase` is set once in the root layout, so canonicals and Open Graph URLs can be written as relative paths and still resolve.
 - The root layout does **not** set `title.template`: all 34 page titles already end in "| Wingback", so a template would render it twice.
 - Pages that must not be indexed say so in their own `metadata`. The root layout no longer blanket-no-indexes, which was silently suppressing every page that did not override it.
@@ -331,7 +333,8 @@ Reserved for future rules.
 - Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd` and `AboutUsJsonLd` do; `CatalogueJsonLd`, `ContactUsJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
 - **No page emits its own `BreadcrumbList`.** `Breadcrumbs` emits one from the trail it renders; every page graph that also carried one was publishing two, and one of them had an empty name and a `/category/` URL with no slug.
 - A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. `HowItWorksJsonLd`'s `HowTo` is that page's visible steps; `AboutUsJsonLd`'s `FAQPage` is the FAQ `AboutUsFaqSection` renders.
-- A `Product` node omits what the catalogue cannot support rather than publishing it empty: no `gtin13` or `material` when blank, no `color` when the provider's "Default" placeholder is all there is, and **no `offers` at all when the price is zero** — zero means the price is arranged, and publishing it says the product is free. Availability follows the same `canOrder` / `inStock` / `allowsBackOrders` flags the buy box reads.
+- **This site publishes no `Product` node.** `/products/[slug]` canonicalises to GiftVerse, which emits its own, and two `Product` nodes for one product across two hosts is the duplication the canonical exists to resolve. `createProductJsonLd`, `createOfferJsonLd` and `getAvailability` were deleted with it; the Open Graph product tags stay, since they feed link previews rather than the search index. Restore the node only if the canonical comes back to this host, and then restore both together.
+- The only structured data left on a product page is the `BreadcrumbList` that `Breadcrumbs` emits from the trail it renders.
 
 ## Sitemap
 - `/sitemap.xml` is a **sitemap index** over three children: `/sitemaps/pages.xml` (the hand-maintained routes), `/sitemaps/categories.xml` and `/sitemaps/products.xml`. Split by what they depend on, not by size — the catalogue is nowhere near the 50,000-URL limit — so a failed provider read cannot shrink one combined file from every URL to thirteen, which a search engine reads as "these pages are gone".
@@ -339,6 +342,7 @@ Reserved for future rules.
 - Neither catches its own failure. A 500 a crawler retries is a far weaker signal than a sitemap claiming the products are gone.
 - No `lastmod` anywhere: the provider exposes no modification time, and a `lastmod` that moves like a clock is one Google learns to ignore where it is true.
 - Only indexable pages are listed. `/products`, `/category` and `/ai-gift-finder` were listed while setting `index: false`, which sends an invitation and a refusal for the same URL.
+- **Open question:** `/sitemaps/products.xml` still lists this host's product URLs, which now declare a GiftVerse canonical. That is a weaker contradiction than the one above — a canonical is a preference, not a refusal, and listing the pages still lets a crawler find them and consolidate the signal — but a sitemap is meant to list canonical URLs. Decide it deliberately rather than leaving it as an oversight.
 
 ## robots.txt
 

@@ -10,6 +10,7 @@ import { getProductDetail } from "@/services/hyperinventory/product-detail.servi
 import { getProducts } from "@/services/hyperinventory/product.service";
 import type { ProductDetailModel } from "@/types/models/product-detail.model";
 import type { ProductModel } from "@/types/models/product.model";
+import { giftverseUrl } from "@/lib/giftverse";
 import { absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +23,24 @@ type ProductDetailPageProps = {
         slug: string;
     }>;
 };
+
+/**
+ * The canonical product page, on GiftVerse.
+ *
+ * The same Hyperinventory catalogue is published on both hosts under the same
+ * `url_path`, so every product here has a twin there. Pointing the canonical
+ * across says which of the two a search engine should index and keeps the pair
+ * from competing as duplicates of each other.
+ *
+ * Note what it costs: this host's product pages are no longer the ones that
+ * rank. Shares keep pointing here -- `og:url` stays local, because somebody
+ * sharing a gift from this store means this store -- but search traffic goes
+ * to GiftVerse. Changing the path shape there breaks every canonical on this
+ * site at once.
+ */
+function canonicalProductUrl(slug: string) {
+    return giftverseUrl(`/products/${slug}`);
+}
 
 /**
  * Built from the product, not from its slug.
@@ -45,13 +64,14 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     if (!product) {
         return {
             title: "Product | Wingback",
-            alternates: { canonical: `/products/${slug}` },
+            alternates: { canonical: canonicalProductUrl(slug) },
         };
     }
 
     const title = product.metaTitle || `${product.name} | Wingback`;
     const description = product.metaDescription || product.oneLineDescription || product.description;
     const path = `/products/${product.slug}`;
+    const canonical = canonicalProductUrl(product.slug);
     // Enough for a crawler to choose from without turning the head into a
     // gallery; the first is the one every card actually shows.
     const images = product.images.slice(0, 4).map((url) => ({ url, alt: product.name }));
@@ -74,12 +94,14 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
             },
         },
         alternates: {
-            // Relative: `metadataBase` in the root layout makes these absolute
-            // against whichever host the build is deployed to.
-            canonical: path,
+            // Absolute and off-site, so `metadataBase` is not applied. The
+            // language entries follow it: an hreflang pointing back at this
+            // host while the canonical points at GiftVerse is two answers to
+            // the same question.
+            canonical,
             languages: {
-                "en-IN": path,
-                "x-default": path,
+                "en-IN": canonical,
+                "x-default": canonical,
             },
         },
         openGraph: {
@@ -108,9 +130,8 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
  *
  * These are the Open Graph product namespace — what a shopping crawler and a
  * link preview read to show a price and a stock state beside the image. Each is
- * omitted when the catalogue cannot support it, for the same reason the
- * structured data omits an offer: a price of zero here means the price is
- * arranged, and publishing it as `0` states something else entirely.
+ * omitted when the catalogue cannot support it: a price of zero means the price
+ * is arranged, and publishing it as `0` states something else entirely.
  *
  * `og:type` stays `website`. The product namespace is additive, and claiming
  * `og:type: product` while most of the catalogue can quote no price would
@@ -134,9 +155,7 @@ function createProductMetaTags(product: ProductDetailModel): Record<string, stri
 }
 
 /**
- * The Open Graph spelling of the same three flags the buy box and the structured
- * data read. Its vocabulary is words rather than schema.org URLs, so it cannot
- * share `getAvailability`.
+ * The Open Graph spelling of the same three flags the buy box reads.
  *
  * A back order is "available for order", not "backorder": the Open Graph product
  * namespace accepts in stock, out of stock, preorder, available for order and
@@ -176,8 +195,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         .filter((candidate) => candidate.slug !== product.slug && candidate.id !== product.id)
         .slice(0, similarProductsShown);
 
-    const productJsonLd = createProductJsonLd(product);
-
     return (
         <>
             <ProductDetailStyles />
@@ -190,94 +207,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 key={product.slug}
             />
             <SiteFooter />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-            />
         </>
     );
-}
-
-/**
- * The provider fills a colour it does not know with this, so it reaches us as a
- * value rather than an absence. Publishing it would tell a search engine the
- * product's colour is "Default".
- */
-const placeholderColor = "Default";
-
-/**
- * `Product` structured data for one product.
- *
- * Every field is omitted rather than published empty — `JSON.stringify` drops
- * `undefined` — because a blank `gtin13` or `material` is a claim that the
- * product has one and it is nothing, which is worse than saying nothing at all.
- *
- * No `BreadcrumbList` here: `Breadcrumbs` emits its own from the trail it
- * renders, and two of them on one page is a conflict. Its version is the one
- * tied to what the reader can actually see, which is what Google asks for.
- *
- * `description` is the plain-text field, never `descriptionHtml`. Structured
- * data carries text, and markup in it is what gets a rich result rejected.
- */
-function createProductJsonLd(product: ProductDetailModel) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: product.name,
-        url: absoluteUrl(`/products/${product.slug}`),
-        sku: product.sku || undefined,
-        gtin13: product.gtin13 || undefined,
-        brand: product.brand ? { "@type": "Brand", name: product.brand } : undefined,
-        // Joined only when both sides exist, so an uncategorised product does not
-        // publish a stray separator as its category.
-        category: [product.category, product.subCategory].filter(Boolean).join(" > ") || undefined,
-        description: product.description || undefined,
-        color: product.color && product.color !== placeholderColor ? product.color : undefined,
-        material: product.material || undefined,
-        image: product.images.length > 0 ? product.images : undefined,
-        offers: createOfferJsonLd(product),
-    };
-}
-
-/**
- * The offer, or nothing.
- *
- * Most of this catalogue carries a selling price of zero, which is the provider
- * saying the price is arranged rather than that the product is free. Publishing
- * `price: "0"` states the second, so a product without a real price publishes no
- * offer and the quote request on the page stands on its own.
- */
-function createOfferJsonLd(product: ProductDetailModel) {
-    if (!(product.price > 0)) return undefined;
-
-    return {
-        "@type": "Offer",
-        url: absoluteUrl(`/products/${product.slug}`),
-        priceCurrency: "INR",
-        price: String(product.price),
-        availability: getAvailability(product),
-        eligibleQuantity: { "@type": "QuantitativeValue", minValue: product.moq || 1, unitCode: "C62" },
-        seller: { "@type": "Organization", name: "Sampley" },
-        areaServed: { "@type": "Country", name: "India" },
-    };
-}
-
-/**
- * Availability read from the product rather than asserted.
- *
- * This was pinned to `PreOrder` for every product, in stock or not. A stated
- * availability that contradicts the page is the kind of mismatch that costs the
- * rich result, so it follows the same rule the buy box does: orderable when the
- * seller accepts orders and either holds stock or takes back orders.
- *
- * `BackOrder` is kept rather than collapsed into `InStock`. It is already an
- * available state — Google reads it as purchasable — and claiming stock the
- * seller does not hold is the contradiction this function exists to avoid.
- */
-function getAvailability(product: ProductDetailModel): string {
-    if (!product.canOrder) return "https://schema.org/OutOfStock";
-    if (product.inStock) return "https://schema.org/InStock";
-    if (product.allowsBackOrders) return "https://schema.org/BackOrder";
-
-    return "https://schema.org/OutOfStock";
 }
