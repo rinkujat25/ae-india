@@ -21,5 +21,9 @@ export const budgetCeiling = 3000;
  * **409**, so the read fails and the page renders its empty state.
  */
 export const budgetPriceRanges: HyperinventoryPriceRangeDto[] = [
-    { from: budgetFloor, to: budgetCeiling },
+    // The Rs. 1,000 to Rs. 3,000 band is switched off for now: every read is
+    // unfiltered by price. An empty list sends no `selling_price` at all, so
+    // the listing, the category pages and the home shelf all show the whole
+    // collection. Uncomment the line below to hold them to the budget again.
+    // { from: budgetFloor, to: budgetCeiling },
 ];
