@@ -158,7 +158,6 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
         categories: catalogue.categories,
         brands: catalogue.brands,
         tags: catalogue.tags,
-        priceFilters: catalogue.priceFilters,
     });
 
     useEffect(() => {
@@ -166,7 +165,6 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
             categories: catalogue.categories,
             brands: catalogue.brands,
             tags: catalogue.tags,
-            priceFilters: catalogue.priceFilters,
         };
 
         // Deferred: touching storage and setting state inline during an effect
@@ -234,7 +232,6 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
                     brands={filterOptions.brands}
                     categories={filterOptions.categories}
                     tags={filterOptions.tags}
-                    priceFilters={filterOptions.priceFilters}
                     isDrawerOpen={isFilterDrawerOpen}
                 />
 

@@ -5,7 +5,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useApiRequest } from "@/hooks/useApiRequest";
 import type { ProductBrandModel } from "@/types/models/product-brand.model";
 import type { ProductCategoryModel } from "@/types/models/product-category.model";
-import type { ProductPriceFilterModel } from "@/types/models/product-price-filter.model";
 import type { ProductTagModel } from "@/types/models/product-tag.model";
 
 type FilterOption = {
@@ -18,7 +17,6 @@ type ProductFiltersProps = {
     brands: ProductBrandModel[];
     categories: ProductCategoryModel[];
     tags: ProductTagModel[];
-    priceFilters: ProductPriceFilterModel[];
     /**
      * True while the phone drawer is open. Opening it collapses every group, so
      * the drawer presents a short list of what can be filtered rather than one
@@ -27,20 +25,23 @@ type ProductFiltersProps = {
     isDrawerOpen?: boolean;
 };
 
-type FilterKey = "categories" | "brands" | "tags" | "priceFilters";
+type FilterKey = "categories" | "brands" | "tags";
 type SelectedFilters = Record<FilterKey, string[]>;
 
 /**
  * Groups the listing query understands. Selecting one of these rewrites the URL
  * and refetches.
+ *
+ * Price is not among them. Wingback sets the budget, so the band is the
+ * listing's own (`budgetPriceRanges`) rather than something the visitor picks,
+ * and the group it used to render is gone with it.
  */
-const urlBackedFilters: FilterKey[] = ["categories", "brands", "tags", "priceFilters"];
+const urlBackedFilters: FilterKey[] = ["categories", "brands", "tags"];
 
 const filterLabels: Record<FilterKey, string> = {
     categories: "Categories",
     brands: "Brands",
     tags: "Tags",
-    priceFilters: "Price",
 };
 
 function parseCommaSeparatedParam(value: string | null) {
@@ -136,7 +137,6 @@ export function ProductFilters({
     brands,
     categories,
     tags,
-    priceFilters,
     isDrawerOpen = false,
 }: ProductFiltersProps) {
     const apiRequest = useApiRequest();
@@ -160,7 +160,6 @@ export function ProductFilters({
         categories: parseCommaSeparatedParam(searchParams.get("categories")),
         brands: parseCommaSeparatedParam(searchParams.get("brands")),
         tags: parseCommaSeparatedParam(searchParams.get("tags")),
-        priceFilters: parseCommaSeparatedParam(searchParams.get("prices")),
     });
 
     const filterGroups = useMemo(
@@ -168,9 +167,8 @@ export function ProductFilters({
             categories: sortFilterOptionsAsc(categories),
             brands: sortFilterOptionsAsc(brands),
             tags,
-            priceFilters,
         }),
-        [brands, categories, priceFilters, tags],
+        [brands, categories, tags],
     );
 
     const selectedChips = (Object.keys(filterGroups) as FilterKey[]).flatMap((key) =>
@@ -190,7 +188,6 @@ export function ProductFilters({
         nextParams.delete("categories");
         nextParams.delete("brands");
         nextParams.delete("tags");
-        nextParams.delete("prices");
         // Back to the first page. Narrowing the catalogue usually leaves fewer
         // pages than there were, so carrying the current one over strands the
         // reader past the end of the new result set -- pick a brand from page 30
@@ -208,10 +205,7 @@ export function ProductFilters({
         const tagsQuery = nextFilters.tags.length
             ? `tags=${nextFilters.tags.map(encodeURIComponent).join(",")}`
             : "";
-        const pricesQuery = nextFilters.priceFilters.length
-            ? `prices=${nextFilters.priceFilters.map(encodeURIComponent).join(",")}`
-            : "";
-        const nextQuery = [baseQuery, categoriesQuery, brandsQuery, tagsQuery, pricesQuery]
+        const nextQuery = [baseQuery, categoriesQuery, brandsQuery, tagsQuery]
             .filter(Boolean)
             .join("&");
 
@@ -268,7 +262,6 @@ export function ProductFilters({
             categories: [],
             brands: [],
             tags: [],
-            priceFilters: [],
         };
 
         setSelectedFilters(nextFilters);

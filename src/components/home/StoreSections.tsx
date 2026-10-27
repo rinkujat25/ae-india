@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { ProductCard } from "@/components/product/ProductCard";
+import { budgetPriceRanges } from "@/constants/budget";
 import { getProducts } from "@/services/hyperinventory/product.service";
 import type { ProductModel } from "@/types/models/product.model";
 
@@ -9,26 +10,6 @@ const storeProductCount = 6;
 
 /** Ten minutes: a shop window, not a stock report, and it keeps the page static. */
 const revalidateSeconds = 600;
-
-/**
- * The budget this store runs on: gifts from Rs. 1,000 to Rs. 3,000.
- *
- * The band does two jobs. It keeps the shelf inside the per-recipient budget,
- * so nothing on the page is something the reader cannot actually claim. And
- * because a priced band excludes products with no selling price, it also keeps
- * out the "Price on request" tiles -- the right answer on the listing, where a
- * quote is a normal next step, but a contradiction on a page whose whole
- * message is that the gift is already paid for.
- *
- * The provider applies it, not this code, so the page still gets a full six.
- * Filtering the fetched array instead would leave a short row whenever one of
- * the six fell outside the band.
- *
- * Both bounds are required, not just the one that matters here: a band with
- * only a lower bound -- `selling_price=[{"gte":1000}]` -- is answered with
- * **409**, so the fetch fails and the shelf empties.
- */
-const budgetBand = [{ from: 1000, to: 3000 }];
 
 /**
  * The gifts shown on the home page.
@@ -40,8 +21,11 @@ const budgetBand = [{ from: 1000, to: 3000 }];
  */
 export async function loadStoreProducts(): Promise<ProductModel[]> {
     try {
+        // The provider applies the budget band, not this code, so the page
+        // still gets a full six. Filtering the fetched array instead would
+        // leave a short row whenever one of the six fell outside it.
         const { products } = await getProducts(
-            { size: storeProductCount, priceRanges: budgetBand },
+            { size: storeProductCount, priceRanges: budgetPriceRanges },
             revalidateSeconds,
         );
 

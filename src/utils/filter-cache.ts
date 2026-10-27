@@ -1,6 +1,5 @@
 import type { ProductBrandModel } from "@/types/models/product-brand.model";
 import type { ProductCategoryModel } from "@/types/models/product-category.model";
-import type { ProductPriceFilterModel } from "@/types/models/product-price-filter.model";
 import type { ProductTagModel } from "@/types/models/product-tag.model";
 
 const storageKey = "wingback_product_filters_v1";
@@ -9,7 +8,6 @@ export type ProductFilterOptions = {
     categories: ProductCategoryModel[];
     brands: ProductBrandModel[];
     tags: ProductTagModel[];
-    priceFilters: ProductPriceFilterModel[];
 };
 
 /**
@@ -44,7 +42,6 @@ export function readCachedFilters(): ProductFilterOptions | null {
             categories: parsed.categories,
             brands: parsed.brands,
             tags: Array.isArray(parsed.tags) ? parsed.tags : [],
-            priceFilters: Array.isArray(parsed.priceFilters) ? parsed.priceFilters : [],
         };
     } catch {
         return null;

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/common/SiteHeader";
 import { ProductsPageContent } from "@/components/product/ProductsPageContent";
 import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 import { ProductsPageStyles } from "@/components/product/ProductsPageStyles";
+import { budgetPriceRanges } from "@/constants/budget";
 import { getProducts } from "@/services/hyperinventory/product.service";
 
 export const dynamic = "force-dynamic";
@@ -37,9 +38,14 @@ function parseCommaSeparatedParam(value: string | string[] | undefined) {
 
 /**
  * Price bands travel in the URL exactly as the `price_filter` aggregation keys
- * them -- `0.0-1000.0` -- so a link round-trips to the same checkbox. Only the
- * two bounds are read back; anything unparseable is dropped rather than sent
- * upstream as NaN.
+ * them -- `0.0-1000.0`. Only the two bounds are read back; anything
+ * unparseable is dropped rather than sent upstream as NaN.
+ *
+ * Nothing in the UI writes this parameter any more: the store's budget is not
+ * the visitor's to choose, so the Price group is gone from the sidebar and the
+ * listing falls back to `budgetPriceRanges`. The parsing stays because the
+ * parameter is still honoured when one is typed, and because it is what the
+ * group would read again if the band ever becomes a choice.
  */
 function parsePriceRanges(value: string | string[] | undefined) {
     return parseCommaSeparatedParam(value)
@@ -62,7 +68,12 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     const categories = parseCommaSeparatedParam(params?.categories);
     const brands = parseCommaSeparatedParam(params?.brands);
     const tags = parseCommaSeparatedParam(params?.tags);
-    const priceRanges = parsePriceRanges(params?.prices);
+    // The budget band unless the URL asks for another one. An unparseable
+    // `prices` leaves nothing behind, and falling through to an unfiltered
+    // read there would quietly put the whole catalogue on a page that is
+    // supposed to show what a recipient can claim.
+    const requestedPriceRanges = parsePriceRanges(params?.prices);
+    const priceRanges = requestedPriceRanges.length ? requestedPriceRanges : budgetPriceRanges;
     const search = Array.isArray(params?.search) ? params.search[0] : params?.search;
     // The page number comes from the URL, so a page is linkable, survives a
     // reload and works with the back button.
