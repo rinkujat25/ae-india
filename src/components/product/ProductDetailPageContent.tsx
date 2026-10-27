@@ -4,7 +4,6 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { giftverseUrl } from "@/lib/giftverse";
 import { useMemo, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import { useApiRequest } from "@/hooks/useApiRequest";
@@ -324,10 +323,6 @@ export function ProductDetailPageContent({
                                 product without a price asks for the enquiry that
                                 would produce one instead. */}
                             <p className="price-label">{hasPrice ? "Price per unit" : "Price on request"}</p>
-                            {/* "Get a price", not "Request a quote": the buy box
-                                below already offers "Request a quote for bulk",
-                                and two identically worded buttons on one screen
-                                make the reader stop and choose between them. */}
                             {hasPrice ? (
                                 <div className="price">
                                     <b>{formatMoney(product.price)}</b>
@@ -440,9 +435,6 @@ export function ProductDetailPageContent({
                                     is too high, which is not "out of stock". */}
                                 {isAddingToCart ? "Adding..." : isUnavailable ? "Out of stock" : "Add to cart →"}
                             </button>
-                            <a className="btn btn-soft" href={giftverseUrl("/contact-us")}>
-                                Request a quote for bulk
-                            </a>
                         </div>
                         {cartError ? <p className="cart-error" role="alert">{cartError}</p> : null}
 
