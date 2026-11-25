@@ -338,9 +338,9 @@ Reserved for future rules.
 
 ## Contact page
 
-- **`/contact-us` carries no form.** The message form it had only assembled a `mailto:` link and handed it to the browser, so it asked for six fields to reach the same email client the address beside it opens in one tap. `ContactForm.tsx` is deleted, not unmounted.
-- The "Start a program / Book a demo" tile went with it: its whole job was to open the site-wide enquiry modal, which is a form. No `data-open-form` trigger is left on the page.
-- What is left is the two reach tiles (email, phone) and three boxes across the page — what to expect, who handles what, business details — plus the FAQ. The old two-column `.split` and the whole `.form-*` / `.field*` block are gone from `ContactUsStyles`; the boxes now sit in `.contact-detail`.
+- `/contact-us` has no design of its own and follows the About page's: a navy hero with the phone, email, WhatsApp and office card, five topics with what to have ready, and the business details. Components are in `src/components/contact/`, topics in `src/constants/contact.ts`.
+- **Every fact comes from `getCompany`, and an empty one is left out.** The previous page had a GSTIN written into it and published another company's number beside AE India's legal name. Never write a phone, GSTIN, email or address into a component.
+- **It carries no form** until something receives one, and promises no reply time: none has been confirmed. Every quote, dealer and "Forgot Password?" link in the site lands here, so a new kind of link needs a topic.
 
 ## Category pages
 
@@ -419,7 +419,7 @@ Reserved for future rules.
 - The cookie notice states what is stored. `cookieNoticeVersion` in `src/utils/cookie-notice.ts` is bumped whenever that changes, so an acknowledgement of a narrower notice stops counting. Google Analytics took it to 2.
 
 ## JSON-LD
-- Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd`, `AboutJsonLd` and `DivisionJsonLd` do; `CatalogueJsonLd`, `ContactUsJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
+- Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd`, `AboutJsonLd`, `ContactJsonLd` and `DivisionJsonLd` do; `CatalogueJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
 - **No page emits its own `BreadcrumbList`.** `Breadcrumbs` emits one from the trail it renders; every page graph that also carried one was publishing two, and one of them had an empty name and a `/category/` URL with no slug.
 - A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. `HowItWorksJsonLd`'s `HowTo` is that page's visible steps; The About page renders no FAQ, so `AboutJsonLd` carries none.
 - `/products/[slug]` publishes a `Product` node through `ProductJsonLd` (`src/components/product/ProductJsonLd.tsx`), restored together with the canonical. Unknown fields are omitted, the brand is omitted when it is only the mapper's store-name fallback, a zero price publishes no offer, availability follows the buy box, and the seller is `storeOwner`.
