@@ -360,7 +360,7 @@ export function mapHyperinventoryProductDetail(
     const media = collectAssetMedia(assetsResponse);
     const images = collectFeaturedImages(product, variant);
     const name = firstText(variant?.display_name, variant?.name, product.display_name, product.name, "Unnamed product");
-    const brand = firstText(variant?.brand?.display_name, variant?.brand?.name, product.brand?.display_name, product.brand?.name, "Wingback");
+    const brand = firstText(variant?.brand?.display_name, variant?.brand?.name, product.brand?.display_name, product.brand?.name, "AE India");
     const category = getCategory(product);
     const categorySlug = getCategorySlug(product, category);
     const subCategory = getSubCategory(product);

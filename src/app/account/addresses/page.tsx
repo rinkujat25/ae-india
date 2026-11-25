@@ -6,7 +6,7 @@ import { requireCompanyId } from "@/utils/account-data";
 import { getAuthAccessToken } from "@/utils/auth-profile";
 
 export const metadata: Metadata = {
-    title: "Manage Addresses | Wingback",
+    title: "Manage Addresses | AE India",
     robots: { index: false, follow: false },
 };
 

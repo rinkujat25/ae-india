@@ -25,7 +25,7 @@ const namedAgents = [
 /**
  * Nothing on this host is to be crawled.
  *
- * It serves the Wingback store to people who were sent to it, not to search.
+ * It is kept out of search: a rule inherited with the codebase, not yet revisited for AE India.
  * The catalogue's public copy is GiftVerse's — every product page here
  * canonicalises there — and the rest of these pages are a client storefront
  * rather than something that should compete in results.

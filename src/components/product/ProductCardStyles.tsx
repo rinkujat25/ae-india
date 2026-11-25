@@ -1,25 +1,24 @@
 /**
- * The product card, shared by the catalogue listing and the Similar Products
- * rail on the detail page.
+ * The product card, shared by the home page, the catalogue listing, category
+ * pages and the detail page's rails.
  *
- * These rules used to live in `ProductsPageStyles`, which only the listing
- * page loads. They are their own sheet so both pages can render the same card
- * without pulling in the rest of the catalogue layout.
+ * It follows the AE India shop design: a white card with a 14px corner, the
+ * image on a grey well, left-aligned text, the price in ink, and -- when
+ * `showActions` is passed -- Add to Cart and Quote along the bottom.
  */
 const styles = `
 
   .p-card{
     background:#fff;
-    border:1px solid #e6e0d8;
-    border-radius:18px;
-    box-shadow:0 18px 50px rgba(28, 35, 31, .06);
+    border:1px solid var(--line);
+    border-radius:var(--r-md);
     display:flex;
     flex-direction:column;
     min-height:0;
     overflow:hidden;
-    padding:18px;
     position:relative;
-    text-align:center;
+    text-align:left;
+    transition:border-color .2s ease, box-shadow .2s ease;
   }
 
   .p-link{
@@ -30,12 +29,197 @@ const styles = `
     text-decoration:none;
   }
 
+  .p-media{
+    align-items:center;
+    background:var(--cream);
+    display:grid;
+    height:210px;
+    justify-content:center;
+    overflow:hidden;
+    padding:16px;
+  }
+
+  /* Grid items default to min-height:auto and refuse to shrink below the
+     image's intrinsic size, which pushes tall images over the card text. */
+  .p-media img{
+    height:100%;
+    max-height:100%;
+    max-width:100%;
+    min-height:0;
+    min-width:0;
+    object-fit:contain;
+    width:100%;
+    mix-blend-mode:multiply;
+    transition:transform .35s cubic-bezier(.22,.61,.36,1);
+  }
+
+  .no-img{
+    color:var(--muted);
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .p-body{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    gap:6px;
+    padding:18px 18px 0;
+  }
+
+  .p-card:not(:has(.p-actions)) .p-body{
+    padding-bottom:18px;
+  }
+
+  .brand{
+    color:var(--muted);
+    font-size:13px;
+    margin:0;
+  }
+
+  .p-body h2{
+    color:var(--ink);
+    display:-webkit-box;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0;
+    line-height:1.3;
+    margin:0;
+    min-height:44px;
+    overflow:hidden;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    transition:color .2s ease;
+  }
+
+  .p-price{
+    align-items:baseline;
+    color:var(--ink);
+    display:flex;
+    flex-wrap:wrap;
+    font-size:18px;
+    font-weight:700;
+    gap:4px 10px;
+    margin:4px 0 0;
+  }
+
+  .p-price span{
+    color:var(--muted);
+    font-size:14px;
+    font-weight:500;
+    text-decoration:line-through;
+  }
+
+  .p-actions{
+    display:flex;
+    gap:8px;
+    padding:14px 18px 18px;
+  }
+
+  .p-add,
+  .p-quote{
+    align-items:center;
+    border-radius:var(--r-sm);
+    display:inline-flex;
+    font:inherit;
+    font-size:14px;
+    font-weight:600;
+    height:44px;
+    justify-content:center;
+    transition:background-color .15s ease, border-color .15s ease;
+  }
+
+  .p-add{
+    background:var(--teal);
+    border:0;
+    color:#fff;
+    cursor:pointer;
+    flex:1 1 auto;
+    padding:0 12px;
+  }
+
+  .p-add:hover{
+    background:#0b5c55;
+  }
+
+  .p-add:disabled{
+    cursor:progress;
+    opacity:.75;
+  }
+
+  .p-add--view{
+    background:#fff;
+    border:1px solid #c9d3dc;
+    color:var(--ink);
+  }
+
+  .p-add--view:hover{
+    background:var(--cream);
+  }
+
+  .p-quote{
+    border:1px solid #c9d3dc;
+    color:var(--ink);
+    padding:0 14px;
+  }
+
+  .p-quote:hover{
+    border-color:var(--ink);
+  }
+
+  /* Discount and wishlist sit on the image well. */
+  .off{
+    background:var(--ink);
+    border-radius:5px;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    left:12px;
+    padding:4px 9px;
+    position:absolute;
+    top:12px;
+    z-index:2;
+  }
+
+  .wish{
+    align-items:center;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:50%;
+    color:#c41445;
+    cursor:pointer;
+    display:grid;
+    height:44px;
+    justify-content:center;
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:44px;
+    z-index:3;
+    transition:transform .2s ease;
+  }
+
+  .wish svg{
+    fill:none;
+    height:22px;
+    stroke:currentColor;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-width:2.2;
+    width:22px;
+  }
+
+  .wish svg.filled{
+    fill:currentColor;
+  }
+
   .variant-preview{
     align-items:center;
     display:flex;
-    left:14px;
+    left:12px;
     position:absolute;
-    top:14px;
+    top:162px;
     z-index:4;
   }
 
@@ -46,14 +230,13 @@ const styles = `
   .variant-thumbnail{
     align-items:center;
     background:#fff;
-    border:2px solid #c41445;
+    border:2px solid var(--violet);
     border-radius:50%;
     display:flex;
-    height:38px;
+    height:36px;
     justify-content:center;
     overflow:hidden;
-    position:relative;
-    width:38px;
+    width:36px;
   }
 
   .variant-thumbnail + .variant-thumbnail{
@@ -66,325 +249,93 @@ const styles = `
     width:100%;
   }
 
-  .variant-thumbnail:focus-visible{
-    outline:3px solid #17362d;
-    outline-offset:2px;
-  }
-
   .variant-more{
-    color:#1f2a24;
-    font-size:16px;
-    font-weight:850;
-    margin-left:6px;
-  }
-
-  .off{
-    /* Was #37a64b at 3.13:1 on white, below the 4.5:1 minimum for 14px text. */
-    color:#1c7a4f;
+    color:var(--ink);
     font-size:14px;
-    font-weight:900;
-    position:absolute;
-    right:18px;
-    top:14px;
-    z-index:2;
-  }
-
-  .wish{
-    align-items:center;
-    background:#fff;
-    border:0;
-    border-radius:50%;
-    box-shadow:0 8px 24px rgba(27, 31, 29, .14);
-    color:#c41445;
-    cursor:pointer;
-    display:grid;
-    height:44px;
-    justify-content:center;
-    position:absolute;
-    right:16px;
-    top:38px;
-    width:44px;
-    z-index:3;
-  }
-
-  .p-card:not(:has(.off)) .wish{
-    top:16px;
-  }
-
-  .wish svg{
-    fill:none;
-    height:24px;
-    stroke:currentColor;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    stroke-width:2.2;
-    width:24px;
-  }
-
-  .wish svg.filled{
-    fill:currentColor;
-  }
-
-  .p-media{
-    align-items:center;
-    aspect-ratio:1 / .86;
-    display:grid;
-    justify-content:center;
-    margin:8px 0 16px;
-    min-height:190px;
-    overflow:hidden;
-  }
-
-  .p-media img{
-    height:100%;
-    max-height:100%;
-    max-width:100%;
-    /* Grid items default to min-height:auto and refuse to shrink below the
-       image's intrinsic size, which pushed tall images over the card text. */
-    min-height:0;
-    min-width:0;
-    object-fit:contain;
-    width:100%;
-  }
-
-  .no-img{
-    color:#9a948d;
-    font-size:13px;
-    font-weight:800;
-  }
-
-  .p-body{
-    display:grid;
-    gap:10px;
-    margin-top:auto;
-  }
-
-  /* The brand used to be larger than the product name, which put the maker
-     above the thing being sold. It now reads as a label above the title. */
-  .brand{
-    color:#5b6a62;
-    font-size:12px;
     font-weight:700;
-    letter-spacing:.3px;
-    margin:0;
-    text-transform:uppercase;
-  }
-
-  .p-body h2{
-    color:#1f2a24;
-    display:-webkit-box;
-    font-size:15px;
-    font-weight:800;
-    letter-spacing:0;
-    line-height:1.28;
-    margin:0;
-    min-height:36px;
-    overflow:hidden;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-  }
-
-  .p-price{
-    align-items:baseline;
-    /* The most important number on the card was also the least legible:
-       #bf6537 measured 4.09:1 on white, just under the 4.5:1 minimum. */
-    color:#a4501f;
-    display:inline-flex;
-    font-size:18px;
-    font-weight:950;
-    gap:12px;
-    justify-content:center;
-    margin:0;
-  }
-
-  .p-price span{
-    /* Was #8f908f at 3.20:1. */
-    color:#6f706f;
-    font-size:15px;
-    font-weight:750;
-    text-decoration:line-through;
-  }
-
-  /* ---------------- hover motion ----------------
-
-     The card lifts, its shadow deepens and the photograph eases in behind the
-     card's own clipping, which reads as depth rather than as the image moving.
-
-     Two guards matter here. 'hover:hover' keeps the whole block away from touch
-     screens, where a tap counts as a hover and leaves a card stuck in the
-     raised state until the next tap lands elsewhere. 'prefers-reduced-motion'
-     drops the movement for anyone who has asked their OS for less of it, while
-     keeping the colour and shadow changes, so the card still answers the
-     pointer. */
-  .p-card{
-    transition:transform .22s cubic-bezier(.22,.61,.36,1),
-               box-shadow .22s ease,
-               border-color .22s ease;
-  }
-
-  .p-media img{
-    transition:transform .38s cubic-bezier(.22,.61,.36,1);
-  }
-
-  .p-body h2{
-    transition:color .22s ease;
-  }
-
-  .wish,
-  .variant-thumbnail{
-    transition:transform .22s ease, box-shadow .22s ease;
+    margin-left:6px;
   }
 
   @media (hover:hover){
     .p-card:hover{
-      border-color:#d8cfc2;
-      box-shadow:0 26px 60px rgba(28, 35, 31, .13);
-      transform:translateY(-4px);
+      border-color:#c9d3dc;
+      box-shadow:0 18px 44px rgba(15, 27, 45, .10);
     }
 
     .p-card:hover .p-media img{
-      transform:scale(1.06);
+      transform:scale(1.04);
     }
 
     .p-card:hover .p-body h2{
-      color:#bf6537;
+      color:var(--violet);
     }
 
     .wish:hover{
-      box-shadow:0 10px 28px rgba(196, 20, 69, .24);
-      transform:scale(1.09);
-    }
-
-    .variant-thumbnail:hover{
-      transform:translateY(-2px);
+      transform:scale(1.08);
     }
   }
 
-  /* Keyboard users reach the card through the link inside it, so the lift has
-     to hang off the container rather than off :hover. */
   .p-card:focus-within{
-    border-color:#d8cfc2;
-    box-shadow:0 26px 60px rgba(28, 35, 31, .13);
-    transform:translateY(-4px);
+    border-color:#c9d3dc;
   }
 
   @media (prefers-reduced-motion:reduce){
-    .p-card,
     .p-media img,
-    .p-body h2,
-    .wish,
-    .variant-thumbnail{
+    .wish{
       transition-duration:.01ms;
     }
 
-    .p-card:hover,
-    .p-card:focus-within,
     .p-card:hover .p-media img,
-    .wish:hover,
-    .variant-thumbnail:hover{
+    .wish:hover{
       transform:none;
     }
   }
-@media (max-width:820px){
 
-
-    .p-card{
-      min-height:0;
-      padding:14px;
-    }
-
+  @media (max-width:560px){
     .p-media{
-      min-height:170px;
-    }
-
-    .p-media img{
-      height:100%;
-      max-height:100%;
-      min-height:0;
-    }
-
-    .p-body h2{
-      font-size:14px;
-      min-height:36px;
-    }
-}@media (max-width:560px){
-
-
-    .p-card{
-      border-radius:12px;
-      min-height:0;
-      padding:12px 10px 14px;
-    }
-
-    .off{
-      font-size:12px;
-      right:12px;
-      top:10px;
+      height:150px;
+      padding:12px;
     }
 
     .variant-preview{
-      left:9px;
-      top:9px;
-    }
-
-    .variant-thumbnail{
-      height:32px;
-      width:32px;
-    }
-
-    .variant-thumbnail + .variant-thumbnail{
-      margin-left:-10px;
-    }
-
-    .variant-more{
-      font-size:13px;
-      margin-left:4px;
-    }
-
-    .wish{
-      height:38px;
-      right:10px;
-      top:31px;
-      width:38px;
-    }
-
-    .p-card:not(:has(.off)) .wish{
-      top:10px;
-    }
-
-    .wish svg{
-      height:20px;
-      width:20px;
-    }
-
-    .p-media{
-      margin:10px 0 12px;
-      min-height:128px;
-    }
-
-    .p-media img{
-      height:100%;
-      max-height:100%;
-      min-height:0;
-    }
-
-    .brand{
-      font-size:13px;
+      top:106px;
     }
 
     .p-body{
-      gap:7px;
+      padding:12px 12px 0;
+    }
+
+    .p-card:not(:has(.p-actions)) .p-body{
+      padding-bottom:12px;
     }
 
     .p-body h2{
-      font-size:14px;
-      min-height:36px;
+      font-size:15px;
+      min-height:40px;
     }
 
     .p-price{
-      font-size:15px;
+      font-size:16px;
     }
-}`;
+
+    .p-actions{
+      flex-direction:column;
+      gap:6px;
+      padding:10px 12px 12px;
+    }
+
+    .p-quote{
+      padding:0 10px;
+    }
+
+    .wish{
+      height:40px;
+      right:8px;
+      top:8px;
+      width:40px;
+    }
+  }
+`;
 
 export function ProductCardStyles() {
     return <style dangerouslySetInnerHTML={{ __html: styles }} />;

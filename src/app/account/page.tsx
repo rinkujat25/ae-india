@@ -6,8 +6,8 @@ import { staticAccountCashPoints } from "@/constants/account";
 import { requireAccountProfile } from "@/utils/account-data";
 
 export const metadata: Metadata = {
-    title: "My Account | Wingback",
-    description: "Your Wingback account overview.",
+    title: "My Account | AE India",
+    description: "Your AE India account overview.",
     robots: { index: false, follow: false },
 };
 

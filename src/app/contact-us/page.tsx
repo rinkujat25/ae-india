@@ -9,19 +9,16 @@ import { ContactUsStyles } from "@/components/contact-us/ContactUsStyles";
 import { fillCompanyTokens } from "@/lib/company";
 import { absoluteUrl } from "@/lib/site";
 
+const contactTitle = "Contact AE India | Bulk Orders, Dealers & Support";
+const contactDescription =
+  "Bulk quotes, dealer enquiries or help with an order: call AE India, or visit us in Palam Village, New Delhi.";
+
 export const metadata: Metadata = {
-  title: "Contact Wingback | Corporate Gifting Enquiries India",
+  title: contactTitle,
   description: fillCompanyTokens(
-    "Talk to Sampley about the Wingback gift store, an order already running, or supplying the Sampley catalogue. Email {{support_email_id}} or call {{toll_free_number}}.",
+    "Call AE India on {{toll_free_number}} for bulk quotes, dealer enquiries or help with an order.",
   ),
-  keywords: [
-    "contact Wingback",
-    "corporate gifting enquiry India",
-    "corporate gift supplier contact",
-    "gifting program support",
-    "Sampley gifting contact",
-  ],
-  authors: [{ name: "Sampley" }],
+  authors: [{ name: "Amit Enterprises" }],
   alternates: {
     canonical: "/contact-us",
     languages: {
@@ -29,27 +26,20 @@ export const metadata: Metadata = {
       "x-default": "/contact-us",
     },
   },
+  // No image until AE India has a link-preview card of its own; the one this
+  // page used to carry was the previous store's logo.
   openGraph: {
     type: "website",
-    siteName: "Wingback Gift Store",
+    siteName: "AE India",
     url: absoluteUrl("/contact-us"),
-    title: "Contact Wingback | Corporate Gifting Enquiries India",
-    description:
-      "Programs, live orders or supplying to the catalogue - here's who to reach and how fast we reply.",
-    images: [
-      {
-        url: absoluteUrl("/assets/wingback-logo-full@2x.png"),
-        alt: "Sampley",
-      },
-    ],
+    title: contactTitle,
+    description: contactDescription,
     locale: "en_IN",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Contact Wingback | Corporate Gifting Enquiries",
-    description:
-      "Programs, live orders or supplying to the catalogue - here's who to reach and how fast we reply.",
-    images: [absoluteUrl("/assets/wingback-logo-full@2x.png")],
+    card: "summary",
+    title: contactTitle,
+    description: contactDescription,
   },
 };
 

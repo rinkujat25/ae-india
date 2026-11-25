@@ -20,6 +20,11 @@ type AddCartResponse =
     | { mode: "guest"; cart: HyperinventoryTemporaryCartResponseDto }
     | { mode: "user"; cart: { id: string; totalItems: number } };
 
+type InfoTabId = "description" | "specifications" | "in-box";
+
+/** The three promises under the buttons, from the AE India product design. */
+const assurances = ["Pan-India delivery", "Business & dealer pricing", "24/7 support"];
+
 function formatMoney(value: number) {
     return `Rs. ${new Intl.NumberFormat("en-IN").format(value)}`;
 }
@@ -58,6 +63,7 @@ export function ProductDetailPageContent({
     const [zoomPosition, setZoomPosition] = useState<{ x: number; y: number } | null>(null);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const [cartError, setCartError] = useState("");
+    const [activeTab, setActiveTab] = useState<InfoTabId>("description");
     const lightboxRef = useRef<HTMLDialogElement | null>(null);
 
     const discount = getDiscount(product.price, product.mrp);
@@ -99,7 +105,13 @@ export function ProductDetailPageContent({
         ["Included Components", findSpecValue(product.specs, ["included", "component", "in box"])],
         ["Quantity", findSpecValue(product.specs, ["pack", "quantity"])],
     ].filter(([, value]) => value);
-    const hasProductInfo = Boolean(descriptionContent || product.specs.length || productsInBox.length);
+    // Only the sections that have something in them become tabs.
+    const infoTabs: Array<{ id: InfoTabId; label: string }> = [
+        ...(descriptionContent ? [{ id: "description" as const, label: "Description" }] : []),
+        ...(product.specs.length ? [{ id: "specifications" as const, label: "Specifications" }] : []),
+        ...(productsInBox.length ? [{ id: "in-box" as const, label: "In the box" }] : []),
+    ];
+    const currentTab = infoTabs.some((tab) => tab.id === activeTab) ? activeTab : infoTabs[0]?.id;
 
     function syncQuantity(nextQuantity: number) {
         const requested = Math.max(1, nextQuantity || 1);
@@ -198,7 +210,7 @@ export function ProductDetailPageContent({
             <div className="wrap">
                 <Breadcrumbs
                     trail={[
-                        { label: "Products", href: "/products" },
+                        { label: "Shop", href: "/products" },
                         ...(product.category
                             ? [{ label: product.category, href: `/category/${product.categorySlug}` }]
                             : []),
@@ -206,45 +218,8 @@ export function ProductDetailPageContent({
                     ]}
                 />
 
-                <section className="pdp-title-block">
-                    <p className="brandline">
-                        By <Link href={`/products?brands=${encodeURIComponent(product.brand)}`}>{product.brand}</Link>
-                    </p>
-                    <h1>{product.name}</h1>
-
-                    {titleSummary ? (
-                        <div className="title-summary">
-                            <p>{visibleTitleSummary}</p>
-                            {shouldCollapseSummary ? (
-                                <button
-                                    type="button"
-                                    className="title-summary-toggle"
-                                    onClick={() => setIsSummaryOpen((current) => !current)}
-                                >
-                                    {isSummaryOpen ? "View Less" : "View More"}
-                                </button>
-                            ) : null}
-                        </div>
-                    ) : null}
-                </section>
-
                 <main className="pdp">
                     <div className="pdp-gallery">
-                        <div className="pdp-rail" role="tablist" aria-label="Product images">
-                            {product.images.map((image, index) => (
-                                <button
-                                    className="pdp-thumb"
-                                    type="button"
-                                    role="tab"
-                                    aria-current={activeImageIndex === index}
-                                    aria-label={`View image ${index + 1}`}
-                                    onClick={() => setActiveImageIndex(index)}
-                                    key={image}
-                                >
-                                    <img src={image} alt="" loading="lazy" referrerPolicy="no-referrer" />
-                                </button>
-                            ))}
-                        </div>
                         <div
                             className="pdp-stage"
                             onMouseEnter={updateZoomPosition}
@@ -297,52 +272,77 @@ export function ProductDetailPageContent({
                                 {activeImageIndex + 1} / {product.images.length}
                             </span>
                         </div>
+                        {product.images.length > 1 ? (
+                            <div className="pdp-rail" role="tablist" aria-label="Product images">
+                                {product.images.map((image, index) => (
+                                    <button
+                                        className="pdp-thumb"
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={activeImageIndex === index}
+                                        aria-label={`View image ${index + 1}`}
+                                        onClick={() => setActiveImageIndex(index)}
+                                        key={image}
+                                    >
+                                        <img src={image} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                                    </button>
+                                ))}
+                            </div>
+                        ) : null}
                     </div>
 
                     <div className="detail">
-                        <div className="meta-row">
-                            <span>
-                                SKU <b>{product.sku}</b>
-                            </span>
-                            {product.category ? (
+                        {product.category ? (
+                            <Link className="pdp-cat" href={`/category/${product.categorySlug}`}>
+                                {product.category}
+                                {product.subCategory ? ` · ${product.subCategory}` : ""}
+                            </Link>
+                        ) : null}
+                        <h1>{product.name}</h1>
+                        <p className="pdp-meta">
+                            {product.sku ? <span>SKU {product.sku}</span> : null}
+                            {product.brand ? (
                                 <span>
-                                    Category <b>{product.category}</b>
+                                    Brand{" "}
+                                    <Link href={`/products?brands=${encodeURIComponent(product.brand)}`}>{product.brand}</Link>
                                 </span>
                             ) : null}
-                            {product.subCategory ? (
-                                <span>
-                                    Sub-category <b>{product.subCategory}</b>
-                                </span>
-                            ) : null}
-                        </div>
+                        </p>
+
+                        {titleSummary ? (
+                            <div className="title-summary">
+                                <p>{visibleTitleSummary}</p>
+                                {shouldCollapseSummary ? (
+                                    <button
+                                        type="button"
+                                        className="title-summary-toggle"
+                                        onClick={() => setIsSummaryOpen((current) => !current)}
+                                    >
+                                        {isSummaryOpen ? "View less" : "View more"}
+                                    </button>
+                                ) : null}
+                            </div>
+                        ) : null}
 
                         <div className="price-block">
                             {/* A zero price is the seller saying the rate is
-                                arranged, not that the product is free. Rendering
-                                it as "Rs. 0" told the buyer the second, so a
-                                product without a price asks for the enquiry that
-                                would produce one instead. */}
-                            <p className="price-label">{hasPrice ? "Price per unit" : "Price on request"}</p>
+                                arranged, not that the product is free, so it
+                                asks for the enquiry that would produce one. */}
                             {hasPrice ? (
                                 <div className="price">
                                     <b>{formatMoney(product.price)}</b>
-                                    {/* Only when there is a reduction to show. A
-                                        struck-through price identical to the one
-                                        beside it reads as a discount that is not
-                                        there. The card already gated this the same
-                                        way; the detail page did not. */}
+                                    {/* Only when there is a reduction to show. */}
                                     {product.mrp > product.price ? <s>{formatMoney(product.mrp)}</s> : null}
                                     {discount ? <span className="off">{discount}% off</span> : null}
+                                    <span className="price-unit">per unit</span>
                                 </div>
                             ) : (
-                                <Link className="btn btn-primary price-enquiry" href="/contact-us">
-                                    Get a price &rarr;
-                                </Link>
+                                <p className="price-label">Price on request</p>
                             )}
                             <p className="price-note">
                                 {hasPrice
-                                    ? "Exclusive of GST. Program pricing depends on volume, branding scope and delivery geography, confirmed in your campaign quote."
-                                    : "This product is quoted per programme. Tell us the headcount, branding and delivery geography and we will come back with a rate."}
+                                    ? "Taxes and shipping are worked out at checkout."
+                                    : "Tell us the quantity you need and we will come back with a rate."}
                             </p>
                         </div>
 
@@ -369,46 +369,6 @@ export function ProductDetailPageContent({
                             </div>
                         ) : null}
 
-                        <div className="opt">
-                            <p className="opt-label">Quantity</p>
-                            <div className="qty-wrap">
-                                <div className="qty">
-                                    <button
-                                        type="button"
-                                        aria-label="Decrease quantity"
-                                        disabled={quantity <= 1}
-                                        onClick={() => syncQuantity(quantity - 1)}
-                                    >
-                                        -
-                                    </button>
-                                    <input
-                                        type="number"
-                                        min={1}
-                                        max={product.maxQuantity ?? undefined}
-                                        step={1}
-                                        value={quantity}
-                                        aria-label="Quantity"
-                                        onChange={(event) => syncQuantity(Number(event.target.value))}
-                                    />
-                                    <button
-                                        type="button"
-                                        aria-label="Increase quantity"
-                                        disabled={product.maxQuantity !== null && quantity >= product.maxQuantity}
-                                        onClick={() => syncQuantity(quantity + 1)}
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                                {/* Without a unit price this only ever reads
-                                    "Rs. 0 at this quantity". */}
-                                {hasPrice ? (
-                                    <span className="moq">
-                                        {formatMoney(lineTotal)} at this quantity
-                                    </span>
-                                ) : null}
-                            </div>
-                        </div>
-
                         <span className={`avail${canAddToCart ? "" : " unavailable"}`}>
                             <i /> {isBackOrder
                                 ? "Available on back order - one per order"
@@ -418,9 +378,37 @@ export function ProductDetailPageContent({
                                       : "Available to order"
                                   : "Out of stock"}
                         </span>
+
                         <div className="cta-row">
+                            <div className="qty">
+                                <button
+                                    type="button"
+                                    aria-label="Decrease quantity"
+                                    disabled={quantity <= 1}
+                                    onClick={() => syncQuantity(quantity - 1)}
+                                >
+                                    &minus;
+                                </button>
+                                <input
+                                    type="number"
+                                    min={1}
+                                    max={product.maxQuantity ?? undefined}
+                                    step={1}
+                                    value={quantity}
+                                    aria-label="Quantity"
+                                    onChange={(event) => syncQuantity(Number(event.target.value))}
+                                />
+                                <button
+                                    type="button"
+                                    aria-label="Increase quantity"
+                                    disabled={product.maxQuantity !== null && quantity >= product.maxQuantity}
+                                    onClick={() => syncQuantity(quantity + 1)}
+                                >
+                                    +
+                                </button>
+                            </div>
                             <button
-                                className="btn btn-primary"
+                                className="pdp-add"
                                 type="button"
                                 disabled={isAddingToCart || !canAddToCart}
                                 onClick={handleAddToCart}
@@ -428,10 +416,30 @@ export function ProductDetailPageContent({
                                 {/* `isUnavailable`, not `!canAddToCart`: the
                                     latter is also false when only the quantity
                                     is too high, which is not "out of stock". */}
-                                {isAddingToCart ? "Adding..." : isUnavailable ? "Out of stock" : "Add to cart →"}
+                                {isAddingToCart ? "Adding..." : isUnavailable ? "Out of stock" : "Add to Cart"}
                             </button>
                         </div>
+                        {/* Without a unit price this only ever reads "Rs. 0". */}
+                        {hasPrice && quantity > 1 ? (
+                            <p className="moq">{formatMoney(lineTotal)} for {quantity} units</p>
+                        ) : null}
                         {cartError ? <p className="cart-error" role="alert">{cartError}</p> : null}
+
+                        {/* No quote flow yet: bulk enquiries go to the contact page. */}
+                        <Link className="pdp-quote" href="/contact-us">
+                            Request Bulk Quote
+                        </Link>
+
+                        <ul className="pdp-assure">
+                            {assurances.map((item) => (
+                                <li key={item}>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="m5 12 4.5 4.5L19 7" />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
 
                         {product.gifting.length ? <section className="gifting">
                             <h2>Gifting suitability</h2>
@@ -446,55 +454,82 @@ export function ProductDetailPageContent({
                         </section> : null}
                     </div>
                 </main>
+            </div>
 
-                {hasProductInfo ? <section className="product-info-sections" id="specs">
-                    {descriptionContent ? <article className="info-section" id="description">
-                        <h2>Description</h2>
-                        {descriptionHtml ? (
-                            <div
-                                className="info-description info-description-rich"
-                                dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-                            />
-                        ) : (
-                            <div className="info-description">
-                                <p>{descriptionContent}</p>
-                            </div>
-                        )}
-                    </article> : null}
-
-                    {product.specs.length ? <article className="info-section spec-section">
-                        <h2>Specifications</h2>
-                        <p className="spec-sub">
-                            Manufacturer data for {product.name}. Branding options and packaging are confirmed per program.
-                        </p>
-                        <div className="spec-info-grid">
-                            {product.specs.map(
-                                ([label, value]) => (
-                                    <div className="spec-info-row" key={label}>
-                                        <strong>{label}</strong>
-                                        <span>{value}</span>
-                                    </div>
-                                ),
-                            )}
-                        </div>
-                    </article> : null}
-
-                    {productsInBox.length ? <article className="info-section spec-section">
-                        <h2>Products In Box</h2>
-                        <p className="spec-sub">
-                            Included product and packaging details are confirmed from manufacturer data before dispatch.
-                        </p>
-                        <div className="spec-info-grid">
-                            {productsInBox.map(([label, value]) => (
-                                <div className="spec-info-row" key={label}>
-                                    <strong>{label}</strong>
-                                    <span>{value}</span>
-                                </div>
+            {infoTabs.length ? (
+                <section className="pdp-info-band" id="specs" aria-label="Product information">
+                    <div className="wrap">
+                        <div className="pdp-tabs" role="tablist" aria-label="Product information">
+                            {infoTabs.map((tab) => (
+                                <button
+                                    type="button"
+                                    role="tab"
+                                    id={`pdp-tab-${tab.id}`}
+                                    aria-controls={`pdp-panel-${tab.id}`}
+                                    aria-selected={currentTab === tab.id}
+                                    tabIndex={currentTab === tab.id ? 0 : -1}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    onKeyDown={(event) => {
+                                        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+                                        event.preventDefault();
+                                        const index = infoTabs.findIndex((item) => item.id === currentTab);
+                                        const step = event.key === "ArrowRight" ? 1 : -1;
+                                        const next = infoTabs[(index + step + infoTabs.length) % infoTabs.length];
+                                        setActiveTab(next.id);
+                                        document.getElementById(`pdp-tab-${next.id}`)?.focus();
+                                    }}
+                                    key={tab.id}
+                                >
+                                    {tab.label}
+                                </button>
                             ))}
                         </div>
-                    </article> : null}
-                </section> : null}
 
+                        {currentTab === "description" ? (
+                            <div className="pdp-panel" role="tabpanel" id="pdp-panel-description" aria-labelledby="pdp-tab-description">
+                                {descriptionHtml ? (
+                                    <div
+                                        className="info-description info-description-rich"
+                                        dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+                                    />
+                                ) : (
+                                    <div className="info-description">
+                                        <p>{descriptionContent}</p>
+                                    </div>
+                                )}
+                            </div>
+                        ) : null}
+
+                        {currentTab === "specifications" ? (
+                            <div className="pdp-panel" role="tabpanel" id="pdp-panel-specifications" aria-labelledby="pdp-tab-specifications">
+                                <dl className="spec-table">
+                                    {product.specs.map(([label, value]) => (
+                                        <div key={label}>
+                                            <dt>{label}</dt>
+                                            <dd>{value}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        ) : null}
+
+                        {currentTab === "in-box" ? (
+                            <div className="pdp-panel" role="tabpanel" id="pdp-panel-in-box" aria-labelledby="pdp-tab-in-box">
+                                <dl className="spec-table">
+                                    {productsInBox.map(([label, value]) => (
+                                        <div key={label}>
+                                            <dt>{label}</dt>
+                                            <dd>{value}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        ) : null}
+                    </div>
+                </section>
+            ) : null}
+
+            <div className="wrap">
                 {product.media.length ? <section className="media" id="media">
                     <h2>Images and Videos</h2>
                     <p className="sub">{imageCount} images · {videoCount} videos · supplied by the brand</p>
@@ -601,7 +636,7 @@ export function ProductDetailPageContent({
                 />
 
                 {product.relatedProducts.length ? <section className="related">
-                    <h2>Others at this budget tier</h2>
+                    <h2>Related products</h2>
                     <div className="rel-grid">
                         {product.relatedProducts.map((related) => (
                             <Link className="rel" href={`/products/${related.slug}`} key={related.name}>

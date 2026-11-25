@@ -4,7 +4,7 @@ import { AccountSectionShell } from "@/components/account/AccountSectionShell";
 import { staticAccountRewards } from "@/constants/account";
 
 export const metadata: Metadata = {
-    title: "Rewards | Wingback",
+    title: "Rewards | AE India",
     robots: { index: false, follow: false },
 };
 

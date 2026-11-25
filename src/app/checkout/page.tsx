@@ -12,7 +12,7 @@ import { buildLoginHref } from "@/utils/auth-mode";
 import { mapUserCart } from "@/utils/mappers/cart.mapper";
 
 export const metadata: Metadata = {
-    title: "Checkout | Wingback",
+    title: "Checkout | AE India",
     robots: { index: false, follow: false },
 };
 

@@ -5,16 +5,18 @@ import { SiteHeader } from "@/components/common/SiteHeader";
 import { ProductsPageContent } from "@/components/product/ProductsPageContent";
 import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 import { ProductsPageStyles } from "@/components/product/ProductsPageStyles";
+import { ShopBanner } from "@/components/product/ShopBanner";
 import { budgetPriceRanges } from "@/constants/budget";
+import { isShopCategorySelected, shopCategories, shopCategoryHref, shopCategoryLabel } from "@/constants/shop";
 import { getProducts } from "@/services/hyperinventory/product.service";
 import { orderingParam, resolveOrdering } from "@/utils/product-sort";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: "Products | Wingback Corporate Gift Catalogue",
+    title: "Shop | AE India",
     description:
-        "Browse the Wingback corporate gifting product catalogue and product listing cards.",
+        "Shop cleaning, floor-care, matting and architectural surface products from AE India, with bulk pricing and pan-India delivery.",
     // The listing takes filters and paging through the query string, so every
     // combination is a separate URL serving a subset of the same catalogue. A
     // self-referencing canonical points all of them back at the clean listing
@@ -101,14 +103,33 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         return null;
     });
 
+    // A single category chosen, or a search, names the page; anything broader
+    // is the whole shop.
+    const bannerTitle = search
+        ? `Results for “${search}”`
+        : shopCategoryLabel(categories) ?? (categories.length === 1 ? categories[0] : "All products");
+
     return (
         <>
             <ProductsPageStyles />
             <ProductCardStyles />
             <SiteHeader active="products" />
             <div className="wrap">
-                <Breadcrumbs trail={[{ label: "Products" }]} />
+                <Breadcrumbs trail={[{ label: "Shop" }]} />
             </div>
+            <ShopBanner
+                eyebrow={search ? "Search" : "Shop"}
+                title={bannerTitle}
+                description="Cleaning, maintenance and architectural surface products — sold individually or in bulk packs."
+                chips={[
+                    { label: "All", href: "/products", current: !categories.length && !search },
+                    ...shopCategories.map((category) => ({
+                        label: category.label,
+                        href: shopCategoryHref(category),
+                        current: isShopCategorySelected(category, categories),
+                    })),
+                ]}
+            />
             <ProductsPageContent
                 catalogue={catalogue}
                 page={page}

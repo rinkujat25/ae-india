@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { SiteFooter } from "@/components/common/SiteFooter";
 import { SiteHeader } from "@/components/common/SiteHeader";
@@ -8,6 +7,7 @@ import { CategoryPageContent } from "@/components/category/CategoryPageContent";
 import { CategoryUnavailable } from "@/components/category/CategoryUnavailable";
 import { CategoryStyles } from "@/components/category/CategoryStyles";
 import { ProductCardStyles } from "@/components/product/ProductCardStyles";
+import { ShopBanner } from "@/components/product/ShopBanner";
 import { getCategories, getCategoryBySlug } from "@/services/hyperinventory/category.service";
 import { budgetPriceRanges } from "@/constants/budget";
 import { getProducts } from "@/services/hyperinventory/product.service";
@@ -84,19 +84,19 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     const { category, sub } = await resolveCategory(slug);
 
     if (!category) {
-        return { title: "Category | Wingback", robots: { index: false, follow: false } };
+        return { title: "Category | AE India", robots: { index: false, follow: false } };
     }
 
     if (sub) {
-        const subTitle = `${sub.label} | ${category.label} | Wingback`;
+        const subTitle = `${sub.label} | ${category.label} | AE India`;
 
         return {
             title: subTitle,
-            description: `Browse ${sub.label} within ${category.label} corporate gifts from the Wingback gift store, with bulk pricing, branding and pan-India delivery.`,
+            description: `Shop ${sub.label} within ${category.label} from AE India, with bulk pricing and pan-India delivery.`,
             alternates: { canonical: `/category/${slug}` },
             openGraph: {
                 type: "website",
-                siteName: "Wingback Gift Store",
+                siteName: "AE India",
                 url: `/category/${slug}`,
                 title: subTitle,
             },
@@ -105,11 +105,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
     // The provider's own SEO copy wins where it has any; both fields are
     // routinely null, so the page writes a sensible line of its own otherwise.
-    const title = category.metaTitle || `${category.label} Corporate Gifts | Wingback`;
+    const title = category.metaTitle || `${category.label} | AE India`;
     const description =
         category.metaDescription
         || category.description
-        || `Browse ${category.label} corporate gifts from the Wingback gift store, with bulk pricing, branding and pan-India delivery.`;
+        || `Shop ${category.label} from AE India, with bulk pricing and pan-India delivery.`;
 
     return {
         title,
@@ -117,7 +117,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
         alternates: { canonical: `/category/${category.slug}` },
         openGraph: {
             type: "website",
-            siteName: "Wingback Gift Store",
+            siteName: "AE India",
             url: `/category/${category.slug}`,
             title,
             description,
@@ -147,7 +147,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 <SiteHeader active="products" />
                 <main className="cat-page">
                     <div className="wrap">
-                        <Breadcrumbs trail={[{ label: "Products", href: "/products" }, { label: "Category" }]} />
+                        <Breadcrumbs trail={[{ label: "Shop", href: "/products" }, { label: "Category" }]} />
                         <CategoryUnavailable subject="this category" retryHref={`/category/${slug}`} />
                     </div>
                 </main>
@@ -196,47 +196,33 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             <ProductCardStyles />
             <CategoryStyles />
             <SiteHeader active="products" />
+            <div className="wrap">
+                <Breadcrumbs
+                    trail={[
+                        { label: "Shop", href: "/products" },
+                        // On a sub-category the visitor is a level deeper, so
+                        // the category becomes a link back to the whole of it.
+                        { label: category.label, href: sub ? `/category/${category.slug}` : undefined },
+                        ...(sub ? [{ label: sub.label }] : []),
+                    ]}
+                />
+            </div>
+            <ShopBanner
+                eyebrow={sub ? `Sub-category · ${category.label}` : "Category"}
+                title={sub ? sub.label : category.label}
+                description={sub ? undefined : category.description || undefined}
+                imageUrl={category.bannerUrl || category.imageUrl || undefined}
+                chips={[
+                    { label: "All", href: "/products" },
+                    ...categories.map((item) => ({
+                        label: item.label,
+                        href: `/category/${item.slug}`,
+                        current: item.slug === category.slug,
+                    })),
+                ]}
+            />
             <main className="cat-page">
                 <div className="wrap">
-                    <Breadcrumbs
-                        trail={[
-                            { label: "Products", href: "/products" },
-                            // On a sub-category the visitor is a level deeper, so
-                            // the category becomes a link back to the whole of it.
-                            { label: category.label, href: sub ? `/category/${category.slug}` : undefined },
-                            ...(sub ? [{ label: sub.label }] : []),
-                        ]}
-                    />
-
-                    <header className="cat-head">
-                        <div>
-                            <h1>{sub ? sub.label : category.label}</h1>
-                            {sub ? (
-                                <p className="cat-lede">
-                                    In <Link href={`/category/${category.slug}`}>{category.label}</Link>
-                                </p>
-                            ) : category.description ? (
-                                <p className="cat-lede">{category.description}</p>
-                            ) : null}
-                        </div>
-                        <div className="cat-stats">
-                            {/* No count when the read failed: "0 products" is
-                                the same false claim the empty state made. */}
-                            {productsFailed ? null : (
-                                <div>
-                                    <b>{catalogue.total ?? products.length}</b>
-                                    <span>products</span>
-                                </div>
-                            )}
-                            {!sub && subCategories.length ? (
-                                <div>
-                                    <b>{subCategories.length}</b>
-                                    <span>sub-categories</span>
-                                </div>
-                            ) : null}
-                        </div>
-                    </header>
-
                     <CategoryPageContent
                         products={products}
                         failed={productsFailed}
@@ -248,7 +234,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                         activeSub={sub?.value ?? ""}
                         categoryHref={`/category/${category.slug}`}
                         totalInCategory={parentCatalogue?.total ?? products.length}
-                        siblings={categories.filter((item) => item.slug !== category.slug)}
                     />
                 </div>
             </main>

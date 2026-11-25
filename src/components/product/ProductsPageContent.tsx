@@ -1,4 +1,5 @@
 import { ProductListing } from "@/components/product/ProductListing";
+import { FacilityBox } from "@/components/product/ShopBanner";
 import type { ProductListModel } from "@/types/models/product.model";
 
 type ProductsPageContentProps = {
@@ -19,7 +20,13 @@ export function ProductsPageContent({ catalogue, filterKey, page, pageSize }: Pr
         <main className="products-page">
             <div className="wrap">
                 {catalogue ? (
-                    <ProductListing catalogue={catalogue} page={page} pageSize={pageSize} key={filterKey} />
+                    <ProductListing
+                        catalogue={catalogue}
+                        page={page}
+                        pageSize={pageSize}
+                        sidebarFooter={<FacilityBox />}
+                        key={filterKey}
+                    />
                 ) : (
                     <section className="empty" role="alert">
                         The product catalogue is temporarily unavailable. Please try again shortly.

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from "next/link";
+import { AddToCartButton } from "@/components/product/AddToCartButton";
 import { WishlistButton } from "@/components/product/WishlistButton";
 import { staticProductDetail } from "@/constants/productDetail";
 import type { ProductModel, ProductVariantSummaryModel } from "@/types/models/product.model";
@@ -16,6 +17,12 @@ type ProductCardProps = {
     product: ProductModel;
     showVariants?: boolean;
     showWishlist?: boolean;
+    /**
+     * Add to Cart and Quote under the price, as the AE India shop design draws
+     * them. Opt-in like the other extras: the home page and the listings pass
+     * it, the detail page's rails do not.
+     */
+    showActions?: boolean;
 };
 
 export function productHref(product: ProductModel) {
@@ -80,7 +87,17 @@ function ProductVariantPreview({ variants }: { variants: ProductVariantSummaryMo
     );
 }
 
-export function ProductCard({ product, showVariants = false, showWishlist = false }: ProductCardProps) {
+/**
+ * Orderable from the card: in stock, orderable, and priced. A back order needs
+ * the detail page, which knows the one-unit cap; the listing model does not
+ * carry `is_allow_back_orders`, so an out-of-stock product sends the visitor
+ * there instead of guessing.
+ */
+function canAddFromCard(product: ProductModel) {
+    return Boolean(product.id) && product.inStock && product.canOrder && product.price > 0;
+}
+
+export function ProductCard({ product, showVariants = false, showWishlist = false, showActions = false }: ProductCardProps) {
     const discount = productDiscount(product);
     const href = productHref(product);
 
@@ -102,11 +119,32 @@ export function ProductCard({ product, showVariants = false, showWishlist = fals
                 </div>
 
                 <div className="p-body">
-                    <p className="brand">{product.brand || "Wingback"}</p>
+                    <p className="brand">{product.brand || "AE India"}</p>
                     <h2>{product.name}</h2>
                     <Price product={product} />
                 </div>
             </Link>
+
+            {showActions ? (
+                <div className="p-actions">
+                    {canAddFromCard(product) ? (
+                        <AddToCartButton
+                            className="p-add"
+                            productId={product.id}
+                            price={product.price}
+                            name={product.name}
+                        />
+                    ) : (
+                        <Link className="p-add p-add--view" href={href}>
+                            {product.inStock ? "View product" : "Out of stock"}
+                        </Link>
+                    )}
+                    {/* No quote flow yet: enquiries go to the contact page. */}
+                    <Link className="p-quote" href="/contact-us">
+                        Quote
+                    </Link>
+                </div>
+            ) : null}
         </article>
     );
 }

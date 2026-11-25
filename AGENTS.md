@@ -33,6 +33,7 @@ Reserved for future rules.
 ## API Integration
 
 - Use `HYPERINVENTORY_API_URL` for commerce APIs and reserve `RANKNOVA_API_URL` for AI product search.
+- `HYPERINVENTORY_SALESCHANNEL` must be the **storefront** sales channel, the one aeindia.co sends on its `/consumer/...` reads. The admin dashboard uses a different channel and client pair; with that channel the provider answers 401 "Invalid Credentials" on seller-free endpoints and 404 on every seller endpoint.
 - Keep API credentials server-side. Never expose client secrets through `NEXT_PUBLIC_*` variables or Client Components.
 - Put Hyperinventory request and domain services in `src/services/hyperinventory`.
 - Define provider request and response contracts in `src/types/dto/hyperinventory`.
@@ -43,24 +44,30 @@ Reserved for future rules.
 - Parse only `brand_filter`, `category_filter`, `tag_Filter` and `price_filter` from product aggregations until additional filters are explicitly requested.
 - Product searching, filtering and sorting must be performed by server-side API requests, not by filtering an already-loaded product array in Client Components.
 - Product listing category and brand selections use the `categories` and `brands` URL query parameters and pass comma-separated bucket keys into the Hyperinventory product request.
-- Every product read is held to the store's collection: `collection_ids=<id>` from `storeCollectionIds` in `src/constants/collection.ts` ("Wingback Customer"). It is added **inside** `getProducts` and `getProductSearchSuggestions`, not by callers, so the listing, category pages, home shelf, Similar Products and search suggestions all carry it and a new read cannot forget it.
+- Product reads can be held to a collection through `storeCollectionIds` in `src/constants/collection.ts`, applied **inside** `getProducts` and `getProductSearchSuggestions` so no caller can forget it. **For AE India the list is empty:** the seller's whole catalogue is AE India's, aeindia.co itself sends no collection, and the inherited Wingback id matched nothing under this seller. An empty list leaves `collection_ids` out of the request entirely.
 - The name is exact. `collections`, `collection` and `collection_id` are silently ignored and return the whole seller catalogue; a JSON-array value answers 500. A collection with nothing indexed returns zero hits, not an error, so an empty store means the collection is empty, not that the request failed.
 - Sorting is server-side: the product read sends Hyperinventory `ordering`, and the URL carries the same value as `?ordering=`. Three are offered, from `sortOptions` in `src/utils/product-sort.ts`: `-created_at` (Newest, the default and omitted from the URL), `-selling_price` (Price: High to Low) and `selling_price` (Price: Low to High). Anything else falls back to the default through `resolveOrdering`, so nothing arbitrary from the URL reaches the provider.
-- **The provider ignores `ordering` once `collection_ids` is in the request.** It sorts on each product's position in the collection first and on `ordering` only as a tie-breaker, and every position is unique, so all three orders came back identical. Other parameter names (`sort`, `sort_by`, `order_by`) do nothing either. Until it is fixed upstream, `getProducts` collects the whole result set for any read with an `ordering` (100 per page, up to 10 pages), sorts it with `sortHits`, and slices out the requested page. Price is read from the variant the card shows (`getPrimaryVariant`), unpriced products go last in both directions, and the returned `total` is the exact card count. Reads without an `ordering` — the home shelf, Similar Products — still take the provider's single page. Remove the workaround once the provider honours `ordering` with a collection.
+- **The provider ignores `ordering` once `collection_ids` is in the request.** It sorts on each product's position in the collection first, so with a collection `getProducts` collects the whole result set for any read with an `ordering` (100 per page, up to 10 pages), sorts it with `sortHits` and slices out the page. With no collection — AE India today — sorted reads go straight to the provider's single page. Keep the workaround while a collection can be configured.
 - Never sort the loaded array in the browser: it only reorders the page in hand, so "Low to High" on page 1 showed the cheapest of 24, not of the catalogue. Changing the order resets `page`, and filters and paging keep `ordering` because they copy the existing query.
 - `ProductSortSelect` is the one dropdown for both the listing and the category page. It navigates with `router.replace` inside a transition and drives the global loader while it is pending, since a query-only navigation fires no `loading.tsx`.
 - Its styles are `.sort-select` in `globals.css`, because two pages render it. The select has `appearance: none`, so the component draws its own chevron; without it the control does not read as a dropdown. On the listing it sits in a plain toolbar row (no card) beside the exact range shown, "Showing 25–48 products" — not the provider total, which counts variants.
 - Header search suggestions use the server-side Hyperinventory `products_search_suggestions` endpoint through `/api/products/search-suggestions`; debounce browser requests, cancel stale requests, and never expose its bearer token to Client Components.
 - Product detail pages use `/products/[slug]` and fetch Hyperinventory product detail data from `/consumer/products/{slug}` with `seller` and `time` query parameters.
+- The detail page follows the AE India "Product" design: the image on a grey well with up to four thumbnails per row beneath it; the buying column with the category link, title, SKU and brand, summary, price "per unit", variant buttons, availability, quantity stepper beside a teal Add to Cart, an outlined "Request Bulk Quote" (to `/contact-us`), and three promises (Pan-India delivery, Business & dealer pricing, 24/7 support); then a grey band of tabs.
+- The tabs are Description, Specifications and In the box, and only the ones with content are rendered. They are real `role="tab"` buttons with arrow-key movement, held in client state.
+- The design's bulk-price tiers, pincode delivery check and "Best seller" badge are **not built**: no endpoint supplies tiered prices or serviceability, and the catalogue has no sales ranking. Add them only when there is data behind them.
+- The price note says "Taxes and shipping are worked out at checkout." The quotation computes both; do not claim prices are inclusive or exclusive of GST without the provider saying which.
+- **A failed detail read never renders a stand-in product.** The provider's 404 is a `notFound()`; any other failure renders the page's own unavailable state (`CategoryUnavailable`, "Try again" to the same URL). The page used to fall back to `staticProductDetail`, which put a different product, with a working Add to Cart, at the requested URL.
 - The primary product detail gallery uses `featured_images`. The lower Images and Videos section fetches the URL supplied by the product detail `assets` field and renders media from `assets.images` and `assets.videos`.
 - Product detail downloadable files must be fetched from the URL supplied by the `downloads` field and grouped using the returned keys such as `catalog`, `howToGuide`, `price_list`, and `user_manuals`.
 - Optional product detail sections must be omitted entirely when their mapped data is empty; do not render empty headings, placeholder rows, or fallback section content.
 - The product detail Similar Products UI currently uses an explicitly requested, isolated dummy array inside `SimilarProducts.tsx`; replace that array with API data when a similar-products endpoint is supplied.
-- The homepage product showcase currently uses an explicitly requested, isolated dummy array inside `HomeProductsSection.tsx`; replace it with API data when homepage product selection rules are supplied.
 - Product URL slugs must use Hyperinventory `url_path` as the canonical source.
 - Product listing models may expose lightweight variant summaries from the collapsed `variants` array for reusable card previews; each summary uses its own `url_path` and featured image.
 - One card component serves both surfaces: `ProductCard` in `src/components/product/ProductCard.tsx`, with its styles in `ProductCardStyles` — a sheet both the listing page and the detail page load. Do not re-implement a product card anywhere else.
-- The variant strip and the wishlist button are opt-in props (`showVariants`, `showWishlist`). The listing passes both; the Similar rail passes neither. Neither is part of what makes a card a card.
+- The variant strip, the wishlist button and the Add to Cart / Quote row are opt-in props (`showVariants`, `showWishlist`, `showActions`). The listing passes all three; category pages and the home page pass `showWishlist` and `showActions`; the detail page's rails pass none. None of them is part of what makes a card a card.
+- The card follows the AE India shop design: left-aligned, image on a grey well, Space Grotesk name, price in ink. Add to Cart (`AddToCartButton`) posts one unit through `/api/cart/items` like the detail page, saves a guest cart id, refreshes the badge and shows a toast; it stays on the listing.
+- A card only offers Add to Cart when the product is in stock, orderable and priced. The listing model has no `is_allow_back_orders`, so an out-of-stock product links to its page ("Out of stock") where the back-order rule is applied, rather than guessing from the card. "Quote" goes to `/contact-us` until a quote flow exists.
 - Both rails on the detail page — Similar Products and Recently viewed — are the same `ProductCarousel`, rendering the same `ProductCard`. Only the props differ: a title, a product list, and an optional "See all" link. Its classes are `product-rail*`, not `similar-*`, because two sections share them.
 - There is no `SimilarProducts` wrapper: the detail page renders `ProductCarousel` directly. A wrapper whose only job is to pick a title and a link is indirection with nothing in it. `RecentlyViewed` stays a component because it owns the storage read and the recording.
 - Recently viewed is stored per browser in `localStorage` by `src/utils/recently-viewed.ts`, newest first, capped at 12. Only the fields the card renders are kept — price and stock are re-read from the API when the product is opened again, so a stale entry cannot misprice anything.
@@ -193,8 +200,9 @@ Reserved for future rules.
 - Product detail add-to-cart must respect Hyperinventory `in_stock`, `can_order`, and `total_available_stock`; unavailable products must not submit a cart request.
 - The shared site header displays a cart icon and product-line count loaded from `GET /api/cart`, so it reflects the signed-in buyer's cart as well as a guest cart. It must not short-circuit when there is no `temporary_cart_id_*` key: a signed-in buyer never has one.
 - That badge refresh uses a plain `fetch`, not `useApiRequest`, because it runs on every page load and the global loader is a full-screen blocking overlay.
-- The shared primary header navigation is limited to Home, Gift Stores, Direct gifting, Catalogue, and Browse gifts, with search, account, and cart actions on the right.
-- The shared header search action opens an accessible page overlay, focuses the search field immediately, closes on backdrop click or Escape, and submits the keyword through the products URL.
+- The header follows the AE India design in three bands: a dark `.topbar` (phone, Shop Online), the main bar (logo, menu, "Get a Bulk Quote") and a grey tools row (All Categories, search, account, cart). The bar and tools row are one sticky `.nav`; the strip scrolls away. `.nav` must stay on the sticky element — `MobileNavToggle` binds to it and `RouteProgressBar` measures it.
+- The menu is Shop, About Us and Contact. The design's Facility Maintenance and Architectural & Interiors items are left out until those routes exist; never point a menu item at a page that 404s. "Get a Bulk Quote" goes to `/contact-us` until a quote flow exists.
+- Header search is an inline field with a Search button (`HeaderSearch`), not an overlay. Suggestions drop beneath it, close on Escape or a press outside, and submitting navigates to `/products?search=`.
 - Search autocomplete uses its own compact inline loading state so typing does not trigger the full-page global API loader.
 - `POST /api/cart/items` branches on the session. A signed-in buyer goes to Hyperinventory `POST /v1/consumer/companies/{companyId}/carts` via `addToUserCart`, using the server-side session token; a guest keeps the temporary-cart flow.
 - The authenticated cart has no client-side id: the provider keys it to the buyer company and **accumulates** quantity across calls, so repeated posts add up rather than replacing. Never write a `temporary_cart_id_*` key for a signed-in buyer.
@@ -257,15 +265,30 @@ Reserved for future rules.
 
 Reserved for future rules.
 
+## Brand
+
+- The look comes from the AE India design canvas ("AE India — Website Pages"). Its values are the tokens in `globals.css`: ink `#0f1b2d`, navy `#14305a` (primary buttons, links; still named `--violet`), teal `#0f766e` (`--teal`, the commerce accent: badges, prices), rust `#9a4a1f` on sand `#f6ede6` for the Architectural division, greys `#5b6676` / `#e2e6eb` / `#f4f6f8`, and `--night` `#0b1422` for the footer.
+- Type is Inter for body and Space Grotesk (500-700) for headings, loaded with `next/font/google` in the root layout and used through `--font-body` and `--font-display`. next/font serves them from this origin, so the CSP needs no font host.
+- Controls are 8px (`--r-sm`), cards 14px (`--r-md`), large panels 18px (`--r-lg`); chips stay pill. Dark bands are solid `--ink`, never a gradient.
+- Company facts (phone, address, legal name) come from `COMPANY_*` through `getCompany`, with AE India's as the defaults. There is **no default email or GSTIN**: none was supplied, and printing another company's would mislead. Every place that shows the email hides it when empty.
+
+## Home page
+
+- The home page follows the AE India "Home" design: dark hero with the three stats and three illustrations, client strip, the two divisions, categories, products, industries, the six reasons, and the dealer and bulk-quote bands. Sections live in `src/components/home/HomeSections.tsx`, styles in `HomeStyles`, and the fixed copy (stats, clients, divisions, industries, reasons) in `src/constants/home.ts`.
+- "Shop by category" is a **static** list, `shopCategories` in `src/constants/shop.ts`, at the user's request: the design's seven labels, each mapped to one or more of AE India's real category names (`categories`), comma-joined into `/products?categories=` by `shopCategoryHref`. The `/products` chips read the same list, and the banner titles a matching filter with the design's label. Every mapped name was checked to return products; re-check when the seller renames categories (the catalogue spells it "Tapes & Adhesive"), and never map a name containing a comma, since the listing splits on commas. Replace it with the seller tree (`getCategories`, linking to `/category/<slug>`) once the AE India catalogue is live.
+- Products are four from `getProducts`, rendered with `ProductCard`; the section renders nothing when the read fails or comes back empty.
+- The design labels the product row "Best sellers". The catalogue has no sales ranking, so the row is headed "Ready to order today" — never claim "best seller" without data behind it.
+- The two division cards are not links until the Facility Maintenance and Architectural & Interiors pages exist. "Get a Bulk Quote", "Join Now" and "Request a Quote" go to `/contact-us` until there are dealer and quote flows.
+- Images the design draws as striped placeholders (division photos, industries, categories without an image) stay striped placeholders; swap in real photos when they are supplied. The hero illustrations and the four client logos came from the design canvas and live in `public/assets/home/`.
+- `HomeJsonLd` builds AE India's `Organization` from `getCompany` and leaves out any field that is empty, rather than publishing `""`. It has no `logo` until a logo file exists.
+
 ## Layout
 
 - **One container for the whole site:** `.wrap` in `globals.css`, `min(1180px, 100% - 40px)`, narrowing to `min(100% - 28px, 1180px)` at 640px. The header, breadcrumb, every page's content and the footer all sit on it, so their edges line up at every width.
 - **Page stylesheets must not size `.wrap`, or bring their own container.** The product page (1280px), the cart's `.cart-wrap` (1280px) and the AI gift finder (1120px) each did, which put their content 50px or 30px off the header and footer. The finder's rule was unscoped, so it narrowed the header and footer on that page too.
 - **A scoped copy is wrong even when its desktop value matches.** `.products-page .wrap` repeated the global 1180px, but being more specific than the global phone rule it held a 20px gutter on phones while everything else went to 14. Delete the copy; do not try to keep it in step.
 - `HowItWorksStyles` and `DiwaliGiftingStyles` still declare an unscoped `.wrap` with the same values and the same 640px breakpoint, as part of their migrated base CSS. They are harmless only while identical.
-- **The header and footer use `wingback-logo-trimmed.png`** (and `wingback-logo-mark-trimmed.png` for the phone mark), not the supplied files. The supplied PNGs carry 7-9% transparent margin on each side, which set the visible mark about 14px inside the content edge. The trimmed copies keep the full height, so the logo paints at exactly the same size; only the empty side margins are gone.
-- `.logo` is 181px wide: the 167px mark plus the 14px the transparent margin used to leave before the menu, so the gap between the logo and "Home" is unchanged. The phone mark is `width: auto` at 44px tall, because the trimmed mark is no longer square.
-- Auth and checkout still use the supplied logo. They have no site header or footer, and center the logo on its own rather than aligning it to a content column.
+- **The logo is type, not an image:** `BrandLogo` in `src/components/common/BrandLogo.tsx` draws the square "AE" mark beside "AE India" and "AMIT ENTERPRISES", as the design does — there is no logo file yet. The header, footer, auth and checkout all render it; `tone="dark"` is the footer's white-mark variant. Swap in an image there, once, when a logo file is supplied.
 - **Check alignment by measurement, not by eye.** Compare the left edge of the header logo, the breadcrumb, the first content block and the footer logo, and the right edge of the header icons and the content, at desktop, tablet and phone widths.
 
 ## Navigation feedback
@@ -302,6 +325,10 @@ Reserved for future rules.
 
 ## Category pages
 
+- `/products` and `/category/[slug]` open with `ShopBanner` (`src/components/product/ShopBanner.tsx`): the tinted panel from the AE India "Shop" design — eyebrow, title, copy, "Get bulk pricing" (to `/contact-us`), the category's banner image when it has one — and a row of category chips. Its styles are `.shop-banner` / `.shop-chip` / `.facility-box` in `globals.css`, because both pages render it.
+- The chips differ by page on purpose: `/products` lists the static `shopCategories`; a category page lists the seller's real categories, since its own slug came from that tree. Both start with "All", to `/products`.
+- The listing's sidebar ends with `FacilityBox` ("Buying for a facility?"), passed into the Client Component `ProductListing` as `sidebarFooter` because it reads the company details on the server. Breadcrumbs call the listing "Shop".
+
 - `/category/[slug]` is server-rendered per category; the old `?c=` query template is gone. `/category` still redirects to `/products`.
 - A category is fetched by slug from `GET /v1/consumer/categories/{slug}?seller=`, which is also the only source of the provider's `meta_title` and `meta_description`. A slug it does not know answers 404, which `getCategoryBySlug` turns into `null`, and the page into a `notFound()`.
 - The seller tree (`GET /v1/consumer/sellers/{sellerId}/categories`) is still read, but only for the siblings strip. The two calls are independent and run together.
@@ -314,7 +341,7 @@ Reserved for future rules.
 - That rebuild is a reconstruction of the provider's slugifier: lower-case, **drop** `&` and `,`, every other non-alphanumeric character becomes a dash. Dropping rather than replacing is what produces `...speakers--audio` and `...decor-plants--festive-essentials`. It matches all ten sub-categories in the catalogue, but it is still a guess — which is why a sub-category page falls back to filtering by **name** when the rebuilt slug returns nothing.
 - A slug that matches neither a category nor one of its sub-categories is a `notFound()`, so nothing arbitrary from the URL reaches the upstream query.
 - On a sub-category page the breadcrumb gains a fourth step and the category becomes a link back to the whole of it, and the chips still list the whole category so every sibling stays reachable.
-- Sorting is shared with the catalogue listing through `src/utils/product-sort.ts`; the cards are the same `ProductCard`. Only the view switcher and "show more" are client state; the sort is a URL parameter applied by the provider.
+- Sorting is shared with the catalogue listing through `src/utils/product-sort.ts`; the cards are the same `ProductCard`. Only "show more" is client state; the sort is a URL parameter applied by the provider. The view switcher and the "Other categories" strip are gone: the design has neither, and the banner's chips list every category.
 - Four of the six categories currently hold no products, so the empty state distinguishes an empty sub-category from an empty category.
 - **A failed read is not an empty category, and not a missing one.** Every read on this page used to swallow its error and carry on as if it had come back with nothing, so a provider hiccup showed "Nothing in this category yet" on a stocked category, and an outage fell through to `notFound()` and answered 404.
 - `resolveCategory` returns `failed: true` when any lookup throws. `getCategoryBySlug` already turns the provider's 404 into `null`, so only a real "no such slug" reaches `notFound()`. A failed lookup renders the page's own error variant — header, a "Products / Category" breadcrumb, `CategoryUnavailable` and footer — because without the category there is no name to show.
@@ -350,19 +377,18 @@ Reserved for future rules.
 ## SEO
 
 - The site's own origin comes from `NEXT_PUBLIC_SITE_URL` through `getSiteUrl` / `absoluteUrl` in `src/lib/site.ts`. Never hardcode a domain in metadata, JSON-LD, the sitemap or robots: the same build runs on localhost, staging and production, and a canonical pointing at the wrong host tells search engines the real pages live elsewhere.
-- **Product pages are the one deliberate exception.** `/products/[slug]` canonicalises to `giftverse.sampley.in/products/<slug>` through `canonicalProductUrl`, because the same catalogue is published on both hosts under the same `url_path` and the pair would otherwise compete as duplicates. The hreflang entries point at the same URL — an hreflang back at this host beside a canonical pointing away is two answers to one question. `og:url` deliberately stays local: somebody sharing a gift from this store means this store.
-- That canonical is only as good as GiftVerse's path shape. `/products/<url_path>` is what it serves today (verified 200, self-canonical, and carrying its own `Product` node). If GiftVerse ever moves or renames that route, every product canonical on this site points at a 404 at once, which is worse than having none.
+- **Product pages canonicalise to this host**, as a relative `/products/<slug>` like every other page, with the hreflang entries and `og:url` agreeing. They used to point at GiftVerse, which does not sell AE India's products and answers its built-in sample product for their slugs. Never point them off-site again without checking that the target serves the same product.
 - `metadataBase` is set once in the root layout, so canonicals and Open Graph URLs can be written as relative paths and still resolve.
 - The root layout does **not** set `title.template`: all 34 page titles already end in "| Wingback", so a template would render it twice.
-- **This host is not for search.** The root layout sets `robots: { index: false, follow: false }` for every route and `robots.ts` answers `Disallow: /` to `*` and to each named crawler. The store is served to people who were sent to it; the catalogue's public copy is GiftVerse's, which is where every product page canonicalises.
+- **This host is not for search.** The root layout sets `robots: { index: false, follow: false }` for every route and `robots.ts` answers `Disallow: /` to `*` and to each named crawler. The rule was inherited and has not been revisited for AE India; it must be lifted deliberately before this site is meant to be found in search.
 - The noindex is set in the root layout and **nowhere else**. Six pages used to re-declare `index: true` and quietly override it, which is how the site came to advertise itself; a page that needs different robots rules should be the rare exception, not the pattern.
 - The two halves work in a specific order: `Disallow: /` is read before a crawler fetches anything, so it never sees the meta tag. Blocking therefore cannot remove a URL that is **already** indexed. Nothing here is — the host has never served this site publicly — but if that changes, allow crawling so the noindex can be read, rather than blocking and wondering why a URL lingers.
 - Structured data is built as objects and serialised with `serializeJsonLd`, never as a hand-written template string.
-- FAQ structured data must match what the page renders. `HomeJsonLd` and `FaqSection` carry the same five answers; changing one without the other is a guidelines violation.
+- FAQ structured data must match what the page renders. The home page renders no FAQ, so `HomeJsonLd` carries no `FAQPage` node.
 - `NEXT_PUBLIC_*` is inlined at build time, so the Docker image needs `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_MEASUREMENT_ID` as **build arguments**, not just container environment. `.dockerignore` excludes `.env`, so without them the build silently baked `http://localhost:3000` into robots.txt and every prerendered canonical.
 - The store **is** the home page. Both URLs it used to live at — `/gift-store` and `/employee-gift-store` — are permanent redirects to `/` in `next.config.ts` (`permanent: true` emits a **308**, not a 301). Both were indexed, and `/employee-gift-store` was left redirecting to a page that had already been deleted, so it redirected straight into a 404.
-- The store has **one** name, "Wingback Gift Store", and it reads the same everywhere: the page titles, every page's Open Graph `siteName`, the web manifest `name`, the footer line and the words on the home page's Open Graph card. Changing it means changing the card artwork too — the name is drawn into the image, where no string replacement reaches it.
-- Every page carries its own Open Graph card at `public/assets/wingback-<page>-og.jpg`, 1200x630, with `width`, `height` and `alt` declared. Do not fall back to `wingback-logo-full@2x.png`: its wordmark overlaps a second rainbow "sampley" and it renders as a mangled logo. The current logo is `wingback-logo-supplied.png`.
+- The store has **one** name, "AE India", from `storeName` in `src/constants/brand.ts`, beside `storeOwner` ("Amit Enterprises") and `storeTagline`. Page titles end "| AE India"; `siteName` and the manifest read the same.
+- Open Graph cards are 1200x630 with `width`, `height` and `alt` declared. AE India has none yet, so the home and contact pages carry no image and use `twitter.card: "summary"`. Never fall back to the previous store's `wingback-*` artwork, which is still in `public/assets` for the pages not yet rebuilt.
 - Analytics loads through `GoogleAnalytics` in the root layout and is omitted entirely when no measurement ID is set, which keeps local development out of the property. Adding it required widening three CSP directives in `next.config.ts`; the tag is blocked outright without all three.
 
 ## Generative engine optimization
@@ -377,8 +403,8 @@ Reserved for future rules.
 - Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd` and `AboutUsJsonLd` do; `CatalogueJsonLd`, `ContactUsJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
 - **No page emits its own `BreadcrumbList`.** `Breadcrumbs` emits one from the trail it renders; every page graph that also carried one was publishing two, and one of them had an empty name and a `/category/` URL with no slug.
 - A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. `HowItWorksJsonLd`'s `HowTo` is that page's visible steps; `AboutUsJsonLd`'s `FAQPage` is the FAQ `AboutUsFaqSection` renders.
-- **This site publishes no `Product` node.** `/products/[slug]` canonicalises to GiftVerse, which emits its own, and two `Product` nodes for one product across two hosts is the duplication the canonical exists to resolve. `createProductJsonLd`, `createOfferJsonLd` and `getAvailability` were deleted with it; the Open Graph product tags stay, since they feed link previews rather than the search index. Restore the node only if the canonical comes back to this host, and then restore both together.
-- The only structured data left on a product page is the `BreadcrumbList` that `Breadcrumbs` emits from the trail it renders.
+- `/products/[slug]` publishes a `Product` node through `ProductJsonLd` (`src/components/product/ProductJsonLd.tsx`), restored together with the canonical. Unknown fields are omitted, the brand is omitted when it is only the mapper's store-name fallback, a zero price publishes no offer, availability follows the buy box, and the seller is `storeOwner`.
+- A product page carries two structured-data blocks: that `Product` node and the `BreadcrumbList` that `Breadcrumbs` emits from the trail it renders.
 
 ## Sitemap
 
@@ -388,6 +414,15 @@ Reserved for future rules.
 ## robots.txt
 
 Reserved for future rules.
+
+## Docker deployment
+
+- The Compose project, service, container and image are all `ae-india` / `ae-india-nextjs`, on `127.0.0.1:4020` (`APP_PORT`). Keep the top-level `name:` in `docker-compose.yml`: without it the project is named after the folder and can collide with the Wingback store on the same server.
+- Compose has **no fallback** for `NEXT_PUBLIC_SITE_URL` or the required `HYPERINVENTORY_*` values; a missing one stops the deploy.
+- `COMPANY_*` are build arguments as well as run-time environment, because prerendered pages read them at build. They are `ARG` without `ENV`, so an absent value stays unset rather than empty. A new `COMPANY_*` variable goes in the Dockerfile and in both Compose lists.
+- The container's filesystem is read-only. `/tmp` and `/app/.next/cache` (Next's fetch cache) are the only writable paths; anything else the app writes needs its own `tmpfs`.
+- The health check reads `/robots.txt`, not `/`, so a provider outage does not mark the container unhealthy.
+- nginx configs in `deploy/nginx` use a `__DOMAIN__` placeholder; the steps are in `deploy/README.md`.
 
 ## Performance
 

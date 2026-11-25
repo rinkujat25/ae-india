@@ -38,11 +38,11 @@ const styles = `
   .about-proof-card b{display:block;font-size:var(--t-xl);line-height:1.2;margin-bottom:10px}
   .about-proof-card span{display:block;color:var(--muted);font-size:var(--t-sm);line-height:1.6}
   .about-cta{padding:0 0 84px}
-  .about-cta-panel{background:linear-gradient(130deg,#dd5a2a,#8a3312);border-radius:var(--r-lg);color:#fff;padding:44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+  .about-cta-panel{background:var(--ink);border-radius:var(--r-lg);color:#fff;padding:44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
   .about-cta-panel h2{font-size:var(--t-3xl);line-height:1.1;margin-bottom:12px}
-  .about-cta-panel p{color:#dcd4ff;line-height:1.7;max-width:58ch}
+  .about-cta-panel p{color:#d7dee8;line-height:1.7;max-width:58ch}
   .about-cta-actions{display:flex;gap:12px;flex-wrap:wrap}
-  .about-cta-actions .btn-primary{background:#fff;color:#8a3312}
+  .about-cta-actions .btn-primary{background:#fff;color:var(--ink)}
   .about-cta-actions .btn-soft{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.24)}
   @media (max-width:1080px){
     .about-grid{grid-template-columns:repeat(2,1fr)}

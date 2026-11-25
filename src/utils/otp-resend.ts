@@ -1,4 +1,4 @@
-const storageKey = "wingback_otp_resend";
+const storageKey = "aeindia_otp_resend";
 
 type StoredWait = {
     email: string;

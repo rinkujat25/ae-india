@@ -22,6 +22,23 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ARG NEXT_PUBLIC_GA_MEASUREMENT_ID
 ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=$NEXT_PUBLIC_GA_MEASUREMENT_ID
 
+# Company facts printed on the prerendered pages. ARG without ENV on purpose: an
+# argument that is not passed stays unset, so src/lib/company.ts can still tell
+# an absent COMPANY_WHATSAPP_NUMBER from a deliberately empty one.
+ARG COMPANY_NAME
+ARG COMPANY_LEGAL_NAME
+ARG COMPANY_SUPPORT_EMAIL
+ARG COMPANY_TOLL_FREE_NUMBER
+ARG COMPANY_WHATSAPP_NUMBER
+ARG COMPANY_BUSINESS_HOURS
+ARG COMPANY_GSTIN
+ARG COMPANY_ADDRESS
+ARG COMPANY_STREET_ADDRESS
+ARG COMPANY_CITY
+ARG COMPANY_STATE
+ARG COMPANY_POSTAL_CODE
+ARG COMPANY_COUNTRY
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
@@ -44,7 +61,9 @@ USER nextjs
 
 EXPOSE 3000
 
+# robots.txt, not the home page: that one reads the catalogue, so a provider
+# outage would mark a working container unhealthy.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "fetch('http://127.0.0.1:3000/robots.txt').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "server.js"]

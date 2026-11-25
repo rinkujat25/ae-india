@@ -77,7 +77,8 @@ export function CartHeaderLink({ variant = "icon" }: CartHeaderLinkProps) {
                 <circle cx="10" cy="20" r="1.4" />
                 <circle cx="18" cy="20" r="1.4" />
             </svg>
-            {badge ? <span>{badge}</span> : null}
+            <span className="cart-header-label" aria-hidden="true">Cart</span>
+            {badge ? <span className="cart-header-count" aria-hidden="true">{badge}</span> : null}
         </Link>
     );
 }

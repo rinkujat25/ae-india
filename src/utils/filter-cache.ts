@@ -2,7 +2,7 @@ import type { ProductBrandModel } from "@/types/models/product-brand.model";
 import type { ProductCategoryModel } from "@/types/models/product-category.model";
 import type { ProductTagModel } from "@/types/models/product-tag.model";
 
-const storageKey = "wingback_product_filters_v1";
+const storageKey = "aeindia_product_filters_v1";
 
 export type ProductFilterOptions = {
     categories: ProductCategoryModel[];

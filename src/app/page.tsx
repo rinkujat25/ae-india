@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
+import { storeName, storeOwner, storeTagline } from "@/constants/brand";
 import { absoluteUrl } from "@/lib/site";
-import { IconSprite } from "@/components/common/IconSprite";
 import { SiteFooter } from "@/components/common/SiteFooter";
 import { SiteHeader } from "@/components/common/SiteHeader";
 import { HomeJsonLd } from "@/components/home/HomeJsonLd";
-import { ProductCardStyles } from "@/components/product/ProductCardStyles";
-import { StoreStyles } from "@/components/home/StoreStyles";
 import {
-    loadStoreProducts,
-    StoreAnnouncement,
-    StoreEditSection,
-    StoreHero,
-    StoreNotesSection,
-    StoreProductsSection,
-} from "@/components/home/StoreSections";
+    HomeCallouts,
+    HomeCategories,
+    HomeClients,
+    HomeHero,
+    HomeIndustries,
+    HomeProducts,
+    HomeReasons,
+    HomeSolutions,
+    loadHomeProducts,
+} from "@/components/home/HomeSections";
+import { HomeStyles } from "@/components/home/HomeStyles";
+import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 
 /**
  * Rendered per request, not at build time.
@@ -29,11 +32,14 @@ import {
  */
 export const dynamic = "force-dynamic";
 
+const homeTitle = `${storeName} | ${storeTagline}`;
+const homeDescription =
+    "Cleaning, maintenance and architectural surface products for India's offices, hotels, airports, malls and hospitals \u2014 online, in bulk, or through our dealers.";
+
 export const metadata: Metadata = {
-    title: "Wingback Gift Store",
-    description:
-        "Sampley runs branded employee gift stores and direct corporate gifting with budget controls, curated gifts and managed pan-India delivery.",
-    authors: [{ name: "Sampley" }],
+    title: homeTitle,
+    description: homeDescription,
+    authors: [{ name: storeOwner }],
     alternates: {
         // Relative: `metadataBase` in the root layout makes these absolute
         // against whichever host the build is deployed to.
@@ -43,50 +49,44 @@ export const metadata: Metadata = {
             "x-default": "/",
         },
     },
+    // No image yet: the card this page carried was the previous store's, and
+    // AE India's 1200x630 card has not been made. Add it here with its width,
+    // height and alt when it is.
     openGraph: {
         type: "website",
-        siteName: "Wingback Gift Store",
+        siteName: storeName,
         url: absoluteUrl("/"),
-        title: "Wingback Gift Store",
-        description:
-            "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Sampley manages curation, sourcing, branding and pan-India delivery.",
-        images: [
-            {
-                url: absoluteUrl("/assets/wingback-home-og.jpg"),
-                width: 1200,
-                height: 630,
-                alt: "Wingback Gift Store",
-            },
-        ],
+        title: homeTitle,
+        description: homeDescription,
         locale: "en_IN",
     },
     twitter: {
-        card: "summary_large_image",
+        card: "summary",
         // Kept identical to the Open Graph pair: two different cards for the
         // same page is a maintenance trap, and X falls back to og:* anyway.
-        title: "Wingback Gift Store",
-        description:
-            "Let employees choose within your budget\u2014or send a gift to every client, partner or event guest. Sampley manages curation, sourcing, branding and pan-India delivery.",
-        images: [absoluteUrl("/assets/wingback-home-og.jpg")],
+        title: homeTitle,
+        description: homeDescription,
     },
 };
 
 export default async function Home() {
-    // One fetch for the page: the hero points at the first gift on the shelf.
-    const products = await loadStoreProducts();
+    // The one catalogue read; the products section renders nothing if it fails.
+    const products = await loadHomeProducts();
 
     return (
         <>
-            <IconSprite />
-            <StoreStyles />
+            <HomeStyles />
             <ProductCardStyles />
-            <StoreAnnouncement />
             <SiteHeader active="home" />
             <main>
-                <StoreHero featured={products[0]} />
-                <StoreProductsSection products={products} />
-                <StoreEditSection />
-                <StoreNotesSection />
+                <HomeHero />
+                <HomeClients />
+                <HomeSolutions />
+                <HomeCategories />
+                <HomeProducts products={products} />
+                <HomeIndustries />
+                <HomeReasons />
+                <HomeCallouts />
             </main>
             <SiteFooter />
             <HomeJsonLd />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ProductFilters } from "@/components/product/ProductFilters";
@@ -17,6 +17,12 @@ type ProductListingProps = {
     /** 1-based, from the URL. */
     page: number;
     pageSize: number;
+    /**
+     * Rendered under the filters -- the "Buying for a facility?" box. Passed
+     * in from the server page, because it reads the company details and this
+     * is a Client Component.
+     */
+    sidebarFooter?: ReactNode;
 };
 
 
@@ -89,7 +95,7 @@ function pageNumbers(current: number, total: number): Array<number | null> {
     return withGaps;
 }
 
-export function ProductListing({ catalogue, page, pageSize }: ProductListingProps) {
+export function ProductListing({ catalogue, page, pageSize, sidebarFooter }: ProductListingProps) {
     const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
     const searchParams = useSearchParams();
 
@@ -237,6 +243,8 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
                     isDrawerOpen={isFilterDrawerOpen}
                 />
 
+                {sidebarFooter}
+
                 <div className="filters-drawer-foot">
                     <button type="button" onClick={() => setIsFilterDrawerOpen(false)}>
                         Show products
@@ -273,6 +281,7 @@ export function ProductListing({ catalogue, page, pageSize }: ProductListingProp
                                 product={product}
                                 showVariants
                                 showWishlist
+                                showActions
                                 key={productKey(product)}
                             />
                         ))}

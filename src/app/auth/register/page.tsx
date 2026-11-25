@@ -6,8 +6,8 @@ import { RegisterForm } from "@/components/auth/RegisterForm";
 import { getAuthProfile } from "@/utils/auth-profile";
 
 export const metadata: Metadata = {
-    title: "Create your account | Wingback",
-    description: "Create a Wingback account to order corporate gifts and track your programmes.",
+    title: "Create your account | AE India",
+    description: "Create an AE India account to order supplies, save your billing details and track every order.",
     robots: {
         index: false,
         follow: false,

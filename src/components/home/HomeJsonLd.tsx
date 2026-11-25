@@ -1,22 +1,33 @@
+import { storeName, storeOwner, storeTagline } from "@/constants/brand";
+import { homeSolutions } from "@/constants/home";
+import { getCompany } from "@/lib/company";
 import { absoluteUrl } from "@/lib/site";
 import { serializeJsonLd } from "@/utils/json-ld";
-import { fillCompanyTokens } from "@/lib/company";
 
 /**
- * The home page's structured data.
+ * The home page's structured data: AE India as one organisation, the site, the
+ * two divisions the page shows, and the page itself, linked through `@id` so
+ * the graph resolves as one entity.
  *
- * URLs and `@id` anchors are built from the deployed host so the graph always
- * describes the same site the canonical points at — a graph anchored to another
- * domain describes a different entity and is ignored.
- *
- * The home page is a storefront and renders no FAQ, so this graph carries no
- * FAQPage node: structured data that is not in the rendered content is a
- * guidelines violation.
+ * Contact facts come from `getCompany`, the same source as the footer, and an
+ * empty one is left out rather than published as "" -- there is no support
+ * email configured yet. There is no `logo`: the mark is drawn in type, and no
+ * image file exists to point at. No FAQ node either, because the page renders
+ * no FAQ.
  */
-
 export function HomeJsonLd() {
+    const company = getCompany();
     const organizationId = absoluteUrl("/#organization");
     const websiteId = absoluteUrl("/#website");
+
+    const contactPoint = {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        ...(company.telHref ? { telephone: company.telHref } : {}),
+        ...(company.supportEmail ? { email: company.supportEmail } : {}),
+        areaServed: "IN",
+        availableLanguage: ["en", "hi"],
+    };
 
     const graph = {
         "@context": "https://schema.org",
@@ -24,89 +35,57 @@ export function HomeJsonLd() {
             {
                 "@type": "Organization",
                 "@id": organizationId,
-                name: "Sampley",
+                name: storeName,
+                legalName: company.legalName || storeOwner,
                 url: absoluteUrl("/"),
-                // The operator's own mark, not Wingback's -- this node is the
-                // company running the store, not the company it belongs to.
-                logo: absoluteUrl("/assets/sampley-logo.png"),
-                email: "{{support_email_id}}",
-                telephone: "{{toll_free_number}}",
-                legalName: "{{company_legal_name}}",
+                slogan: storeTagline,
+                ...(company.telHref ? { telephone: company.telHref } : {}),
+                ...(company.supportEmail ? { email: company.supportEmail } : {}),
                 areaServed: { "@type": "Country", name: "India" },
                 address: {
                     "@type": "PostalAddress",
-                    addressLocality: "{{company_city}}",
-                    addressRegion: "{{company_state}}",
-                    addressCountry: "IN",
+                    streetAddress: company.postalAddress.streetAddress,
+                    addressLocality: company.postalAddress.addressLocality,
+                    addressRegion: company.postalAddress.addressRegion,
+                    postalCode: company.postalAddress.postalCode,
+                    addressCountry: company.postalAddress.addressCountry,
                 },
-                // A reachable contact point is one of the few things an answer
-                // engine can quote back verbatim, so it repeats the details the
-                // footer already shows rather than introducing new ones.
-                contactPoint: {
-                    "@type": "ContactPoint",
-                    contactType: "sales",
-                    email: "{{support_email_id}}",
-                    telephone: "{{toll_free_number}}",
-                    areaServed: "IN",
-                    availableLanguage: ["en", "hi"],
-                },
-                // Names the subjects this organisation is an authority on, which
-                // is what an engine matches a question against.
+                contactPoint,
                 knowsAbout: [
-                    "Corporate gifting",
-                    "Employee gifting programmes",
-                    "Client and partner gifting",
-                    "Branded merchandise and personalisation",
-                    "Bulk gift sourcing and fulfilment in India",
-                    "Diwali and festive corporate gifting",
+                    "Facility maintenance supplies",
+                    "Floor care and cleaning products",
+                    "Entrance matting",
+                    "Architectural surface films",
+                    "Bulk and dealer supply in India",
                 ],
-                description:
-                    "Sampley is the corporate gifting platform behind the Wingback store, running two models: branded employee stores where recipients choose within company rules, and direct corporate gifting for clients, partners and events — both with managed pan-India fulfilment.",
             },
             {
                 "@type": "WebSite",
                 "@id": websiteId,
                 url: absoluteUrl("/"),
-                name: "Wingback",
+                name: storeName,
                 publisher: { "@id": organizationId },
                 inLanguage: "en-IN",
             },
-            {
+            ...homeSolutions.map((solution) => ({
                 "@type": "Service",
-                "@id": absoluteUrl("/#employee-gifting"),
-                name: "Corporate employee gifting stores",
-                serviceType: "Employee gifting programme",
+                "@id": absoluteUrl(`/#${solution.tone}`),
+                name: solution.title,
                 provider: { "@id": organizationId },
                 areaServed: { "@type": "Country", name: "India" },
-                audience: { "@type": "Audience", audienceType: "HR and Admin teams" },
-                description:
-                    "A branded gifting store where employees choose from approved gifts within company-defined budget, eligibility, catalogue and delivery rules, while Sampley handles sourcing, personalisation, delivery and reporting.",
-            },
+                description: solution.body,
+            })),
             {
-                "@type": "Service",
-                "@id": absoluteUrl("/#direct-gifting"),
-                name: "Direct corporate gifting",
-                serviceType: "Corporate gifting campaign",
-                provider: { "@id": organizationId },
-                areaServed: { "@type": "Country", name: "India" },
-                audience: { "@type": "Audience", audienceType: "Sales, Marketing and CXO offices" },
-                description:
-                    "Company-selected gifting for clients, partners, event attendees and customers, delivered through Sampley-managed sourcing, branded packaging, personal notes, bulk dispatch, campaign tracking and fulfilment reporting.",
-            },
-            {
-                // Ties the page itself to the organisation and the site, so the
-                // graph resolves as one entity instead of four loose nodes.
                 "@type": "WebPage",
                 "@id": absoluteUrl("/#webpage"),
                 url: absoluteUrl("/"),
-                name: "Corporate Gifting Platform for Employees | Wingback",
+                name: `${storeName} | ${storeTagline}`,
                 isPartOf: { "@id": websiteId },
                 about: { "@id": organizationId },
                 inLanguage: "en-IN",
-                primaryImageOfPage: absoluteUrl("/assets/wingback-logo-supplied.png"),
             },
         ],
     };
 
-    return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: fillCompanyTokens(serializeJsonLd(graph)) }} />;
+    return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(graph) }} />;
 }

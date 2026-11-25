@@ -5,7 +5,7 @@ import { getWishlistProducts } from "@/services/hyperinventory/wishlist.service"
 import { requireWishlistSlugs } from "@/utils/account-data";
 
 export const metadata: Metadata = {
-    title: "My Wishlist | Wingback",
+    title: "My Wishlist | AE India",
     robots: { index: false, follow: false },
 };
 

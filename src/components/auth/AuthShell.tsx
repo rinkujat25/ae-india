@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import type { ReactNode } from "react";
 
 type AuthShellProps = {
@@ -11,9 +11,9 @@ type AuthShellProps = {
 };
 
 const highlights = [
-    "Approved catalogues by budget",
-    "Recipient choice with rules",
-    "Pan-India fulfilment tracking",
+    "Business and bulk pricing",
+    "GST billing and delivery addresses on file",
+    "Every order in one place",
 ];
 
 export function AuthShell({ title, description, backHref, backLabel, children }: AuthShellProps) {
@@ -21,15 +21,7 @@ export function AuthShell({ title, description, backHref, backLabel, children }:
         <main className="auth-page">
             <div className="auth-shell">
                 <section className="auth-panel" aria-labelledby="auth-heading">
-                    <Link className="auth-logo" href="/">
-                        <Image
-                            src="/assets/wingback-logo-supplied.png"
-                            alt="Wingback"
-                            width={196}
-                            height={65}
-                            priority
-                        />
-                    </Link>
+                    <BrandLogo className="auth-logo" />
 
                     <div className="auth-head">
                         <Link className="auth-back" href={backHref} aria-label={backLabel}>
@@ -55,10 +47,10 @@ export function AuthShell({ title, description, backHref, backLabel, children }:
 
                 <aside className="auth-side">
                     <div>
-                        <h2>Run every gifting program from one place.</h2>
+                        <h2>Supplies for every space you run.</h2>
                         <p>
-                            Sampley keeps recipient choice, catalogue controls, fulfilment, tracking and reporting
-                            together for HR, admin and business teams.
+                            Order cleaning, maintenance and architectural surface products, keep your billing
+                            details on file, and follow every order from one account.
                         </p>
                         <div className="auth-points">
                             {highlights.map((highlight) => (

@@ -4,7 +4,7 @@ import { AccountSectionShell } from "@/components/account/AccountSectionShell";
 import { requireAccountProfile } from "@/utils/account-data";
 
 export const metadata: Metadata = {
-    title: "Edit Account | Wingback",
+    title: "Edit Account | AE India",
     robots: { index: false, follow: false },
 };
 

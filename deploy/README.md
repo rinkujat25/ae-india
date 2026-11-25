@@ -1,87 +1,107 @@
-# Wingback Docker Deployment
+# AE India Docker deployment
 
-Target domain: `wingback-giftverse.sampley.in`
+The app runs in one container, `ae-india-nextjs`, on `127.0.0.1:4020`. nginx
+terminates HTTPS and proxies to it. Run everything below on the server.
 
-The domain resolves to `72.60.204.113`. Run these commands on that server.
+It can share a server with the Wingback store: the Compose project, container,
+image and port are all different from that store's.
 
-**Steps 2 to 4 have not been completed on the server yet.** DNS points at the
-box and the container may well be running, but nginx has no `server` block for
-this hostname, so both ports fall through to whatever vhost answers by default
-— today that is an unrelated app, `admin.dealmints.in`. The symptoms are:
+HTTPS is required. The app sends `upgrade-insecure-requests` and secure login
+cookies, so opening it as `http://<server-ip>` shows an unstyled page and
+sign-in does not stick.
 
-- `http://wingback-giftverse.sampley.in/` → **404 from nginx itself**
-- `https://wingback-giftverse.sampley.in/` → **certificate for `admin.dealmints.in`**,
-  and every path 307s to that app's `/login`
+## 1. Get the code and fill in `.env`
 
-Nothing in this repository can fix that; it is the three steps below.
+Build on the server. An image built on an Apple Silicon Mac is arm64 and will
+not run on an ordinary amd64 server.
 
-## 1. Start the Docker app
+`.env` is not in git; create it from the example, or copy yours over.
 
 ```bash
-cd /path/to/Wingback
+cp .env.example .env
+chmod 600 .env
+```
+
+Set at least `NEXT_PUBLIC_SITE_URL` (`https://` plus the domain, no trailing
+slash) and the `HYPERINVENTORY_*` values. The deploy stops with a message when
+a required one is empty.
+
+Leave `NEXT_PUBLIC_GA_MEASUREMENT_ID` empty unless AE India has its own
+property. If a value contains a `$`, put it in single quotes.
+
+## 2. Build and start
+
+```bash
 ./deploy.sh
+```
+
+It builds first and swaps the container only once the build succeeds.
+
+## 3. Install the bootstrap nginx config
+
+Port 80 only, so `nginx -t` passes before the certificate exists. Point the
+domain's DNS at the server first, and set `DOMAIN` once per shell.
+
+```bash
+DOMAIN=your-domain.example
+```
+
+```bash
+sed "s/__DOMAIN__/$DOMAIN/g" deploy/nginx/ae-india.bootstrap.conf | sudo tee /etc/nginx/sites-available/$DOMAIN.conf >/dev/null
+```
+
+```bash
+sudo ln -sf /etc/nginx/sites-available/$DOMAIN.conf /etc/nginx/sites-enabled/$DOMAIN.conf
+```
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+## 4. Issue the certificate
+
+```bash
+sudo certbot certonly --webroot -w /var/www/html -d $DOMAIN
+```
+
+## 5. Install the HTTPS nginx config
+
+```bash
+sed "s/__DOMAIN__/$DOMAIN/g" deploy/nginx/ae-india.ssl.conf | sudo tee /etc/nginx/sites-available/$DOMAIN.conf >/dev/null
+```
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+`APP_PORT` in `.env` moves the container off 4020; change `proxy_pass` in the
+installed nginx config to match.
+
+## 6. Verify
+
+```bash
+curl -I https://$DOMAIN
+```
+
+```bash
+curl -s https://$DOMAIN/ | grep -o '<link rel="canonical"[^>]*>'
+```
+
+The canonical must show the domain. It and the company details on static pages
+are fixed at **build** time, so after changing `NEXT_PUBLIC_*` or `COMPANY_*` in
+`.env`, run `./deploy.sh` again; a restart is not enough. The site is meant to
+be out of search, so `robots.txt` answering `Disallow: /` is correct.
+
+## Day to day
+
+```bash
+docker compose logs -f --tail=100 ae-india-nextjs
+```
+
+```bash
 docker compose ps
-curl -I http://127.0.0.1:4010
 ```
-
-The Next.js app should stay available locally on port `4010`.
-
-`deploy.sh` stops the old container, removes the old `wingback-nextjs:latest` image, rebuilds without cache, starts the new container, and verifies the app responds on port `4010`.
-
-## 2. Install bootstrap Nginx site config
-
-Use the bootstrap config first. It does not reference SSL files, so `nginx -t` can pass before the certificate exists.
 
 ```bash
-sudo cp deploy/nginx/wingback-giftverse.sampley.in.bootstrap.conf /etc/nginx/sites-available/wingback-giftverse.sampley.in.conf
-sudo ln -sf /etc/nginx/sites-available/wingback-giftverse.sampley.in.conf /etc/nginx/sites-enabled/wingback-giftverse.sampley.in.conf
-sudo nginx -t
-sudo systemctl reload nginx
+docker compose down
 ```
-
-## 3. Issue/repair SSL
-
-HTTPS currently serves the default vhost's certificate, issued for
-`admin.dealmints.in`, so it fails verification for this host. Certbot needs the
-bootstrap config active first — it answers the ACME challenge over port 80,
-which is the 404 above until step 2 is done:
-
-```bash
-sudo certbot certonly --webroot -w /var/www/html -d wingback-giftverse.sampley.in
-```
-
-## 4. Install final HTTPS Nginx config
-
-After Certbot creates `/etc/letsencrypt/live/wingback-giftverse.sampley.in/fullchain.pem`, install the final SSL config:
-
-```bash
-sudo cp deploy/nginx/wingback-giftverse.sampley.in.ssl.conf /etc/nginx/sites-available/wingback-giftverse.sampley.in.conf
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-## 5. Verify
-
-```bash
-curl -I https://wingback-giftverse.sampley.in
-curl -s https://wingback-giftverse.sampley.in/robots.txt
-```
-
-`/` should answer 200 with the storefront, and `robots.txt` should allow the
-public routes while disallowing `/api/`, `/account`, `/cart`, `/checkout` and
-`/auth/`. A blanket `Disallow: /` means the old development-time robots rule is
-still in the image and it needs rebuilding.
-
-Two things worth checking on the first deploy, because both are baked in at
-**build** time and a wrong value is invisible until it is indexed:
-
-```bash
-# Must print https://wingback-giftverse.sampley.in -- not localhost:3000,
-# and not the old wingback.sampley.in.
-curl -s https://wingback-giftverse.sampley.in/robots.txt | grep -i host
-curl -s https://wingback-giftverse.sampley.in/ | grep -o '<link rel="canonical"[^>]*>'
-```
-
-If either shows the wrong origin, `NEXT_PUBLIC_SITE_URL` was missing or stale
-when the image was built. Re-run `./deploy.sh`, which rebuilds with
-`--no-cache`; restarting the container alone will not change it.

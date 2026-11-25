@@ -1,13 +1,17 @@
 /**
- * The Hyperinventory collection this store sells from.
+ * The Hyperinventory collection(s) this store sells from, sent upstream as
+ * `collection_ids`, comma-separated.
  *
- * The seller's catalogue is shared with other storefronts; this collection is
- * the slice of it that is Wingback's. Every product read is held to it --
- * the listing, the category pages, the home shelf, Similar Products and the
- * search suggestions -- so a gift outside it cannot be reached through any
- * door. It is applied inside the product service rather than by each caller,
- * so a new read cannot forget it.
+ * **Empty for AE India.** The seller's whole catalogue is AE India's -- its own
+ * storefront at aeindia.co reads `/consumer/sellers/{id}/products` with no
+ * collection at all -- so no read is narrowed. The id that was here was the
+ * previous store's ("Wingback Customer"), and under AE India's seller it
+ * matched nothing.
  *
- * Sent upstream as `collection_ids`, comma-separated.
+ * When this is empty the product service leaves `collection_ids` out of the
+ * request entirely, and sorted reads go straight to the provider (it only
+ * ignores `ordering` when a collection is present). Add an id here, once, to
+ * hold every product read -- listing, category pages, home, Similar Products,
+ * search suggestions -- to one collection again.
  */
-export const storeCollectionIds = ["cdd65fdd-e2d7-4630-a151-4e9f88bfd8bb"];
+export const storeCollectionIds: string[] = [];

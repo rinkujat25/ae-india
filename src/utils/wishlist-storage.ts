@@ -17,7 +17,7 @@
 const storageKey = "wishlistItemsUrl";
 
 /** Fired after any local change so every heart on the page can re-read. */
-export const wishlistUpdatedEvent = "wingback:wishlist-updated";
+export const wishlistUpdatedEvent = "aeindia:wishlist-updated";
 
 export function readWishlistSlugs(): string[] | null {
     if (typeof window === "undefined") return null;

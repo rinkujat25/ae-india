@@ -17,7 +17,7 @@ import { HowItWorksStyles } from "@/components/how-it-works/HowItWorksStyles";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "How Corporate Gifting Works, Step by Step | Wingback",
+  title: "How Corporate Gifting Works, Step by Step | AE India",
   description:
     "See how a Wingback gifting program runs end to end: brief, budget rules, curated catalogue, branded store, recipient choice, sourcing and pan-India delivery.",
   keywords: [
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback Gift Store",
+    siteName: "AE India",
     url: absoluteUrl("/how-it-works"),
-    title: "How Corporate Gifting Works, Step by Step | Wingback",
+    title: "How Corporate Gifting Works, Step by Step | AE India",
     description:
       "Brief to doorstep in six stages. See exactly who does what, how long each stage takes, and what your team is left holding.",
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "How Corporate Gifting Works | Wingback",
+    title: "How Corporate Gifting Works | AE India",
     description:
       "Brief to doorstep in six stages. See exactly who does what, how long each stage takes, and what your team is left holding.",
     images: [absoluteUrl("/assets/wingback-logo-full@2x.png")],

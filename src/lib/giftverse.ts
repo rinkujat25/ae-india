@@ -2,10 +2,9 @@
  * Links to GiftVerse.
  *
  * This site is the store, and most of what surrounds it lives here too --
- * contact, about, how it works, the seasonal pages. Two things are GiftVerse's
- * and are only ever linked to: the **policies**, which are written once and
- * shared across every store the platform runs, and each product's canonical
- * page.
+ * contact, about, how it works, the seasonal pages. One thing is GiftVerse's
+ * and is only ever linked to: the **policies**, which are written once and
+ * shared across every store the platform runs.
  *
  * They are built here rather than written out at each call site so the host
  * moves in one edit, and so a reader can see at a glance which links go off

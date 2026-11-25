@@ -5,7 +5,7 @@ import { formatInr } from "@/utils/currency";
 import { resolveAmountPaid, resolveOrderNumber } from "@/utils/order-success";
 
 export const metadata: Metadata = {
-    title: "Order placed | Wingback",
+    title: "Order placed | AE India",
     robots: { index: false, follow: false },
 };
 

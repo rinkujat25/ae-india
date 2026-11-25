@@ -1,6 +1,6 @@
 const temporaryCartKeyPrefix = "temporary_cart_id_";
-const temporaryCartSalesChannelKey = "wingback_temporary_cart_sales_channel";
-export const cartUpdatedEvent = "wingback:cart-updated";
+const temporaryCartSalesChannelKey = "aeindia_temporary_cart_sales_channel";
+export const cartUpdatedEvent = "aeindia:cart-updated";
 
 export function notifyCartUpdated() {
     if (typeof window !== "undefined") {

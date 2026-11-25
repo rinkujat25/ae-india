@@ -66,14 +66,18 @@ export function ContactUsPageContent() {
           </p>
 
           <div className="reach">
-            <a className="tile" href={`mailto:${company.supportEmail}`}>
-              <span className="tile-ico">
-                <MailIcon />
-              </span>
-              <h2>Email</h2>
-              <b>{company.supportEmail}</b>
-              <span>Best for briefs, quotes and anything with a list attached.</span>
-            </a>
+            {/* Hidden while no support address is configured, rather than
+                rendering a mailto: with nobody behind it. */}
+            {company.supportEmail ? (
+              <a className="tile" href={`mailto:${company.supportEmail}`}>
+                <span className="tile-ico">
+                  <MailIcon />
+                </span>
+                <h2>Email</h2>
+                <b>{company.supportEmail}</b>
+                <span>Best for briefs, quotes and anything with a list attached.</span>
+              </a>
+            ) : null}
 
             <a className="tile" href={`tel:${company.telHref}`}>
               <span className="tile-ico">

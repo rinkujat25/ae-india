@@ -1,6 +1,6 @@
 import type { ProductModel } from "@/types/models/product.model";
 
-const storageKey = "wingback_recently_viewed_v1";
+const storageKey = "aeindia_recently_viewed_v1";
 
 /** Enough to fill the rail twice over; older entries drop off the end. */
 const maxEntries = 12;

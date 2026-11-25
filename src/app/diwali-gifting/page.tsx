@@ -18,7 +18,7 @@ import { DiwaliRunwaySection } from "@/components/diwali-gifting/DiwaliRunwaySec
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Diwali Corporate Gifts for Employees & Clients | Wingback",
+  title: "Diwali Corporate Gifts for Employees & Clients | AE India",
   description:
     "Run Diwali gifting without the chaos. Let employees choose within budget, or send a curated client gift. Branded and delivered pan-India before the festival.",
   keywords: [
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback Gift Store",
+    siteName: "AE India",
     url: absoluteUrl("/diwali-gifting"),
-    title: "Diwali Corporate Gifts for Employees & Clients | Wingback",
+    title: "Diwali Corporate Gifts for Employees & Clients | AE India",
     description:
       "One hamper sent to everyone, or thousands of choices inside one budget. Run Diwali gifting properly this year.",
     images: [
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Diwali Corporate Gifts for Employees & Clients | Wingback",
+    title: "Diwali Corporate Gifts for Employees & Clients | AE India",
     description:
       "One hamper sent to everyone, or thousands of choices inside one budget.",
     images: [absoluteUrl("/assets/wingback-diwali-gifting-og.jpg")],

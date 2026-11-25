@@ -6,7 +6,7 @@ import { getAuthAccessToken } from "@/utils/auth-profile";
 import { resolveInternalPath } from "@/utils/return-path";
 
 export const metadata: Metadata = {
-    title: "Add Address | Wingback",
+    title: "Add Address | AE India",
     robots: { index: false, follow: false },
 };
 

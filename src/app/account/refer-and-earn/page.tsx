@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 // import { staticAccountReferral } from "@/constants/account";
 
 export const metadata: Metadata = {
-    title: "Refer and Earn | Wingback",
+    title: "Refer and Earn | AE India",
     robots: { index: false, follow: false },
 };
 

@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/common/SiteHeader";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "AI Gift Finder | Wingback",
+  title: "AI Gift Finder | AE India",
   description:
     "Describe your gifting requirement and prepare it for Wingback AI product search.",
   authors: [{ name: "Sampley" }],
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Wingback Gift Store",
+    siteName: "AE India",
     url: absoluteUrl("/ai-gift-finder"),
-    title: "AI Gift Finder | Wingback",
+    title: "AI Gift Finder | AE India",
     description:
       "Describe your gifting requirement and prepare it for Wingback AI product search.",
     images: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Gift Finder | Wingback",
+    title: "AI Gift Finder | AE India",
     description:
       "Describe your gifting requirement and prepare it for Wingback AI product search.",
     images: [absoluteUrl("/assets/wingback-logo-full@2x.png")],

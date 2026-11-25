@@ -5,7 +5,6 @@ import { useState } from "react";
 import { CategoryUnavailable } from "@/components/category/CategoryUnavailable";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductSortSelect } from "@/components/product/ProductSortSelect";
-import type { CategoryModel } from "@/types/models/category.model";
 import type { ProductCategoryModel } from "@/types/models/product-category.model";
 import type { ProductModel } from "@/types/models/product.model";
 
@@ -27,17 +26,7 @@ type CategoryPageContentProps = {
     categoryHref: string;
     /** Products in the whole category, for the "All" chip. */
     totalInCategory: number;
-    /** The other top-level categories, for the strip at the bottom. */
-    siblings: CategoryModel[];
 };
-
-type ViewKey = "cols-3" | "cols-4" | "list";
-
-const views: Array<{ key: ViewKey; label: string; bars: number[] }> = [
-    { key: "cols-3", label: "Three columns", bars: [4, 12, 20] },
-    { key: "cols-4", label: "Four columns", bars: [3, 9, 15, 21] },
-    { key: "list", label: "List", bars: [] },
-];
 
 const pageSize = 24;
 
@@ -49,45 +38,18 @@ export function CategoryPageContent({
     activeSub,
     categoryHref,
     totalInCategory,
-    siblings,
 }: CategoryPageContentProps) {
-    const [view, setView] = useState<ViewKey>("cols-4");
     const [shown, setShown] = useState(pageSize);
     const visible = products.slice(0, shown);
 
     return (
         <>
-            {/* View, count and sort all act on products that did not load. */}
+            {/* Count and sort both act on products that did not load. */}
             {failed ? null : (
                 <div className="cat-toolbar">
-                    <span className="cat-tlabel">View as</span>
-                    <div className="cat-views">
-                        {views.map((option) => (
-                            <button
-                                className="cat-vbtn"
-                                type="button"
-                                key={option.key}
-                                aria-pressed={view === option.key}
-                                aria-label={option.label}
-                                onClick={() => setView(option.key)}
-                            >
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    {option.bars.length ? (
-                                        option.bars.map((x) => <path d={`M${x} 4v16`} key={x} />)
-                                    ) : (
-                                        <>
-                                            <path d="M4 6h16" />
-                                            <path d="M4 12h16" />
-                                            <path d="M4 18h16" />
-                                        </>
-                                    )}
-                                </svg>
-                            </button>
-                        ))}
-                    </div>
-
                     <span className="cat-count">
-                        {products.length} {products.length === 1 ? "product" : "products"}
+                        Showing <b>{visible.length}</b> of {products.length}{" "}
+                        {products.length === 1 ? "product" : "products"}
                     </span>
 
                     <div className="cat-sortwrap">
@@ -127,9 +89,9 @@ export function CategoryPageContent({
                 <CategoryUnavailable subject="these products" retryHref={retryHref} />
             ) : visible.length ? (
                 <>
-                    <div className={`cat-grid ${view}`}>
+                    <div className="cat-grid">
                         {visible.map((product) => (
-                            <ProductCard product={product} key={product.id || product.slug} showWishlist />
+                            <ProductCard product={product} key={product.id || product.slug} showWishlist showActions />
                         ))}
                     </div>
 
@@ -161,19 +123,6 @@ export function CategoryPageContent({
                 </section>
             )}
 
-            {siblings.length ? (
-                <section className="cat-siblings">
-                    <h2>Other categories</h2>
-                    <div className="cat-sib-grid">
-                        {siblings.map((item) => (
-                            <Link className="cat-sib" href={`/category/${item.slug}`} key={item.id}>
-                                <b>{item.label}</b>
-                                {item.description ? <span>{item.description}</span> : null}
-                            </Link>
-                        ))}
-                    </div>
-                </section>
-            ) : null}
         </>
     );
 }

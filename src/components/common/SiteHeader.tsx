@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import { CartHeaderLink } from "@/components/common/CartHeaderLink";
 import { HeaderSearch } from "@/components/common/HeaderSearch";
+import { getCompany } from "@/lib/company";
 
 type ActiveNavItem =
     | "home"
@@ -16,86 +17,109 @@ type SiteHeaderProps = {
     active?: ActiveNavItem;
 };
 
+/**
+ * The design's menu is Facility Maintenance, Architectural & Interiors, Shop,
+ * About Us and Contact. The two division pages do not exist yet, so they are
+ * left out rather than pointed at a page that would 404; add them here when
+ * their routes land.
+ */
 const navItems: Array<{
     id: ActiveNavItem;
     href: string;
     label: string;
 }> = [
-        { id: "home", href: "/", label: "Home" },
-        { id: "products", href: "/products", label: "Browse gifts" },
+        { id: "products", href: "/products", label: "Shop" },
+        { id: "about-us", href: "/about-us", label: "About Us" },
+        { id: "contact-us", href: "/contact-us", label: "Contact" },
     ];
 
+/**
+ * Three bands, as in the design: a dark strip with the phone number, the main
+ * bar (logo, menu, bulk-quote button), and a tools row with categories,
+ * search, account and cart.
+ *
+ * The strip scrolls away; the bar and the tools row are one sticky `.nav`, so
+ * search and the cart stay in reach. `.nav` is also what `MobileNavToggle`
+ * binds to and what `RouteProgressBar` measures, so the class must stay on the
+ * sticky element.
+ */
 export function SiteHeader({ active }: SiteHeaderProps) {
+    const company = getCompany();
+
     return (
-        <nav className="nav">
-            <div className="wrap nav-inner">
-                {/* Both marks ship; CSS picks one at the nav's own breakpoint.
-                    The link carries the accessible name so neither image needs
-                    alt text -- with one of them always hidden, alt on both would
-                    announce the destination twice. */}
-                <Link className="logo" href="/" aria-label="Wingback - home">
-                    {/* The trimmed files, not the supplied ones: those carry
-                        7-9% transparent margin either side, which set the mark
-                        visibly inside the content edge it is meant to sit on. */}
-                    <Image
-                        className="logo-full"
-                        src="/assets/wingback-logo-trimmed.png"
-                        alt=""
-                        width={167}
-                        height={65}
-                        fetchPriority="high"
-                        priority
-                    />
-                    <Image
-                        className="logo-mark"
-                        src="/assets/wingback-logo-mark-trimmed.png"
-                        alt=""
-                        width={36}
-                        height={44}
-                        fetchPriority="high"
-                        priority
-                    />
-                </Link>
-                <button
-                    className="nav-toggle"
-                    type="button"
-                    aria-label="Open navigation"
-                    aria-expanded="false"
-                    aria-controls="primary-navigation"
-                >
-                    <svg className="icon" aria-hidden="true" viewBox="0 0 24 24">
-                        <path d="M4 7h16M4 12h16M4 17h16" />
-                    </svg>
-                </button>
-                {/* Account and cart live here too, as `nav-extra` rows. Below the
-                    nav's breakpoint the round icons are hidden and these take
-                    over, so the collapsed bar is just logo, search and toggle. */}
-                <div className="links" id="primary-navigation">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.id}
-                            href={item.href}
-                            aria-current={active === item.id ? "page" : undefined}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
-                    <Link className="nav-extra" href="/account">
-                        My account
-                    </Link>
-                    <CartHeaderLink variant="menu" />
-                </div>
-                <div className="nav-actions">
-                    <HeaderSearch />
-                    <Link className="header-icon-link nav-account" href="/account" aria-label="Your account">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="12" cy="8" r="4" />
-                            <path d="M5 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2Z" />
-                        </svg>
-                    </Link>
-                    <CartHeaderLink />
+        <>
+            <div className="topbar">
+                <div className="wrap topbar-inner">
+                    <span className="topbar-note">Pan-India supply · B2B &amp; B2C · 100+ dealer partners</span>
+                    <div className="topbar-links">
+                        {company.telHref ? (
+                            <a className="topbar-call" href={`tel:${company.telHref}`}>
+                                Call {company.phoneDisplay.replace(/^\+91\s*/, "")}
+                            </a>
+                        ) : null}
+                        <Link href="/products">Shop Online</Link>
+                    </div>
                 </div>
             </div>
-        </nav>
+            <header className="nav">
+                <div className="nav-main">
+                    <div className="wrap nav-inner">
+                        <BrandLogo className="logo" />
+                        <button
+                            className="nav-toggle"
+                            type="button"
+                            aria-label="Open navigation"
+                            aria-expanded="false"
+                            aria-controls="primary-navigation"
+                        >
+                            <svg className="icon" aria-hidden="true" viewBox="0 0 24 24">
+                                <path d="M4 7h16M4 12h16M4 17h16" />
+                            </svg>
+                        </button>
+                        <nav className="links" id="primary-navigation" aria-label="Main">
+                            {navItems.map((item) => (
+                                <Link
+                                    key={item.id}
+                                    href={item.href}
+                                    aria-current={active === item.id ? "page" : undefined}
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                            {/* The bulk-quote button folds into the menu on a
+                                phone, where the bar has no room for it. */}
+                            <Link className="nav-extra" href="/contact-us">
+                                Get a Bulk Quote
+                            </Link>
+                        </nav>
+                        {/* There is no quote flow yet, so this goes to the
+                            contact page, like every other enquiry. */}
+                        <Link className="btn btn-primary nav-quote" href="/contact-us">
+                            Get a Bulk Quote
+                        </Link>
+                    </div>
+                </div>
+                <div className="nav-tools">
+                    <div className="wrap nav-tools-inner">
+                        <Link className="nav-categories" href="/products">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <span>All Categories</span>
+                        </Link>
+                        <HeaderSearch />
+                        <div className="nav-actions">
+                            <Link className="header-icon-link" href="/account" aria-label="My account">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M5 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2Z" />
+                                </svg>
+                            </Link>
+                            <CartHeaderLink />
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </>
     );
 }

@@ -10,8 +10,8 @@ import { getOtpResendSeconds } from "@/lib/env";
 import { getAuthProfile } from "@/utils/auth-profile";
 
 export const metadata: Metadata = {
-    title: "Login | Wingback",
-    description: "Sign in to your Wingback account with a one-time code or your password.",
+    title: "Login | AE India",
+    description: "Sign in to your AE India account with a one-time code or your password.",
     robots: {
         index: false,
         follow: false,

@@ -5,8 +5,7 @@ const styles = `
 .co-back{display:inline-flex;align-items:center;gap:12px;border:0;background:none;font:inherit;font-size:var(--t-sm);font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--ink);cursor:pointer;padding:6px 0}
 .co-back:hover{color:var(--violet)}
 .co-back svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.co-brand{justify-self:center;display:block;line-height:0}
-.co-brand img{width:auto;height:46px}
+.co-brand{justify-self:center}
 .co-secure{justify-self:end;display:inline-flex;align-items:center;gap:11px;color:var(--muted-2);font-size:var(--t-sm)}
 .co-secure svg{width:34px;height:34px;fill:none;stroke:var(--mint-ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
@@ -69,7 +68,7 @@ const styles = `
 .co-next .btn{flex:0 1 340px;min-width:190px}
 .co-next .btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
 .co-next .btn-primary{background:var(--violet);height:56px;font-size:var(--t-lg)}
-.co-next .btn-primary:hover:not(:disabled){box-shadow:0 12px 26px rgba(91,61,245,.28)}
+.co-next .btn-primary:hover:not(:disabled){box-shadow:0 12px 26px rgba(20, 48, 90, .28)}
 .btn-danger{background:var(--rose);color:#fff;border:0}
 .btn-danger:hover:not(:disabled){transform:translateY(-1px)}
 .co-confirm-actions .btn:disabled{opacity:.6;cursor:not-allowed}
@@ -174,7 +173,6 @@ const styles = `
 @media(max-width:760px){
 .co-bar-inner,.co-shell{width:min(100% - 24px,1440px)}
 .co-bar-inner{height:64px;gap:10px}
-.co-brand img{height:36px}
 .co-secure span{display:none}
 .co-back span{display:none}
 .co-main,.co-aside{padding:18px}

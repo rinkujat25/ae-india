@@ -5,13 +5,18 @@ import { ProductDetailPageContent } from "@/components/product/ProductDetailPage
 import { ProductCardStyles } from "@/components/product/ProductCardStyles";
 import { BoughtTogetherStyles } from "@/components/product/BoughtTogetherStyles";
 import { ProductDetailStyles } from "@/components/product/ProductDetailStyles";
-import { staticProductDetail } from "@/constants/productDetail";
 import { getProductDetail } from "@/services/hyperinventory/product-detail.service";
 import { getProducts } from "@/services/hyperinventory/product.service";
 import type { ProductDetailModel } from "@/types/models/product-detail.model";
 import type { ProductModel } from "@/types/models/product.model";
-import { giftverseUrl } from "@/lib/giftverse";
+import { ProductJsonLd } from "@/components/product/ProductJsonLd";
+import { storeOwner } from "@/constants/brand";
 import { absoluteUrl } from "@/lib/site";
+import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/common/Breadcrumbs";
+import { CategoryStyles } from "@/components/category/CategoryStyles";
+import { CategoryUnavailable } from "@/components/category/CategoryUnavailable";
+import { HyperinventoryApiError } from "@/services/hyperinventory/client";
 
 export const dynamic = "force-dynamic";
 
@@ -25,29 +30,11 @@ type ProductDetailPageProps = {
 };
 
 /**
- * The canonical product page, on GiftVerse.
- *
- * The same Hyperinventory catalogue is published on both hosts under the same
- * `url_path`, so every product here has a twin there. Pointing the canonical
- * across says which of the two a search engine should index and keeps the pair
- * from competing as duplicates of each other.
- *
- * Note what it costs: this host's product pages are no longer the ones that
- * rank. Shares keep pointing here -- `og:url` stays local, because somebody
- * sharing a gift from this store means this store -- but search traffic goes
- * to GiftVerse. Changing the path shape there breaks every canonical on this
- * site at once.
- */
-function canonicalProductUrl(slug: string) {
-    return giftverseUrl(`/products/${slug}`);
-}
-
-/**
  * Built from the product, not from its slug.
  *
  * The seller authors `meta_title`, `meta_description` and keywords against each
  * product, so those are used verbatim where they exist. `meta_title` is left
- * unbranded rather than having "| Wingback" appended: it is already written to
+ * unbranded rather than having "| AE India" appended: it is already written to
  * a length that survives a search result, and the suffix is what pushes it past
  * the point where Google rewrites the title itself.
  *
@@ -63,15 +50,14 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
     if (!product) {
         return {
-            title: "Product | Wingback",
-            alternates: { canonical: canonicalProductUrl(slug) },
+            title: "Product | AE India",
+            alternates: { canonical: `/products/${slug}` },
         };
     }
 
-    const title = product.metaTitle || `${product.name} | Wingback`;
+    const title = product.metaTitle || `${product.name} | AE India`;
     const description = product.metaDescription || product.oneLineDescription || product.description;
     const path = `/products/${product.slug}`;
-    const canonical = canonicalProductUrl(product.slug);
     // Enough for a crawler to choose from without turning the head into a
     // gallery; the first is the one every card actually shows.
     const images = product.images.slice(0, 4).map((url) => ({ url, alt: product.name }));
@@ -80,21 +66,19 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
         title,
         description: description || undefined,
         keywords: product.keywords.length > 0 ? product.keywords : undefined,
-        authors: [{ name: "Sampley" }],
+        authors: [{ name: storeOwner }],
         alternates: {
-            // Absolute and off-site, so `metadataBase` is not applied. The
-            // language entries follow it: an hreflang pointing back at this
-            // host while the canonical points at GiftVerse is two answers to
-            // the same question.
-            canonical,
+            // Relative: `metadataBase` in the root layout makes these absolute
+            // against whichever host the build is deployed to.
+            canonical: path,
             languages: {
-                "en-IN": canonical,
-                "x-default": canonical,
+                "en-IN": path,
+                "x-default": path,
             },
         },
         openGraph: {
             type: "website",
-            siteName: "Wingback Gift Store",
+            siteName: "AE India",
             url: absoluteUrl(path),
             title,
             description: description || undefined,
@@ -163,12 +147,34 @@ function getOpenGraphAvailability(product: ProductDetailModel): string {
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
     const { slug } = await params;
     const product = await getProductDetail(slug).catch((error: unknown) => {
+        // The provider's 404 means there is no such product: a real 404 here.
+        if (error instanceof HyperinventoryApiError && error.status === 404) notFound();
+
         console.error(
             "Unable to load the Hyperinventory product detail:",
             error instanceof Error ? error.message : "Unknown error",
         );
-        return staticProductDetail;
+        return null;
     });
+
+    // Any other failure is "could not load", never a stand-in product. This
+    // page used to fall back to a hard-coded sample here, which put someone
+    // else's product -- with a working Add to Cart -- at the requested URL.
+    if (!product) {
+        return (
+            <>
+                <CategoryStyles />
+                <SiteHeader active="products" />
+                <main className="cat-page">
+                    <div className="wrap">
+                        <Breadcrumbs trail={[{ label: "Shop", href: "/products" }, { label: "Product" }]} />
+                        <CategoryUnavailable subject="this product" retryHref={`/products/${slug}`} />
+                    </div>
+                </main>
+                <SiteFooter />
+            </>
+        );
+    }
 
     // Similar products come from the same listing endpoint the catalogue uses,
     // narrowed to this product's category. Products with no category fall back to
@@ -188,6 +194,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <ProductDetailStyles />
             <BoughtTogetherStyles />
             <ProductCardStyles />
+            <ProductJsonLd product={product} />
             <SiteHeader active="products" />
             <ProductDetailPageContent
                 product={product}

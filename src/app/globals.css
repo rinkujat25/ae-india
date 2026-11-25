@@ -1,70 +1,69 @@
-/* Shared design tokens for the Next.js storefront foundation.
-   Colour and type follow Wingback's own brand, so the store reads as theirs
-   rather than as the platform underneath it. The token names are inherited and
-   still say "violet"; the values are Wingback's orange. */
+/* Shared design tokens for the storefront.
+   Colour, type and shape follow the AE India design ("AE India — Website
+   Pages"): ink and navy on white, teal as the commerce accent, Space Grotesk
+   for headings over Inter for body text, 8px controls and 12-18px cards.
 
-/* Satoshi, self-hosted in the three weights Wingback's own site ships. */
-@font-face {
-  font-family: Satoshi;
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("/assets/fonts/satoshi-400.woff2") format("woff2");
-}
+   The token names are inherited from the first store this codebase served and
+   still say "violet"; the values are AE India's navy. Renaming them would touch
+   every stylesheet for no visible change. */
 
-@font-face {
-  font-family: Satoshi;
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url("/assets/fonts/satoshi-500.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Satoshi;
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url("/assets/fonts/satoshi-700.woff2") format("woff2");
-}
+/* The two families are loaded by next/font in the root layout, which serves
+   them from this origin and exposes them as these two variables. */
 
 :root {
-  --color-background: #f6f5f2;
+  --color-background: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-muted: #efede8;
-  --color-foreground: #1f1d1c;
-  --color-muted: #5f5b57;
-  --color-border: #dcd8d1;
-  --color-primary: #dd5a2a;
-  --color-primary-hover: #a53f1f;
+  --color-surface-muted: #f4f6f8;
+  --color-foreground: #0f1b2d;
+  --color-muted: #5b6676;
+  --color-border: #e2e6eb;
+  --color-primary: #14305a;
+  --color-primary-hover: #0f1b2d;
   --color-primary-foreground: #ffffff;
   --container-max-width: 1180px;
 }
 
 :root {
-            --ink: #1f1d1c;
-            --ink-2: #333132;
-            --muted: #5f5b57;
-            --muted-2: #67635e;
-            --paper: #f6f5f2;
-            --cream: #efede8;
+            --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+            --font-display: var(--font-space-grotesk), var(--font-body);
+
+            --ink: #0f1b2d;
+            --ink-2: #3b4656;
+            --muted: #5b6676;
+            --muted-2: #5b6676;
+            --paper: #ffffff;
+            --cream: #f4f6f8;
             --card: #ffffff;
-            --line: #dcd8d1;
-            --line-2: #e7e3dc;
-            --violet: #dd5a2a;
-            --violet-2: #e8835c;
-            --violet-tint: #fbe9e1;
-            --violet-ink: #a53f1f;
-            --mint: #dff7ec;
-            --mint-ink: #1c7a4f;
+            --line: #e2e6eb;
+            --line-2: #e9edf1;
+            --line-soft: #eef1f4;
+            /* Primary: navy buttons, links, badges and focus. */
+            --violet: #14305a;
+            --violet-2: #2b5a9a;
+            --violet-tint: #e3e9f1;
+            --violet-ink: #0f1b2d;
+            /* Commerce accent: teal, as on the shop and facility pages. */
+            --teal: #0f766e;
+            --teal-tint: #e6f2f0;
+            /* Architectural division: rust on sand. */
+            --rust: #9a4a1f;
+            --rust-ink: #6b3416;
+            --sand: #f6ede6;
+            /* The footer and the top strip sit on these. */
+            --night: #0b1422;
+            --night-line: #22304a;
+            --night-text: #a9b4c2;
+            --night-text-2: #d7dee8;
+            --mint: #e6f2f0;
+            --mint-ink: #0f766e;
             --amber: #fff0d0;
             --amber-ink: #8a6100;
             --rose: #e11d63;
-            --peach: #ffe5da;
-            --peach-ink: #a8482a;
-            --sky: #eaf2ff;
-            --sky-ink: #2563eb;
-            --lilac: #f5eafd;
+            --peach: #f6ede6;
+            --peach-ink: #9a4a1f;
+            --sky: #e3e9f1;
+            --sky-ink: #14305a;
+            --lilac: #edf1f6;
             --yellow: #ffe7a8;
             --yellow-ink: #5c3b00;
 
@@ -75,15 +74,15 @@
             --t-xl: 21px;
             --t-2xl: 26px;
             --t-3xl: clamp(30px, 3.4vw, 40px);
-            --t-4xl: clamp(38px, 5vw, 62px);
+            --t-4xl: clamp(38px, 5vw, 56px);
             --r-pill: 999px;
-            --r-sm: 14px;
-            --r-md: 20px;
-            --r-lg: 28px;
+            --r-sm: 8px;
+            --r-md: 14px;
+            --r-lg: 18px;
             --gap: 16px;
             --pad-card: 26px;
-            --shadow: 0 20px 54px rgba(31, 29, 28, .10);
-            --shadow-sm: 0 10px 30px rgba(31, 29, 28, .06);
+            --shadow: 0 20px 54px rgba(15, 27, 45, .10);
+            --shadow-sm: 0 10px 30px rgba(15, 27, 45, .06);
         }
 
         * {
@@ -98,7 +97,8 @@
             margin: 0;
             background: var(--paper);
             color: var(--ink);
-            font-family: Satoshi, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+            font-family: var(--font-body);
+            line-height: 1.55;
             font-size: var(--t-md);
             -webkit-font-smoothing: antialiased
         }
@@ -117,8 +117,9 @@
         h2,
         h3,
         h4 {
+            font-family: var(--font-display);
             letter-spacing: -.015em;
-            font-weight: 800;
+            font-weight: 700;
             margin: 0
         }
 
@@ -167,7 +168,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            background: rgba(255, 253, 248, .7);
+            background: rgba(255, 255, 255, .7);
             backdrop-filter: blur(4px);
             color: var(--ink);
             font-size: var(--t-sm);
@@ -177,7 +178,7 @@
         .global-api-loader__spinner {
             width: 34px;
             height: 34px;
-            border: 3px solid rgba(91, 61, 245, .18);
+            border: 3px solid rgba(20, 48, 90, .18);
             border-top-color: var(--violet);
             border-radius: 50%;
             animation: global-api-loader-spin .75s linear infinite;
@@ -296,15 +297,6 @@
         }
 
         /* ---------------- nav ---------------- */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(255, 253, 248, .88);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(233, 227, 218, .8)
-        }
-
         /* Page-change progress, pinned to the header's lower edge. It sits on
            the border so the bar reads as part of the header rather than as a
            strip of page content. */
@@ -356,55 +348,802 @@
             }
         }
 
+        /* ---------------- header ----------------
+           Three bands, as in the AE India design: a dark strip, the main bar
+           and a grey tools row. `.nav` (bar + tools) is the sticky element;
+           RouteProgressBar measures it and MobileNavToggle binds to it. */
+        .topbar {
+            background: var(--ink);
+            color: var(--night-text-2);
+            font-size: var(--t-sm)
+        }
+
+        .topbar-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px 24px;
+            padding: 9px 0
+        }
+
+        .topbar-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 22px
+        }
+
+        .topbar-links a:hover {
+            color: #fff;
+            text-decoration: underline
+        }
+
+        .topbar-call {
+            color: #fff;
+            font-weight: 600
+        }
+
+        .topbar :focus-visible,
+        .footer :focus-visible {
+            outline-color: #fff
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff
+        }
+
+        .nav-main {
+            border-bottom: 1px solid var(--line)
+        }
+
         .nav-inner {
-            height: 72px;
+            min-height: 72px;
+            padding: 14px 0;
             display: flex;
             align-items: center;
-            gap: 26px
+            justify-content: space-between;
+            gap: 14px 32px
         }
 
-        /* 181px: the trimmed mark is 167px, and the other 14px is the gap the
-           supplied file's transparent margin used to leave before the menu.
-           Keeping it means the mark moves onto the content edge while the
-           space between it and "Home" stays what it was. */
-        .logo {
-            display: flex;
+        /* The lockup. Type, not an image -- see BrandLogo. */
+        .brand-logo {
+            display: inline-flex;
             align-items: center;
-            width: 181px;
-            min-width: 181px
+            gap: 12px;
+            flex: 0 0 auto
         }
 
-        /* The square mark is the mobile-only lockup; it is hidden until the
-           nav's own breakpoint swaps the two. */
-        .logo-mark {
-            display: none
+        .brand-logo-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--violet);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: .5px
+        }
+
+        .brand-logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15
+        }
+
+        .brand-logo-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--ink)
+        }
+
+        .brand-logo-owner {
+            font-size: var(--t-xs);
+            color: var(--muted);
+            letter-spacing: .4px;
+            text-transform: uppercase
+        }
+
+        .brand-logo--dark .brand-logo-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 9px;
+            background: #fff;
+            color: var(--violet);
+            font-size: 16px
+        }
+
+        .brand-logo--dark .brand-logo-name {
+            font-size: 19px;
+            color: #fff
+        }
+
+        .brand-logo--dark .brand-logo-owner {
+            color: var(--night-text)
         }
 
         .links {
             display: flex;
-            gap: 22px;
-            font-size: var(--t-sm);
-            color: #4f4958;
-            margin-left: 10px;
+            flex-wrap: wrap;
+            gap: 4px 28px;
+            font-size: var(--t-md);
+            font-weight: 500;
+            color: var(--ink);
             white-space: nowrap
         }
 
         .links a {
-            font-weight: 700;
-            padding: 7px 0;
+            padding: 10px 0;
             border-bottom: 2px solid transparent;
             transition: color .15s ease, border-color .15s ease
         }
 
-        .links a:hover {
+        .links a:hover,
+        .links a[aria-current="page"] {
             color: var(--violet);
             border-bottom-color: var(--violet)
         }
 
-        .nav-ai {
+        .nav-quote {
+            font-size: var(--t-md);
+            flex: 0 0 auto
+        }
+
+        /* Menu-only rows; shown inside the collapsed menu on a phone. */
+        .nav-extra {
+            display: none
+        }
+
+        .nav-toggle {
+            display: none;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink);
+            border-radius: var(--r-sm);
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer
+        }
+
+        .nav-toggle .icon {
+            width: 20px;
+            height: 20px
+        }
+
+        .nav-tools {
+            background: var(--cream);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav-tools-inner {
+            display: flex;
+            align-items: center;
+            gap: 10px 20px;
+            padding: 10px 0
+        }
+
+        .nav-categories {
             display: inline-flex;
             align-items: center;
-            gap: 7px
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: var(--r-sm);
+            background: #fff;
+            border: 1px solid #d5dce4;
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 14px;
+            flex: 0 0 auto
+        }
+
+        .nav-categories:hover {
+            border-color: var(--violet)
+        }
+
+        .nav-categories svg,
+        .header-icon-link svg,
+        .cart-header-link svg,
+        .header-search-form button svg,
+        .header-search-keyword svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 auto;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .header-search {
+            position: relative;
+            flex: 1 1 320px;
+            min-width: 0
+        }
+
+        .header-search-form {
+            display: flex;
+            min-width: 0;
+            border-radius: var(--r-sm)
+        }
+
+        .header-search-form:focus-within {
+            box-shadow: 0 0 0 3px rgba(20, 48, 90, .16)
+        }
+
+        .header-search-form input {
+            flex: 1 1 auto;
+            min-width: 0;
+            height: 44px;
+            border: 1px solid #d5dce4;
+            border-right: 0;
+            border-radius: var(--r-sm) 0 0 var(--r-sm);
+            padding: 0 14px;
+            background: #fff;
+            color: var(--ink);
+            font: inherit;
+            font-size: var(--t-md);
+            outline: 0
+        }
+
+        .header-search-form input:focus {
+            border-color: var(--violet)
+        }
+
+        .header-search-form input::placeholder {
+            color: var(--muted)
+        }
+
+        .header-search-form button {
+            height: 44px;
+            padding: 0 20px;
+            border: 0;
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            background: var(--ink);
+            color: #fff;
+            font: inherit;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer
+        }
+
+        .header-search-form button:hover {
+            background: var(--violet)
+        }
+
+        /* The label carries the button on a wide screen; the glyph on a phone. */
+        .header-search-form button svg {
+            display: none
+        }
+
+        .header-search-results {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            z-index: 60;
+            max-height: min(60vh, 480px);
+            overflow-y: auto;
+            padding: 8px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            box-shadow: 0 18px 44px rgba(15, 27, 45, .16)
+        }
+
+        .header-search-status {
+            padding: 14px 12px;
+            color: var(--muted);
+            font-size: var(--t-sm)
+        }
+
+        .header-search-error {
+            color: #9b2f2f
+        }
+
+        .header-search-result {
+            width: 100%;
+            min-height: 44px;
+            border: 0;
+            border-radius: var(--r-sm);
+            background: #fff;
+            color: var(--ink-2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            text-align: left;
+            font: inherit;
+            cursor: pointer
+        }
+
+        .header-search-result:hover,
+        .header-search-result[aria-selected="true"] {
+            background: var(--cream);
+            color: var(--ink)
+        }
+
+        .header-search-keyword span {
+            font-size: var(--t-sm);
+            font-weight: 600
+        }
+
+        .header-search-product {
+            justify-content: space-between;
+            border-top: 1px solid var(--line-2);
+            border-radius: 0
+        }
+
+        .header-search-product-copy {
+            min-width: 0;
+            display: grid;
+            gap: 3px
+        }
+
+        .header-search-product-copy strong {
+            font-size: var(--t-sm);
+            font-weight: 600;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .header-search-product-copy small {
+            font-size: var(--t-xs);
+            font-weight: 700;
+            color: var(--teal)
+        }
+
+        .header-search-product > span:last-child {
+            font-size: 22px;
+            flex: 0 0 auto
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 0 0 auto
+        }
+
+        .header-icon-link,
+        .cart-header-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 10px;
+            border-radius: var(--r-sm);
+            color: var(--ink);
+            font-weight: 600;
+            font-size: 14px
+        }
+
+        .header-icon-link:hover,
+        .cart-header-link:hover {
+            background: #fff
+        }
+
+        .cart-header-count {
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            border-radius: var(--r-pill);
+            background: var(--teal);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 20px;
+            text-align: center
+        }
+
+        @media (max-width:1120px) {
+            .nav-inner {
+                position: relative;
+                gap: 12px
+            }
+
+            .nav-quote {
+                order: 2;
+                margin-left: auto
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                order: 3
+            }
+
+            .links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 3;
+                flex-direction: column;
+                gap: 0;
+                padding: 8px 18px;
+                background: #fff;
+                border: 1px solid var(--line);
+                border-radius: var(--r-md);
+                box-shadow: 0 18px 42px rgba(15, 27, 45, .12)
+            }
+
+            .nav.menu-open .links {
+                display: flex
+            }
+
+            .links a {
+                padding: 13px 0;
+                border-bottom: 1px solid var(--line-soft)
+            }
+
+            .links a:last-child {
+                border-bottom: 0
+            }
+
+            .links a:hover,
+            .links a[aria-current="page"] {
+                border-bottom-color: var(--line-soft)
+            }
+        }
+
+        @media (max-width:640px) {
+            .topbar-note {
+                display: none
+            }
+
+            .topbar-inner {
+                justify-content: center
+            }
+
+            .nav-inner {
+                min-height: 64px;
+                padding: 10px 0
+            }
+
+            /* Two classes: `.btn` comes later in this file and would put the
+               button back. */
+            .nav .nav-quote {
+                display: none
+            }
+
+            .nav-toggle {
+                margin-left: auto
+            }
+
+            .nav-extra {
+                display: block
+            }
+
+            .brand-logo-mark {
+                width: 40px;
+                height: 40px;
+                font-size: 16px
+            }
+
+            .brand-logo-name {
+                font-size: 18px
+            }
+
+            .nav-tools-inner {
+                gap: 8px
+            }
+
+            .nav-categories {
+                padding: 0 12px
+            }
+
+            .nav-categories span,
+            .header-search-form button span,
+            .cart-header-label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+                white-space: nowrap
+            }
+
+            .header-search {
+                flex: 1 1 0
+            }
+
+            .header-search-form button {
+                padding: 0 14px
+            }
+
+            .header-search-form button svg {
+                display: block
+            }
+
+            .header-search-form input {
+                font-size: 16px
+            }
+
+            .nav-actions {
+                gap: 2px
+            }
+
+            .header-icon-link,
+            .cart-header-link {
+                padding: 0 8px
+            }
+        }
+
+        /* ---------------- shop banner ----------------
+           The tinted panel and category chips at the top of /products and
+           /category/[slug]. Here rather than in a page sheet because both
+           pages render it. */
+        .shop-banner-section {
+            padding-top: 8px
+        }
+
+        .shop-banner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 36px 40px;
+            background: #f2f7f6;
+            border: 1px solid #dde9e7;
+            border-radius: var(--r-lg)
+        }
+
+        .shop-banner-copy {
+            flex: 1 1 520px;
+            min-width: 0
+        }
+
+        .shop-banner-eyebrow {
+            margin: 0 0 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: var(--teal)
+        }
+
+        .shop-banner h1 {
+            margin: 0 0 10px;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.08;
+            letter-spacing: -.6px;
+            color: var(--ink)
+        }
+
+        .shop-banner-lede {
+            margin: 0 0 22px;
+            max-width: 620px;
+            font-size: 17px
+        }
+
+        .shop-banner-cta {
+            display: inline-flex;
+            align-items: center;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: var(--r-sm);
+            background: var(--teal);
+            color: #fff;
+            font-weight: 600
+        }
+
+        .shop-banner-cta:hover {
+            background: #0b5c55
+        }
+
+        .shop-banner-media {
+            flex: 1 1 340px;
+            max-width: 460px;
+            height: 240px;
+            border-radius: var(--r-md);
+            overflow: hidden
+        }
+
+        .shop-banner-media img {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            object-fit: cover
+        }
+
+        .shop-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px
+        }
+
+        .shop-chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 40px;
+            padding: 0 16px;
+            border: 1px solid #d5dce4;
+            border-radius: var(--r-pill);
+            background: #fff;
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 500
+        }
+
+        .shop-chip:hover {
+            border-color: var(--ink)
+        }
+
+        .shop-chip[aria-current="page"] {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff
+        }
+
+        .facility-box {
+            margin-top: 24px;
+            padding: 22px;
+            border-radius: var(--r-md);
+            background: var(--ink);
+            color: #c5cfdb;
+            font-size: 14px
+        }
+
+        .facility-box-title {
+            margin: 0 0 6px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 17px;
+            color: #fff
+        }
+
+        .facility-box p + p {
+            margin-bottom: 14px
+        }
+
+        .facility-box a {
+            color: #7fd4c9;
+            font-weight: 600;
+            font-size: 15px
+        }
+
+        .facility-box a:hover {
+            text-decoration: underline
+        }
+
+        .facility-box :focus-visible {
+            outline-color: #fff
+        }
+
+        @media (max-width:640px) {
+            .shop-banner {
+                padding: 24px 20px
+            }
+
+            .shop-banner-lede {
+                font-size: 15px
+            }
+
+            .shop-banner-media {
+                height: 180px
+            }
+
+            /* One scrolling row on a phone rather than four wrapped ones. */
+            .shop-chips {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 4px;
+                scrollbar-width: none
+            }
+
+            .shop-chip {
+                flex: 0 0 auto
+            }
+        }
+
+        /* ---------------- footer ---------------- */
+        .footer {
+            background: var(--night);
+            color: var(--night-text);
+            font-size: 14px
+        }
+
+        .footer-inner {
+            padding: 64px 0 28px
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px 64px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--night-line)
+        }
+
+        .footer-brand {
+            flex: 1 1 280px;
+            max-width: 340px
+        }
+
+        .footer-brand .brand-logo {
+            margin-bottom: 16px
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .footer-col:last-child {
+            max-width: 260px
+        }
+
+        .footer h2 {
+            margin: 0 0 4px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0
+        }
+
+        .footer a {
+            color: var(--night-text);
+            transition: color .15s ease
+        }
+
+        .footer a:hover {
+            color: #fff
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 24px;
+            font-size: var(--t-sm)
+        }
+
+        .footer-policies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 0
+        }
+
+        .footer-policies a + a::before {
+            content: "\00b7";
+            padding: 0 8px;
+            color: var(--night-text)
+        }
+
+        @media (max-width:640px) {
+            .footer-inner {
+                padding: 48px 0 24px
+            }
+
+            .footer-grid {
+                gap: 32px 40px
+            }
         }
 
         .soon-dot {
@@ -419,83 +1158,11 @@
             letter-spacing: .4px
         }
 
-        .nav-actions {
-            margin-left: auto;
-            display: flex;
-            gap: 10px
-        }
-
-        /* Account and cart render twice: round icons here, labelled rows inside
-           the nav panel. Only one pair is ever visible -- see the 1120 block. */
-        .nav-extra {
-            display: none
-        }
-
-        .header-icon-link,.cart-header-link{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:0 0 auto;border:0;border-radius:50%;background:#f0f0f0;color:var(--ink);cursor:pointer}
-        .header-icon-link:hover,.cart-header-link:hover{background:var(--ink);color:#fff}
-        .header-icon-link svg,.cart-header-link svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-        .cart-header-link span{position:absolute;right:-5px;top:-5px;min-width:21px;height:21px;padding:0 5px;border:2px solid var(--paper);border-radius:var(--r-pill);background:var(--violet);color:#fff;font-size:10px;font-weight:900;line-height:17px;text-align:center}
-
-        .header-search-overlay{position:fixed;inset:0;z-index:1000;background:rgba(22,20,27,.58);backdrop-filter:blur(1px)}
-        .header-search-panel{position:relative;width:100%;background:rgba(255,253,248,.97);padding:32px 42px 34px;box-shadow:0 12px 40px rgba(20,18,24,.16)}
-        .header-search-panel>p{color:var(--ink-2);font-size:var(--t-lg);font-weight:800;margin:0 0 16px}
-        .header-search-close{position:absolute;right:22px;top:18px;width:42px;height:42px;border:0;border-radius:50%;background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
-        .header-search-close:hover{background:#efede9}
-        .header-search-close svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
-        .header-search-form{height:58px;border:2px solid var(--ink);border-radius:var(--r-pill);background:#fff;display:flex;align-items:center;padding:0 10px 0 24px}
-        .header-search-form:focus-within{border-color:var(--violet);box-shadow:0 0 0 3px rgba(91,61,245,.12)}
-        .header-search-form input{min-width:0;flex:1;height:100%;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:var(--t-md)}
-        .header-search-form input::placeholder{color:var(--muted-2)}
-        .header-search-form input::-webkit-search-cancel-button{display:none}
-        .header-search-form button{width:42px;height:42px;flex:0 0 auto;border:0;border-radius:50%;background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
-        .header-search-form button:hover{background:#f3f1ed}
-        .header-search-form button svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-        .header-search-results{max-height:min(58vh,520px);overflow-y:auto;margin-top:8px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 18px 44px rgba(20,18,24,.16)}
-        .header-search-status{padding:18px 16px;color:var(--muted);font-size:var(--t-sm)}
-        .header-search-error{color:#9b2f2f}
-        .header-search-result{width:100%;min-height:48px;border:0;border-radius:10px;background:#fff;color:var(--ink-2);display:flex;align-items:center;gap:13px;padding:10px 14px;text-align:left;cursor:pointer}
-        .header-search-result:hover,.header-search-result[aria-selected="true"]{background:#f5f2ff;color:var(--violet-ink)}
-        .header-search-keyword svg{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-        .header-search-keyword span{font-size:var(--t-sm);font-weight:700}
-        .header-search-product{justify-content:space-between;border-top:1px solid var(--line-2);border-radius:0}
-        .header-search-product-copy{min-width:0;display:grid;gap:3px}
-        .header-search-product-copy strong{font-size:var(--t-sm);font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .header-search-product-copy small{font-size:var(--t-xs);font-weight:800;color:var(--peach-ink)}
-        .header-search-product>span:last-child{font-size:25px;flex:0 0 auto}
-
-        @media (max-width:720px){
-            .header-search-panel{padding:58px 16px 22px}
-            .header-search-panel>p{font-size:var(--t-md);margin-bottom:12px}
-            .header-search-close{right:10px;top:8px}
-            .header-search-form{height:52px;padding-left:18px}
-            .header-search-form input{font-size:var(--t-sm)}
-            .header-search-results{max-height:calc(100vh - 150px);border-radius:20px;padding:7px}
-        }
-
-        .nav-toggle {
-            display: none;
-            border: 1px solid var(--line);
-            background: #fff;
-            color: var(--ink);
-            border-radius: var(--r-pill);
-            width: 44px;
-            height: 44px;
-            padding: 10px;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer
-        }
-
-        .nav-toggle .icon {
-            width: 20px;
-            height: 20px
-        }
-
         .btn {
             border: 0;
-            border-radius: var(--r-pill);
-            padding: 13px 20px;
-            font-weight: 700;
+            border-radius: var(--r-sm);
+            padding: 13px 22px;
+            font-weight: 600;
             font-size: 14px;
             font-family: inherit;
             cursor: pointer;
@@ -508,13 +1175,14 @@
         }
 
         .btn-primary {
-            background: var(--ink);
+            background: var(--violet);
             color: #fff
         }
 
         .btn-primary:hover {
+            background: var(--violet-ink);
             transform: translateY(-1px);
-            box-shadow: 0 12px 26px rgba(25, 22, 34, .22)
+            box-shadow: 0 12px 26px rgba(15, 27, 45, .22)
         }
 
         .btn-soft {
@@ -525,7 +1193,7 @@
 
         .btn-soft:hover {
             transform: translateY(-1px);
-            border-color: #d5ccbe
+            border-color: #c9d3dc
         }
 
         /* ---------------- section rhythm ---------------- */
@@ -1007,7 +1675,7 @@
             font-weight: 800;
             font-size: var(--t-sm);
             color: var(--violet);
-            border-bottom: 2px solid rgba(91, 61, 245, .24);
+            border-bottom: 2px solid rgba(20, 48, 90, .24);
             padding-bottom: 2px
         }
 
@@ -1342,7 +2010,7 @@
             height: 600px;
             border-radius: 50%;
             filter: blur(90px);
-            background: rgba(91, 61, 245, .3);
+            background: rgba(20, 48, 90, .3);
             right: -180px;
             top: -260px
         }
@@ -1834,7 +2502,7 @@
             width: 310px;
             height: 310px;
             border-radius: 50%;
-            background: rgba(91, 61, 245, .3);
+            background: rgba(20, 48, 90, .3);
             right: -96px;
             bottom: -116px
         }
@@ -1992,7 +2660,7 @@
         }
 
         .cta-panel {
-            background: linear-gradient(130deg, #dd5a2a, #8a3312);
+            background: var(--ink);
             border-radius: var(--r-lg);
             color: #fff;
             padding: 48px;
@@ -2025,7 +2693,7 @@
         }
 
         .cta-panel>div:first-child>p {
-            color: #dcd4ff;
+            color: #d7dee8;
             line-height: 1.7;
             max-width: 56ch;
             position: relative;
@@ -2043,7 +2711,7 @@
 
         .cta-actions .btn-primary {
             background: #fff;
-            color: #8a3312
+            color: var(--ink)
         }
 
         .cta-actions .btn-soft {
@@ -2321,7 +2989,7 @@
         }
 
         .cta-panel {
-            background: linear-gradient(130deg, #dd5a2a, #8a3312);
+            background: var(--ink);
             border-radius: var(--r-lg);
             color: #fff;
             padding: 34px 38px;
@@ -2354,7 +3022,7 @@
         }
 
         .cta-panel>div:first-child>p {
-            color: #dcd4ff;
+            color: #d7dee8;
             line-height: 1.7;
             max-width: 56ch;
             position: relative;
@@ -2372,7 +3040,7 @@
 
         .cta-actions .btn-primary {
             background: #fff;
-            color: #8a3312
+            color: var(--ink)
         }
 
         .cta-actions .btn-soft {
@@ -2537,149 +3205,7 @@
             border-color: #f7c9bb
         }
 
-        /* ---------------- footer ---------------- */
-        .footer {
-            padding: 52px 0 30px;
-            border-top: 1px solid var(--line)
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.3fr repeat(2, .7fr);
-            gap: 40px
-        }
-
-        .footer h2 {
-            font-size: var(--t-xs);
-            text-transform: uppercase;
-            letter-spacing: .9px;
-            margin-bottom: 16px
-        }
-
-        .footer a {
-            display: block;
-            color: var(--muted);
-            font-size: var(--t-sm);
-            margin: 10px 0;
-            transition: color .15s ease
-        }
-
-        .footer a:hover {
-            color: var(--violet)
-        }
-
-        .footer .logo {
-            margin-bottom: 18px
-        }
-
-        .foot-copy {
-            max-width: 38ch;
-            color: var(--muted);
-            line-height: 1.65;
-            font-size: var(--t-sm)
-        }
-
-        .copyright {
-            margin-top: 44px;
-            padding-top: 22px;
-            border-top: 1px solid var(--line);
-            font-size: var(--t-xs);
-            color: #736c7d;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap
-        }
-
         /* ---------------- responsive ---------------- */
-        @media (max-width:1120px) {
-            .nav-inner {
-                position: relative
-            }
-
-            .links {
-                display: none;
-                position: absolute;
-                top: 72px;
-                left: 20px;
-                right: 20px;
-                z-index: 3;
-                flex-direction: column;
-                gap: 0;
-                margin: 0;
-                padding: 10px 18px;
-                background: rgba(255, 253, 248, .98);
-                border: 1px solid var(--line);
-                border-radius: var(--r-md);
-                box-shadow: 0 18px 42px rgba(31, 29, 28, .12)
-            }
-
-            .nav.menu-open .links {
-                display: flex
-            }
-
-            .links a {
-                padding: 13px 0;
-                border-bottom: 1px solid var(--line-soft)
-            }
-
-            .links a:last-child {
-                border-bottom: 0
-            }
-
-            .nav-toggle {
-                display: inline-flex;
-                order: 3;
-                margin-left: 8px
-            }
-
-            /* Search stays in the bar; account and cart fold into the panel,
-               so the collapsed header reads logo, search, menu. */
-            .nav .logo {
-                order: 1
-            }
-
-            .nav-actions {
-                order: 2;
-                margin-left: auto;
-                gap: 8px
-            }
-
-            .links {
-                order: 4
-            }
-
-            .nav-account,
-            .cart-header-link {
-                display: none
-            }
-
-            .nav-extra {
-                display: flex;
-                align-items: center;
-                gap: 8px
-            }
-
-            .links .nav-extra:first-of-type {
-                margin-top: 4px;
-                border-top: 1px solid var(--line)
-            }
-
-            .nav-extra-count {
-                display: inline-grid;
-                place-items: center;
-                min-width: 20px;
-                height: 20px;
-                padding: 0 6px;
-                border-radius: var(--r-pill);
-                background: var(--violet);
-                color: #fff;
-                font-size: 10px;
-                font-weight: 900;
-                line-height: 1
-            }
-        }
-
         @media (max-width:1080px) {
             .logo-row {
                 grid-template-columns: repeat(3, 1fr)
@@ -2749,11 +3275,6 @@
                 padding: 36px
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 32px
-            }
-
             .compare thead th:first-child {
                 width: 26%
             }
@@ -2762,49 +3283,6 @@
         @media (max-width:640px) {
             .wrap {
                 width: min(100% - 28px, 1180px)
-            }
-
-            .nav-inner {
-                height: 64px;
-                gap: 12px
-            }
-
-            .links {
-                top: 64px;
-                left: 14px;
-                right: 14px
-            }
-
-            /* Scoped to the header: the footer has the room for the full
-               lockup and keeps it. `width:auto` releases the 196px track the
-               wordmark needed, so the mark does not sit in a wide gap. */
-            .nav .logo {
-                width: auto;
-                min-width: 0
-            }
-
-            .nav .logo-full {
-                display: none
-            }
-
-            .nav .logo-mark {
-                display: block;
-                height: 44px;
-                width: auto
-            }
-
-            .logo {
-                width: 150px;
-                min-width: 150px
-            }
-
-            .nav-actions .btn-soft {
-                display: none
-            }
-
-            .nav-toggle {
-                width: 40px;
-                height: 40px
             }
 
             .section {
@@ -3003,35 +3481,6 @@
                 margin-top: 16px
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 26px 20px
-            }
-
-            /* The brand blurb spans both columns; the link lists sit side by
-               side beneath it rather than stacking into one long ribbon. */
-            .footer-grid > div:first-child {
-                grid-column: 1 / -1
-            }
-
-            .copyright {
-                flex-direction: column;
-                gap: 8px
-            }
-        }
-
-        @media (max-width:380px) {
-            .nav .logo {
-                width: auto;
-                min-width: 0
-            }
-
-            /* Was `display:none` on the whole action group, which also took
-               search away. Account and cart now live in the panel, so the one
-               remaining icon fits even here. */
-            .nav .nav-actions {
-                display: flex
-            }
         }
 
         @media (prefers-reduced-motion:reduce) {

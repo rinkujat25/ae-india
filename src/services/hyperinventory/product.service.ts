@@ -117,7 +117,8 @@ export async function getProducts(
                 selling_price: sellingPrice,
                 search: query.search?.trim() || undefined,
                 ordering,
-                collection_ids: storeCollectionIds.join(","),
+                // Omitted, not sent empty, when the store has no collection.
+                collection_ids: storeCollectionIds.join(",") || undefined,
             },
             ...(revalidateSeconds === undefined
                 ? {}
@@ -176,7 +177,7 @@ export async function getProductSearchSuggestions(search: string) {
         `/consumer/sellers/${encodeURIComponent(environment.sellerId)}/products_search_suggestions`,
         {
             accessToken: environment.searchToken,
-            query: { search, collection_ids: storeCollectionIds.join(",") },
+            query: { search, collection_ids: storeCollectionIds.join(",") || undefined },
         },
     );
 

@@ -1,32 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_IMAGE="wingback-nextjs:latest"
-APP_SERVICE="wingback-nextjs"
-APP_URL="http://127.0.0.1:4010"
+APP_SERVICE="ae-india-nextjs"
 
 cd "$(dirname "$0")"
 
+if [ ! -f .env ]; then
+  echo "ERROR: .env is missing. Copy .env.example to .env and fill it in."
+  exit 1
+fi
+
 echo "==> Validating Docker Compose config"
-docker compose config >/dev/null
+docker compose config --quiet
 
-echo "==> Stopping old container"
-docker compose down --remove-orphans
+# Built before anything is stopped, so a failed build leaves the running site up.
+# --no-cache also picks up a fresh `npm ci`; --pull the latest Node image.
+echo "==> Building fresh app image"
+docker compose build --pull --no-cache "$APP_SERVICE"
 
-echo "==> Removing old app image if it exists"
-docker image rm "$APP_IMAGE" >/dev/null 2>&1 || true
+echo "==> Replacing the container"
+docker compose up -d --force-recreate "$APP_SERVICE"
 
-echo "==> Building fresh app image without cache"
-docker compose build --no-cache "$APP_SERVICE"
-
-echo "==> Starting fresh deployment"
-docker compose up -d "$APP_SERVICE"
+APP_URL="http://$(docker compose port "$APP_SERVICE" 3000)"
 
 echo "==> Waiting for app to respond at $APP_URL"
 for attempt in $(seq 1 30); do
-  if curl -fsS "$APP_URL" >/dev/null; then
+  if curl -fsS "$APP_URL/" >/dev/null 2>&1; then
     echo "==> Deployment is live: $APP_URL"
     docker compose ps
+    # Drops images left untagged by this build; tagged images are untouched.
+    docker image prune -f --filter "label=com.docker.compose.project=ae-india" >/dev/null
     exit 0
   fi
 

@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import { useRouter } from "next/navigation";
 
 type CheckoutBarProps = {
@@ -26,15 +25,7 @@ export function CheckoutBar({ backHref = "/cart", onBack }: CheckoutBarProps) {
                     <span>Back</span>
                 </button>
 
-                <Link className="co-brand" href="/" aria-label="Wingback - home">
-                    <Image
-                        src="/assets/wingback-logo-supplied.png"
-                        alt="Wingback"
-                        width={196}
-                        height={65}
-                        priority
-                    />
-                </Link>
+                <BrandLogo className="co-brand" showOwner={false} />
 
                 <p className="co-secure">
                     <span>Secure Checkout</span>

@@ -1,52 +1,61 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLogo } from "@/components/common/BrandLogo";
+import { storeOwner, storeTagline } from "@/constants/brand";
 import { getCompany } from "@/lib/company";
 import { giftverseLinkProps, giftverseUrl } from "@/lib/giftverse";
 
+/**
+ * The dark footer from the AE India design: the lockup and tagline, then
+ * Solutions, Company and Contact, then the copyright and policy links.
+ *
+ * Facility Maintenance, Architectural & Interiors and Dealer Program are left
+ * out until those pages exist. The policy links still point at GiftVerse,
+ * inherited with the codebase, until AE India has policies of its own.
+ */
 export function SiteFooter() {
     const company = getCompany();
+    const year = new Date().getFullYear();
 
     return (
         <footer className="footer">
-            <div className="wrap">
+            <div className="wrap footer-inner">
                 <div className="footer-grid">
-                    <div>
-                        <Link className="logo" href="/">
-                            <Image
-                                src="/assets/wingback-logo-trimmed.png"
-                                alt="Wingback"
-                                width={167}
-                                height={65}
-                            />
-                        </Link>
-                        <p className="foot-copy">
-                            Corporate gifting reimagined around recipient choice, curated
-                            catalogues and fully managed pan-India fulfilment.
+                    <div className="footer-brand">
+                        <BrandLogo tone="dark" showOwner={false} />
+                        <p>
+                            {storeTagline} Facility maintenance and architectural surface solutions for
+                            businesses across India.
                         </p>
                     </div>
-                    <div>
-                        <h2>Contact</h2>
-                        <a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a>
-                        <Link href="/contact-us">Contact us</Link>
-                        <Link href="/products">Browse gifts</Link>
+                    <div className="footer-col">
+                        <h2>Solutions</h2>
+                        <Link href="/products">Shop Online</Link>
                     </div>
-                    <div>
-                        <h2>Policies</h2>
-                        <a href={giftverseUrl("/privacy-policy")} {...giftverseLinkProps}>Privacy policy</a>
-                        <a href={giftverseUrl("/privacy-policy/terms-and-conditions")} {...giftverseLinkProps}>
-                            Terms &amp; conditions
-                        </a>
-                        <a href={giftverseUrl("/privacy-policy/return-exchange")} {...giftverseLinkProps}>
-                            Return &amp; exchange
-                        </a>
-                        <a href={giftverseUrl("/shipping-policy")} {...giftverseLinkProps}>Shipping policy</a>
-                        <a href={giftverseUrl("/payment-policy")} {...giftverseLinkProps}>Payment policy</a>
+                    <div className="footer-col">
+                        <h2>Company</h2>
+                        <Link href="/about-us">About Us</Link>
+                        <Link href="/contact-us">Contact</Link>
+                    </div>
+                    <div className="footer-col">
+                        <h2>Contact</h2>
+                        {company.telHref ? <a href={`tel:${company.telHref}`}>{company.phoneDisplay}</a> : null}
+                        {company.supportEmail ? (
+                            <a href={`mailto:${company.supportEmail}`}>{company.supportEmail}</a>
+                        ) : null}
+                        <span>{company.address}</span>
                     </div>
                 </div>
-                <div className="copyright">
-                    <span>© 2026 Wingback Gift Store · run by Sampley.</span>
-                    <span>
-                        Built for employee, client, partner and festive gifting programs.
+                <div className="footer-bottom">
+                    <span>© {year} {storeOwner}. All rights reserved.</span>
+                    <span className="footer-policies">
+                        <a href={giftverseUrl("/privacy-policy/terms-and-conditions")} {...giftverseLinkProps}>
+                            Terms
+                        </a>
+                        <a href={giftverseUrl("/privacy-policy/return-exchange")} {...giftverseLinkProps}>
+                            Returns
+                        </a>
+                        <a href={giftverseUrl("/shipping-policy")} {...giftverseLinkProps}>Shipping</a>
+                        <a href={giftverseUrl("/privacy-policy")} {...giftverseLinkProps}>Privacy</a>
                     </span>
                 </div>
             </div>

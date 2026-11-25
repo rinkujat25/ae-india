@@ -64,7 +64,7 @@ export function mapHyperinventoryProduct(hit: HyperinventoryProductHitDto): Prod
     id: variant.id || hit._id,
     sku: variant.sku?.trim() ?? "",
     name,
-    brand: variant.brand?.name?.trim() || "Wingback",
+    brand: variant.brand?.name?.trim() || "AE India",
     price: Number(variant.selling_price ?? variant.price_for_everyone ?? 0),
     mrp: Number(variant.mrp ?? 0),
     category: "Other",

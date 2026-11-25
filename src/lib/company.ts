@@ -3,7 +3,7 @@
  *
  * These were repeated across the footer, the policies, the contact page and
  * four JSON-LD blocks, which is how the structured data
- * ended up claiming a Bengaluru address the business does not have. Everything
+ * ended up claiming an address the business did not have. Everything
  * reads them from here now, so a change lands everywhere at once.
  *
  * Server-side variables, not `NEXT_PUBLIC_*`: every caller is a Server
@@ -60,7 +60,7 @@ function toTelHref(number: string) {
     return digits.startsWith("91") && digits.length > 10 ? `+${digits}` : `+91${digits}`;
 }
 
-/** 8178539743 -> +91 81785 39743, the grouping the site already prints. */
+/** 7357603299 -> +91 73576 03299, the grouping the design prints. */
 function toPhoneDisplay(number: string) {
     const digits = number.replace(/\D/g, "").replace(/^91/, "");
 
@@ -70,7 +70,7 @@ function toPhoneDisplay(number: string) {
 }
 
 export function getCompany(): CompanyDetails {
-    const tollFreeNumber = read("COMPANY_TOLL_FREE_NUMBER", "8178539743");
+    const tollFreeNumber = read("COMPANY_TOLL_FREE_NUMBER", "7357603299");
     // Unset falls back to the published number, which the contact page already
     // offers for WhatsApp. Set explicitly to blank -- the variable present with
     // no value -- to take the button off the site; that is why this reads
@@ -86,28 +86,32 @@ export function getCompany(): CompanyDetails {
         : "";
 
     return {
-        name: read("COMPANY_NAME", "Sampley"),
-        legalName: read("COMPANY_LEGAL_NAME", "SampleyCart LLP"),
+        name: read("COMPANY_NAME", "AE India"),
+        legalName: read("COMPANY_LEGAL_NAME", "Amit Enterprises"),
         tollFreeNumber,
         telHref: toTelHref(tollFreeNumber),
         phoneDisplay: toPhoneDisplay(tollFreeNumber),
-        supportEmail: read("COMPANY_SUPPORT_EMAIL", "go@sampley.in"),
+        // No default: the design gives no email address for AE India, and printing
+        // another company's would send its customers to the wrong inbox. Every
+        // caller hides the email when this is empty.
+        supportEmail: read("COMPANY_SUPPORT_EMAIL", ""),
         whatsappNumber,
         whatsappHref: whatsappNumber ? `https://wa.me/${whatsappNumber}` : "",
-        businessHours: read("COMPANY_BUSINESS_HOURS", "Mon - Fri (9AM - 8PM)"),
-        gstin: read("COMPANY_GSTIN", "21AEKFS3300K1ZA"),
+        businessHours: read("COMPANY_BUSINESS_HOURS", "24/7 phone support"),
+        // No default for the same reason: AE India's GSTIN has not been supplied.
+        gstin: read("COMPANY_GSTIN", ""),
         address: read(
             "COMPANY_ADDRESS",
-            "SampleyCart LLP, 795/11/2 1st floor C/O SURATH MACHUA, 5TH LANE, NUSANI, MATITOTA, Puri, Odisha, 752001",
+            "RZ D 6/3, Street No. 6, Dadadev Mandir Road, Palam Village, New Delhi 110077",
         ),
         postalAddress: {
             streetAddress: read(
                 "COMPANY_STREET_ADDRESS",
-                "795/11/2 1st floor C/O SURATH MACHUA, 5TH LANE, NUSANI, MATITOTA",
+                "RZ D 6/3, Street No. 6, Dadadev Mandir Road, Palam Village",
             ),
-            addressLocality: read("COMPANY_CITY", "Puri"),
-            addressRegion: read("COMPANY_STATE", "Odisha"),
-            postalCode: read("COMPANY_POSTAL_CODE", "752001"),
+            addressLocality: read("COMPANY_CITY", "New Delhi"),
+            addressRegion: read("COMPANY_STATE", "Delhi"),
+            postalCode: read("COMPANY_POSTAL_CODE", "110077"),
             addressCountry: read("COMPANY_COUNTRY", "IN"),
         },
     };

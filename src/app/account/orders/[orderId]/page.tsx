@@ -6,7 +6,7 @@ import { getOrderDetail } from "@/services/hyperinventory/order.service";
 import { getAuthAccessToken } from "@/utils/auth-profile";
 
 export const metadata: Metadata = {
-    title: "Order Details | Wingback",
+    title: "Order Details | AE India",
     robots: { index: false, follow: false },
 };
 

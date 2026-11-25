@@ -1,4 +1,4 @@
-const storageKey = "wingback_cookie_notice";
+const storageKey = "aeindia_cookie_notice";
 
 /**
  * Bumped when what the site stores on a visitor's device materially changes —
