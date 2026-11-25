@@ -23,9 +23,6 @@ const styles = `
   .home-btn--outline{border:1px solid #3a4c66;color:#fff}
   .home-btn--outline:hover{border-color:#fff}
 
-  /* Striped placeholders, as the design draws them, where no photo exists yet. */
-  .home-placeholder{display:block;background:repeating-linear-gradient(135deg,#e9edf1 0 12px,#f1f4f7 12px 24px)}
-  .home-placeholder--dark{background:repeating-linear-gradient(135deg,#1b2b44 0 12px,#21334f 12px 24px)}
 
   .home-section{padding:88px 0}
   .home-section--grey{background:var(--cream)}
@@ -84,7 +81,7 @@ const styles = `
   /* ---- industries ---- */
   .home-industries{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
   .home-industries li{border:1px solid #263852;border-radius:var(--r-md);overflow:hidden}
-  .home-industry-media{height:130px}
+  .home-industry-media{display:block;width:100%;height:auto;aspect-ratio:10/7;object-fit:cover}
   .home-industry-name{display:block;padding:16px;font-family:var(--font-display);font-weight:600;font-size:17px;color:#fff}
 
   /* ---- reasons ---- */
@@ -125,6 +122,8 @@ const styles = `
     .home-solution-body{padding:24px}
     .home-solution h3{font-size:24px}
     .home-categories{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .home-industries{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .home-industry-name{padding:12px;font-size:15px;line-height:1.3}
     .home-products{gap:12px}
     .home-reasons{gap:36px}
     .home-callouts-section{padding-bottom:56px}

@@ -248,9 +248,17 @@ export function HomeIndustries() {
                 />
                 <ul className="home-industries">
                     {homeIndustries.map((industry) => (
-                        <li key={industry}>
-                            <span className="home-industry-media home-placeholder home-placeholder--dark" aria-hidden="true" />
-                            <span className="home-industry-name">{industry}</span>
+                        <li key={industry.name}>
+                            {/* Empty alt: the name beneath says the same thing. */}
+                            <img
+                                className="home-industry-media"
+                                src={industry.image}
+                                alt=""
+                                width={400}
+                                height={280}
+                                loading="lazy"
+                            />
+                            <span className="home-industry-name">{industry.name}</span>
                         </li>
                     ))}
                 </ul>

@@ -61,13 +61,14 @@ export const homeSolutions = [
     },
 ] as const;
 
+/** Each with its 400x280 illustration. */
 export const homeIndustries = [
-    "Corporate Offices",
-    "Hospitals & Healthcare",
-    "Industrial & Manufacturing",
-    "Hotels & Hospitality",
-    "Educational Institutes",
-    "Retail & Commercial",
+    { name: "Corporate Offices", image: "/assets/home/industry-offices.svg" },
+    { name: "Hospitals & Healthcare", image: "/assets/home/industry-healthcare.svg" },
+    { name: "Industrial & Manufacturing", image: "/assets/home/industry-industrial.svg" },
+    { name: "Hotels & Hospitality", image: "/assets/home/industry-hospitality.svg" },
+    { name: "Educational Institutes", image: "/assets/home/industry-education.svg" },
+    { name: "Retail & Commercial", image: "/assets/home/industry-retail.svg" },
 ];
 
 export const homeReasons = [
