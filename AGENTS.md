@@ -279,7 +279,7 @@ Reserved for future rules.
 - Products are four from `getProducts`, rendered with `ProductCard`; the section renders nothing when the read fails or comes back empty.
 - The design labels the product row "Best sellers". The catalogue has no sales ranking, so the row is headed "Ready to order today" — never claim "best seller" without data behind it.
 - A division card links to its page through `href` on its `homeSolutions` entry. "Get a Bulk Quote", "Join Now" and "Request a Quote" go to `/contact-us` until there are dealer and quote flows.
-- The two division cards show `solution-facility.svg` and `solution-architectural.svg`, drawn for this site in the hero's flat style (no scripts, fonts or external references). Keep the subject near the middle: phones crop the sides. The category tiles show `category-*.svg` (360x300, unbranded, the `image` on each `shopCategories` entry), drawn the same way because the seller's categories carry no images; a new tile needs its own. The industry cards show `industry-*.svg` (400x280, the `image` on each `homeIndustries` entry), dusk scenes like the hero. No striped placeholders are left on the home page. The hero illustrations and the four client logos came from the design canvas; all of these live in `public/assets/home/`.
+- The two division cards show `solution-facility.svg` and `solution-architectural.svg`, drawn for this site in the hero's flat style (no scripts, fonts or external references). Keep the subject near the middle: phones crop the sides. The category tiles show `category-*.svg` (360x300, unbranded, the `image` on each `shopCategories` entry), drawn the same way because the seller's categories carry no images; a new tile needs its own. The industry cards show `industry-*.svg` (400x280, the `image` on each `homeIndustries` entry), dusk scenes like the hero. No striped placeholders are left on the home page. The hero illustrations came from the design canvas; all of these live in `public/assets/home/`.
 - `HomeJsonLd` builds AE India's `Organization` from `getCompany` and leaves out any field that is empty, rather than publishing `""`. It has no `logo` until a logo file exists.
 
 ## Facility Maintenance page
@@ -294,6 +294,12 @@ Reserved for future rules.
 - `/architectural-interiors` (`architecturalPath`) follows the AE India "Architectural & Interior Solutions" design, on the shared division sheet with the rust tone. Sections are in `src/components/architectural/ArchitecturalSections.tsx`, fixed copy in `src/constants/architectural.ts`.
 - The finish swatches are drawn textures, one per family, and the page says so under the grid beside the DI-NOC trademark line. Keep both lines until real swatches replace them.
 - It has no shop links: the films and graphics are specified by enquiry, not sold from the catalogue.
+
+## About page
+
+- `/about-us` follows the AE India "About Us" design: `src/components/about/`, copy in `src/constants/about.ts`. The previous store's gifting page and FAQ are deleted.
+- Clients live once in `src/constants/clients.ts`, in the design's five groups with logos in `public/assets/clients/`. The home strip picks names from it through `findClient`; add or correct a client there only. Keep the trademark line under the grid.
+- The warehouse scene is a drawing, not a photo of the team; keep the alt text saying so until a real photo is supplied. "Become a Dealer" goes to `/contact-us` until there is a dealer flow.
 
 ## Layout
 
@@ -413,9 +419,9 @@ Reserved for future rules.
 - The cookie notice states what is stored. `cookieNoticeVersion` in `src/utils/cookie-notice.ts` is bumped whenever that changes, so an acknowledgement of a narrower notice stops counting. Google Analytics took it to 2.
 
 ## JSON-LD
-- Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd` and `AboutUsJsonLd` do; `CatalogueJsonLd`, `ContactUsJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
+- Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd`, `AboutJsonLd` and `DivisionJsonLd` do; `CatalogueJsonLd`, `ContactUsJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
 - **No page emits its own `BreadcrumbList`.** `Breadcrumbs` emits one from the trail it renders; every page graph that also carried one was publishing two, and one of them had an empty name and a `/category/` URL with no slug.
-- A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. `HowItWorksJsonLd`'s `HowTo` is that page's visible steps; `AboutUsJsonLd`'s `FAQPage` is the FAQ `AboutUsFaqSection` renders.
+- A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. `HowItWorksJsonLd`'s `HowTo` is that page's visible steps; The About page renders no FAQ, so `AboutJsonLd` carries none.
 - `/products/[slug]` publishes a `Product` node through `ProductJsonLd` (`src/components/product/ProductJsonLd.tsx`), restored together with the canonical. Unknown fields are omitted, the brand is omitted when it is only the mapper's store-name fallback, a zero price publishes no offer, availability follows the buy box, and the seller is `storeOwner`.
 - A product page carries two structured-data blocks: that `Product` node and the `BreadcrumbList` that `Breadcrumbs` emits from the trail it renders.
 

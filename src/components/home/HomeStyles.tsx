@@ -53,6 +53,7 @@ const styles = `
   .home-clients-title{font-size:14px;font-weight:600;color:var(--ink)}
   .home-clients ul{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px}
   .home-clients li{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--muted)}
+  .home-clients-all{font-size:14px}
   .home-clients img{width:22px;height:22px;object-fit:contain}
 
   /* ---- solutions ---- */

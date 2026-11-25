@@ -1,4 +1,5 @@
 import { architecturalPath } from "@/constants/architectural";
+import { findClient } from "@/constants/clients";
 
 /**
  * The home page's fixed copy, taken from the AE India design.
@@ -22,22 +23,18 @@ export const homeHeroScenes = [
     { src: "/assets/home/hero-hotel.svg", alt: "Illustration of a hotel at dusk", label: "Hotels" },
 ];
 
-/**
- * Client names, as the design lists them. A logo is shown where the design
- * supplied one; the rest are names only. The names are the clients'
- * trademarks.
- */
-export const homeClients: Array<{ name: string; logo?: string }> = [
-    { name: "Google", logo: "/assets/home/client-google.svg" },
-    { name: "Accenture", logo: "/assets/home/client-accenture.svg" },
-    { name: "Infosys", logo: "/assets/home/client-infosys.svg" },
-    { name: "DLF" },
-    { name: "GMR Airports" },
-    { name: "Taj Hotels" },
-    { name: "Medanta" },
-    { name: "American Express", logo: "/assets/home/client-amex.svg" },
-    { name: "Delhi Metro" },
-];
+/** The few named on the home strip; the full list is on the About page. */
+export const homeClients = [
+    "Google",
+    "Accenture",
+    "Infosys",
+    "DLF",
+    "GMR Airports",
+    "Taj Hotels",
+    "Medanta",
+    "American Express",
+    "Delhi Metro",
+].flatMap((name) => findClient(name) ?? []);
 
 type HomeSolution = {
     /** Picks the division's colour pair. */

@@ -133,6 +133,9 @@ export function HomeClients() {
                         </li>
                     ))}
                 </ul>
+                <Link className="home-link home-clients-all" href="/about-us#clients">
+                    All clients <span aria-hidden="true">&#8594;</span>
+                </Link>
             </div>
         </section>
     );
