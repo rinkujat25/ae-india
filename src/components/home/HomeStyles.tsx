@@ -75,7 +75,7 @@ const styles = `
   .home-categories{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
   .home-category{display:block;height:100%;padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);transition:border-color .15s ease}
   .home-category:hover{border-color:var(--violet)}
-  .home-category-media{display:block;width:100%;height:120px;min-height:0;border-radius:10px;margin-bottom:12px;object-fit:cover}
+  .home-category-media{display:block;width:100%;height:auto;aspect-ratio:6/5;border-radius:10px;margin-bottom:12px;object-fit:cover}
   .home-category-name{display:block;font-family:var(--font-display);font-weight:600;font-size:16px;line-height:1.3;color:var(--ink)}
 
   /* ---- products ---- */

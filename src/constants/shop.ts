@@ -19,16 +19,26 @@
 export type ShopCategory = {
     label: string;
     categories: string[];
+    /** The home tile's illustration, 360x300, in `public/assets/home/`. */
+    image: string;
 };
 
 export const shopCategories: ShopCategory[] = [
-    { label: "Wand Pads & Scrub Pads", categories: ["Scrub Pads (Hand Pads)"] },
-    { label: "Floor Pads", categories: ["Floor Pads"] },
-    { label: "Cleaning Tools", categories: ["Cleaning Tools"] },
-    { label: "Cleaning Chemicals", categories: ["Cleaning Chemicals"] },
-    { label: "Floor Mats & Matting", categories: ["Entry Way Matting"] },
-    { label: "Tapes & Adhesives", categories: ["Tapes & Adhesive", "Anti Skid Tapes"] },
-    { label: "Safety & Hygiene", categories: ["Personal Safety", "PPE & Masks", "Slip Safety"] },
+    { label: "Wand Pads & Scrub Pads", categories: ["Scrub Pads (Hand Pads)"], image: "/assets/home/category-scrub-pads.svg" },
+    { label: "Floor Pads", categories: ["Floor Pads"], image: "/assets/home/category-floor-pads.svg" },
+    { label: "Cleaning Tools", categories: ["Cleaning Tools"], image: "/assets/home/category-cleaning-tools.svg" },
+    { label: "Cleaning Chemicals", categories: ["Cleaning Chemicals"], image: "/assets/home/category-cleaning-chemicals.svg" },
+    { label: "Floor Mats & Matting", categories: ["Entry Way Matting"], image: "/assets/home/category-matting.svg" },
+    {
+        label: "Tapes & Adhesives",
+        categories: ["Tapes & Adhesive", "Anti Skid Tapes"],
+        image: "/assets/home/category-tapes.svg",
+    },
+    {
+        label: "Safety & Hygiene",
+        categories: ["Personal Safety", "PPE & Masks", "Slip Safety"],
+        image: "/assets/home/category-safety.svg",
+    },
 ];
 
 /** The listing URL for one of `shopCategories`. */

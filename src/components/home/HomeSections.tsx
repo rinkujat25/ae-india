@@ -190,7 +190,15 @@ export function HomeCategories() {
                     {shopCategories.map((category) => (
                         <li key={category.label}>
                             <Link className="home-category" href={shopCategoryHref(category)}>
-                                <span className="home-category-media home-placeholder" aria-hidden="true" />
+                                {/* Empty alt: the name beneath says the same thing. */}
+                                <img
+                                    className="home-category-media"
+                                    src={category.image}
+                                    alt=""
+                                    width={360}
+                                    height={300}
+                                    loading="lazy"
+                                />
                                 <span className="home-category-name">{category.label}</span>
                             </Link>
                         </li>
