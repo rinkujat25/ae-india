@@ -22,8 +22,7 @@ cp .env.example .env
 chmod 600 .env
 ```
 
-Set at least `NEXT_PUBLIC_SITE_URL` (`https://` plus the domain, no trailing
-slash) and the `HYPERINVENTORY_*` values. The deploy stops with a message when
+Set at least `NEXT_PUBLIC_SITE_URL` (`https://aeindia.co`, no trailing slash) and the `HYPERINVENTORY_*` values. The deploy stops with a message when
 a required one is empty.
 
 Leave `NEXT_PUBLIC_GA_MEASUREMENT_ID` empty unless AE India has its own
@@ -39,19 +38,27 @@ It builds first and swaps the container only once the build succeeds.
 
 ## 3. Install the bootstrap nginx config
 
-Port 80 only, so `nginx -t` passes before the certificate exists. Point the
-domain's DNS at the server first, and set `DOMAIN` once per shell.
+Port 80 only, so `nginx -t` passes before the certificate exists. DNS for
+`aeindia.co` and `www.aeindia.co` must point at this server first. Run these
+from the project folder.
+
+Check that no other config already answers for the domain; nginx ignores the
+second one it loads.
 
 ```bash
-DOMAIN=your-domain.example
+sudo grep -rln "aeindia.co" /etc/nginx/sites-enabled/ /etc/nginx/conf.d/
 ```
 
 ```bash
-sed "s/__DOMAIN__/$DOMAIN/g" deploy/nginx/ae-india.bootstrap.conf | sudo tee /etc/nginx/sites-available/$DOMAIN.conf >/dev/null
+sudo mkdir -p /var/www/html
 ```
 
 ```bash
-sudo ln -sf /etc/nginx/sites-available/$DOMAIN.conf /etc/nginx/sites-enabled/$DOMAIN.conf
+sudo cp deploy/nginx/aeindia.co.bootstrap.conf /etc/nginx/sites-available/aeindia.co.conf
+```
+
+```bash
+sudo ln -sf /etc/nginx/sites-available/aeindia.co.conf /etc/nginx/sites-enabled/aeindia.co.conf
 ```
 
 ```bash
@@ -60,14 +67,16 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ## 4. Issue the certificate
 
+One certificate for both names. The hook reloads nginx after each renewal.
+
 ```bash
-sudo certbot certonly --webroot -w /var/www/html -d $DOMAIN
+sudo certbot certonly --webroot -w /var/www/html --cert-name aeindia.co -d aeindia.co -d www.aeindia.co --deploy-hook "systemctl reload nginx"
 ```
 
 ## 5. Install the HTTPS nginx config
 
 ```bash
-sed "s/__DOMAIN__/$DOMAIN/g" deploy/nginx/ae-india.ssl.conf | sudo tee /etc/nginx/sites-available/$DOMAIN.conf >/dev/null
+sudo cp deploy/nginx/aeindia.co.ssl.conf /etc/nginx/sites-available/aeindia.co.conf
 ```
 
 ```bash
@@ -80,14 +89,19 @@ installed nginx config to match.
 ## 6. Verify
 
 ```bash
-curl -I https://$DOMAIN
+curl -I https://aeindia.co
 ```
 
 ```bash
-curl -s https://$DOMAIN/ | grep -o '<link rel="canonical"[^>]*>'
+curl -s https://aeindia.co/ | grep -o '<link rel="canonical"[^>]*>'
 ```
 
-The canonical must show the domain. It and the company details on static pages
+```bash
+curl -I https://www.aeindia.co
+```
+
+The last one must answer 301 to `https://aeindia.co/`. The canonical must show
+the domain. It and the company details on static pages
 are fixed at **build** time, so after changing `NEXT_PUBLIC_*` or `COMPANY_*` in
 `.env`, run `./deploy.sh` again; a restart is not enough. The site is meant to
 be out of search, so `robots.txt` answering `Disallow: /` is correct.

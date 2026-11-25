@@ -422,7 +422,8 @@ Reserved for future rules.
 - `COMPANY_*` are build arguments as well as run-time environment, because prerendered pages read them at build. They are `ARG` without `ENV`, so an absent value stays unset rather than empty. A new `COMPANY_*` variable goes in the Dockerfile and in both Compose lists.
 - The container's filesystem is read-only. `/tmp` and `/app/.next/cache` (Next's fetch cache) are the only writable paths; anything else the app writes needs its own `tmpfs`.
 - The health check reads `/robots.txt`, not `/`, so a provider outage does not mark the container unhealthy.
-- nginx configs in `deploy/nginx` use a `__DOMAIN__` placeholder; the steps are in `deploy/README.md`.
+- nginx configs are `deploy/nginx/aeindia.co.bootstrap.conf` (port 80, before the certificate) and `aeindia.co.ssl.conf`; the steps are in `deploy/README.md`. `https://aeindia.co` is the one canonical host: plain HTTP and `www` both redirect to it in one hop, and one certificate covers both names.
+- nginx adds no security headers. Next.js sets them all, HSTS included, in `next.config.ts`; an `add_header` in nginx sends a second copy.
 
 ## Performance
 
