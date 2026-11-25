@@ -1,3 +1,5 @@
+import { architecturalPath } from "@/constants/architectural";
+
 /**
  * The home page's fixed copy, taken from the AE India design.
  *
@@ -65,6 +67,7 @@ export const homeSolutions: HomeSolution[] = [
         tone: "architectural",
         eyebrow: "New buildings & interiors",
         title: "Architectural & Interiors",
+        href: architecturalPath,
         body: "DI-NOC™ architectural films, graphics solutions and entrance matting for new spaces.",
         image: {
             src: "/assets/home/solution-architectural.svg",

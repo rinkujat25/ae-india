@@ -201,7 +201,7 @@ Reserved for future rules.
 - The shared site header displays a cart icon and product-line count loaded from `GET /api/cart`, so it reflects the signed-in buyer's cart as well as a guest cart. It must not short-circuit when there is no `temporary_cart_id_*` key: a signed-in buyer never has one.
 - That badge refresh uses a plain `fetch`, not `useApiRequest`, because it runs on every page load and the global loader is a full-screen blocking overlay.
 - The header follows the AE India design in three bands: a dark `.topbar` (phone, Shop Online), the main bar (logo, menu, "Get a Bulk Quote") and a grey tools row (All Categories, search, account, cart). The bar and tools row are one sticky `.nav`; the strip scrolls away. `.nav` must stay on the sticky element — `MobileNavToggle` binds to it and `RouteProgressBar` measures it.
-- The menu is Facility Maintenance, Shop, About Us and Contact. The design's Architectural & Interiors item is left out until that route exists; never point a menu item at a page that 404s. "Get a Bulk Quote" goes to `/contact-us` until a quote flow exists.
+- The menu is the design's five: Facility Maintenance, Architectural & Interiors, Shop, About Us and Contact; never point a menu item at a page that 404s. "Get a Bulk Quote" goes to `/contact-us` until a quote flow exists.
 - Header search is an inline field with a Search button (`HeaderSearch`), not an overlay. Suggestions drop beneath it, close on Escape or a press outside, and submitting navigates to `/products?search=`.
 - Search autocomplete uses its own compact inline loading state so typing does not trigger the full-page global API loader.
 - `POST /api/cart/items` branches on the session. A signed-in buyer goes to Hyperinventory `POST /v1/consumer/companies/{companyId}/carts` via `addToUserCart`, using the server-side session token; a guest keeps the temporary-cart flow.
@@ -278,16 +278,22 @@ Reserved for future rules.
 - "Shop by category" is a **static** list, `shopCategories` in `src/constants/shop.ts`, at the user's request: the design's seven labels, each mapped to one or more of AE India's real category names (`categories`), comma-joined into `/products?categories=` by `shopCategoryHref`. The `/products` chips read the same list, and the banner titles a matching filter with the design's label. Every mapped name was checked to return products; re-check when the seller renames categories (the catalogue spells it "Tapes & Adhesive"), and never map a name containing a comma, since the listing splits on commas. Replace it with the seller tree (`getCategories`, linking to `/category/<slug>`) once the AE India catalogue is live.
 - Products are four from `getProducts`, rendered with `ProductCard`; the section renders nothing when the read fails or comes back empty.
 - The design labels the product row "Best sellers". The catalogue has no sales ranking, so the row is headed "Ready to order today" — never claim "best seller" without data behind it.
-- A division card links to its page through `href` on its `homeSolutions` entry; Architectural & Interiors has none until that page exists. "Get a Bulk Quote", "Join Now" and "Request a Quote" go to `/contact-us` until there are dealer and quote flows.
+- A division card links to its page through `href` on its `homeSolutions` entry. "Get a Bulk Quote", "Join Now" and "Request a Quote" go to `/contact-us` until there are dealer and quote flows.
 - The two division cards show `solution-facility.svg` and `solution-architectural.svg`, drawn for this site in the hero's flat style (no scripts, fonts or external references). Keep the subject near the middle: phones crop the sides. The category tiles show `category-*.svg` (360x300, unbranded, the `image` on each `shopCategories` entry), drawn the same way because the seller's categories carry no images; a new tile needs its own. The industry cards show `industry-*.svg` (400x280, the `image` on each `homeIndustries` entry), dusk scenes like the hero. No striped placeholders are left on the home page. The hero illustrations and the four client logos came from the design canvas; all of these live in `public/assets/home/`.
 - `HomeJsonLd` builds AE India's `Organization` from `getCompany` and leaves out any field that is empty, rather than publishing `""`. It has no `logo` until a logo file exists.
 
 ## Facility Maintenance page
 
-- `/facility-maintenance` follows the AE India "Facility Maintenance Solutions" design. Sections are in `src/components/facility/FacilitySections.tsx`, fixed copy in `src/constants/facility.ts`, and the styles are `DivisionStyles` (`dv-*`), written for both divisions: each page sets its colours with a tone class (`dv--facility`). Give Architectural & Interiors its own tone rather than a second sheet.
+- `/facility-maintenance` follows the AE India "Facility Maintenance Solutions" design. Sections are in `src/components/facility/FacilitySections.tsx`, fixed copy in `src/constants/facility.ts`, and the styles are `DivisionStyles` (`dv-*`), written for both divisions: each page sets its colours with a tone class (`dv--facility`, `dv--architectural`).
 - Its product range is `shopCategories`, with each entry's `summary`, so it cannot drift from the home tiles or the shop chips.
-- The design's quote form is **not built**: nothing receives it. The panel is the phone number and a checklist; restore the form only with an endpoint behind it.
+- The design's quote form is **not built**: nothing receives it. `ContactCard` (`src/components/division`), the phone number and a checklist, stands in on both division pages; restore the form only with an endpoint behind it. `DivisionJsonLd` is shared too.
 - The before and after lift cabins are drawn illustrations, not photos of a job. Keep their alt text saying so until real photos are supplied.
+
+## Architectural & Interiors page
+
+- `/architectural-interiors` (`architecturalPath`) follows the AE India "Architectural & Interior Solutions" design, on the shared division sheet with the rust tone. Sections are in `src/components/architectural/ArchitecturalSections.tsx`, fixed copy in `src/constants/architectural.ts`.
+- The finish swatches are drawn textures, one per family, and the page says so under the grid beside the DI-NOC trademark line. Keep both lines until real swatches replace them.
+- It has no shop links: the films and graphics are specified by enquiry, not sold from the catalogue.
 
 ## Layout
 

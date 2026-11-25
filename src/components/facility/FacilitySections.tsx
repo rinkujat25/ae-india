@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { CheckIcon, ContactCard } from "@/components/division/ContactCard";
+import { architecturalPath } from "@/constants/architectural";
 import {
     facilityRefurbishment,
     facilitySectors,
@@ -10,15 +12,6 @@ import {
     refurbishPoints,
 } from "@/constants/facility";
 import { shopCategories, shopCategoryHref } from "@/constants/shop";
-import { getCompany } from "@/lib/company";
-
-function CheckIcon() {
-    return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m5 12 4.5 4.5L19 7" />
-        </svg>
-    );
-}
 
 function ServiceIcon({ path }: { path: string }) {
     return (
@@ -162,7 +155,6 @@ export function FacilityRange() {
     );
 }
 
-/** The design's link to the finish library waits for the Architectural page. */
 export function FacilityRefurbish() {
     return (
         <section className="dv-section" id="refurbish" aria-labelledby="facility-refurbish-title">
@@ -207,6 +199,9 @@ export function FacilityRefurbish() {
                             </li>
                         ))}
                     </ul>
+                    <Link className="dv-link dv-refurb-link" href={`${architecturalPath}#finishes`}>
+                        Explore architectural finishes <span aria-hidden="true">&#8594;</span>
+                    </Link>
                 </div>
             </div>
         </section>
@@ -234,14 +229,7 @@ export function FacilityProcess() {
     );
 }
 
-/**
- * The design draws a quote form here. Nothing receives one yet, so the panel
- * is the phone number and what to have ready. Put the form back when there is
- * an endpoint behind it.
- */
 export function FacilityQuote() {
-    const company = getCompany();
-
     return (
         <section className="dv-section dv-section--tint" id="quote" aria-labelledby="facility-quote-title">
             <div className="wrap dv-quote">
@@ -253,36 +241,7 @@ export function FacilityQuote() {
                         range and pricing.
                     </p>
                 </div>
-                <div className="dv-quote-card">
-                    <h3>Have these ready</h3>
-                    <ul className="dv-checklist">
-                        {quoteChecklist.map((item) => (
-                            <li key={item}>
-                                <CheckIcon />
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                    {company.telHref ? (
-                        <div className="dv-quote-call">
-                            <small>Call us</small>
-                            <a className="dv-quote-phone" href={`tel:${company.telHref}`}>
-                                {company.phoneDisplay}
-                            </a>
-                            <small>{company.businessHours}</small>
-                        </div>
-                    ) : null}
-                    <div className="dv-quote-actions">
-                        {company.telHref ? (
-                            <a className="dv-btn dv-btn--solid" href={`tel:${company.telHref}`}>
-                                Call for a Quote
-                            </a>
-                        ) : null}
-                        <Link className="dv-btn dv-btn--line" href="/contact-us">
-                            Contact Page
-                        </Link>
-                    </div>
-                </div>
+                <ContactCard checklist={quoteChecklist} callLabel="Call for a Quote" />
             </div>
         </section>
     );

@@ -61,6 +61,8 @@ const styles = `
   .home-solution h3 a::after{content:"";position:absolute;inset:0}
   .home-solution:has(h3 a):hover{border-color:var(--teal)}
   .home-solution-more{display:block;margin-top:18px;font-weight:600;color:var(--teal)}
+  .home-solution--architectural:has(h3 a):hover{border-color:var(--rust)}
+  .home-solution--architectural .home-solution-more{color:var(--rust)}
   .home-solution--facility{background:#f2f7f6;border-color:#dde9e7}
   .home-solution--architectural{background:#f7f3ef;border-color:#eadfd5}
   .home-solution-media{width:100%;height:auto;aspect-ratio:1200/520;object-fit:cover}

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { SiteFooter } from "@/components/common/SiteFooter";
 import { SiteHeader } from "@/components/common/SiteHeader";
+import { DivisionJsonLd } from "@/components/division/DivisionJsonLd";
 import { DivisionStyles } from "@/components/division/DivisionStyles";
-import { FacilityJsonLd } from "@/components/facility/FacilityJsonLd";
 import {
     FacilityHero,
     FacilityProcess,
@@ -14,6 +14,7 @@ import {
     FacilityServices,
 } from "@/components/facility/FacilitySections";
 import { storeName, storeOwner } from "@/constants/brand";
+import { facilityRefurbishment, facilityServices } from "@/constants/facility";
 import { absoluteUrl } from "@/lib/site";
 
 const path = "/facility-maintenance";
@@ -48,7 +49,12 @@ export default function FacilityMaintenancePage() {
                 <FacilityQuote />
             </main>
             <SiteFooter />
-            <FacilityJsonLd description={description} />
+            <DivisionJsonLd
+                path={path}
+                name="Facility Maintenance Solutions"
+                description={description}
+                services={[...facilityServices, facilityRefurbishment]}
+            />
         </>
     );
 }

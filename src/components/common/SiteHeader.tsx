@@ -2,11 +2,13 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/common/BrandLogo";
 import { CartHeaderLink } from "@/components/common/CartHeaderLink";
 import { HeaderSearch } from "@/components/common/HeaderSearch";
+import { architecturalPath } from "@/constants/architectural";
 import { getCompany } from "@/lib/company";
 
 type ActiveNavItem =
     | "home"
     | "facility-maintenance"
+    | "architectural-interiors"
     | "how-it-works"
     | "diwali-gifting"
     | "contact-us"
@@ -19,10 +21,7 @@ type SiteHeaderProps = {
 };
 
 /**
- * The design's menu is Facility Maintenance, Architectural & Interiors, Shop,
- * About Us and Contact. The Architectural page does not exist yet, so it is
- * left out rather than pointed at a page that would 404; add it here when its
- * route lands.
+ * The design's menu, in its order.
  */
 const navItems: Array<{
     id: ActiveNavItem;
@@ -30,6 +29,7 @@ const navItems: Array<{
     label: string;
 }> = [
         { id: "facility-maintenance", href: "/facility-maintenance", label: "Facility Maintenance" },
+        { id: "architectural-interiors", href: architecturalPath, label: "Architectural & Interiors" },
         { id: "products", href: "/products", label: "Shop" },
         { id: "about-us", href: "/about-us", label: "About Us" },
         { id: "contact-us", href: "/contact-us", label: "Contact" },
