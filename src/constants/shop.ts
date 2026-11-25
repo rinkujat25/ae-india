@@ -21,23 +21,52 @@ export type ShopCategory = {
     categories: string[];
     /** The home tile's illustration, 360x300, in `public/assets/home/`. */
     image: string;
+    /** One line under the name on the Facility Maintenance page. */
+    summary: string;
 };
 
 export const shopCategories: ShopCategory[] = [
-    { label: "Wand Pads & Scrub Pads", categories: ["Scrub Pads (Hand Pads)"], image: "/assets/home/category-scrub-pads.svg" },
-    { label: "Floor Pads", categories: ["Floor Pads"], image: "/assets/home/category-floor-pads.svg" },
-    { label: "Cleaning Tools", categories: ["Cleaning Tools"], image: "/assets/home/category-cleaning-tools.svg" },
-    { label: "Cleaning Chemicals", categories: ["Cleaning Chemicals"], image: "/assets/home/category-cleaning-chemicals.svg" },
-    { label: "Floor Mats & Matting", categories: ["Entry Way Matting"], image: "/assets/home/category-matting.svg" },
+    {
+        label: "Wand Pads & Scrub Pads",
+        categories: ["Scrub Pads (Hand Pads)"],
+        image: "/assets/home/category-scrub-pads.svg",
+        summary: "Hand and tool-mounted scrubbing",
+    },
+    {
+        label: "Floor Pads",
+        categories: ["Floor Pads"],
+        image: "/assets/home/category-floor-pads.svg",
+        summary: "Stripping, scrubbing, polishing",
+    },
+    {
+        label: "Cleaning Tools",
+        categories: ["Cleaning Tools"],
+        image: "/assets/home/category-cleaning-tools.svg",
+        summary: "Brooms, squeegees, scrubbers & more",
+    },
+    {
+        label: "Cleaning Chemicals",
+        categories: ["Cleaning Chemicals"],
+        image: "/assets/home/category-cleaning-chemicals.svg",
+        summary: "Surface-specific formulations",
+    },
+    {
+        label: "Floor Mats & Matting",
+        categories: ["Entry Way Matting"],
+        image: "/assets/home/category-matting.svg",
+        summary: "Entrance and carpet matting",
+    },
     {
         label: "Tapes & Adhesives",
         categories: ["Tapes & Adhesive", "Anti Skid Tapes"],
         image: "/assets/home/category-tapes.svg",
+        summary: "Anti-skid, packaging and mounting",
     },
     {
         label: "Safety & Hygiene",
         categories: ["Personal Safety", "PPE & Masks", "Slip Safety"],
         image: "/assets/home/category-safety.svg",
+        summary: "PPE, masks and slip safety",
     },
 ];
 

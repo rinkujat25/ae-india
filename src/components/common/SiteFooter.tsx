@@ -8,8 +8,8 @@ import { giftverseLinkProps, giftverseUrl } from "@/lib/giftverse";
  * The dark footer from the AE India design: the lockup and tagline, then
  * Solutions, Company and Contact, then the copyright and policy links.
  *
- * Facility Maintenance, Architectural & Interiors and Dealer Program are left
- * out until those pages exist. The policy links still point at GiftVerse,
+ * Architectural & Interiors and Dealer Program are left out until those pages
+ * exist. The policy links still point at GiftVerse,
  * inherited with the codebase, until AE India has policies of its own.
  */
 export function SiteFooter() {
@@ -29,6 +29,7 @@ export function SiteFooter() {
                     </div>
                     <div className="footer-col">
                         <h2>Solutions</h2>
+                        <Link href="/facility-maintenance">Facility Maintenance</Link>
                         <Link href="/products">Shop Online</Link>
                     </div>
                     <div className="footer-col">

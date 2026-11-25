@@ -6,6 +6,7 @@ import { getCompany } from "@/lib/company";
 
 type ActiveNavItem =
     | "home"
+    | "facility-maintenance"
     | "how-it-works"
     | "diwali-gifting"
     | "contact-us"
@@ -19,15 +20,16 @@ type SiteHeaderProps = {
 
 /**
  * The design's menu is Facility Maintenance, Architectural & Interiors, Shop,
- * About Us and Contact. The two division pages do not exist yet, so they are
- * left out rather than pointed at a page that would 404; add them here when
- * their routes land.
+ * About Us and Contact. The Architectural page does not exist yet, so it is
+ * left out rather than pointed at a page that would 404; add it here when its
+ * route lands.
  */
 const navItems: Array<{
     id: ActiveNavItem;
     href: string;
     label: string;
 }> = [
+        { id: "facility-maintenance", href: "/facility-maintenance", label: "Facility Maintenance" },
         { id: "products", href: "/products", label: "Shop" },
         { id: "about-us", href: "/about-us", label: "About Us" },
         { id: "contact-us", href: "/contact-us", label: "Contact" },

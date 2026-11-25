@@ -139,8 +139,8 @@ export function HomeClients() {
 }
 
 /**
- * The two divisions. The design links each to its own page; those pages are
- * not built yet, so the cards are not links until they are.
+ * The two divisions. A card links to its division's page once that page exists
+ * (`href`); the title's link is stretched over the whole card.
  */
 export function HomeSolutions() {
     return (
@@ -164,8 +164,15 @@ export function HomeSolutions() {
                             />
                             <div className="home-solution-body">
                                 <p className="home-solution-eyebrow">{solution.eyebrow}</p>
-                                <h3>{solution.title}</h3>
+                                <h3>
+                                    {solution.href ? <Link href={solution.href}>{solution.title}</Link> : solution.title}
+                                </h3>
                                 <p>{solution.body}</p>
+                                {solution.href ? (
+                                    <span className="home-solution-more" aria-hidden="true">
+                                        Explore &#8594;
+                                    </span>
+                                ) : null}
                             </div>
                         </article>
                     ))}

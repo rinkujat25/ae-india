@@ -37,12 +37,24 @@ export const homeClients: Array<{ name: string; logo?: string }> = [
     { name: "Delhi Metro" },
 ];
 
-/** The two divisions. `tone` picks the division's colour pair. */
-export const homeSolutions = [
+type HomeSolution = {
+    /** Picks the division's colour pair. */
+    tone: "facility" | "architectural";
+    eyebrow: string;
+    title: string;
+    body: string;
+    image: { src: string; alt: string };
+    /** The division's page; left out until it exists, and the card is not a link. */
+    href?: string;
+};
+
+/** The two divisions. */
+export const homeSolutions: HomeSolution[] = [
     {
         tone: "facility",
         eyebrow: "Existing buildings",
         title: "Facility Maintenance",
+        href: "/facility-maintenance",
         body: "Cleaning, floor care, safety & hygiene, and refurbishment — led by our cleaning and maintenance range.",
         image: {
             src: "/assets/home/solution-facility.svg",
@@ -59,7 +71,7 @@ export const homeSolutions = [
             alt: "Illustration of a hotel lobby with wood panelling, a marble reception desk and frosted glass",
         },
     },
-] as const;
+];
 
 /** Each with its 400x280 illustration. */
 export const homeIndustries = [

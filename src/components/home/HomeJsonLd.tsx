@@ -74,6 +74,7 @@ export function HomeJsonLd() {
                 provider: { "@id": organizationId },
                 areaServed: { "@type": "Country", name: "India" },
                 description: solution.body,
+                ...(solution.href ? { url: absoluteUrl(solution.href) } : {}),
             })),
             {
                 "@type": "WebPage",
