@@ -279,7 +279,7 @@ Reserved for future rules.
 - Products are four from `getProducts`, rendered with `ProductCard`; the section renders nothing when the read fails or comes back empty.
 - The design labels the product row "Best sellers". The catalogue has no sales ranking, so the row is headed "Ready to order today" — never claim "best seller" without data behind it.
 - The two division cards are not links until the Facility Maintenance and Architectural & Interiors pages exist. "Get a Bulk Quote", "Join Now" and "Request a Quote" go to `/contact-us` until there are dealer and quote flows.
-- Images the design draws as striped placeholders (division photos, industries, categories without an image) stay striped placeholders; swap in real photos when they are supplied. The hero illustrations and the four client logos came from the design canvas and live in `public/assets/home/`.
+- The two division cards show `solution-facility.svg` and `solution-architectural.svg`, drawn for this site in the hero's flat style (no scripts, fonts or external references). Keep the subject near the middle: phones crop the sides. Industries and category tiles stay striped placeholders until real photos are supplied. The hero illustrations and the four client logos came from the design canvas; all of these live in `public/assets/home/`.
 - `HomeJsonLd` builds AE India's `Organization` from `getCompany` and leaves out any field that is empty, rather than publishing `""`. It has no `logo` until a logo file exists.
 
 ## Layout

@@ -154,7 +154,14 @@ export function HomeSolutions() {
                 <div className="home-solutions">
                     {homeSolutions.map((solution) => (
                         <article key={solution.title} className={`home-solution home-solution--${solution.tone}`}>
-                            <div className="home-solution-media" role="img" aria-label={solution.imageLabel} />
+                            <img
+                                className="home-solution-media"
+                                src={solution.image.src}
+                                alt={solution.image.alt}
+                                width={1200}
+                                height={520}
+                                loading="lazy"
+                            />
                             <div className="home-solution-body">
                                 <p className="home-solution-eyebrow">{solution.eyebrow}</p>
                                 <h3>{solution.title}</h3>

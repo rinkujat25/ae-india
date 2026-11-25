@@ -44,14 +44,20 @@ export const homeSolutions = [
         eyebrow: "Existing buildings",
         title: "Facility Maintenance",
         body: "Cleaning, floor care, safety & hygiene, and refurbishment — led by our cleaning and maintenance range.",
-        imageLabel: "Photo placeholder: cleaning team in a corporate office",
+        image: {
+            src: "/assets/home/solution-facility.svg",
+            alt: "Illustration of a cleaner polishing an office lobby floor with a scrubbing machine",
+        },
     },
     {
         tone: "architectural",
         eyebrow: "New buildings & interiors",
         title: "Architectural & Interiors",
         body: "DI-NOC™ architectural films, graphics solutions and entrance matting for new spaces.",
-        imageLabel: "Photo placeholder: hotel lobby with architectural finishes",
+        image: {
+            src: "/assets/home/solution-architectural.svg",
+            alt: "Illustration of a hotel lobby with wood panelling, a marble reception desk and frosted glass",
+        },
     },
 ] as const;
 
