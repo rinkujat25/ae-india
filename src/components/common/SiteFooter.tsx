@@ -21,7 +21,7 @@ export function SiteFooter() {
             <div className="wrap footer-inner">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <BrandLogo tone="dark" showOwner={false} />
+                        <BrandLogo tone="dark" />
                         <p>
                             {storeTagline} Facility maintenance and architectural surface solutions for
                             businesses across India.

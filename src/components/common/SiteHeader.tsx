@@ -63,7 +63,7 @@ export function SiteHeader({ active }: SiteHeaderProps) {
             <header className="nav">
                 <div className="nav-main">
                     <div className="wrap nav-inner">
-                        <BrandLogo className="logo" />
+                        <BrandLogo className="logo" priority />
                         <button
                             className="nav-toggle"
                             type="button"

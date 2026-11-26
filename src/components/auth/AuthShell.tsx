@@ -21,7 +21,7 @@ export function AuthShell({ title, description, backHref, backLabel, children }:
         <main className="auth-page">
             <div className="auth-shell">
                 <section className="auth-panel" aria-labelledby="auth-heading">
-                    <BrandLogo className="auth-logo" />
+                    <BrandLogo className="auth-logo" priority />
 
                     <div className="auth-head">
                         <Link className="auth-back" href={backHref} aria-label={backLabel}>

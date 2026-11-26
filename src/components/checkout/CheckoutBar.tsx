@@ -25,7 +25,7 @@ export function CheckoutBar({ backHref = "/cart", onBack }: CheckoutBarProps) {
                     <span>Back</span>
                 </button>
 
-                <BrandLogo className="co-brand" showOwner={false} />
+                <BrandLogo className="co-brand" priority />
 
                 <p className="co-secure">
                     <span>Secure Checkout</span>

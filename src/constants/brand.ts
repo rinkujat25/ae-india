@@ -13,8 +13,6 @@ export const storeName = "AE India";
 /** The trading company, printed under the wordmark. */
 export const storeOwner = "Amit Enterprises";
 
-/** The two letters in the logo's square mark. */
-export const storeMonogram = "AE";
 
 /** The line under the logo in the footer, and on the home hero. */
 export const storeTagline = "Supplying Quality. Supporting Every Space.";

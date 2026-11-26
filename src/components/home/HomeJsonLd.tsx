@@ -1,5 +1,6 @@
 import { storeName, storeOwner, storeTagline } from "@/constants/brand";
 import { homeSolutions } from "@/constants/home";
+import { logoSrc } from "@/components/common/BrandLogo";
 import { getCompany } from "@/lib/company";
 import { absoluteUrl } from "@/lib/site";
 import { serializeJsonLd } from "@/utils/json-ld";
@@ -11,8 +12,7 @@ import { serializeJsonLd } from "@/utils/json-ld";
  *
  * Contact facts come from `getCompany`, the same source as the footer, and an
  * empty one is left out rather than published as "" -- there is no support
- * email configured yet. There is no `logo`: the mark is drawn in type, and no
- * image file exists to point at. No FAQ node either, because the page renders
+ * email configured yet. No FAQ node, because the page renders
  * no FAQ.
  */
 export function HomeJsonLd() {
@@ -39,6 +39,7 @@ export function HomeJsonLd() {
                 legalName: company.legalName || storeOwner,
                 url: absoluteUrl("/"),
                 slogan: storeTagline,
+                logo: absoluteUrl(logoSrc),
                 ...(company.telHref ? { telephone: company.telHref } : {}),
                 ...(company.supportEmail ? { email: company.supportEmail } : {}),
                 areaServed: { "@type": "Country", name: "India" },

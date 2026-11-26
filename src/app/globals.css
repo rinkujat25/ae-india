@@ -408,64 +408,27 @@
             gap: 14px 32px
         }
 
-        /* The lockup. Type, not an image -- see BrandLogo. */
+        /* The supplied logo; each place sets its height and the width follows. */
         .brand-logo {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            flex: 0 0 auto
+            flex: 0 0 auto;
+            line-height: 0
         }
 
-        .brand-logo-mark {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: var(--violet);
-            color: #fff;
-            display: grid;
-            place-items: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: .5px
+        .brand-logo img {
+            width: auto;
+            height: 52px
         }
 
-        .brand-logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.15
+        .brand-logo--dark {
+            padding: 8px 10px;
+            border-radius: var(--r-sm);
+            background: #fff
         }
 
-        .brand-logo-name {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--ink)
-        }
-
-        .brand-logo-owner {
-            font-size: var(--t-xs);
-            color: var(--muted);
-            letter-spacing: .4px;
-            text-transform: uppercase
-        }
-
-        .brand-logo--dark .brand-logo-mark {
-            width: 40px;
-            height: 40px;
-            border-radius: 9px;
-            background: #fff;
-            color: var(--violet);
-            font-size: 16px
-        }
-
-        .brand-logo--dark .brand-logo-name {
-            font-size: 19px;
-            color: #fff
-        }
-
-        .brand-logo--dark .brand-logo-owner {
-            color: var(--night-text)
+        .brand-logo--dark img {
+            height: 46px
         }
 
         .links {
@@ -834,14 +797,8 @@
                 display: block
             }
 
-            .brand-logo-mark {
-                width: 40px;
-                height: 40px;
-                font-size: 16px
-            }
-
-            .brand-logo-name {
-                font-size: 18px
+            .nav .brand-logo img {
+                height: 44px
             }
 
             .nav-tools-inner {

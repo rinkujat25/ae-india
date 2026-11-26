@@ -280,7 +280,7 @@ Reserved for future rules.
 - The design labels the product row "Best sellers". The catalogue has no sales ranking, so the row is headed "Ready to order today" — never claim "best seller" without data behind it.
 - A division card links to its page through `href` on its `homeSolutions` entry. "Get a Bulk Quote", "Join Now" and "Request a Quote" go to `/contact-us` until there are dealer and quote flows.
 - The two division cards show `solution-facility.svg` and `solution-architectural.svg`, drawn for this site in the hero's flat style (no scripts, fonts or external references). Keep the subject near the middle: phones crop the sides. The category tiles show `category-*.svg` (360x300, unbranded, the `image` on each `shopCategories` entry), drawn the same way because the seller's categories carry no images; a new tile needs its own. The industry cards show `industry-*.svg` (400x280, the `image` on each `homeIndustries` entry), dusk scenes like the hero. No striped placeholders are left on the home page. The hero illustrations came from the design canvas; all of these live in `public/assets/home/`.
-- `HomeJsonLd` builds AE India's `Organization` from `getCompany` and leaves out any field that is empty, rather than publishing `""`. It has no `logo` until a logo file exists.
+- `HomeJsonLd` builds AE India's `Organization` from `getCompany` and leaves out any field that is empty, rather than publishing `""`. Its `logo` is `logoSrc`, the same file the header shows.
 
 ## Facility Maintenance page
 
@@ -310,7 +310,8 @@ Reserved for future rules.
 - **One container for the whole site:** `.wrap` in `globals.css`, `min(1180px, 100% - 40px)`, narrowing to `min(100% - 28px, 1180px)` at 640px. The header, breadcrumb, every page's content and the footer all sit on it, so their edges line up at every width.
 - **Page stylesheets must not size `.wrap`, or bring their own container.** The product page (1280px), the cart's `.cart-wrap` (1280px) and the AI gift finder (1120px) each did, which put their content 50px or 30px off the header and footer. The finder's rule was unscoped, so it narrowed the header and footer on that page too.
 - **A scoped copy is wrong even when its desktop value matches.** `.products-page .wrap` repeated the global 1180px, but being more specific than the global phone rule it held a 20px gutter on phones while everything else went to 14. Delete the copy; do not try to keep it in step.
-- **The logo is type, not an image:** `BrandLogo` in `src/components/common/BrandLogo.tsx` draws the square "AE" mark beside "AE India" and "AMIT ENTERPRISES", as the design does — there is no logo file yet. The header, footer, auth and checkout all render it; `tone="dark"` is the footer's white-mark variant. Swap in an image there, once, when a logo file is supplied.
+- **The logo is the supplied artwork**, `public/assets/brand/ae-india-logo.png` (198x134, trimmed of its transparent margin), rendered by `BrandLogo` in the header, footer, auth and checkout. Each place sets its height on `.brand-logo img` and the width follows. Its "INDIA" is dark blue, so `tone="dark"` (the footer) sits it on a white tile; never recolour the artwork.
+- The browser and app icons (`src/app/icon.png`, `apple-icon.png`, `favicon.ico`, `public/android-chrome-*`, `public/favicon-*`) are the logo's "AE" letters on white, cut from the same file. The source is small, so the 512px icons are upscaled; regenerate them all from a larger or vector logo when one is supplied.
 - **Check alignment by measurement, not by eye.** Compare the left edge of the header logo, the breadcrumb, the first content block and the footer logo, and the right edge of the header icons and the content, at desktop, tablet and phone widths.
 
 ## Navigation feedback

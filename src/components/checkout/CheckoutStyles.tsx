@@ -6,6 +6,7 @@ const styles = `
 .co-back:hover{color:var(--violet)}
 .co-back svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .co-brand{justify-self:center}
+.co-brand img{height:44px}
 .co-secure{justify-self:end;display:inline-flex;align-items:center;gap:11px;color:var(--muted-2);font-size:var(--t-sm)}
 .co-secure svg{width:34px;height:34px;fill:none;stroke:var(--mint-ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
