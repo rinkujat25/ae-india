@@ -301,12 +301,15 @@ Reserved for future rules.
 - Clients live once in `src/constants/clients.ts`, in the design's five groups with logos in `public/assets/clients/`. The home strip picks names from it through `findClient`; add or correct a client there only. Keep the trademark line under the grid.
 - The warehouse scene is a drawing, not a photo of the team; keep the alt text saying so until a real photo is supplied. "Become a Dealer" goes to `/contact-us` until there is a dealer flow.
 
+## Removed pages
+
+- `/how-it-works`, `/diwali-gifting` and `/ai-gift-finder` were the previous store's gifting pages and are deleted with their components. Their addresses answer **308** to `/` from `next.config.ts`. Do not bring gifting copy back; this store sells facility and architectural supplies.
+
 ## Layout
 
 - **One container for the whole site:** `.wrap` in `globals.css`, `min(1180px, 100% - 40px)`, narrowing to `min(100% - 28px, 1180px)` at 640px. The header, breadcrumb, every page's content and the footer all sit on it, so their edges line up at every width.
 - **Page stylesheets must not size `.wrap`, or bring their own container.** The product page (1280px), the cart's `.cart-wrap` (1280px) and the AI gift finder (1120px) each did, which put their content 50px or 30px off the header and footer. The finder's rule was unscoped, so it narrowed the header and footer on that page too.
 - **A scoped copy is wrong even when its desktop value matches.** `.products-page .wrap` repeated the global 1180px, but being more specific than the global phone rule it held a 20px gutter on phones while everything else went to 14. Delete the copy; do not try to keep it in step.
-- `HowItWorksStyles` and `DiwaliGiftingStyles` still declare an unscoped `.wrap` with the same values and the same 640px breakpoint, as part of their migrated base CSS. They are harmless only while identical.
 - **The logo is type, not an image:** `BrandLogo` in `src/components/common/BrandLogo.tsx` draws the square "AE" mark beside "AE India" and "AMIT ENTERPRISES", as the design does — there is no logo file yet. The header, footer, auth and checkout all render it; `tone="dark"` is the footer's white-mark variant. Swap in an image there, once, when a logo file is supplied.
 - **Check alignment by measurement, not by eye.** Compare the left edge of the header logo, the breadcrumb, the first content block and the footer logo, and the right edge of the header icons and the content, at desktop, tablet and phone widths.
 
@@ -407,7 +410,7 @@ Reserved for future rules.
 - `NEXT_PUBLIC_*` is inlined at build time, so the Docker image needs `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_MEASUREMENT_ID` as **build arguments**, not just container environment. `.dockerignore` excludes `.env`, so without them the build silently baked `http://localhost:3000` into robots.txt and every prerendered canonical.
 - The store **is** the home page. Both URLs it used to live at — `/gift-store` and `/employee-gift-store` — are permanent redirects to `/` in `next.config.ts` (`permanent: true` emits a **308**, not a 301). Both were indexed, and `/employee-gift-store` was left redirecting to a page that had already been deleted, so it redirected straight into a 404.
 - The store has **one** name, "AE India", from `storeName` in `src/constants/brand.ts`, beside `storeOwner` ("Amit Enterprises") and `storeTagline`. Page titles end "| AE India"; `siteName` and the manifest read the same.
-- Open Graph cards are 1200x630 with `width`, `height` and `alt` declared. AE India has none yet, so the home and contact pages carry no image and use `twitter.card: "summary"`. Never fall back to the previous store's `wingback-*` artwork, which is still in `public/assets` for the pages not yet rebuilt.
+- Open Graph cards are 1200x630 with `width`, `height` and `alt` declared. AE India has none yet, so the home and contact pages carry no image and use `twitter.card: "summary"`. The previous store's `wingback-*` artwork is deleted; only `wingback-logo-mark.png` and the three `product-*.png` remain, because the `public/phase2` prototype uses them.
 - Analytics loads through `GoogleAnalytics` in the root layout and is omitted entirely when no measurement ID is set, which keeps local development out of the property. Adding it required widening three CSP directives in `next.config.ts`; the tag is blocked outright without all three.
 
 ## Generative engine optimization
@@ -419,9 +422,9 @@ Reserved for future rules.
 - The cookie notice states what is stored. `cookieNoticeVersion` in `src/utils/cookie-notice.ts` is bumped whenever that changes, so an acknowledgement of a narrower notice stops counting. Google Analytics took it to 2.
 
 ## JSON-LD
-- Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd`, `AboutJsonLd`, `ContactJsonLd` and `DivisionJsonLd` do; `CatalogueJsonLd`, `DirectGiftingJsonLd`, `DiwaliGiftingJsonLd` and `HowItWorksJsonLd` are still escaped strings and should be converted when next touched. Those strings use a `{{site_url}}` token, filled by `fillCompanyTokens`, so no origin is written into the source.
+- Build the graph as an object and serialise it with `serializeJsonLd`. `HomeJsonLd`, `AboutJsonLd`, `ContactJsonLd` and `DivisionJsonLd` do; No escaped-string graphs are left.
 - **No page emits its own `BreadcrumbList`.** `Breadcrumbs` emits one from the trail it renders; every page graph that also carried one was publishing two, and one of them had an empty name and a `/category/` URL with no slug.
-- A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. `HowItWorksJsonLd`'s `HowTo` is that page's visible steps; The About page renders no FAQ, so `AboutJsonLd` carries none.
+- A `HowTo` or `FAQPage` node must mirror what the page actually shows, stage for stage and question for question. The About page renders no FAQ, so `AboutJsonLd` carries none.
 - `/products/[slug]` publishes a `Product` node through `ProductJsonLd` (`src/components/product/ProductJsonLd.tsx`), restored together with the canonical. Unknown fields are omitted, the brand is omitted when it is only the mapper's store-name fallback, a zero price publishes no offer, availability follows the buy box, and the seller is `storeOwner`.
 - A product page carries two structured-data blocks: that `Product` node and the `BreadcrumbList` that `Breadcrumbs` emits from the trail it renders.
 

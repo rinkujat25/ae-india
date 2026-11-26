@@ -9,11 +9,8 @@ type ActiveNavItem =
     | "home"
     | "facility-maintenance"
     | "architectural-interiors"
-    | "how-it-works"
-    | "diwali-gifting"
     | "contact-us"
     | "about-us"
-    | "ai-gift-finder"
     | "products";
 
 type SiteHeaderProps = {

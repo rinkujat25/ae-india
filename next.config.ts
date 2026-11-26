@@ -120,6 +120,14 @@ const nextConfig: NextConfig = {
                 destination: "/",
                 permanent: true,
             },
+            // The previous store's gifting pages. They are gone, and AE India
+            // has nothing to replace them with, so their addresses land on the
+            // home page rather than a 404.
+            ...["/how-it-works", "/diwali-gifting", "/ai-gift-finder"].map((source) => ({
+                source,
+                destination: "/",
+                permanent: true,
+            })),
             {
                 // The phase 2 prototype is plain static HTML in public/phase2.
                 // Next doesn't serve a folder's index.html, and a rewrite would
